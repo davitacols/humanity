@@ -1,85 +1,241 @@
 import { InfoCard } from "../../components/InfoCard";
 import { LoadingLink } from "../../components/LoadingLink";
 import { PageHero } from "../../components/PageHero";
-import { PhotoPanel } from "../../components/PhotoPanel";
-import { premiumVideoProject, projectCards } from "../../components/siteData";
+import { Reveal } from "../../components/Reveal";
+import { SectionIntro } from "../../components/SectionIntro";
+import { StockPhoto } from "../../components/StockPhoto";
+import { stockMedia } from "../../components/stockMedia";
+import { premiumVideoProject, projectCards, sportsSpotlight } from "../../components/siteData";
+
+function cleanCopy(value) {
+  return value.replaceAll("â€‘", "-");
+}
+
+const archiveTones = ["paper", "blush", "mist", "sand", "leaf", "paper"];
+
+const projectHeroHighlights = [
+  "Flagship campaigns and sector-led stories",
+  "Visible asks tied to practical outcomes",
+  "Archive, documentary releases, and field reporting in one place"
+];
+
+const projectHeroAsidePoints = [
+  sportsSpotlight.location,
+  sportsSpotlight.beneficiaries,
+  sportsSpotlight.totalRequest
+];
 
 export default function ProjectsPage() {
   return (
     <main className="site-main">
       <PageHero
         eyebrow="Projects and stories"
-        title="A project archive that feels rich, editorial, and easy to scan."
-        body="The archive is structured so flagship stories feel important, while the wider project grid still gives equal visibility to health, education, arts, and sports interventions."
+        title="Projects, campaigns, and field stories that make support tangible."
+        body="This archive brings together flagship interventions and sector-led projects so supporters can move from interest to action with clear context."
         primary={{ href: "/donate", label: "Support a Project" }}
         secondary={{ href: "/programs", label: "Browse Programs" }}
-        asideTitle="Archive design"
-        asideBody="A Getty-style influence works best when one case study leads, then a cleaner grid carries the rest of the stories without becoming noisy."
+        highlights={projectHeroHighlights}
+        media={stockMedia.projectsHero}
+        asideTitle="Real stories, clear asks, stronger support decisions"
+        asideBody="The projects layer keeps active interventions visible, makes campaign priorities easier to understand, and shows how support maps to practical outcomes."
+        asidePoints={projectHeroAsidePoints}
       />
 
-      <section className="section">
-        <div className="feature-panel">
-          <PhotoPanel
-            title="Featured case study"
-            caption="community outreach with visible follow-up and partner context"
-            tone="forest"
-          />
-          <div className="feature-panel__content">
-            <span className="pill pill--soft">Flagship impact story</span>
-            <h3>Community health outreach with measurable follow-up</h3>
-            <p>
-              This lead story block is designed for one anchor intervention with space for a
-              concise summary, one testimonial, and a visible outcome or metric panel.
-            </p>
-            <div className="chip-row">
-              <span className="chip">1,200+ reached</span>
-              <span className="chip">4 partner clinics</span>
+      <Reveal as="section" className="section" delay={120}>
+        <div className="home-showcase-grid">
+          <article className="campaign-dossier">
+            <div className="campaign-dossier__lead">
+              <StockPhoto
+                src={stockMedia.projectsHero.src}
+                alt={stockMedia.projectsHero.alt}
+                label={stockMedia.projectsHero.label}
+                sizes="(max-width: 1180px) 100vw, 34vw"
+                className="campaign-dossier__media"
+              />
+              <span className="pill pill--soft">Flagship impact story</span>
+              <h3 className="campaign-dossier__title">{sportsSpotlight.title}</h3>
+              <p className="campaign-dossier__body">{sportsSpotlight.summary}</p>
+              <blockquote className="campaign-dossier__quote">{sportsSpotlight.body}</blockquote>
             </div>
+
+            <div className="campaign-dossier__facts">
+              <div className="home-meta-row">
+                <span className="home-meta-pill">{sportsSpotlight.location}</span>
+                <span className="home-meta-pill">{sportsSpotlight.founded}</span>
+                <span className="home-meta-pill">{sportsSpotlight.beneficiaries}</span>
+                <span className="home-meta-pill">{sportsSpotlight.orphanSupport}</span>
+              </div>
+
+              <div className="campaign-dossier__support-list">
+                <article className="campaign-dossier__support-item">
+                  <p className="campaign-dossier__support-eyebrow">Current ask</p>
+                  <p className="campaign-dossier__support-body">{sportsSpotlight.totalRequest}</p>
+                </article>
+                <article className="campaign-dossier__support-item">
+                  <p className="campaign-dossier__support-eyebrow">Age range</p>
+                  <p className="campaign-dossier__support-body">{sportsSpotlight.ageGroups}</p>
+                </article>
+              </div>
+
+              <div className="hero-actions">
+                <LoadingLink
+                  href="/donate"
+                  className="button button--primary"
+                  loadingLabel="Opening"
+                >
+                  Support Sports Development
+                </LoadingLink>
+                <LoadingLink
+                  href="/programs"
+                  className="button button--secondary"
+                  loadingLabel="Opening"
+                >
+                  Explore Sports Programs
+                </LoadingLink>
+              </div>
+            </div>
+          </article>
+
+          <div className="assurance-stack">
+            {sportsSpotlight.supportAreas.map((item, index) => (
+              <article key={item} className="assurance-card">
+                <p className="assurance-card__eyebrow">
+                  Support area {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 className="assurance-card__title">{item}</h3>
+                <p className="assurance-card__body">
+                  This support route keeps training active, protects young participants, and builds
+                  longer-term opportunities around sport, discipline, and community development.
+                </p>
+              </article>
+            ))}
           </div>
         </div>
-      </section>
+      </Reveal>
 
-      <section className="section">
-        <div className="feature-panel">
-          <PhotoPanel
-            title={premiumVideoProject.title}
-            caption="locked premium storytelling or event playback"
-            tone="sunset"
-          />
-          <div className="feature-panel__content">
-            <span className="pill pill--soft">{premiumVideoProject.eyebrow}</span>
-            <h3>Premium watch access is now part of the project system.</h3>
-            <p>{premiumVideoProject.description}</p>
-            <div className="chip-row">
-              <span className="chip">{premiumVideoProject.price}</span>
-              <span className="chip">{premiumVideoProject.accessWindow}</span>
+      <Reveal as="section" className="section" delay={170}>
+        <SectionIntro
+          eyebrow="Current proposal"
+          title="The translated proposal focuses on practical equipment, safe participation, and long-term opportunity."
+          body="The immediate ask keeps training sessions equipped, consistent, and development-focused while the academy vision grows."
+        />
+
+        <div className="section-grid section-grid--campaign">
+          <div className="priority-list">
+            {sportsSpotlight.priorities.map((item, index) => (
+              <article key={item.title} className="priority-card">
+                <p className="priority-card__eyebrow">Priority {String(index + 1).padStart(2, "0")}</p>
+                <h3 className="priority-card__title">{item.title}</h3>
+                <p className="priority-card__body">{item.body}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="home-route-panel">
+            <span className="pill pill--soft">Proposal summary</span>
+            <h3>{sportsSpotlight.title}</h3>
+            <p>{sportsSpotlight.totalRequest}</p>
+            <p>{sportsSpotlight.ageGroups}</p>
+            <div className="home-meta-row">
+              <span className="home-meta-pill">{sportsSpotlight.beneficiaries}</span>
+              <span className="home-meta-pill">{sportsSpotlight.orphanSupport}</span>
             </div>
             <div className="hero-actions">
               <LoadingLink
-                href={`/projects/${premiumVideoProject.slug}`}
+                href="/donate"
                 className="button button--primary"
                 loadingLabel="Opening"
               >
-                Open Premium Video
+                Back This Project
+              </LoadingLink>
+              <LoadingLink
+                href="/get-involved"
+                className="button button--secondary"
+                loadingLabel="Opening"
+              >
+                Discuss Partnership
               </LoadingLink>
             </div>
           </div>
         </div>
-      </section>
+      </Reveal>
 
-      <section className="section">
-        <div className="card-grid">
+      <Reveal as="section" className="section" delay={220}>
+        <SectionIntro
+          eyebrow="Archive layer"
+          title="A broader set of stories that keeps the initiative active between flagship campaigns."
+          body="The archive makes it easier for visitors to discover the range of the initiative, from health and education to advocacy and community safety."
+        />
+
+        <div className="story-ledger">
           {projectCards.map((project, index) => (
-            <InfoCard
+            <article
               key={project.title}
-              eyebrow={project.tag}
-              title={project.title}
-              body={project.body}
-              tone={index % 3 === 1 ? "blush" : index % 3 === 2 ? "mist" : "paper"}
-            />
+              className={`story-ledger__row story-ledger__row--${archiveTones[index % archiveTones.length]}`}
+            >
+              <div className="story-ledger__index">
+                <span className="story-card__index">{String(index + 1).padStart(2, "0")}</span>
+              </div>
+
+              <div className="story-ledger__content">
+                <p className="story-ledger__tag">{project.tag}</p>
+                <h3 className="story-ledger__title">{project.title}</h3>
+                <p className="story-ledger__body">{cleanCopy(project.body)}</p>
+              </div>
+
+              <div className="story-ledger__actions">
+                <LoadingLink
+                  href={project.tag === "Education" ? "/education" : "/programs"}
+                  className="button button--secondary"
+                  loadingLabel="Opening"
+                >
+                  Explore Related Work
+                </LoadingLink>
+              </div>
+            </article>
           ))}
         </div>
-      </section>
+      </Reveal>
+
+      <Reveal as="section" className="section" delay={280}>
+        <div className="section-grid section-grid--split">
+          <div className="home-route-panel home-route-panel--dark">
+            <span className="pill pill--soft">{premiumVideoProject.eyebrow}</span>
+            <h3>{premiumVideoProject.title}</h3>
+            <p>{premiumVideoProject.description}</p>
+            <div className="home-meta-row">
+              <span className="home-meta-pill">{premiumVideoProject.price}</span>
+              <span className="home-meta-pill">{premiumVideoProject.runtime}</span>
+              <span className="home-meta-pill">{premiumVideoProject.accessWindow}</span>
+            </div>
+            <div className="hero-actions">
+              <LoadingLink
+                href={`/projects/${premiumVideoProject.slug}`}
+                className="button button--secondary"
+                loadingLabel="Opening"
+              >
+                Open Documentary Screening
+              </LoadingLink>
+            </div>
+          </div>
+
+          <div className="home-route-panel">
+            <span className="pill pill--soft">Long-term expectation</span>
+            <h3>Support today unlocks longer pathways for young people.</h3>
+            <div className="stack-grid">
+              {sportsSpotlight.futureExpectations.map((expectation) => (
+                <InfoCard
+                  key={expectation}
+                  eyebrow="Outcome"
+                  title={expectation}
+                  body="This sits inside the center's wider ambition to use sports as a tool for health, belonging, discipline, and long-term opportunity."
+                  tone="paper"
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </Reveal>
     </main>
   );
 }

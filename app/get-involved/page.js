@@ -1,6 +1,7 @@
 import { InfoCard } from "../../components/InfoCard";
 import { LoadingLink } from "../../components/LoadingLink";
 import { PageHero } from "../../components/PageHero";
+import { stockMedia } from "../../components/stockMedia";
 import { involvementPaths, updateCards } from "../../components/siteData";
 
 export default function GetInvolvedPage() {
@@ -12,8 +13,9 @@ export default function GetInvolvedPage() {
         body="This route gives different supporter types their own path, whether they want to volunteer, partner, contribute creatively, or sponsor a program."
         primary={{ href: "/donate", label: "Sponsor a Program" }}
         secondary={{ href: "/education/contribute", label: "Submit a Resource" }}
-        asideTitle="Conversion structure"
-        asideBody="A strong involvement page routes different audiences clearly while still keeping the site warm, human, and visually consistent."
+        media={stockMedia.getInvolvedHero}
+        asideTitle="Clear ways to join the work"
+        asideBody="Volunteers, partners, contributors, and sponsors each get a direct path into the mission without losing the warmth and clarity of the wider initiative."
       />
 
       <section className="section">
@@ -34,7 +36,7 @@ export default function GetInvolvedPage() {
           <InfoCard
             eyebrow="Submission flow"
             title="The education contributor form is now live."
-            body="Educators, mentors, and partner organizations can now submit books, lesson links, and toolkits into a real review queue backed by Neon."
+            body="Educators, mentors, and partner organizations submit books, lesson links, and toolkits into a review queue backed by Neon."
             tone="blush"
           />
           <LoadingLink

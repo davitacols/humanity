@@ -7,7 +7,7 @@ if (typeof process.loadEnvFile === "function") {
 const postgres = require("postgres");
 
 const educationMetrics = [
-  { value: "12", label: "starter resources ready for download or embedding" },
+  { value: "12", label: "curated resources prepared for guided learning access" },
   { value: "3", label: "learning tracks designed for different entry levels" },
   { value: "Low-data", label: "content structure designed for mobile and low-bandwidth access" },
   { value: "Weekly", label: "space for fresh lessons, links, and community updates" }
@@ -36,7 +36,7 @@ const educationTracks = [
 
 const educationResources = [
   {
-    title: "Starter book pack",
+    title: "Foundational book pack",
     body: "A grouped download area for youth-friendly books, reading guides, and early digital literacy materials.",
     eyebrow: "Downloadable resource",
     tone: "paper"
@@ -63,15 +63,15 @@ const educationResources = [
 
 const educationLibraryItems = [
   {
-    title: "Digital basics starter guide",
+    title: "Digital basics guide",
     summary:
-      "A simple PDF-style resource for learners getting started with internet use, devices, and digital confidence.",
+      "A practical orientation resource for learners building confidence with devices, internet use, and basic digital habits.",
     category: "Downloads",
     format: "PDF guide",
     level: "Beginner",
-    action_label: "Open sample guide",
-    href: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-    external: true
+    action_label: "Open guide overview",
+    href: "/education/resources/digital-basics-guide",
+    external: false
   },
   {
     title: "Getting started with the web",
@@ -91,9 +91,9 @@ const educationLibraryItems = [
     category: "Toolkits",
     format: "Facilitator kit",
     level: "Community",
-    action_label: "Preview toolkit",
-    href: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-    external: true
+    action_label: "Open facilitator outline",
+    href: "/education/resources/facilitator-session-outline",
+    external: false
   },
   {
     title: "Code.org beginner course",
@@ -113,9 +113,9 @@ const educationLibraryItems = [
     category: "Downloads",
     format: "Worksheet pack",
     level: "Mixed level",
-    action_label: "View pack",
-    href: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-    external: true
+    action_label: "Open workbook notes",
+    href: "/education/resources/printable-workbook-set",
+    external: false
   },
   {
     title: "Mentor checklist for cohort support",
@@ -124,9 +124,9 @@ const educationLibraryItems = [
     category: "Toolkits",
     format: "Checklist",
     level: "Mentor",
-    action_label: "Open checklist",
-    href: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-    external: true
+    action_label: "Open mentor checklist",
+    href: "/education/resources/mentor-checklist",
+    external: false
   }
 ];
 

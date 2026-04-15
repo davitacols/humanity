@@ -1,485 +1,387 @@
-import { InfoCard } from "../components/InfoCard";
 import { LoadingLink } from "../components/LoadingLink";
-import { MetricCard } from "../components/MetricCard";
-import { PhotoPanel } from "../components/PhotoPanel";
+import { Reveal } from "../components/Reveal";
 import { SectionIntro } from "../components/SectionIntro";
+import { StockPhoto } from "../components/StockPhoto";
+import { stockMedia } from "../components/stockMedia";
 import {
-  donationCauses,
-  donationTiers,
   educationMetrics,
-  featuredProject,
   homeMissionPoints,
   homeTrustSignals,
-  involvementPaths,
-  premiumVideoProject,
   programPillars,
-  projectCards,
   proofStats,
-  spotlightStories,
-  updateCards
+  sportsSpotlight
 } from "../components/siteData";
 
-const storyCardTones = ["paper", "mist", "sand", "blush", "leaf", "paper"];
-const involvementTones = ["paper", "mist", "sand", "blush"];
-
-function getProjectLink(project) {
-  if (project.tag === "Education") {
-    return {
-      href: "/education",
-      label: "Open Education Hub"
-    };
-  }
-
-  if (project.tag === "Public Health" || project.tag === "Sports" || project.tag === "Arts and Music") {
-    return {
-      href: "/programs",
-      label: "See Program Route"
-    };
-  }
-
-  return {
+const heroTiles = [
+  {
+    eyebrow: "Current appeal",
+    title: "Support a live youth sports response",
+    body: "The Dodoma Best Sports Center campaign is public, active, and tied to practical equipment and coaching needs.",
     href: "/projects",
-    label: "View Project Archive"
-  };
-}
+    label: "Read the project",
+    tone: "ember"
+  },
+  {
+    eyebrow: "Education hub",
+    title: "Low-bandwidth learning for communities",
+    body: "Guides, lessons, and facilitator tools are already organized for phones, classrooms, and community sessions.",
+    href: "/education",
+    label: "Visit education hub",
+    tone: "olive"
+  },
+  {
+    eyebrow: "Get involved",
+    title: "Volunteer, partner, or contribute",
+    body: "The site now gives different supporters a direct path into the mission instead of one generic action.",
+    href: "/get-involved",
+    label: "Choose a route",
+    tone: "sand"
+  }
+];
+
+const fieldStories = [
+  {
+    eyebrow: "Health outreach",
+    title: "Maternal and child health support in focus",
+    body: "Mobile clinic visits, hygiene kits, and follow-up check-ins help mothers and newborns stay connected to practical care.",
+    meta: "Maternal care, hygiene kits, follow-ups",
+    media: stockMedia.homeStories[0]
+  },
+  {
+    eyebrow: "Youth development",
+    title: "Sport creates structure, safety, and belonging for young people",
+    body: "Weekly training sessions and mentorship create a disciplined, positive environment that keeps children engaged and growing.",
+    meta: "Training, mentorship, community tournaments",
+    media: stockMedia.homeStories[1]
+  },
+  {
+    eyebrow: "Creative advocacy",
+    title: "Storytelling keeps communities visible beyond a single appeal",
+    body: "Film, photography, and spoken-word projects help translate local experience into public awareness, advocacy, and sustained support.",
+    meta: "Film, photography, spoken word",
+    media: stockMedia.homeStories[2]
+  }
+];
+
+const programVisuals = [
+  stockMedia.educationFeature,
+  stockMedia.homeStories[2],
+  stockMedia.homeStories[0],
+  stockMedia.homeHero
+];
+
+const supportRoutes = [
+  {
+    eyebrow: "Donate",
+    title: "Fund practical work on the ground",
+    body: "Support current priorities across health, education, youth development, and creative advocacy.",
+    href: "/donate",
+    label: "Donate now"
+  },
+  {
+    eyebrow: "Partner",
+    title: "Collaborate as an organization or sponsor",
+    body: "Work with the initiative on live campaigns, field support, or longer-term community programs.",
+    href: "/get-involved",
+    label: "Discuss partnership"
+  },
+  {
+    eyebrow: "Volunteer",
+    title: "Contribute time and local support",
+    body: "Join events, outreach activity, and program delivery where trusted hands are needed most.",
+    href: "/get-involved",
+    label: "See volunteer routes"
+  },
+  {
+    eyebrow: "Contribute",
+    title: "Share learning tools and specialist expertise",
+    body: "Submit resources, creative support, or technical knowledge that strengthens community-facing work.",
+    href: "/education/contribute",
+    label: "Contribute resources"
+  }
+];
 
 export default function HomePage() {
   return (
-    <main className="site-main">
-      <section className="hero hero--home">
-        <div className="hero__content">
-          <span className="pill">Grassroots impact across Africa</span>
-          <h1 className="hero__title">
-            Show real work, earn trust, and turn support into community action.
+    <main className="site-main site-main--marley">
+      <Reveal as="section" className="marley-home-hero" delay={60}>
+        <div className="marley-home-hero__lead">
+          <p className="marley-home-hero__eyebrow">Humanity First Initiative</p>
+          <h1 className="marley-home-hero__title">
+            Visibility, dignity, and support for communities on the move.
           </h1>
-          <p className="hero__body">
-            Humanity First Initiative is being built as a mission-led platform for humanitarian
-            interventions, education access, health advocacy, creative expression, and youth sports
-            development with women and children at the center.
+          <p className="marley-home-hero__lede">
+            Humanity First connects local programs, field reporting, and practical ways to help
+            across health, education, youth development, and creative advocacy.
           </p>
-
-          <div className="chip-row">
-            {homeMissionPoints.map((point) => (
-              <span key={point} className="chip">
-                {point}
-              </span>
-            ))}
-          </div>
 
           <div className="hero-actions">
             <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">
-              Donate Now
+              Donate now
             </LoadingLink>
             <LoadingLink
               href="/projects"
               className="button button--secondary"
               loadingLabel="Opening"
             >
-              Explore Projects
-            </LoadingLink>
-            <LoadingLink
-              href="/get-involved"
-              className="button button--secondary"
-              loadingLabel="Opening"
-            >
-              Get Involved
+              Read field updates
             </LoadingLink>
           </div>
 
-          <p className="hero__support">
-            Built for donors, NGOs, volunteers, collaborators, creatives, youth groups, and
-            communities that need one trusted place to see impact stories, support programs, and
-            grow with the mission.
-          </p>
-        </div>
-
-        <div className="hero__media-grid">
-          {spotlightStories.map((story, index) => (
-            <PhotoPanel
-              key={story.title}
-              title={story.title}
-              caption={story.caption}
-              tone={story.tone}
-              tall={index === 1}
-            />
-          ))}
-
-          <article className="hero__media-note">
-            <p className="section-kicker">Mission statement</p>
-            <h2>Visibility should lead to dignity, confidence, and informed support.</h2>
-            <p>
-              The homepage is designed to make the work feel tangible from the first scroll:
-              visitors can understand the mission, see the sectors, meet the stories, and know
-              exactly where to go next.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section className="section">
-        <SectionIntro
-          eyebrow="Why this platform exists"
-          title="Build a digital home that feels credible, warm, and useful from the first visit."
-          body="This first experience needs to do more than look good. It should explain the mission clearly, prove the range of the work, and make the next action obvious whether someone wants to donate, partner, volunteer, or learn."
-        />
-
-        <div className="section-grid section-grid--campaign">
-          <div className="feature-panel">
-            <PhotoPanel
-              title="Mission-led storytelling"
-              caption="replace with founder or field documentary photography"
-              tone="forest"
-            />
-            <div className="feature-panel__content">
-              <span className="pill pill--soft">Editorial direction</span>
-              <h3>Keep the site human first, then scale it into a wider platform.</h3>
-              <p>
-                The homepage is structured to carry humanitarian reporting, program visibility,
-                education access, arts and advocacy, public health campaigns, and sports
-                development without flattening all of that into one generic nonprofit page.
-              </p>
-              <blockquote>
-                The goal is not just awareness. The goal is a trusted path from empathy to real
-                support, collaboration, and repeat engagement.
-              </blockquote>
-            </div>
-          </div>
-
-          <div className="stack-grid">
-            {homeTrustSignals.map((signal) => (
-              <InfoCard
-                key={signal.title}
-                eyebrow={signal.eyebrow}
-                title={signal.title}
-                body={signal.body}
-                tone={signal.tone}
-              />
+          <div className="marley-home-hero__principles">
+            {homeMissionPoints.map((point) => (
+              <span key={point} className="marley-home-hero__principle">
+                {point}
+              </span>
             ))}
           </div>
         </div>
-      </section>
 
-      <section className="section">
-        <div className="section__stack">
-          <p className="section-kicker">Proof of impact</p>
-          <div className="metric-grid">
-            {proofStats.map((item) => (
-              <MetricCard key={item.label} value={item.value} label={item.label} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <SectionIntro
-          eyebrow="Program pillars"
-          title="Four clear sectors, one shared humanitarian mission."
-          body="The homepage should prove breadth without losing focus. Each pillar works as a real route into a program area with its own stories, campaigns, resources, and future expansion path."
-        />
-
-        <div className="info-grid info-grid--two">
-          {programPillars.map((pillar) => (
-            <div key={pillar.title} className="hub-card">
-              <InfoCard
-                eyebrow="Program pillar"
-                title={pillar.title}
-                body={pillar.body}
-                tone={pillar.tone}
-              />
-              <LoadingLink
-                href={pillar.href}
-                className="button button--secondary hub-card__cta"
-                loadingLabel="Opening"
-              >
-                Explore This Sector
-              </LoadingLink>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="section">
-        <SectionIntro
-          eyebrow="Featured impact story"
-          title="Lead with one living intervention before the wider archive."
-          body="A strong homepage should make one story memorable. This creates emotional grounding before visitors move into the broader project ecosystem."
-        />
-
-        <div className="feature-panel">
-          <PhotoPanel
-            title="Flagship field story"
-            caption="replace with documentary imagery from an active intervention"
-            tone="sunset"
+        <article className="marley-home-hero__feature">
+          <StockPhoto
+            src={stockMedia.homeHero.src}
+            alt={stockMedia.homeHero.alt}
+            label="Featured response"
+            priority
+            sizes="(max-width: 1180px) 100vw, 38vw"
+            className="marley-home-hero__feature-media"
           />
-          <div className="feature-panel__content">
-            <span className="pill pill--soft">Featured intervention</span>
-            <h3>{featuredProject.title}</h3>
-            <p>{featuredProject.body}</p>
-            <blockquote>{featuredProject.quote}</blockquote>
-            <div className="hero-actions">
-              <LoadingLink
-                href="/projects"
-                className="button button--primary"
-                loadingLabel="Opening"
-              >
-                Read the Story
-              </LoadingLink>
-              <LoadingLink
-                href="/donate"
-                className="button button--secondary"
-                loadingLabel="Opening"
-              >
-                Support This Work
-              </LoadingLink>
-            </div>
-          </div>
-        </div>
-      </section>
+          <div className="marley-home-hero__feature-copy">
+            <p className="marley-home-hero__feature-eyebrow">Current program in focus</p>
+            <h2 className="marley-home-hero__feature-title">{sportsSpotlight.title}</h2>
+            <p className="marley-home-hero__feature-body">{sportsSpotlight.summary}</p>
 
-      <section className="section">
-        <SectionIntro
-          eyebrow="Project archive"
-          title="Show the range of the work without turning the homepage into a wall of cards."
-          body="These project previews create a stronger mid-page browsing experience and make it easier for visitors to move from general interest into a specific sector or intervention type."
-        />
-
-        <div className="story-grid">
-          {projectCards.map((project, index) => {
-            const link = getProjectLink(project);
-
-            return (
-              <article
-                key={project.title}
-                className={`story-card story-card--${storyCardTones[index % storyCardTones.length]}`}
-              >
-                <div className="story-card__meta">
-                  <span className="story-card__tag">{project.tag}</span>
-                  <span className="story-card__index">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                </div>
-
-                <h3 className="story-card__title">{project.title}</h3>
-                <p className="story-card__body">{project.body}</p>
-
-                <div className="story-card__actions">
-                  <LoadingLink
-                    href={link.href}
-                    className="button button--secondary story-card__link"
-                    loadingLabel="Opening"
-                  >
-                    {link.label}
-                  </LoadingLink>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="section">
-        <SectionIntro
-          eyebrow="Built to expand"
-          title="The homepage should point beyond storytelling into real product surfaces."
-          body="Education, premium storytelling, and contributor pathways are already live. The homepage should surface them clearly so the platform feels active, useful, and ready to grow."
-        />
-
-        <div className="section-grid section-grid--split">
-          <div className="home-route-panel">
-            <span className="pill pill--soft">Education hub</span>
-            <h3>Turn the platform into a practical learning destination.</h3>
-            <p>
-              The Education Hub gives the initiative a real learning surface for books, lesson
-              links, coding pathways, and community-ready teaching materials that work well on
-              phones.
-            </p>
-
-            <div className="home-meta-row">
-              {educationMetrics.slice(0, 3).map((item) => (
-                <span key={item.label} className="home-meta-pill">
-                  {item.value} {item.label}
-                </span>
+            <div className="marley-home-hero__feature-stats">
+              {proofStats.map((item) => (
+                <article key={item.label} className="marley-home-hero__feature-stat">
+                  <p className="marley-home-hero__feature-stat-value">{item.value}</p>
+                  <p className="marley-home-hero__feature-stat-label">{item.label}</p>
+                </article>
               ))}
             </div>
 
-            <div className="hero-actions">
+            <LoadingLink
+              href="/projects"
+              className="button button--ghost-light"
+              loadingLabel="Opening"
+            >
+              Explore the full project
+            </LoadingLink>
+          </div>
+        </article>
+
+        <div className="marley-home-hero__rail">
+          {heroTiles.map((tile) => (
+            <article key={tile.title} className={`marley-home-hero__tile marley-home-hero__tile--${tile.tone}`}>
+              <p className="marley-home-hero__tile-eyebrow">{tile.eyebrow}</p>
+              <h3 className="marley-home-hero__tile-title">{tile.title}</h3>
+              <p className="marley-home-hero__tile-body">{tile.body}</p>
+              <LoadingLink href={tile.href} className="marley-home-hero__tile-link" loadingLabel="Opening">
+                {tile.label}
+              </LoadingLink>
+            </article>
+          ))}
+        </div>
+      </Reveal>
+
+      <Reveal as="section" className="marley-home-proof-strip" delay={110}>
+        {homeTrustSignals.map((item) => (
+          <article key={item.title} className="marley-home-proof-strip__item">
+            <p className="marley-home-proof-strip__eyebrow">{item.eyebrow}</p>
+            <h3 className="marley-home-proof-strip__title">{item.title}</h3>
+            <p className="marley-home-proof-strip__body">{item.body}</p>
+          </article>
+        ))}
+      </Reveal>
+
+      <Reveal as="section" className="section" delay={160}>
+        <SectionIntro
+          eyebrow="Current work"
+          title="Program areas presented like a living archive, not a brochure."
+          body="Each route should feel active, image-led, and easy to enter, while still making it clear what the work does for communities."
+        />
+
+        <div className="marley-home-programs">
+          {programPillars.map((pillar, index) => (
+            <article key={pillar.title} className="marley-home-programs__card">
+              <StockPhoto
+                src={programVisuals[index].src}
+                alt={programVisuals[index].alt}
+                label={`Route 0${index + 1}`}
+                sizes="(max-width: 1180px) 100vw, 24vw"
+                className="marley-home-programs__media"
+              />
+              <div className="marley-home-programs__copy">
+                <p className="marley-home-programs__eyebrow">Program area</p>
+                <h3 className="marley-home-programs__title">{pillar.title}</h3>
+                <p className="marley-home-programs__body">{pillar.body}</p>
+                <LoadingLink
+                  href={pillar.href}
+                  className="button button--secondary"
+                  loadingLabel="Opening"
+                >
+                  Explore this route
+                </LoadingLink>
+              </div>
+            </article>
+          ))}
+        </div>
+      </Reveal>
+
+      <Reveal as="section" className="marley-home-showcase" delay={220}>
+        <div className="marley-home-showcase__feature">
+          <StockPhoto
+            src={stockMedia.homeStories[1].src}
+            alt={stockMedia.homeStories[1].alt}
+            label="Field image"
+            sizes="(max-width: 1180px) 100vw, 46vw"
+            className="marley-home-showcase__media"
+          />
+          <div className="marley-home-showcase__copy">
+            <p className="marley-home-showcase__eyebrow">Response and delivery</p>
+            <h2 className="marley-home-showcase__title">
+              Practical support starts with a clear picture of needs on the ground.
+            </h2>
+            <p className="marley-home-showcase__body">
+              The current sports program illustrates how the initiative works: a community need is
+              documented, priorities are made public, and supporters can trace their help back to
+              a visible program.
+            </p>
+
+            <div className="marley-home-showcase__list">
+              {sportsSpotlight.priorities.slice(0, 3).map((item) => (
+                <article key={item.title} className="marley-home-showcase__list-item">
+                  <h3 className="marley-home-showcase__list-title">{item.title}</h3>
+                  <p className="marley-home-showcase__list-body">{item.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <aside className="marley-home-showcase__aside">
+          <p className="marley-home-showcase__aside-label">At a glance</p>
+          <div className="marley-home-showcase__aside-grid">
+            <article className="marley-home-showcase__aside-card">
+              <p className="marley-home-showcase__aside-card-label">Location</p>
+              <p className="marley-home-showcase__aside-card-value">{sportsSpotlight.location}</p>
+            </article>
+            <article className="marley-home-showcase__aside-card">
+              <p className="marley-home-showcase__aside-card-label">Reach</p>
+              <p className="marley-home-showcase__aside-card-value">{sportsSpotlight.beneficiaries}</p>
+            </article>
+            <article className="marley-home-showcase__aside-card">
+              <p className="marley-home-showcase__aside-card-label">Support</p>
+              <p className="marley-home-showcase__aside-card-value">{sportsSpotlight.orphanSupport}</p>
+            </article>
+            <article className="marley-home-showcase__aside-card">
+              <p className="marley-home-showcase__aside-card-label">Current ask</p>
+              <p className="marley-home-showcase__aside-card-value">{sportsSpotlight.totalRequest}</p>
+            </article>
+          </div>
+
+          <div className="hero-actions">
+            <LoadingLink href="/projects" className="button button--secondary" loadingLabel="Opening">
+              Read field updates
+            </LoadingLink>
+            <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">
+              Donate to this work
+            </LoadingLink>
+          </div>
+        </aside>
+      </Reveal>
+
+      <Reveal as="section" className="section" delay={280}>
+        <SectionIntro
+          eyebrow="Stories and learning"
+          title="Media-led cards keep the mission alive between appeals."
+          body="This section borrows the rhythm of a music-and-media homepage: visual, browsable, and easy to dip into, but still rooted in field relevance."
+        />
+
+        <div className="marley-home-stories">
+          {fieldStories.map((story) => (
+            <article key={story.title} className="marley-home-stories__card">
+              <StockPhoto
+                src={story.media.src}
+                alt={story.media.alt}
+                label={story.media.label}
+                sizes="(max-width: 1180px) 100vw, 22vw"
+                className="marley-home-stories__media"
+              />
+              <p className="marley-home-stories__eyebrow">{story.eyebrow}</p>
+              <h3 className="marley-home-stories__title">{story.title}</h3>
+              <p className="marley-home-stories__body">{story.body}</p>
+              <p className="marley-home-stories__meta">{story.meta}</p>
+            </article>
+          ))}
+
+          <article className="marley-home-stories__feature">
+            <StockPhoto
+              src={stockMedia.educationFeature.src}
+              alt={stockMedia.educationFeature.alt}
+              label="Education hub"
+              sizes="(max-width: 1180px) 100vw, 22vw"
+              className="marley-home-stories__feature-media"
+            />
+            <div className="marley-home-stories__feature-copy">
+              <p className="marley-home-stories__feature-eyebrow">Education route</p>
+              <h3 className="marley-home-stories__feature-title">
+                Learning resources already organized for phones, classrooms, and facilitators.
+              </h3>
+              <p className="marley-home-stories__feature-body">
+                Teachers, mentors, and volunteers can access practical tools, external lessons,
+                and downloadable guides through the education hub.
+              </p>
+
+              <div className="marley-home-stories__metrics">
+                {educationMetrics.slice(0, 4).map((item) => (
+                  <span key={item.label} className="marley-home-stories__metric">
+                    {item.value} {item.label}
+                  </span>
+                ))}
+              </div>
+
               <LoadingLink
                 href="/education"
                 className="button button--primary"
                 loadingLabel="Opening"
               >
-                Open Education Hub
+                Visit education hub
               </LoadingLink>
+            </div>
+          </article>
+        </div>
+      </Reveal>
+
+      <Reveal as="section" className="marley-home-help" delay={340}>
+        <div className="marley-home-help__intro">
+          <p className="marley-home-help__eyebrow">Support the movement</p>
+          <h2 className="marley-home-help__title">
+            Choose the role that fits your capacity and move straight into the work.
+          </h2>
+          <p className="marley-home-help__body">
+            The content stays grounded, but the experience now feels more like an active cultural
+            platform: bold, visual, and full of clear entry points.
+          </p>
+        </div>
+
+        <div className="marley-home-help__grid">
+          {supportRoutes.map((route) => (
+            <article key={route.title} className="marley-home-help__card">
+              <p className="marley-home-help__card-eyebrow">{route.eyebrow}</p>
+              <h3 className="marley-home-help__card-title">{route.title}</h3>
+              <p className="marley-home-help__card-body">{route.body}</p>
               <LoadingLink
-                href="/education/contribute"
+                href={route.href}
                 className="button button--secondary"
                 loadingLabel="Opening"
               >
-                Submit a Resource
+                {route.label}
               </LoadingLink>
-            </div>
-          </div>
-
-          <div className="home-route-panel home-route-panel--dark">
-            <span className="pill pill--soft">Premium storytelling</span>
-            <h3>{premiumVideoProject.title}</h3>
-            <p>{premiumVideoProject.teaser}</p>
-
-            <div className="home-meta-row">
-              <span className="home-meta-pill">{premiumVideoProject.price}</span>
-              <span className="home-meta-pill">{premiumVideoProject.runtime}</span>
-              <span className="home-meta-pill">{premiumVideoProject.accessWindow}</span>
-            </div>
-
-            <div className="hero-actions">
-              <LoadingLink
-                href={`/projects/${premiumVideoProject.slug}`}
-                className="button button--secondary"
-                loadingLabel="Opening"
-              >
-                View Premium Demo
-              </LoadingLink>
-              <LoadingLink
-                href="/projects"
-                className="button button--ghost-light"
-                loadingLabel="Opening"
-              >
-                Browse More Stories
-              </LoadingLink>
-            </div>
-          </div>
+            </article>
+          ))}
         </div>
-      </section>
-
-      <section className="section">
-        <SectionIntro
-          eyebrow="Donate with clarity"
-          title="Support paths should feel direct, specific, and grounded in visible outcomes."
-          body="The donation experience should not be separated from the mission. The homepage already starts that trust-building by pairing giving tiers with clear sectors and practical funding logic."
-        />
-
-        <div className="section-grid section-grid--campaign">
-          <div className="section__stack">
-            <div className="metric-grid">
-              {donationTiers.map((tier) => (
-                <MetricCard key={tier} value={tier} label="Suggested giving tier" />
-              ))}
-            </div>
-
-            <div className="hero-actions">
-              <LoadingLink
-                href="/donate"
-                className="button button--primary"
-                loadingLabel="Opening"
-              >
-                Give With Confidence
-              </LoadingLink>
-              <LoadingLink
-                href="/projects"
-                className="button button--secondary"
-                loadingLabel="Opening"
-              >
-                See What Support Funds
-              </LoadingLink>
-            </div>
-          </div>
-
-          <div className="cause-list">
-            {donationCauses.map((cause) => (
-              <div key={cause} className="cause-item">
-                <p className="cause-item__title">{cause}</p>
-                <p className="cause-item__body">
-                  Each cause can connect directly to project stories, campaign documentation, and
-                  visible updates so donors understand the impact trail behind the ask.
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <SectionIntro
-          eyebrow="Join the work"
-          title="Route supporters clearly instead of leaving them at the edge of the story."
-          body="The homepage should end with usable options: volunteer, partner, contribute, sponsor, or follow the latest field movement across the platform."
-        />
-
-        <div className="section-grid section-grid--campaign">
-          <div className="info-grid info-grid--two">
-            {involvementPaths.map((path, index) => (
-              <InfoCard
-                key={path.title}
-                eyebrow="Support pathway"
-                title={path.title}
-                body={path.body}
-                tone={involvementTones[index % involvementTones.length]}
-              />
-            ))}
-          </div>
-
-          <div className="stack-grid">
-            {updateCards.map((update, index) => (
-              <InfoCard
-                key={update.title}
-                eyebrow={`Latest signal 0${index + 1}`}
-                title={update.title}
-                body={update.body}
-                tone={index === 0 ? "forest-ink" : "paper"}
-              />
-            ))}
-
-            <div className="hero-actions">
-              <LoadingLink
-                href="/get-involved"
-                className="button button--primary"
-                loadingLabel="Opening"
-              >
-                Choose Your Path
-              </LoadingLink>
-              <LoadingLink
-                href="/about"
-                className="button button--secondary"
-                loadingLabel="Opening"
-              >
-                Meet the Initiative
-              </LoadingLink>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section section--band">
-        <div className="closing-cta">
-          <div>
-            <p className="section-kicker section-kicker--light">Next action</p>
-            <h2 className="closing-cta__title">
-              A homepage built to move people from first impression to meaningful support.
-            </h2>
-            <p className="closing-cta__body">
-              The platform now has a fuller front door: clearer mission framing, stronger proof,
-              active routes into programs and education, donation context, and contributor paths
-              that already work.
-            </p>
-          </div>
-          <div className="closing-cta__actions">
-            <LoadingLink
-              href="/donate"
-              className="button button--secondary"
-              loadingLabel="Opening"
-            >
-              Support the Mission
-            </LoadingLink>
-            <LoadingLink
-              href="/education/contribute"
-              className="button button--ghost-light"
-              loadingLabel="Opening"
-            >
-              Contribute a Resource
-            </LoadingLink>
-          </div>
-        </div>
-      </section>
+      </Reveal>
     </main>
   );
 }

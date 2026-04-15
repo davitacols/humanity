@@ -25,7 +25,7 @@ export default async function EducationReviewPage() {
         primary={{ href: "/education/contribute", label: "Open Contributor Form" }}
         secondary={{ href: "/education", label: "Back to Education Hub" }}
         asideTitle="Current scope"
-        asideBody="This is a read-only internal board for now. Review actions and approval controls should wait until authentication is added."
+        asideBody="This board summarizes incoming submissions with review context, contact details, and quick access to resource links."
       />
 
       <section className="section">
@@ -38,9 +38,8 @@ export default async function EducationReviewPage() {
 
       <section className="section">
         <SectionIntro
-          eyebrow="Queue signals"
           title="See what kinds of submissions are flowing through first."
-          body="These cards make the board useful even before full moderation controls exist by surfacing queue shape and content mix at a glance."
+          body="These cards summarize queue shape and content mix at a glance."
         />
 
         <div className="info-grid info-grid--three">
@@ -58,8 +57,7 @@ export default async function EducationReviewPage() {
 
       <section className="section">
         <SectionIntro
-          eyebrow="Recent submissions"
-          title="Contributor details, context, and next actions in one board."
+          title="Contributor details, context, and actions in one board."
           body="Each card is structured for quick triage: who submitted it, what it is, who it is for, how to follow up, and whether there is already a live resource link to review."
         />
 
@@ -70,7 +68,7 @@ export default async function EducationReviewPage() {
                 <div className="submission-review-card__top">
                   <div className="submission-review-card__identity">
                     <p className="submission-review-card__eyebrow">
-                      {submission.reference} • {formatSubmissionDate(submission.createdAt)}
+                      {submission.reference} - {formatSubmissionDate(submission.createdAt)}
                     </p>
                     <h3 className="submission-review-card__title">{submission.resourceTitle}</h3>
                   </div>
@@ -101,7 +99,7 @@ export default async function EducationReviewPage() {
                   <div className="submission-review-card__contact">
                     <p className="submission-review-card__contact-label">Contributor contact</p>
                     <a href={`mailto:${submission.email}`} className="submission-review-card__contact-link">
-                      {submission.contactName} • {submission.email}
+                      {submission.contactName} - {submission.email}
                     </a>
                   </div>
 
@@ -134,7 +132,7 @@ export default async function EducationReviewPage() {
             <InfoCard
               eyebrow="No submissions yet"
               title="The board is ready for the first contributor."
-              body="Once someone submits a book, lesson link, or toolkit, it will appear here with review context and follow-up actions."
+              body="Submissions appear here with review context and follow-up actions as they arrive."
               tone="mist"
             />
             <LoadingLink

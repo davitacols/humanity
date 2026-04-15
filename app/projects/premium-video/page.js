@@ -2,6 +2,7 @@ import { InfoCard } from "../../../components/InfoCard";
 import { LoadingLink } from "../../../components/LoadingLink";
 import { PageHero } from "../../../components/PageHero";
 import { PayPerViewExperience } from "../../../components/PayPerViewExperience";
+import { stockMedia } from "../../../components/stockMedia";
 import { premiumVideoProject } from "../../../components/siteData";
 
 export default function PremiumVideoPage() {
@@ -9,12 +10,13 @@ export default function PremiumVideoPage() {
     <main className="site-main">
       <PageHero
         eyebrow={premiumVideoProject.eyebrow}
-        title="A dedicated pay-per-view video experience for premium project films."
-        body="This route is built for campaign documentaries, special event footage, premium project storytelling, or supporter-only releases that should unlock after payment."
+        title="A dedicated screening experience for campaign documentaries and special project films."
+        body="This route is built for supporter screenings, special event footage, and documentary storytelling that unlocks after payment or access approval."
         primary={{ href: "/projects", label: "Back to Projects" }}
-        secondary={{ href: "/donate", label: "Support the Platform" }}
-        asideTitle="Feature direction"
-        asideBody="The frontend experience is now in place: locked state, purchase action, timed access, and a dedicated watch screen. The next backend step is payment verification and signed playback."
+        secondary={{ href: "/donate", label: "Support the Initiative" }}
+        media={stockMedia.screeningHero}
+        asideTitle="Release experience"
+        asideBody="The screening route supports a locked state, purchase action, timed access window, and a dedicated viewing screen for campaign film releases."
       />
 
       <section className="section">
@@ -34,13 +36,13 @@ export default function PremiumVideoPage() {
         <InfoCard
           eyebrow="Where this fits"
           title="Use it for films, event streams, or special access project reports"
-          body="The same structure can gate one premium documentary, a single conference replay, or limited-time campaign content tied to a fundraising goal."
+          body="The same structure can support one documentary, a conference replay, or limited-time campaign content tied to a fundraising goal."
           tone="mist"
         />
         <InfoCard
-          eyebrow="Next backend step"
+          eyebrow="Payments and access control"
           title="Connect verified payments to secure stream delivery"
-          body="To make this production-safe, the payment webhook should grant access, the stream should be served through a signed URL or protected player, and order history should be stored in the database."
+          body="Payment verification grants access, the stream is served through a protected player, and order history is stored in the database."
           tone="forest-ink"
         />
       </section>
@@ -48,18 +50,16 @@ export default function PremiumVideoPage() {
       <section className="section section--band">
         <div className="closing-cta">
           <div>
-            <p className="section-kicker section-kicker--light">Premium content flow</p>
             <h2 className="closing-cta__title">
-              Ready for a real payment provider and premium campaign launches.
+              Ready for documentary and campaign film releases.
             </h2>
             <p className="closing-cta__body">
-              Once you choose the gateway and final video source, we can turn this from demo
-              unlock logic into a proper commerce flow.
+              The flow runs with payment verification and protected playback for each release.
             </p>
           </div>
           <div className="closing-cta__actions">
             <LoadingLink href="/donate" className="button button--secondary" loadingLabel="Opening">
-              Setup Payments Next
+              Support the Platform
             </LoadingLink>
             <LoadingLink
               href="/projects"

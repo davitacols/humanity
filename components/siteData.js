@@ -8,27 +8,38 @@ export const navItems = [
   { href: "/get-involved", label: "Get Involved" }
 ];
 
+export const headerUtilityItems = [
+  "Community-led programs",
+  "Transparent support pathways",
+  "Low-bandwidth access"
+];
+
 export const proofStats = [
-  { value: "24", label: "community projects structured for visibility" },
-  { value: "4", label: "program pillars anchored in one mission" },
-  { value: "3 min", label: "ideal path from first visit to donor action" },
-  { value: "Mobile-first", label: "performance-minded layout for low-bandwidth users" }
+  { value: "24", label: "documented projects and field updates" },
+  { value: "4", label: "core program areas under one mission" },
+  { value: "Nigeria + Ghana", label: "current footprint with regional growth" }
 ];
 
 export const spotlightStories = [
   {
-    title: "Maternal health outreach",
-    caption: "field reporting with practical follow-up",
+    eyebrow: "Health outreach",
+    title: "Maternal and child health support in focus",
+    body: "Mobile clinic visits, hygiene kits, and follow‑up check‑ins for mothers and newborns in underserved communities.",
+    meta: "Maternal care, hygiene kits, follow‑ups",
     tone: "forest"
   },
   {
-    title: "Youth sports leadership",
-    caption: "discipline, belonging, and visibility",
-    tone: "sun"
+    eyebrow: "Youth development",
+    title: "Sports as a path to discipline and belonging",
+    body: "Weekly training sessions, mentorship, and local tournaments that keep young people engaged and growing.",
+    meta: "Training, mentorship, local tournaments",
+    tone: "sand"
   },
   {
-    title: "Creative advocacy campaign",
-    caption: "arts and storytelling as social change tools",
+    eyebrow: "Creative advocacy",
+    title: "Film, arts, and storytelling with social purpose",
+    body: "Short films, photo essays, and spoken‑word features that amplify community voices and campaign goals.",
+    meta: "Film, photography, spoken word",
     tone: "ocean"
   }
 ];
@@ -43,22 +54,83 @@ export const homeTrustSignals = [
   {
     eyebrow: "Documented impact",
     title: "Stories are tied to real interventions, not vague promises.",
-    body: "The homepage is built to anchor support in visible work, field updates, and concrete program categories people can follow.",
+    body: "Support is anchored in visible work, field updates, and concrete program categories that people follow with confidence.",
     tone: "mist"
   },
   {
     eyebrow: "Trusted support path",
     title: "Donation asks stay close to context, proof, and next steps.",
-    body: "Visitors should understand what support helps fund before they are ever asked to click through a payment flow.",
+    body: "Visitors understand what support helps fund before they are asked to click through a payment flow.",
     tone: "sand"
   },
   {
     eyebrow: "Designed to scale",
-    title: "The platform can grow from founder-led work into a wider network.",
-    body: "Partners, contributors, new campaigns, and additional countries can be introduced without rebuilding the core story structure.",
+    title: "The initiative grows from founder-led work into a wider network.",
+    body: "Partners, contributors, new campaigns, and additional countries are introduced without rebuilding the core story structure.",
     tone: "leaf"
   }
 ];
+
+export const sibProfile = {
+  name: "Sib",
+  role: "Cinematographer and creative food and travel photographer",
+  summary:
+    "Sib is a cinematographer passionate about film, television, and using creative work to help change the world.",
+  body:
+    "As an autistic creative, Sib believes the world must be more accessible for people with autism who are ready to do world-leading and pioneering work but need stronger access to the opportunities that help them develop and perfect their craft. Alongside filmmaking, Sib is also a creative food and travel photographer and a travel and food enthusiast who documents new places, people, and culinary experiences at home and abroad.",
+  tags: [
+    "Cinematography",
+    "Autism advocacy",
+    "Food photography",
+    "Travel storytelling"
+  ],
+  update:
+    "A refreshed bio, a newspaper article from the 2024 film project, and links to recent media coverage are available for review."
+};
+
+export const sportsSpotlight = {
+  title: "Dodoma Best Sports Center",
+  location: "Nzuguni C, Dodoma City",
+  founded: "June 2023",
+  beneficiaries: "100 children and youth enrolled",
+  orphanSupport: "20 orphans currently supported",
+  ageGroups: "Ages 7 to 16 across U-7 to U-16 groups",
+  totalRequest: "TZS 6,905,000 requested in the translated proposal",
+  summary:
+    "Dodoma Best Sports Center uses football as a tool for social, health, and economic development for children and youth, including orphans and young people from disadvantaged backgrounds.",
+  body:
+    "Since its launch, experienced volunteer coaches have built a structured youth program focused on identifying talent, strengthening discipline and teamwork, and creating better long-term opportunities through sports.",
+  priorities: [
+    {
+      title: "Training equipment and kits",
+      body: "Balls, cones, markers, ladders, poles, jerseys, socks, and other practical training essentials are needed to sustain weekly sessions."
+    },
+    {
+      title: "Safe weekly participation",
+      body: "The center wants to keep training regular, accessible, and safe for children across its current age groups."
+    },
+    {
+      title: "Pathway to leagues and competitions",
+      body: "The medium-term plan includes community youth leagues, school collaboration, and participation in regional and national competitions."
+    },
+    {
+      title: "Long-term academy vision",
+      body: "The long-term ambition is to build a modern training ground, grow into a recognized sports academy, and open professional opportunities for talented youth."
+    }
+  ],
+  supportAreas: [
+    "Financial contributions for equipment and training operations",
+    "Provision of sports materials such as balls, jerseys, shoes, cones, and markers",
+    "Training and mentorship support for coaches and administrators",
+    "Legal, administrative, and child-protection support through public institutions"
+  ],
+  futureExpectations: [
+    "Increase beneficiaries to at least 200 children by 2026",
+    "Create pathways for talented youth into academies and major clubs",
+    "Reduce youth exposure to risky behaviors by offering structured alternatives",
+    "Support access to sports education and employment opportunities through athletics"
+  ]
+};
 
 export const programPillars = [
   {
@@ -89,60 +161,60 @@ export const programPillars = [
 
 export const featuredProject = {
   title: "Safe beginnings for mothers and children",
-  body: "The homepage puts one living intervention at the center of the experience so visitors understand a real outcome before they see the wider archive.",
-  quote: "Support should feel personal, visible, and grounded in work people can actually follow."
+  body: "The archive keeps one clear human story close to the front so supporters understand the work before they move deeper into the wider archive.",
+  quote: "Support feels personal, visible, and grounded in work people can truly follow."
 };
 
 export const projectCards = [
   {
     title: "Maternal health kits",
     tag: "Health",
-    body: "Story-led project cards with room for outcomes, a short narrative, and partner context."
+    body: "Distribution of basic care kits for mothers and newborns with on‑ground follow‑ups."
   },
   {
     title: "Coding club launch",
     tag: "Education",
-    body: "A flexible structure for classes, downloadable learning resources, and digital empowerment programs."
+    body: "Beginner coding sessions for teens using low‑data, phone‑first materials."
   },
   {
     title: "Youth football outreach",
     tag: "Sports",
-    body: "Programs can surface training, tournaments, and leadership stories without feeling like a generic blog list."
+    body: "Structured training, mentorship, and community matches for youth teams."
   },
   {
     title: "Storytelling for advocacy",
     tag: "Arts and Music",
-    body: "Creative work is positioned as a core pillar of change rather than a secondary add-on."
+    body: "Campaign films and creative features that make impact stories easy to share."
   },
   {
     title: "School safety awareness",
     tag: "Public Health",
-    body: "Campaigns can include reports, galleries, downloads, and donation links in one place."
+    body: "Safety education for schools and families with simple checklists and flyers."
   },
   {
     title: "Nutrition flyer campaign",
     tag: "Public Health",
-    body: "The archive is built to scale as new countries, contributors, and partners come on board."
+    body: "Nutrition guides and quick‑use flyers for parents, schools, and caregivers."
   }
 ];
 
 export const premiumVideoProject = {
   slug: "premium-video",
-  title: "Premium Video Release",
-  eyebrow: "Pay-per-view feature",
+  title: "Campaign Documentary Screening",
+  eyebrow: "Special film release",
   teaser:
-    "A gated watch experience for premium project films, reports, campaign documentaries, or event coverage.",
+    "A protected screening route for campaign documentaries, event recordings, and supporter-facing film releases.",
   description:
-    "This feature gives the platform a dedicated premium content path where viewers can unlock a single video, access it for a limited window, and later be routed through a real payment gateway and signed playback flow.",
+    "This feature provides a dedicated documentary release path where viewers unlock one film, access it for a limited window, and watch through a protected playback flow.",
   price: "NGN 4,500",
-  runtime: "12 min documentary cut",
-  accessWindow: "48 hours access",
+  runtime: "12 minute documentary cut",
+  accessWindow: "48-hour viewing window",
   videoSrc: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
   benefits: [
-    "Full premium video playback after purchase",
-    "Simple single-title access window for campaigns or special releases",
-    "Space for bonus context, partner acknowledgements, and CTA after the video",
-    "Ready to be connected to a real payment provider in the next backend pass"
+    "Protected documentary playback after access is confirmed",
+    "A single-title access window for campaigns or special releases",
+    "Space for context, partner acknowledgements, and a support call after the film",
+    "Ready for payment verification and protected playback when the final provider is approved"
   ]
 };
 
@@ -153,6 +225,21 @@ export const donationCauses = [
   "Education access and digital skills",
   "Youth sports development",
   "Creative advocacy campaigns"
+];
+
+export const homeSupportAssurances = [
+  {
+    title: "Every support route stays tied to visible work",
+    body: "Campaigns, projects, learning paths, and sector pages are structured so donors and partners move from first impression to context before they commit support."
+  },
+  {
+    title: "The site works well on phones first",
+    body: "Clear sections and responsive layouts keep the site usable for supporters, partners, and communities across different devices and bandwidth conditions."
+  },
+  {
+    title: "Growth is built into the structure, not bolted on later",
+    body: "New contributors, country stories, campaigns, resources, and partner-led initiatives are added without breaking the credibility or usability of the initiative."
+  }
 ];
 
 export const involvementPaths = [
@@ -185,15 +272,15 @@ export const updateCards = [
   },
   {
     title: "Creative spotlight",
-    body: "A new storytelling and artist advocacy campaign is being prepared."
+    body: "A new storytelling and artist advocacy campaign is live with fresh submissions."
   }
 ];
 
 export const educationMetrics = [
-  { value: "12", label: "starter resources ready for download or embedding" },
-  { value: "3", label: "learning tracks designed for different entry levels" },
-  { value: "Low-data", label: "content structure designed for mobile and low-bandwidth access" },
-  { value: "Weekly", label: "space for fresh lessons, links, and community updates" }
+  { value: "12", label: "curated resources ready to use" },
+  { value: "3", label: "learning tracks for different entry levels" },
+  { value: "Mobile-ready", label: "materials that work on phones" },
+  { value: "Ongoing", label: "new lessons and updates added regularly" }
 ];
 
 export const educationTracks = [
@@ -211,7 +298,7 @@ export const educationTracks = [
   },
   {
     title: "Community Learning Library",
-    body: "Books, guides, worksheets, and curated materials that can be downloaded and reused in community settings.",
+    body: "Books, guides, worksheets, and curated materials available for download and reuse in community settings.",
     eyebrow: "Track 03",
     tone: "leaf"
   }
@@ -219,7 +306,7 @@ export const educationTracks = [
 
 export const educationResources = [
   {
-    title: "Starter book pack",
+    title: "Foundational book pack",
     body: "A grouped download area for youth-friendly books, reading guides, and early digital literacy materials.",
     eyebrow: "Downloadable resource",
     tone: "paper"
@@ -252,22 +339,22 @@ export const educationActions = [
   },
   {
     title: "Sponsor a learning cohort",
-    body: "Create a clear support path for devices, printing, connectivity, or local training sessions.",
+    body: "Support devices, printing, connectivity, and local training sessions for a cohort.",
     tone: "mist"
   }
 ];
 
 export const educationLibraryItems = [
   {
-    title: "Digital basics starter guide",
+    title: "Digital basics guide",
     summary:
-      "A simple PDF-style resource for learners getting started with internet use, devices, and digital confidence.",
+      "A practical orientation resource for learners building confidence with devices, internet use, and basic digital habits.",
     category: "Downloads",
     format: "PDF guide",
     level: "Beginner",
-    actionLabel: "Open sample guide",
-    href: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-    external: true
+    actionLabel: "Open guide overview",
+    href: "/education/resources/digital-basics-guide",
+    external: false
   },
   {
     title: "Getting started with the web",
@@ -287,14 +374,14 @@ export const educationLibraryItems = [
     category: "Toolkits",
     format: "Facilitator kit",
     level: "Community",
-    actionLabel: "Preview toolkit",
-    href: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-    external: true
+    actionLabel: "Open facilitator outline",
+    href: "/education/resources/facilitator-session-outline",
+    external: false
   },
   {
     title: "Code.org beginner course",
     summary:
-      "A youth-friendly coding entry point that can be linked as part of a structured beginner pathway in the hub.",
+      "A youth-friendly coding entry point linked as part of a structured beginner pathway in the hub.",
     category: "Lessons",
     format: "Interactive course",
     level: "Beginner",
@@ -309,9 +396,9 @@ export const educationLibraryItems = [
     category: "Downloads",
     format: "Worksheet pack",
     level: "Mixed level",
-    actionLabel: "View pack",
-    href: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-    external: true
+    actionLabel: "Open workbook notes",
+    href: "/education/resources/printable-workbook-set",
+    external: false
   },
   {
     title: "Mentor checklist for cohort support",
@@ -320,9 +407,100 @@ export const educationLibraryItems = [
     category: "Toolkits",
     format: "Checklist",
     level: "Mentor",
-    actionLabel: "Open checklist",
-    href: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-    external: true
+    actionLabel: "Open mentor checklist",
+    href: "/education/resources/mentor-checklist",
+    external: false
+  }
+];
+
+export const educationResourcePages = [
+  {
+    slug: "digital-basics-guide",
+    eyebrow: "Guide overview",
+    title: "Digital Basics Guide",
+    summary:
+      "A practical entry resource covering device confidence, internet basics, safe browsing habits, and first steps for new digital learners.",
+    body:
+      "This guide is positioned as a simple starting point for community learners, youth cohorts, and first-time adults who need a calm introduction to digital tools before moving into structured classes or coding lessons.",
+    audience: "Beginner learners, youth cohorts, and first-time adult users",
+    format: "PDF guide",
+    duration: "Short orientation resource",
+    useCases: [
+      "Use it at the beginning of digital literacy workshops",
+      "Share it with families who need a simple digital confidence handout",
+      "Pair it with follow-up sessions on online safety and productivity basics"
+    ],
+    outcomes: [
+      "Builds comfort with devices, browsers, and everyday web use",
+      "Creates a stronger starting point for coding or employability tracks",
+      "Helps facilitators explain digital basics in a more structured way"
+    ]
+  },
+  {
+    slug: "facilitator-session-outline",
+    eyebrow: "Toolkit overview",
+    title: "Community Facilitator Session Outline",
+    summary:
+      "A session structure for volunteers, mentors, and teachers leading short digital literacy or coding introductions in community settings.",
+    body:
+      "This outline gives facilitators a more confident starting point by breaking a session into welcome, orientation, guided activity, reflection, and follow-up. It is especially useful when multiple volunteers are supporting learners with different confidence levels.",
+    audience: "Teachers, mentors, volunteers, and community facilitators",
+    format: "Facilitator kit",
+    duration: "60 to 90 minute session structure",
+    useCases: [
+      "Use it to standardize workshop delivery across different locations",
+      "Adapt it for digital literacy, coding clubs, or resource-sharing events",
+      "Support new volunteers who need a clear teaching flow"
+    ],
+    outcomes: [
+      "Creates more consistent session quality across facilitators",
+      "Makes it easier to welcome learners at mixed confidence levels",
+      "Supports better follow-up and repeat community engagement"
+    ]
+  },
+  {
+    slug: "printable-workbook-set",
+    eyebrow: "Workbook overview",
+    title: "Printable Workbook Set",
+    summary:
+      "A reusable pack of worksheets for offline reinforcement after training sessions, school clubs, or digital skills workshops.",
+    body:
+      "The workbook set is intended for places where learners need something practical to carry home. It supports repetition, reflection, and guided practice when connectivity is limited or devices are shared across a group.",
+    audience: "Children, youth groups, and mixed-level community learners",
+    format: "Worksheet pack",
+    duration: "Multi-session reinforcement material",
+    useCases: [
+      "Distribute after workshops where learners need an offline follow-up activity",
+      "Use in school clubs or community groups with shared devices",
+      "Adapt for revision, mentor check-ins, or short independent tasks"
+    ],
+    outcomes: [
+      "Extends learning beyond the live session",
+      "Supports low-bandwidth and offline environments",
+      "Gives mentors and caregivers an easier way to stay involved"
+    ]
+  },
+  {
+    slug: "mentor-checklist",
+    eyebrow: "Checklist overview",
+    title: "Mentor Checklist for Cohort Support",
+    summary:
+      "A practical guide for mentors and volunteers helping learners stay engaged across multiple sessions or short cohort programs.",
+    body:
+      "The checklist focuses on consistency, encouragement, and follow-through. It helps mentors keep track of what learners need, when to check in, and how to offer support without making the process feel heavy or overly formal.",
+    audience: "Mentors, volunteers, and learning support staff",
+    format: "Checklist",
+    duration: "Reusable across full cohorts",
+    useCases: [
+      "Use it during weekly check-ins with learners",
+      "Support volunteer mentors who are new to structured cohort care",
+      "Create a simple quality baseline for mentorship across programs"
+    ],
+    outcomes: [
+      "Improves learner follow-through and encouragement",
+      "Keeps mentorship practical and easy to repeat",
+      "Helps the team maintain a more reliable support rhythm"
+    ]
   }
 ];
 
@@ -330,7 +508,7 @@ export const educationSessionCards = [
   {
     title: "Mobile-first coding club",
     body: "A short-format learning cohort designed for phones first, covering web basics and simple project practice.",
-    eyebrow: "Upcoming cohort",
+    eyebrow: "Active cohort",
     tone: "mist"
   },
   {
@@ -341,8 +519,8 @@ export const educationSessionCards = [
   },
   {
     title: "Facilitator resource drop",
-    body: "A growing release area for guides, worksheets, and lesson outlines that mentors can reuse locally.",
-    eyebrow: "Resource stream",
+    body: "A steady release area for guides, worksheets, and lesson outlines that mentors reuse locally.",
+    eyebrow: "Resource library",
     tone: "leaf"
   }
 ];
@@ -377,13 +555,13 @@ export const educationSubmissionGuidelines = [
   {
     eyebrow: "Preferred format",
     title: "Keep it practical and easy to open on mobile.",
-    body: "Resources should work well as public links, lightweight downloads, or clean teaching materials that can still help in low-bandwidth settings.",
+    body: "Resources work best as public links, lightweight downloads, or clean teaching materials that serve low-bandwidth settings.",
     tone: "mist"
   },
   {
     eyebrow: "Quality filter",
     title: "Prioritize clarity, usefulness, and community relevance.",
-    body: "We are looking for materials that can support real learning moments, not just generic content dumps or link collections with weak context.",
+    body: "We prioritize materials that support real learning moments, not generic content dumps or link collections with weak context.",
     tone: "sand"
   },
   {
@@ -398,19 +576,19 @@ export const educationReviewSteps = [
   {
     eyebrow: "Step 01",
     title: "Submission enters the review queue",
-    body: "Every resource is stored as a pending submission so the team can review it before anything appears in the public library.",
+    body: "Every resource is stored as a pending submission so the team reviews it before anything appears in the public library.",
     tone: "paper"
   },
   {
     eyebrow: "Step 02",
     title: "Quality, fit, and permissions are checked",
-    body: "The review pass focuses on relevance, usability, audience fit, and whether the submission can be safely shared on the platform.",
+    body: "The review pass focuses on relevance, usability, audience fit, and whether the submission is safe to share with the initiative.",
     tone: "blush"
   },
   {
     eyebrow: "Step 03",
-    title: "Approved resources can move into the live hub",
-    body: "This keeps the first workflow simple today while leaving room for a richer moderation and publishing system later.",
+    title: "Approved resources move into the live hub",
+    body: "The workflow keeps moderation consistent and the public library trustworthy.",
     tone: "mist"
   }
 ];

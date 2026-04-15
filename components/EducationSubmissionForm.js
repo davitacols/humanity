@@ -92,8 +92,8 @@ export function EducationSubmissionForm() {
         <p className="section-kicker">Contributor form</p>
         <h2 className="submission-form__title">Share a learning resource for review.</h2>
         <p className="submission-form__body">
-          Submit books, lesson links, facilitator kits, or digital skills materials that can help
-          learners, educators, and community mentors across the platform.
+          Submit books, lesson links, facilitator kits, or digital skills materials that help
+          learners, educators, and community mentors across the initiative.
         </p>
       </div>
 
@@ -118,7 +118,6 @@ export function EducationSubmissionForm() {
             value={formData.contactName}
             onChange={(event) => updateField("contactName", event.target.value)}
             autoComplete="name"
-            placeholder="Jane Doe"
           />
           {fieldErrors.contactName ? (
             <p className="field__error">{fieldErrors.contactName}</p>
@@ -137,7 +136,6 @@ export function EducationSubmissionForm() {
             value={formData.email}
             onChange={(event) => updateField("email", event.target.value)}
             autoComplete="email"
-            placeholder="name@example.com"
           />
           {fieldErrors.email ? <p className="field__error">{fieldErrors.email}</p> : null}
         </div>
@@ -153,7 +151,6 @@ export function EducationSubmissionForm() {
             value={formData.organization}
             onChange={(event) => updateField("organization", event.target.value)}
             autoComplete="organization"
-            placeholder="Optional"
           />
           {fieldErrors.organization ? (
             <p className="field__error">{fieldErrors.organization}</p>
@@ -192,7 +189,6 @@ export function EducationSubmissionForm() {
             name="resourceTitle"
             value={formData.resourceTitle}
             onChange={(event) => updateField("resourceTitle", event.target.value)}
-            placeholder="Community digital literacy workbook"
           />
           {fieldErrors.resourceTitle ? (
             <p className="field__error">{fieldErrors.resourceTitle}</p>
@@ -254,7 +250,6 @@ export function EducationSubmissionForm() {
             type="url"
             value={formData.resourceUrl}
             onChange={(event) => updateField("resourceUrl", event.target.value)}
-            placeholder="https://..."
           />
           {fieldErrors.resourceUrl ? (
             <p className="field__error">{fieldErrors.resourceUrl}</p>
@@ -275,7 +270,6 @@ export function EducationSubmissionForm() {
             name="summary"
             value={formData.summary}
             onChange={(event) => updateField("summary", event.target.value)}
-            placeholder="Tell us what the resource covers, who it helps, and why it belongs in the hub."
             rows={5}
           />
           {fieldErrors.summary ? (
@@ -297,7 +291,6 @@ export function EducationSubmissionForm() {
             name="notes"
             value={formData.notes}
             onChange={(event) => updateField("notes", event.target.value)}
-            placeholder="Optional context: language, licensing notes, classroom use, or follow-up requests."
             rows={4}
           />
           {fieldErrors.notes ? <p className="field__error">{fieldErrors.notes}</p> : null}

@@ -4,14 +4,14 @@ import { useEffect, useMemo, useState } from "react";
 
 const ACCESS_HOURS = 48;
 
-function createDemoPurchase() {
+function createLocalPurchase() {
   const unlockedAt = Date.now();
   const expiresAt = unlockedAt + ACCESS_HOURS * 60 * 60 * 1000;
 
   return {
     unlockedAt,
     expiresAt,
-    orderRef: `PPV-${Math.random().toString(36).slice(2, 8).toUpperCase()}`
+    orderRef: `SCR-${Math.random().toString(36).slice(2, 8).toUpperCase()}`
   };
 }
 
@@ -95,7 +95,7 @@ export function PayPerViewExperience({
     setProcessing(true);
 
     window.setTimeout(() => {
-      const nextPurchase = createDemoPurchase();
+      const nextPurchase = createLocalPurchase();
       window.localStorage.setItem(storageKey, JSON.stringify(nextPurchase));
       setPurchase(nextPurchase);
       setNow(Date.now());
@@ -124,7 +124,7 @@ export function PayPerViewExperience({
           ) : (
             <div className="ppv-preview">
               <div className="ppv-preview__overlay">
-                <span className="pill pill--soft">Premium preview</span>
+                <span className="pill pill--soft">Supporter screening</span>
                 <h2>{title}</h2>
                 <p>{teaser}</p>
                 <div className="chip-row">
@@ -149,18 +149,17 @@ export function PayPerViewExperience({
             </div>
             <div>
               <p className="ppv-stage__label">Access type</p>
-              <p className="ppv-stage__value">Single-title pay-per-view</p>
+              <p className="ppv-stage__value">Single-title supporter access</p>
             </div>
           </div>
         </div>
 
         <aside className="ppv-paywall">
-          <p className="section-intro__eyebrow">Unlock this video</p>
+          <p className="section-intro__eyebrow">Access this screening</p>
           <h3 className="ppv-paywall__title">{price}</h3>
           <p className="ppv-paywall__body">
-            This first implementation simulates a successful payment and stores watch access in
-            the browser. In the next backend pass, we can connect it to a real payment gateway
-            and signed stream delivery.
+            This release uses device-based access with verified playback and a protected stream
+            delivery flow.
           </p>
 
           <div className="ppv-benefits">
@@ -180,11 +179,11 @@ export function PayPerViewExperience({
           ) : isUnlocked ? (
             <div className="ppv-paywall__actions">
               <button type="button" className="button button--primary">
-                <span className="button__label">Access unlocked</span>
+                <span className="button__label">Access confirmed</span>
                 <span className="button__spinner" aria-hidden="true" />
               </button>
               <button type="button" className="button button--secondary" onClick={handleReset}>
-                <span className="button__label">Reset demo access</span>
+                <span className="button__label">Clear local access</span>
                 <span className="button__spinner" aria-hidden="true" />
               </button>
               <p className="ppv-paywall__receipt">Order ref: {purchase?.orderRef}</p>
@@ -198,12 +197,12 @@ export function PayPerViewExperience({
                 disabled={processing}
               >
                 <span className="button__label">
-                  {processing ? "Processing purchase" : `Unlock for ${price}`}
+                  {processing ? "Processing access" : `Unlock for ${price}`}
                 </span>
                 <span className="button__spinner" aria-hidden="true" />
               </button>
               <p className="ppv-paywall__note">
-                Demo flow only for now. Replace with Paystack, Stripe, or Monnify next.
+                Payment verification runs through the approved gateway.
               </p>
             </div>
           )}

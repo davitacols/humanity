@@ -3,7 +3,6 @@ import { InfoCard } from "../../components/InfoCard";
 import { LoadingLink } from "../../components/LoadingLink";
 import { MetricCard } from "../../components/MetricCard";
 import { PageHero } from "../../components/PageHero";
-import { PhotoPanel } from "../../components/PhotoPanel";
 import { SectionIntro } from "../../components/SectionIntro";
 import { getEducationHubData } from "../../lib/education";
 
@@ -18,64 +17,87 @@ export default async function EducationPage() {
     sessions,
     tracks
   } = await getEducationHubData();
+  const featuredResources = libraryItems.slice(0, 3);
 
   return (
     <main className="site-main">
       <PageHero
         eyebrow="Education hub"
         title="A learning space for books, lessons, and digital skills."
-        body="The Education Hub is being built as a practical, mobile-first learning surface for downloadable materials, curated lessons, coding pathways, and community-ready teaching resources."
+        body="The Education Hub is a practical library of downloadable materials, curated lessons, coding pathways, and community-ready teaching resources."
         primary={{ href: "/education/contribute", label: "Contribute Resources" }}
         secondary={{ href: "/donate", label: "Support a Learning Cohort" }}
-        asideTitle="Why this page matters"
-        asideBody="Education should feel like a core product surface, not just one card inside Programs. This route gives the platform a dedicated learning identity with room to scale."
+        asideTitle="How the hub works"
+        asideBody="Resources are reviewed, organized into tracks, then delivered through workshops, cohorts, and mentor-led sessions."
       />
 
       <section className="section">
-        <div className="section__stack">
-          <p className="section-kicker">Hub metrics</p>
-          <div className="metric-grid">
-            {metrics.map((item) => (
-              <MetricCard key={item.label} value={item.value} label={item.label} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
         <SectionIntro
-          eyebrow="Featured learning direction"
-          title="Learning that works on phones, in communities, and across mixed skill levels."
-          body="The first version of the hub focuses on structure: a clear pathway for coding lessons, digital skills, and reusable teaching materials without overwhelming first-time visitors."
+          title="Everything a community learning hub needs in one place."
+          body="Use the metrics to understand scale, then scan the operating model to see how resources move from intake to real-world use."
         />
 
-        <div className="feature-panel">
-          <PhotoPanel
-            title="Education spotlight"
-            caption="replace with classroom, workshop, or learner photography"
-            tone="forest"
-          />
-          <div className="feature-panel__content">
-            <span className="pill pill--soft">Launch focus</span>
-            <h3>Build the hub around access, clarity, and repeat use.</h3>
-            <p>
-              The design makes room for three kinds of value at once: downloadable resources,
-              externally hosted lesson content, and clearly structured learning tracks that help
-              visitors know where to start.
-            </p>
-            <blockquote>
-              A strong education hub should feel useful on the first visit, even before it grows
-              into a larger e-learning platform.
-            </blockquote>
+        <div className="section-grid section-grid--split">
+          <div className="section__stack">
+            <div className="metric-grid">
+              {metrics.map((item) => (
+                <MetricCard key={item.label} value={item.value} label={item.label} />
+              ))}
+            </div>
+          </div>
+
+          <div className="section__stack">
+            <InfoCard
+              eyebrow="How it works"
+              title="Intake, review, publish, and reuse."
+              body="Resources are reviewed first, then routed into tracks, the library, and cohort delivery so communities always know where to start."
+              tone="mist"
+            />
+            <InfoCard
+              eyebrow="Who it serves"
+              title="Learners, educators, and community mentors."
+              body="The hub supports school clubs, workshops, mentor-led cohorts, and self-guided learners who need clear, mobile-ready materials."
+              tone="paper"
+            />
           </div>
         </div>
       </section>
 
       <section className="section">
         <SectionIntro
-          eyebrow="Learning tracks"
+          title="Start with three high-impact resources ready for community use."
+          body="These resources are designed for immediate use in workshops, schools, and mentor-led sessions."
+        />
+
+        <div className="education-feature-grid">
+          {featuredResources.map((item) => (
+            <article key={item.title} className="resource-card resource-card--featured">
+              <div className="resource-card__meta">
+                <span className="resource-card__tag">{item.category}</span>
+                <span className="resource-card__format">{item.format}</span>
+              </div>
+              <h3 className="resource-card__title">{item.title}</h3>
+              <p className="resource-card__summary">{item.summary}</p>
+              <div className="resource-card__footer">
+                <span className="resource-card__level">{item.level}</span>
+                <a
+                  href={item.href}
+                  target={item.external ? "_blank" : undefined}
+                  rel={item.external ? "noreferrer" : undefined}
+                  className="button button--secondary resource-card__action"
+                >
+                  <span className="button__label">{item.actionLabel || item.action_label}</span>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section">
+        <SectionIntro
           title="Start with clear pathways instead of one long resource list."
-          body="These tracks give the hub an intentional structure and make it easier to expand later into cohorts, lesson collections, or guided learning programs."
+          body="Tracks make it easy to guide learners into the right starting point without hunting through the full library."
         />
 
         <div className="info-grid info-grid--three">
@@ -93,9 +115,8 @@ export default async function EducationPage() {
 
       <section className="section">
         <SectionIntro
-          eyebrow="Resource library"
           title="Downloads, lessons, and teaching kits in one usable explorer."
-          body="This pass turns the library into an actual browsing surface with filters and action links, so the hub already feels useful before we add database-backed content management."
+          body="Search, filter, and open resources quickly with clear tags, formats, and learner levels."
         />
 
         <EducationLibrary items={libraryItems} />
@@ -103,29 +124,8 @@ export default async function EducationPage() {
 
       <section className="section">
         <SectionIntro
-          eyebrow="Core library structure"
-          title="Support the hub with reusable learning content blocks."
-          body="These supporting cards describe the kinds of educational content the platform is designed to carry as the resource base expands."
-        />
-
-        <div className="card-grid">
-          {resources.map((resource) => (
-            <InfoCard
-              key={resource.title}
-              eyebrow={resource.eyebrow}
-              title={resource.title}
-              body={resource.body}
-              tone={resource.tone}
-            />
-          ))}
-        </div>
-      </section>
-
-      <section className="section">
-        <SectionIntro
-          eyebrow="Programs and cohorts"
-          title="Education should lead to sessions, cohorts, and repeat engagement."
-          body="This section gives the hub a program layer, not just a file library. It creates space for workshops, recurring cohorts, and facilitator-led learning experiences."
+          title="Cohorts and workshops that turn resources into learning."
+          body="This layer highlights live sessions, mentor-led cohorts, and repeat workshops that keep learners engaged."
         />
 
         <div className="info-grid info-grid--three">
@@ -145,7 +145,7 @@ export default async function EducationPage() {
         {actions.map((action) => (
           <InfoCard
             key={action.title}
-            eyebrow="Next action"
+            eyebrow="Ways to support"
             title={action.title}
             body={action.body}
             tone={action.tone}
@@ -156,13 +156,12 @@ export default async function EducationPage() {
       <section className="section section--band">
         <div className="closing-cta">
           <div>
-            <p className="section-kicker section-kicker--light">Education rollout</p>
             <h2 className="closing-cta__title">
-              Ready for real resources, cohorts, and partner-backed learning programs.
+              Resources, cohorts, and community-led learning in one hub.
             </h2>
             <p className="closing-cta__body">
-              The next step is plugging in actual PDFs, lesson links, curriculum groups, and
-              contributor workflows so this becomes a living hub rather than a static page.
+              The hub supports guided resources, lesson collections, and contributor workflows for
+              learners, facilitators, and partner-led education programs.
             </p>
           </div>
           <div className="closing-cta__actions">

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { LoadingLink } from "./LoadingLink";
-import { navItems } from "./siteData";
+import { headerUtilityItems, navItems, programPillars } from "./siteData";
 
 export function SiteFooter() {
   return (
@@ -13,18 +13,38 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <p className="site-footer__eyebrow">Built for long-term impact</p>
+            <p className="site-footer__eyebrow">Community-led humanitarian action</p>
             <h2 className="site-footer__title">
-              A digital platform for dignity, transparency, and grassroots storytelling.
+              Working alongside communities through health, education, youth development, and creative advocacy.
             </h2>
             <p className="site-footer__body">
-              The foundation is designed to scale across countries, campaigns, partners, and
-              contributors without losing the human feel of the work.
+              Humanity First Initiative documents local interventions, connects supporters to
+              visible work, and creates clear routes for donors, volunteers, and partners to act
+              with confidence.
             </p>
+
+            <div className="site-footer__signals" aria-label="Platform strengths">
+              {headerUtilityItems.map((item) => (
+                <span key={item} className="site-footer__signal">
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 
         <div className="site-footer__side">
+          <div className="site-footer__nav">
+            <p className="site-footer__nav-title">Priority areas</p>
+            <div className="site-footer__nav-list">
+              {programPillars.map((item) => (
+                <span key={item.title} className="site-footer__nav-link site-footer__nav-link--static">
+                  {item.title}
+                </span>
+              ))}
+            </div>
+          </div>
+
           <nav className="site-footer__nav" aria-label="Footer">
             <p className="site-footer__nav-title">Explore</p>
             <div className="site-footer__nav-list">
@@ -53,8 +73,8 @@ export function SiteFooter() {
 
       <div className="site-footer__base">
         <p>Humanity First Initiative</p>
-        <p>Community-centered humanitarian platform</p>
-        <p>Designed for growth across Africa</p>
+        <p>Community-led programs across health, education, sports, and advocacy</p>
+        <p>Current footprint: Nigeria and Ghana</p>
       </div>
     </footer>
   );
