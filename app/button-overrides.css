@@ -1,0 +1,101 @@
+.button {
+  min-height: 44px;
+  padding: 0.72rem 1.08rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button--primary {
+  color: #fffdf8;
+  background: linear-gradient(135deg, #183023 0%, #0d1b13 100%);
+  border: 0;
+  box-shadow: 0 16px 30px rgba(16, 38, 28, 0.2);
+}
+
+.button--secondary {
+  color: var(--pine);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(16, 38, 28, 0.12);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 24px rgba(33, 28, 19, 0.06);
+}
+
+.button--ghost {
+  color: var(--pine);
+  background: rgba(255, 255, 255, 0.24);
+  border: 1px solid rgba(16, 38, 28, 0.14);
+}
+
+.button--ghost-light {
+  color: #fffdf8;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.button--header {
+  min-height: 42px;
+  padding: 0.64rem 0.95rem;
+  color: var(--pine);
+  background: rgba(255, 255, 255, 0.64);
+  border: 1px solid rgba(16, 38, 28, 0.12);
+  box-shadow: 0 10px 20px rgba(33, 28, 19, 0.07);
+}
+
+.button__spinner {
+  transition: width 180ms ease, height 180ms ease, margin-left 180ms ease, opacity 180ms ease;
+}
+
+.button.is-loading .button__spinner {
+  animation: button-spin 700ms linear infinite;
+}
+
+.campaign-dossier .hero-actions .button,
+.home-route-panel .hero-actions .button,
+.feature-panel .hero-actions .button,
+.network-profile-card .hero-actions .button,
+.editorial-band__actions .button,
+.project-explorer__actions .button,
+.site-footer__cta .button {
+  display: inline-flex;
+  width: auto !important;
+  min-width: 0;
+  max-width: max-content;
+  height: auto;
+  aspect-ratio: auto !important;
+  flex: 0 0 auto;
+  align-self: start;
+  justify-self: start;
+  min-height: 40px;
+  padding: 0.62rem 0.92rem;
+  border-radius: 12px;
+  font-size: 0.86rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+@media (max-width: 680px) {
+  .campaign-dossier .hero-actions .button,
+  .home-route-panel .hero-actions .button,
+  .feature-panel .hero-actions .button,
+  .network-profile-card .hero-actions .button,
+  .editorial-band__actions .button,
+  .project-explorer__actions .button,
+  .site-footer__cta .button {
+    width: 100% !important;
+    max-width: none;
+    justify-content: center;
+    white-space: normal;
+  }
+}

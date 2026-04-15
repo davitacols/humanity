@@ -1,17 +1,13 @@
 import { InfoCard } from "../../components/InfoCard";
 import { LoadingLink } from "../../components/LoadingLink";
 import { PageHero } from "../../components/PageHero";
+import { ProjectExplorer } from "../../components/ProjectExplorer";
 import { Reveal } from "../../components/Reveal";
 import { SectionIntro } from "../../components/SectionIntro";
 import { StockPhoto } from "../../components/StockPhoto";
+import { dodomaProposal, projectCatalog } from "../../components/missionData";
 import { stockMedia } from "../../components/stockMedia";
-import { premiumVideoProject, projectCards, sportsSpotlight } from "../../components/siteData";
-
-function cleanCopy(value) {
-  return value.replaceAll("â€‘", "-");
-}
-
-const archiveTones = ["paper", "blush", "mist", "sand", "leaf", "paper"];
+import { premiumVideoProject, sportsSpotlight } from "../../components/siteData";
 
 const projectHeroHighlights = [
   "Flagship campaigns and sector-led stories",
@@ -79,11 +75,11 @@ export default function ProjectsPage() {
 
               <div className="hero-actions">
                 <LoadingLink
-                  href="/donate"
+                  href={`/projects/${dodomaProposal.slug}`}
                   className="button button--primary"
                   loadingLabel="Opening"
                 >
-                  Support Sports Development
+                  Read Full Proposal
                 </LoadingLink>
                 <LoadingLink
                   href="/programs"
@@ -142,11 +138,11 @@ export default function ProjectsPage() {
             </div>
             <div className="hero-actions">
               <LoadingLink
-                href="/donate"
+                href={`/projects/${dodomaProposal.slug}`}
                 className="button button--primary"
                 loadingLabel="Opening"
               >
-                Back This Project
+                Open Full Proposal
               </LoadingLink>
               <LoadingLink
                 href="/get-involved"
@@ -162,39 +158,12 @@ export default function ProjectsPage() {
 
       <Reveal as="section" className="section" delay={220}>
         <SectionIntro
-          eyebrow="Archive layer"
-          title="A broader set of stories that keeps the initiative active between flagship campaigns."
-          body="The archive makes it easier for visitors to discover the range of the initiative, from health and education to advocacy and community safety."
+          eyebrow="Project explorer"
+          title="A browsable project and campaign layer that feels active, searchable, and easier to navigate."
+          body="This turns the projects page into a real discovery surface where visitors can filter active appeals, program routes, and media releases instead of reading one long static list."
         />
 
-        <div className="story-ledger">
-          {projectCards.map((project, index) => (
-            <article
-              key={project.title}
-              className={`story-ledger__row story-ledger__row--${archiveTones[index % archiveTones.length]}`}
-            >
-              <div className="story-ledger__index">
-                <span className="story-card__index">{String(index + 1).padStart(2, "0")}</span>
-              </div>
-
-              <div className="story-ledger__content">
-                <p className="story-ledger__tag">{project.tag}</p>
-                <h3 className="story-ledger__title">{project.title}</h3>
-                <p className="story-ledger__body">{cleanCopy(project.body)}</p>
-              </div>
-
-              <div className="story-ledger__actions">
-                <LoadingLink
-                  href={project.tag === "Education" ? "/education" : "/programs"}
-                  className="button button--secondary"
-                  loadingLabel="Opening"
-                >
-                  Explore Related Work
-                </LoadingLink>
-              </div>
-            </article>
-          ))}
-        </div>
+        <ProjectExplorer items={projectCatalog} />
       </Reveal>
 
       <Reveal as="section" className="section" delay={280}>

@@ -4,6 +4,7 @@ import { PageHero } from "../../components/PageHero";
 import { Reveal } from "../../components/Reveal";
 import { SectionIntro } from "../../components/SectionIntro";
 import { StockPhoto } from "../../components/StockPhoto";
+import { sibMediaCoverage } from "../../components/missionData";
 import { stockMedia } from "../../components/stockMedia";
 import { sibProfile, sportsSpotlight } from "../../components/siteData";
 
@@ -221,6 +222,30 @@ export default function AboutPage() {
 
       <Reveal as="section" className="section" delay={220}>
         <SectionIntro
+          eyebrow="Media coverage"
+          title="Sib's public coverage now has a dedicated archive section instead of a single placeholder line."
+          body="The entries below keep the profile honest about what is already available and what is still being prepared for publication."
+        />
+
+        <div className="media-coverage-grid">
+          {sibMediaCoverage.map((item, index) => (
+            <article
+              key={item.title}
+              className={`media-coverage-card media-coverage-card--${index === 0 ? "paper" : index === 1 ? "mist" : "sand"}`}
+            >
+              <div className="media-coverage-card__top">
+                <p className="media-coverage-card__eyebrow">{item.eyebrow}</p>
+                <span className="media-coverage-card__status">{item.status}</span>
+              </div>
+              <h3 className="media-coverage-card__title">{item.title}</h3>
+              <p className="media-coverage-card__body">{item.body}</p>
+            </article>
+          ))}
+        </div>
+      </Reveal>
+
+      <Reveal as="section" className="section" delay={240}>
+        <SectionIntro
           eyebrow="Shared standards"
           title="The standards behind the work matter as much as the work itself."
           body="These values make the initiative feel grounded. They also signal what donors, partners, and contributors expect from campaigns and collaborations."
@@ -243,7 +268,7 @@ export default function AboutPage() {
         </div>
       </Reveal>
 
-      <Reveal as="section" className="section" delay={260}>
+      <Reveal as="section" className="section" delay={280}>
         <SectionIntro
           eyebrow="Regional growth"
           title="Prepared to expand beyond one founder, one program, or one country."

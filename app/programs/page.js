@@ -160,7 +160,7 @@ export default function ProgramsPage() {
               <p>{sportsSpotlight.totalRequest}</p>
               <div className="hero-actions">
                 <LoadingLink
-                  href="/projects"
+                  href="/projects/dodoma-best-sports-center"
                   className="button button--primary"
                   loadingLabel="Opening"
                 >
@@ -206,8 +206,8 @@ export default function ProgramsPage() {
             <span className="pill pill--soft">{premiumVideoProject.price}</span>
             <h3>{premiumVideoProject.title}</h3>
             <p>
-              The gated watch flow is in place with timed access logic, verified payments, and
-              protected playback.
+              The gated watch flow is in place with timed access logic, a protected viewing path,
+              and a ready handoff for real payment verification once the final provider is approved.
             </p>
             <div className="hero-actions">
               <LoadingLink

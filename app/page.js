@@ -17,7 +17,7 @@ const heroTiles = [
     eyebrow: "Current appeal",
     title: "Support a live youth sports response",
     body: "The Dodoma Best Sports Center campaign is public, active, and tied to practical equipment and coaching needs.",
-    href: "/projects",
+    href: "/projects/dodoma-best-sports-center",
     label: "Read the project",
     tone: "ember"
   },
@@ -124,7 +124,7 @@ export default function HomePage() {
               className="button button--secondary"
               loadingLabel="Opening"
             >
-              Read field updates
+              Open project explorer
             </LoadingLink>
           </div>
 
@@ -161,7 +161,7 @@ export default function HomePage() {
             </div>
 
             <LoadingLink
-              href="/projects"
+              href="/projects/dodoma-best-sports-center"
               className="button button--ghost-light"
               loadingLabel="Opening"
             >
@@ -282,7 +282,7 @@ export default function HomePage() {
 
           <div className="hero-actions">
             <LoadingLink href="/projects" className="button button--secondary" loadingLabel="Opening">
-              Read field updates
+              Open project explorer
             </LoadingLink>
             <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">
               Donate to this work

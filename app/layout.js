@@ -1,4 +1,5 @@
 import "./globals.css";
+import "./button-overrides.css";
 import { League_Spartan } from "next/font/google";
 import { MotionProvider } from "../components/MotionProvider";
 import { SiteHeader } from "../components/SiteHeader";

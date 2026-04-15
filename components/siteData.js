@@ -85,7 +85,7 @@ export const sibProfile = {
     "Travel storytelling"
   ],
   update:
-    "A refreshed bio, a newspaper article from the 2024 film project, and links to recent media coverage are available for review."
+    "A refreshed bio, a newspaper article from the 2024 film project, and links to recent media coverage are being prepared for publication."
 };
 
 export const sportsSpotlight = {
