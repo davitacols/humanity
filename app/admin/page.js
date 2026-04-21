@@ -1,6 +1,9 @@
 import Link from "next/link";
+import { requireAdmin } from "../../lib/admin-auth";
 
-export default function AdminDashboard() {
+export default async function AdminDashboard() {
+  await requireAdmin();
+
   return (
     <main className="admin-dashboard">
       <div className="admin-header">
@@ -19,6 +22,11 @@ export default function AdminDashboard() {
         <Link href="/admin/education" className="admin-card">
           <h2>Education Hub</h2>
           <p>Metrics, tracks, library items, sessions, and actions.</p>
+        </Link>
+
+        <Link href="/admin/support" className="admin-card">
+          <h2>Support Inbox</h2>
+          <p>Review donor, volunteer, partner, sponsor, and contributor requests.</p>
         </Link>
 
         <Link href="/education/review" className="admin-card">

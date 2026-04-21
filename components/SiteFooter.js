@@ -1,5 +1,5 @@
+import Image from "next/image";
 import Link from "next/link";
-
 import { LoadingLink } from "./LoadingLink";
 import { navItems } from "./siteData";
 
@@ -31,7 +31,16 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="site-footer__shell">
         <div className="site-footer__summary">
-          <p className="site-footer__kicker">Humanity First Initiative</p>
+          <div className="site-footer__brand-row">
+            <Image
+              src="/logo.jpeg"
+              alt=""
+              width={48}
+              height={48}
+              className="site-footer__logo"
+            />
+            <p className="site-footer__kicker">Humanity First Initiative</p>
+          </div>
           <h2 className="site-footer__headline">
             Community-led humanitarian work with clear paths to support.
           </h2>
@@ -50,18 +59,10 @@ export function SiteFooter() {
           </div>
 
           <div className="site-footer__cta">
-            <LoadingLink
-              href="/donate"
-              className="button button--primary"
-              loadingLabel="Opening"
-            >
+            <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">
               Donate now
             </LoadingLink>
-            <LoadingLink
-              href="/get-involved"
-              className="button button--secondary"
-              loadingLabel="Opening"
-            >
+            <LoadingLink href="/get-involved" className="button button--secondary" loadingLabel="Opening">
               Get involved
             </LoadingLink>
           </div>

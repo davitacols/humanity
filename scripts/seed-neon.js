@@ -294,6 +294,38 @@ async function main() {
           on education_resource_submissions (status, created_at desc)
       `;
 
+      await tx`
+        create table if not exists support_inquiries (
+          id integer generated always as identity primary key,
+          source_page text not null,
+          route_type text not null,
+          contact_name text not null,
+          email text not null,
+          organization text,
+          country text,
+          support_area text not null,
+          amount text,
+          cadence text,
+          availability text,
+          message text not null,
+          consent_to_contact boolean not null default false,
+          wants_updates boolean not null default false,
+          status text not null default 'pending',
+          created_at timestamptz not null default now(),
+          updated_at timestamptz not null default now()
+        )
+      `;
+
+      await tx`
+        create index if not exists support_inquiries_status_idx
+          on support_inquiries (status, created_at desc)
+      `;
+
+      await tx`
+        create index if not exists support_inquiries_route_idx
+          on support_inquiries (route_type, created_at desc)
+      `;
+
       await seedSimpleTable(tx, "education_metrics", ["value", "label"], educationMetrics);
       await seedSimpleTable(
         tx,

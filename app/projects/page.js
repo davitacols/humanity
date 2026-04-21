@@ -12,7 +12,7 @@ import { premiumVideoProject, sportsSpotlight } from "../../components/siteData"
 const projectHeroHighlights = [
   "Flagship campaigns and sector-led stories",
   "Visible asks tied to practical outcomes",
-  "Archive, documentary releases, and field reporting in one place"
+  "Archive, documentary releases, and field reporting"
 ];
 
 const projectHeroAsidePoints = [
@@ -23,185 +23,103 @@ const projectHeroAsidePoints = [
 
 export default function ProjectsPage() {
   return (
-    <main className="site-main">
+    <main className="site-main page-v2">
       <PageHero
         eyebrow="Projects and stories"
         title="Projects, campaigns, and field stories that make support tangible."
-        body="This archive brings together flagship interventions and sector-led projects so supporters can move from interest to action with clear context."
+        body="Flagship interventions and sector-led projects so supporters can move from interest to action with clear context."
         primary={{ href: "/donate", label: "Support a Project" }}
         secondary={{ href: "/programs", label: "Browse Programs" }}
         highlights={projectHeroHighlights}
         media={stockMedia.projectsHero}
-        asideTitle="Real stories, clear asks, stronger support decisions"
-        asideBody="The projects layer keeps active interventions visible, makes campaign priorities easier to understand, and shows how support maps to practical outcomes."
+        asideTitle="Real stories, clear asks"
+        asideBody="Active interventions stay visible, campaign priorities are easier to understand, and support maps to practical outcomes."
         asidePoints={projectHeroAsidePoints}
       />
 
-      <Reveal as="section" className="section" delay={120}>
-        <div className="home-showcase-grid">
-          <article className="campaign-dossier">
-            <div className="campaign-dossier__lead">
-              <StockPhoto
-                src={stockMedia.projectsHero.src}
-                alt={stockMedia.projectsHero.alt}
-                label={stockMedia.projectsHero.label}
-                sizes="(max-width: 1180px) 100vw, 34vw"
-                className="campaign-dossier__media"
-              />
-              <span className="pill pill--soft">Flagship impact story</span>
-              <h3 className="campaign-dossier__title">{sportsSpotlight.title}</h3>
-              <p className="campaign-dossier__body">{sportsSpotlight.summary}</p>
-              <blockquote className="campaign-dossier__quote">{sportsSpotlight.body}</blockquote>
-            </div>
-
-            <div className="campaign-dossier__facts">
-              <div className="home-meta-row">
-                <span className="home-meta-pill">{sportsSpotlight.location}</span>
-                <span className="home-meta-pill">{sportsSpotlight.founded}</span>
-                <span className="home-meta-pill">{sportsSpotlight.beneficiaries}</span>
-                <span className="home-meta-pill">{sportsSpotlight.orphanSupport}</span>
-              </div>
-
-              <div className="campaign-dossier__support-list">
-                <article className="campaign-dossier__support-item">
-                  <p className="campaign-dossier__support-eyebrow">Current ask</p>
-                  <p className="campaign-dossier__support-body">{sportsSpotlight.totalRequest}</p>
-                </article>
-                <article className="campaign-dossier__support-item">
-                  <p className="campaign-dossier__support-eyebrow">Age range</p>
-                  <p className="campaign-dossier__support-body">{sportsSpotlight.ageGroups}</p>
-                </article>
-              </div>
-
-              <div className="hero-actions">
-                <LoadingLink
-                  href={`/projects/${dodomaProposal.slug}`}
-                  className="button button--primary"
-                  loadingLabel="Opening"
-                >
-                  Read Full Proposal
-                </LoadingLink>
-                <LoadingLink
-                  href="/programs"
-                  className="button button--secondary"
-                  loadingLabel="Opening"
-                >
-                  Explore Sports Programs
-                </LoadingLink>
-              </div>
-            </div>
-          </article>
-
-          <div className="assurance-stack">
-            {sportsSpotlight.supportAreas.map((item, index) => (
-              <article key={item} className="assurance-card">
-                <p className="assurance-card__eyebrow">
-                  Support area {String(index + 1).padStart(2, "0")}
-                </p>
-                <h3 className="assurance-card__title">{item}</h3>
-                <p className="assurance-card__body">
-                  This support route keeps training active, protects young participants, and builds
-                  longer-term opportunities around sport, discipline, and community development.
-                </p>
-              </article>
-            ))}
+      {/* Flagship spotlight */}
+      <Reveal as="section" className="dossier-v2" delay={120}>
+        <div className="dossier-v2__lead">
+          <StockPhoto src={stockMedia.projectsHero.src} alt={stockMedia.projectsHero.alt} label={stockMedia.projectsHero.label} sizes="(max-width: 1120px) 100vw, 40vw" />
+          <h2 className="dossier-v2__title">{sportsSpotlight.title}</h2>
+          <p className="dossier-v2__body">{sportsSpotlight.summary}</p>
+          <blockquote className="dossier-v2__quote">{sportsSpotlight.body}</blockquote>
+          <div className="hero-actions">
+            <LoadingLink href={`/projects/${dodomaProposal.slug}`} className="button button--primary" loadingLabel="Opening">Read Full Proposal</LoadingLink>
+            <LoadingLink href="/donate" className="button button--secondary" loadingLabel="Opening">Support This Work</LoadingLink>
           </div>
+        </div>
+        <div className="dossier-v2__sidebar">
+          <article className="dossier-v2__fact">
+            <p className="dossier-v2__fact-eyebrow">Location</p>
+            <p className="dossier-v2__fact-body">{sportsSpotlight.location}</p>
+          </article>
+          <article className="dossier-v2__fact">
+            <p className="dossier-v2__fact-eyebrow">Current reach</p>
+            <p className="dossier-v2__fact-body">{sportsSpotlight.beneficiaries}</p>
+          </article>
+          <article className="dossier-v2__fact">
+            <p className="dossier-v2__fact-eyebrow">Inclusion</p>
+            <p className="dossier-v2__fact-body">{sportsSpotlight.orphanSupport}</p>
+          </article>
+          <article className="dossier-v2__fact">
+            <p className="dossier-v2__fact-eyebrow">Current ask</p>
+            <p className="dossier-v2__fact-body">{sportsSpotlight.totalRequest}</p>
+          </article>
+          <article className="dossier-v2__fact">
+            <p className="dossier-v2__fact-eyebrow">Age groups</p>
+            <p className="dossier-v2__fact-body">{sportsSpotlight.ageGroups}</p>
+          </article>
         </div>
       </Reveal>
 
-      <Reveal as="section" className="section" delay={170}>
+      {/* Priorities */}
+      <Reveal as="section" delay={170}>
         <SectionIntro
           eyebrow="Current proposal"
-          title="The translated proposal focuses on practical equipment, safe participation, and long-term opportunity."
-          body="The immediate ask keeps training sessions equipped, consistent, and development-focused while the academy vision grows."
+          title="Practical equipment, safe participation, and long-term opportunity."
+          body="The immediate ask keeps training sessions equipped, consistent, and development-focused."
         />
-
-        <div className="section-grid section-grid--campaign">
-          <div className="priority-list">
-            {sportsSpotlight.priorities.map((item, index) => (
-              <article key={item.title} className="priority-card">
-                <p className="priority-card__eyebrow">Priority {String(index + 1).padStart(2, "0")}</p>
-                <h3 className="priority-card__title">{item.title}</h3>
-                <p className="priority-card__body">{item.body}</p>
-              </article>
-            ))}
-          </div>
-
-          <div className="home-route-panel">
-            <span className="pill pill--soft">Proposal summary</span>
-            <h3>{sportsSpotlight.title}</h3>
-            <p>{sportsSpotlight.totalRequest}</p>
-            <p>{sportsSpotlight.ageGroups}</p>
-            <div className="home-meta-row">
-              <span className="home-meta-pill">{sportsSpotlight.beneficiaries}</span>
-              <span className="home-meta-pill">{sportsSpotlight.orphanSupport}</span>
-            </div>
-            <div className="hero-actions">
-              <LoadingLink
-                href={`/projects/${dodomaProposal.slug}`}
-                className="button button--primary"
-                loadingLabel="Opening"
-              >
-                Open Full Proposal
-              </LoadingLink>
-              <LoadingLink
-                href="/get-involved"
-                className="button button--secondary"
-                loadingLabel="Opening"
-              >
-                Discuss Partnership
-              </LoadingLink>
-            </div>
-          </div>
+        <div className="card-grid-v2">
+          {sportsSpotlight.priorities.map((item, i) => (
+            <article key={item.title} className="card-v2">
+              <div className="card-v2__top">
+                <p className="card-v2__eyebrow">Priority {String(i + 1).padStart(2, "0")}</p>
+              </div>
+              <h3 className="card-v2__title">{item.title}</h3>
+              <p className="card-v2__body">{item.body}</p>
+            </article>
+          ))}
         </div>
       </Reveal>
 
-      <Reveal as="section" className="section" delay={220}>
+      {/* Project explorer */}
+      <Reveal as="section" delay={220}>
         <SectionIntro
           eyebrow="Project explorer"
-          title="A browsable project and campaign layer that feels active, searchable, and easier to navigate."
-          body="This turns the projects page into a real discovery surface where visitors can filter active appeals, program routes, and media releases instead of reading one long static list."
+          title="Browse active appeals, program routes, and media releases."
+          body="Filter and search projects from one discovery surface."
         />
-
         <ProjectExplorer items={projectCatalog} />
       </Reveal>
 
-      <Reveal as="section" className="section" delay={280}>
-        <div className="section-grid section-grid--split">
-          <div className="home-route-panel home-route-panel--dark">
-            <span className="pill pill--soft">{premiumVideoProject.eyebrow}</span>
-            <h3>{premiumVideoProject.title}</h3>
-            <p>{premiumVideoProject.description}</p>
-            <div className="home-meta-row">
-              <span className="home-meta-pill">{premiumVideoProject.price}</span>
-              <span className="home-meta-pill">{premiumVideoProject.runtime}</span>
-              <span className="home-meta-pill">{premiumVideoProject.accessWindow}</span>
-            </div>
+      {/* Documentary + future */}
+      <Reveal as="section" delay={280}>
+        <div className="split-v2">
+          <div className="dark-panel-v2">
+            <p className="dark-panel-v2__eyebrow">{premiumVideoProject.eyebrow}</p>
+            <h3 className="dark-panel-v2__title">{premiumVideoProject.title}</h3>
+            <p className="dark-panel-v2__body">{premiumVideoProject.description}</p>
             <div className="hero-actions">
-              <LoadingLink
-                href={`/projects/${premiumVideoProject.slug}`}
-                className="button button--secondary"
-                loadingLabel="Opening"
-              >
-                Open Documentary Screening
-              </LoadingLink>
+              <LoadingLink href={`/projects/${premiumVideoProject.slug}`} className="button button--secondary" loadingLabel="Opening">Open Screening</LoadingLink>
             </div>
           </div>
-
-          <div className="home-route-panel">
-            <span className="pill pill--soft">Long-term expectation</span>
-            <h3>Support today unlocks longer pathways for young people.</h3>
-            <div className="stack-grid">
-              {sportsSpotlight.futureExpectations.map((expectation) => (
-                <InfoCard
-                  key={expectation}
-                  eyebrow="Outcome"
-                  title={expectation}
-                  body="This sits inside the center's wider ambition to use sports as a tool for health, belonging, discipline, and long-term opportunity."
-                  tone="paper"
-                />
-              ))}
-            </div>
+          <div className="dark-panel-v2">
+            <p className="dark-panel-v2__eyebrow">Future expectations</p>
+            <h3 className="dark-panel-v2__title">Support today unlocks longer pathways for young people.</h3>
+            {sportsSpotlight.futureExpectations.map((e) => (
+              <p key={e} className="dark-panel-v2__body">• {e}</p>
+            ))}
           </div>
         </div>
       </Reveal>

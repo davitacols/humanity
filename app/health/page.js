@@ -1,0 +1,124 @@
+import { LoadingLink } from "../../components/LoadingLink";
+import { PageHero } from "../../components/PageHero";
+import { Reveal } from "../../components/Reveal";
+import { SectionIntro } from "../../components/SectionIntro";
+import { StockPhoto } from "../../components/StockPhoto";
+import { stockMedia } from "../../components/stockMedia";
+
+const healthTopics = [
+  { title: "Hygiene and sanitation", body: "Handwashing, clean water access, waste disposal, and community sanitation practices." },
+  { title: "Nutrition", body: "Balanced diets, breastfeeding support, food safety, and nutrition for children under five." },
+  { title: "Maternal and child health", body: "Prenatal care, safe delivery, postnatal support, immunization, and growth monitoring." },
+  { title: "Mental health", body: "Stress management, community support systems, and reducing stigma around mental health." }
+];
+
+const preventiveAreas = [
+  { title: "Malaria prevention", body: "Bed net distribution, standing water management, and early symptom recognition." },
+  { title: "Vaccination awareness", body: "Routine immunization schedules, community outreach, and myth-busting campaigns." },
+  { title: "Sanitation drives", body: "Community clean-up events, latrine construction support, and hygiene education." }
+];
+
+const safetyTopics = [
+  { title: "Home safety", body: "Fire prevention, safe cooking practices, childproofing, and first aid basics." },
+  { title: "School safety", body: "Emergency preparedness, safe play areas, and anti-bullying awareness." },
+  { title: "Environmental safety", body: "Flood preparedness, waste hazard awareness, and community resilience planning." }
+];
+
+const campaigns = [
+  { title: "Maternal health kits outreach", body: "Distribution of basic care kits for mothers and newborns with on-ground follow-ups.", status: "Active" },
+  { title: "School safety awareness", body: "Safety education for schools and families with practical checklists and flyers.", status: "Active" },
+  { title: "Nutrition flyer campaign", body: "Quick-use nutrition guides and outreach materials for parents and caregivers.", status: "In progress" }
+];
+
+export default function HealthPage() {
+  return (
+    <main className="site-main page-v2">
+      <PageHero
+        eyebrow="Public health and safety"
+        title="Educating communities and promoting healthier living."
+        body="Health education content, community campaigns, preventive awareness, safety advocacy, and downloadable resources — all designed for practical community use."
+        primary={{ href: "/donate", label: "Support health outreach" }}
+        secondary={{ href: "/programs", label: "Back to programs" }}
+        highlights={["Health education", "Community campaigns", "Preventive awareness", "Safety advocacy", "Downloadable resources"]}
+        media={stockMedia.homeStories[0]}
+        asideTitle="Community-first health"
+        asideBody="Content designed for low-bandwidth access, community health workers, and families in underserved areas."
+      />
+
+      <Reveal as="section" delay={120}>
+        <SectionIntro eyebrow="Health education" title="Core topics for community health literacy." body="Practical content on hygiene, nutrition, maternal health, and mental wellbeing." />
+        <div className="card-grid-v2">
+          {healthTopics.map((t, i) => (
+            <article key={t.title} className="card-v2">
+              <div className="card-v2__top">
+                <span className="card-v2__index">{String(i + 1).padStart(2, "0")}</span>
+                <p className="card-v2__eyebrow">Health topic</p>
+              </div>
+              <h3 className="card-v2__title">{t.title}</h3>
+              <p className="card-v2__body">{t.body}</p>
+            </article>
+          ))}
+        </div>
+      </Reveal>
+
+      <Reveal as="section" delay={180}>
+        <SectionIntro eyebrow="Community campaigns" title="Outreach documentation and impact reports." body="Active campaigns with real field documentation and measurable outcomes." />
+        <div className="split-v2">
+          <StockPhoto src={stockMedia.homeStories[0].src} alt={stockMedia.homeStories[0].alt} label="Health outreach" sizes="(max-width: 1120px) 100vw, 48vw" />
+          <div style={{ display: "grid", gap: "0.85rem" }}>
+            {campaigns.map((c) => (
+              <article key={c.title} className="card-v2">
+                <div className="card-v2__top">
+                  <p className="card-v2__eyebrow">Campaign</p>
+                  <span className="card-v2__index" style={{ width: "auto", padding: "0 0.6rem", fontSize: "0.72rem" }}>{c.status}</span>
+                </div>
+                <h3 className="card-v2__title">{c.title}</h3>
+                <p className="card-v2__body">{c.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </Reveal>
+
+      <Reveal as="section" delay={240}>
+        <SectionIntro eyebrow="Preventive health" title="Awareness that stops problems before they start." body="Malaria prevention, vaccination awareness, and sanitation drives." />
+        <div className="card-grid-v2 card-grid-v2--3">
+          {preventiveAreas.map((a, i) => (
+            <article key={a.title} className="card-v2">
+              <div className="card-v2__top">
+                <span className="card-v2__index">{String(i + 1).padStart(2, "0")}</span>
+              </div>
+              <h3 className="card-v2__title">{a.title}</h3>
+              <p className="card-v2__body">{a.body}</p>
+            </article>
+          ))}
+        </div>
+      </Reveal>
+
+      <Reveal as="section" delay={300}>
+        <SectionIntro eyebrow="Safety advocacy" title="Home, school, and environmental safety education." body="Practical safety content for families, schools, and communities." />
+        <div className="card-grid-v2 card-grid-v2--3">
+          {safetyTopics.map((t, i) => (
+            <article key={t.title} className="card-v2">
+              <div className="card-v2__top">
+                <span className="card-v2__index">{String(i + 1).padStart(2, "0")}</span>
+              </div>
+              <h3 className="card-v2__title">{t.title}</h3>
+              <p className="card-v2__body">{t.body}</p>
+            </article>
+          ))}
+        </div>
+      </Reveal>
+
+      <Reveal as="section" className="dark-panel-v2" delay={360}>
+        <p className="dark-panel-v2__eyebrow">Downloadable resources</p>
+        <h2 className="dark-panel-v2__title">Guides, flyers, and toolkits for community health workers.</h2>
+        <p className="dark-panel-v2__body">Printable materials designed for low-bandwidth settings, community outreach events, and family education.</p>
+        <div className="hero-actions">
+          <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">Support health programs</LoadingLink>
+          <LoadingLink href="/education" className="button button--secondary" loadingLabel="Opening">Visit education hub</LoadingLink>
+        </div>
+      </Reveal>
+    </main>
+  );
+}

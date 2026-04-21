@@ -1,12 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LoadingLink } from "./LoadingLink";
 import { headerUtilityItems, navItems } from "./siteData";
 
-const desktopNavItems = navItems.filter((item) => item.href !== "/" && item.href !== "/donate");
+const desktopNavItems = navItems.filter((item) => !["/", "/donate", "/gallery", "/blog"].includes(item.href));
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -51,15 +52,23 @@ export function SiteHeader() {
 
         <div className="site-header__inner">
           <Link href="/" className="site-brand" aria-label="Humanity First Initiative home">
-            <span className="site-brand__eyebrow">Community-led humanitarian action</span>
-            <span className="site-brand__name">Humanity First</span>
-            <span className="site-brand__sub">Initiative</span>
+            <Image
+              src="/logo.jpeg"
+              alt=""
+              width={44}
+              height={44}
+              className="site-brand__logo"
+              priority
+            />
+            <div className="site-brand__text">
+              <span className="site-brand__name">Humanity First</span>
+              <span className="site-brand__sub">Initiative</span>
+            </div>
           </Link>
 
           <nav className="site-nav site-nav--desktop" aria-label="Primary">
             {desktopNavItems.map((item) => {
               const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
-
               return (
                 <Link
                   key={item.href}
@@ -73,11 +82,7 @@ export function SiteHeader() {
           </nav>
 
           <div className="site-header__actions">
-            <LoadingLink
-              href="/donate"
-              className="button button--header"
-              loadingLabel="Opening"
-            >
+            <LoadingLink href="/donate" className="button button--header" loadingLabel="Opening">
               Donate
             </LoadingLink>
 
@@ -110,9 +115,17 @@ export function SiteHeader() {
         <div className="site-header__drawer-shell">
           <div className="site-header__drawer-top">
             <div className="site-header__drawer-brand">
-              <span className="site-brand__eyebrow">Community-led humanitarian action</span>
-              <span className="site-brand__name">Humanity First</span>
-              <span className="site-brand__sub">Initiative</span>
+              <Image
+                src="/logo.jpeg"
+                alt=""
+                width={40}
+                height={40}
+                className="site-brand__logo"
+              />
+              <div className="site-brand__text">
+                <span className="site-brand__name">Humanity First</span>
+                <span className="site-brand__sub">Initiative</span>
+              </div>
             </div>
 
             <button
@@ -131,7 +144,6 @@ export function SiteHeader() {
                 item.href === "/"
                   ? pathname === item.href
                   : pathname === item.href || pathname.startsWith(`${item.href}/`);
-
               return (
                 <Link
                   key={item.href}
@@ -145,18 +157,10 @@ export function SiteHeader() {
           </nav>
 
           <div className="site-header__drawer-actions">
-            <LoadingLink
-              href="/donate"
-              className="button button--primary"
-              loadingLabel="Opening"
-            >
+            <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">
               Support the Mission
             </LoadingLink>
-            <LoadingLink
-              href="/get-involved"
-              className="button button--secondary"
-              loadingLabel="Opening"
-            >
+            <LoadingLink href="/get-involved" className="button button--secondary" loadingLabel="Opening">
               Get Involved
             </LoadingLink>
           </div>

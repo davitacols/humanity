@@ -1,64 +1,80 @@
 import { InfoCard } from "../../components/InfoCard";
 import { LoadingLink } from "../../components/LoadingLink";
 import { PageHero } from "../../components/PageHero";
+import { Reveal } from "../../components/Reveal";
+import { SectionIntro } from "../../components/SectionIntro";
+import { SupportInquiryForm } from "../../components/SupportInquiryForm";
 import { stockMedia } from "../../components/stockMedia";
 import { involvementPaths, updateCards } from "../../components/siteData";
 
 export default function GetInvolvedPage() {
   return (
-    <main className="site-main">
+    <main className="site-main page-v2">
       <PageHero
         eyebrow="Get involved"
-        title="Turn interest into action without overwhelming people."
-        body="This route gives different supporter types their own path, whether they want to volunteer, partner, contribute creatively, or sponsor a program."
-        primary={{ href: "/donate", label: "Sponsor a Program" }}
-        secondary={{ href: "/education/contribute", label: "Submit a Resource" }}
+        title="Turn interest into action with a clear intake path."
+        body="Volunteers, partners, sponsors, and contributors get a real way to register interest and move into the work with context."
+        primary={{ href: "#support-intake", label: "Open Support Form" }}
+        secondary={{ href: "/donate", label: "Sponsor a Program" }}
         media={stockMedia.getInvolvedHero}
         asideTitle="Clear ways to join the work"
-        asideBody="Volunteers, partners, contributors, and sponsors each get a direct path into the mission without losing the warmth and clarity of the wider initiative."
+        asideBody="Each supporter type gets a direct path into the mission, plus a real intake flow the team can review and follow up."
       />
 
-      <section className="section">
-        <div className="info-grid info-grid--two">
-          {involvementPaths.map((path, index) => (
-            <InfoCard
-              key={path.title}
-              title={path.title}
-              body={path.body}
-              tone={index % 2 === 0 ? "paper" : "mist"}
-            />
+      {/* Support routes */}
+      <Reveal as="section" delay={100}>
+        <SectionIntro
+          eyebrow="Support routes"
+          title="Choose the kind of role that matches your capacity."
+          body="These cards help people orient themselves before they submit."
+        />
+        <div className="card-grid-v2">
+          {involvementPaths.map((path, i) => (
+            <article key={path.title} className="card-v2">
+              <div className="card-v2__top">
+                <span className="card-v2__index">{String(i + 1).padStart(2, "0")}</span>
+              </div>
+              <h3 className="card-v2__title">{path.title}</h3>
+              <p className="card-v2__body">{path.body}</p>
+            </article>
           ))}
         </div>
-      </section>
+      </Reveal>
 
-      <section className="section section-grid section-grid--campaign">
-        <div className="hub-card">
-          <InfoCard
-            eyebrow="Submission flow"
-            title="The education contributor form is now live."
-            body="Educators, mentors, and partner organizations submit books, lesson links, and toolkits into a review queue backed by Neon."
-            tone="blush"
-          />
-          <LoadingLink
-            href="/education/contribute"
-            className="button button--secondary hub-card__cta"
-            loadingLabel="Opening"
-          >
-            Open Contributor Form
-          </LoadingLink>
+      {/* Intake form */}
+      <Reveal as="section" id="support-intake" delay={160}>
+        <SectionIntro
+          eyebrow="Support intake"
+          title="Send one clear request so the right team can follow up."
+          body="Simple and reliable — giving the initiative a proper record of volunteer, partner, and sponsor interest."
+        />
+        <div className="submission-layout">
+          <div className="submission-layout__side">
+            <InfoCard eyebrow="Intake" title="One shared route for all supporter types." body="The form captures who you are, what kind of help you can offer, and where you want to plug in." tone="mist" />
+            <InfoCard eyebrow="Follow-up" title="Every request lands in a reviewable queue." body="The team gets enough context to reply with a useful next step." tone="sand" />
+            <InfoCard eyebrow="Resource contributors" title="Learning resources have a dedicated route." body="If you are contributing educational materials, use the education submission form." tone="paper" />
+            <LoadingLink href="/education/contribute" className="button button--secondary submission-layout__link" loadingLabel="Opening">Open Contributor Form</LoadingLink>
+          </div>
+          <SupportInquiryForm variant="involvement" />
         </div>
-        <div className="stack-grid">
-          {updateCards.map((update) => (
-            <InfoCard
-              key={update.title}
-              eyebrow="Latest update"
-              title={update.title}
-              body={update.body}
-              tone="paper"
-            />
+      </Reveal>
+
+      {/* Updates */}
+      <Reveal as="section" delay={220}>
+        <SectionIntro
+          eyebrow="Latest updates"
+          title="What's happening across the initiative right now."
+        />
+        <div className="card-grid-v2 card-grid-v2--3">
+          {updateCards.map((update, i) => (
+            <article key={update.title} className="card-v2">
+              <p className="card-v2__eyebrow">Update</p>
+              <h3 className="card-v2__title">{update.title}</h3>
+              <p className="card-v2__body">{update.body}</p>
+            </article>
           ))}
         </div>
-      </section>
+      </Reveal>
     </main>
   );
 }

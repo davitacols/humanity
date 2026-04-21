@@ -1,9 +1,9 @@
 export const sibMediaCoverage = [
   {
     eyebrow: "Bio refresh",
-    title: "Updated public biography in progress",
-    body: "Sib is preparing a refreshed biography that better reflects current film, television, photography, and advocacy work.",
-    status: "In progress"
+    title: "Updated public biography is now live",
+    body: "The About page now reflects Sib's current cinematography, video editing, photography, and accessibility-led storytelling focus.",
+    status: "Published"
   },
   {
     eyebrow: "2024 film project",

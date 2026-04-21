@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
-import { InfoCard } from "../../../../components/InfoCard";
 import { LoadingLink } from "../../../../components/LoadingLink";
 import { PageHero } from "../../../../components/PageHero";
+import { Reveal } from "../../../../components/Reveal";
+import { SectionIntro } from "../../../../components/SectionIntro";
 import { educationResourcePages } from "../../../../components/siteData";
 
 function getResource(slug) {
@@ -15,13 +16,10 @@ export function generateStaticParams() {
 export default async function EducationResourcePage({ params }) {
   const { slug } = await params;
   const resource = getResource(slug);
-
-  if (!resource) {
-    notFound();
-  }
+  if (!resource) notFound();
 
   return (
-    <main className="site-main">
+    <main className="site-main edu-page">
       <PageHero
         eyebrow={resource.eyebrow}
         title={resource.title}
@@ -32,86 +30,71 @@ export default async function EducationResourcePage({ params }) {
         asideBody={`${resource.audience}. ${resource.format}. ${resource.duration}.`}
       />
 
-      <section className="section">
-        <div className="editorial-band">
-          <div className="editorial-band__lead">
-            <h3 className="editorial-band__title">{resource.title}</h3>
-          </div>
-
-          <div className="editorial-band__body">
-            <article className="editorial-band__entry">
-              <p className="editorial-band__eyebrow">Overview</p>
-              <h4 className="editorial-band__entry-title">Built for practical learning contexts</h4>
-              <p className="editorial-band__entry-body">{resource.body}</p>
-            </article>
-
-            <article className="editorial-band__entry">
-              <p className="editorial-band__eyebrow">Audience</p>
-              <h4 className="editorial-band__entry-title">{resource.audience}</h4>
-              <p className="editorial-band__entry-body">
-                This resource is structured for community-led delivery, small group workshops, and
-                low-bandwidth learning settings.
-              </p>
-            </article>
-          </div>
+      {/* Overview */}
+      <Reveal as="section" className="edu-how" delay={100}>
+        <div className="edu-how__intro">
+          <p className="edu-how__eyebrow">Overview</p>
+          <h2 className="edu-how__title">{resource.title}</h2>
+          <p className="edu-how__body">{resource.body}</p>
         </div>
-      </section>
+        <div className="edu-how__steps">
+          <article className="edu-how__step">
+            <span className="edu-how__step-num">→</span>
+            <h3 className="edu-how__step-title">Audience</h3>
+            <p className="edu-how__step-body">{resource.audience}</p>
+          </article>
+          <article className="edu-how__step">
+            <span className="edu-how__step-num">→</span>
+            <h3 className="edu-how__step-title">Format</h3>
+            <p className="edu-how__step-body">{resource.format} · {resource.duration}</p>
+          </article>
+        </div>
+      </Reveal>
 
-      <section className="section section-grid section-grid--campaign">
-        <div className="info-grid info-grid--two">
-          {resource.useCases.map((item, index) => (
-            <InfoCard
-              key={item}
-              eyebrow={`Use case ${String(index + 1).padStart(2, "0")}`}
-              title={item}
-              body="This gives facilitators and mentors a concrete way to apply the resource in real learning environments."
-              tone={index % 2 === 0 ? "mist" : "sand"}
-            />
+      {/* Use cases */}
+      <Reveal as="section" delay={160}>
+        <SectionIntro eyebrow="Use cases" title="How facilitators and mentors apply this resource." />
+        <div className="edu-tracks">
+          {resource.useCases.map((item, i) => (
+            <article key={item} className="edu-tracks__card">
+              <div className="edu-tracks__header">
+                <span className="edu-tracks__num">{String(i + 1).padStart(2, "0")}</span>
+                <span className="edu-tracks__eyebrow">Use case</span>
+              </div>
+              <h3 className="edu-tracks__title">{item}</h3>
+              <p className="edu-tracks__body">Gives facilitators a concrete way to apply the resource in real learning environments.</p>
+            </article>
           ))}
         </div>
+      </Reveal>
 
-        <div className="info-grid info-grid--two">
-          {resource.outcomes.map((item, index) => (
-            <InfoCard
-              key={item}
-              eyebrow={`Outcome ${String(index + 1).padStart(2, "0")}`}
-              title={item}
-              body="These are the practical learning results the hub supports across cohorts."
-              tone={index % 2 === 0 ? "leaf" : "paper"}
-            />
+      {/* Outcomes */}
+      <Reveal as="section" delay={220}>
+        <SectionIntro eyebrow="Outcomes" title="Practical learning results the hub supports across cohorts." />
+        <div className="edu-tracks">
+          {resource.outcomes.map((item, i) => (
+            <article key={item} className="edu-tracks__card">
+              <div className="edu-tracks__header">
+                <span className="edu-tracks__num">{String(i + 1).padStart(2, "0")}</span>
+                <span className="edu-tracks__eyebrow">Outcome</span>
+              </div>
+              <h3 className="edu-tracks__title">{item}</h3>
+            </article>
           ))}
         </div>
-      </section>
+      </Reveal>
 
-      <section className="section section--band">
-        <div className="closing-cta">
-          <div>
-            <h2 className="closing-cta__title">
-              Build a stronger library with guided resources that feel ready to use.
-            </h2>
-            <p className="closing-cta__body">
-              Each resource moves from overview to hosted download, external lesson, or
-              contributor-backed teaching asset without losing clarity for the learner.
-            </p>
-          </div>
-          <div className="closing-cta__actions">
-            <LoadingLink
-              href="/education/contribute"
-              className="button button--secondary"
-              loadingLabel="Opening"
-            >
-              Submit a Related Resource
-            </LoadingLink>
-            <LoadingLink
-              href="/donate"
-              className="button button--ghost-light"
-              loadingLabel="Opening"
-            >
-              Support Learning Access
-            </LoadingLink>
-          </div>
+      {/* CTA */}
+      <Reveal as="section" className="edu-cta" delay={280}>
+        <div className="edu-cta__text">
+          <h2 className="edu-cta__title">Build a stronger library with guided resources that feel ready to use.</h2>
+          <p className="edu-cta__body">Each resource moves from overview to hosted download, external lesson, or contributor-backed teaching asset.</p>
         </div>
-      </section>
+        <div className="edu-cta__actions">
+          <LoadingLink href="/education/contribute" className="button button--primary" loadingLabel="Opening">Submit a related resource</LoadingLink>
+          <LoadingLink href="/donate" className="button button--secondary" loadingLabel="Opening">Support learning access</LoadingLink>
+        </div>
+      </Reveal>
     </main>
   );
 }

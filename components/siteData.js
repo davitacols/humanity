@@ -4,6 +4,11 @@ export const navItems = [
   { href: "/projects", label: "Projects" },
   { href: "/programs", label: "Programs" },
   { href: "/education", label: "Education" },
+  { href: "/arts", label: "Arts" },
+  { href: "/health", label: "Health" },
+  { href: "/sports", label: "Sports" },
+  { href: "/blog", label: "Blog" },
+  { href: "/gallery", label: "Gallery" },
   { href: "/donate", label: "Donate" },
   { href: "/get-involved", label: "Get Involved" }
 ];
@@ -71,21 +76,23 @@ export const homeTrustSignals = [
   }
 ];
 
-export const sibProfile = {
-  name: "Sib",
-  role: "Cinematographer and creative food and travel photographer",
+export const profileSpotlight = {
+  name: "Ikokwu Chidozie Ikemba",
+  role: "Psychologist, strategist, media practitioner, and environmental entrepreneur",
   summary:
-    "Sib is a cinematographer passionate about film, television, and using creative work to help change the world.",
+    "Chidozie works across journalism, sustainability advocacy, creative storytelling, and public communication with a focus on governance, civic engagement, and social impact.",
   body:
-    "As an autistic creative, Sib believes the world must be more accessible for people with autism who are ready to do world-leading and pioneering work but need stronger access to the opportunities that help them develop and perfect their craft. Alongside filmmaking, Sib is also a creative food and travel photographer and a travel and food enthusiast who documents new places, people, and culinary experiences at home and abroad.",
+    "As Chief Executive Officer of Rehoboth Waste Management Services, he leads waste recovery, recycling innovation, and carbon-conscious environmental solutions while also supporting documentary concepts, public campaigns, and institutional messaging for African-facing audiences.",
   tags: [
-    "Cinematography",
-    "Autism advocacy",
-    "Food photography",
-    "Travel storytelling"
+    "Strategic communication",
+    "Journalism and commentary",
+    "Circular economy",
+    "Environmental advocacy",
+    "Creative direction"
   ],
+  website: "https://www.rwms.ng",
   update:
-    "A refreshed bio, a newspaper article from the 2024 film project, and links to recent media coverage are being prepared for publication."
+    "He is open to collaborations with organizations, policy platforms, development initiatives, and creative teams seeking culturally grounded strategy with public impact."
 };
 
 export const sportsSpotlight = {
@@ -143,19 +150,19 @@ export const programPillars = [
     title: "Arts and Music",
     body: "Creative advocacy campaigns, artist spotlights, spoken word, and culture-led community storytelling.",
     tone: "blush",
-    href: "/programs"
+    href: "/arts"
   },
   {
     title: "Public Health",
     body: "Prevention, hygiene, maternal and child health, safety education, and field campaign reporting.",
     tone: "leaf",
-    href: "/programs"
+    href: "/health"
   },
   {
     title: "Sports Development",
     body: "Grassroots training, youth tournaments, talent spotlighting, and sports as a leadership pathway.",
     tone: "sand",
-    href: "/programs"
+    href: "/sports"
   }
 ];
 
@@ -225,6 +232,34 @@ export const donationCauses = [
   "Education access and digital skills",
   "Youth sports development",
   "Creative advocacy campaigns"
+];
+
+export const supportInquiryRoutes = [
+  { value: "donor", label: "Donor" },
+  { value: "volunteer", label: "Volunteer" },
+  { value: "partner", label: "Partner organization" },
+  { value: "creative", label: "Creative contributor" },
+  { value: "specialist", label: "Specialist advisor" },
+  { value: "sponsor", label: "Sponsor" }
+];
+
+export const supportInquiryAreas = [
+  ...donationCauses,
+  "Cross-program and general support"
+];
+
+export const donationCadences = [
+  "One-time gift",
+  "Monthly support",
+  "Campaign sponsorship",
+  "Need a follow-up conversation first"
+];
+
+export const supportAvailabilityOptions = [
+  "Ready this month",
+  "Available this quarter",
+  "Flexible timing",
+  "Just exploring options"
 ];
 
 export const homeSupportAssurances = [

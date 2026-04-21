@@ -1,4 +1,5 @@
 import { revalidatePath } from "next/cache";
+import { requireAdmin } from "../../../lib/admin-auth";
 import { getSql } from "../../../lib/db";
 
 const TABLES = {
@@ -166,6 +167,8 @@ async function deleteRow(formData) {
 }
 
 export default async function EducationAdminPage() {
+  await requireAdmin();
+
   const hasDb = Boolean(process.env.DATABASE_URL);
   const data = Object.fromEntries(
     await Promise.all(

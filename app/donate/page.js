@@ -3,188 +3,120 @@ import { LoadingLink } from "../../components/LoadingLink";
 import { PageHero } from "../../components/PageHero";
 import { Reveal } from "../../components/Reveal";
 import { SectionIntro } from "../../components/SectionIntro";
+import { SupportInquiryForm } from "../../components/SupportInquiryForm";
 import { stockMedia } from "../../components/stockMedia";
 import { donationCauses, donationTiers } from "../../components/siteData";
 
 const tierDetails = [
-  {
-    amount: donationTiers[0],
-    title: "Starter support",
-    body: "A strong entry point for supporters who want to back one practical need such as learning materials, hygiene support, or weekly sports essentials.",
-    focus: "Best for first-time donors and lightweight recurring support"
-  },
-  {
-    amount: donationTiers[1],
-    title: "Field support",
-    body: "Useful for project kits, workshop materials, training sessions, and the kinds of logistics that help community activity stay active and visible.",
-    focus: "Best for targeted support around a live campaign or outreach need"
-  },
-  {
-    amount: donationTiers[2],
-    title: "Program builder",
-    body: "Helps strengthen a wider program route by backing multi-session learning, youth development, or broader delivery support across a local initiative.",
-    focus: "Best for supporters who want to fund momentum, not just one moment"
-  },
-  {
-    amount: donationTiers[3],
-    title: "Partner-level backing",
-    body: "Designed for bigger commitments that support a flagship intervention, a documented campaign, or a deeper partner conversation around long-term impact.",
-    focus: "Best for sponsors, organizations, and high-trust partnership conversations"
-  }
+  { amount: donationTiers[0], title: "Starter support", body: "Back one practical need such as learning materials, hygiene support, or weekly sports essentials.", focus: "Best for first-time donors" },
+  { amount: donationTiers[1], title: "Field support", body: "Project kits, workshop materials, and logistics that help community activity stay active and visible.", focus: "Best for targeted campaign support" },
+  { amount: donationTiers[2], title: "Program builder", body: "Strengthen a wider program route by backing multi-session learning, youth development, or broader delivery.", focus: "Best for funding momentum" },
+  { amount: donationTiers[3], title: "Partner-level backing", body: "Support a flagship intervention, a documented campaign, or a deeper partner conversation around long-term impact.", focus: "Best for sponsors and organizations" }
 ];
 
 const donationHeroHighlights = [
-  "Suggested giving tiers with clear intent",
+  "Real intake form with tracked confirmation",
   "Cause-based support tied to real work",
-  "Visibility and trust remain part of the ask"
+  "Ready for payment-provider integration"
 ];
 
 const donationHeroAsidePoints = [
-  "Support routes stay tied to visible projects and program pages",
-  "Receipts, confirmations, and follow-up cues reinforce donor confidence",
-  "The structure is ready for partner-facing reporting and campaign updates"
+  "Support routes tied to visible projects and program pages",
+  "Donor requests logged and confirmed with proper follow-up",
+  "Structure ready for partner-facing reporting and payment integration"
 ];
 
 const trustNotes = [
-  {
-    title: "Choose a cause with context",
-    body: "Donors see what the route supports before they commit, rather than giving into a vague fund."
-  },
-  {
-    title: "Stay close to visible outcomes",
-    body: "Projects, stories, and program pages make it easier to follow what support is helping make possible."
-  },
-  {
-    title: "Keep the relationship open",
-    body: "The donation experience is designed to support future updates, receipts, and partner communication."
-  }
-];
-
-const transparencyCards = [
-  {
-    eyebrow: "Transparency tracker",
-    title: "Give with a clearer view of what support helps fund.",
-    body: "Campaign totals, allocation summaries, and public-facing updates keep donations connected to real work after the payment moment.",
-    tone: "leaf"
-  },
-  {
-    eyebrow: "Payment confidence",
-    title: "Secure gateway, receipts, and confirmation details.",
-    body: "The donation route is designed for secure processing with donor receipts and simple follow-up details for supporters and partners.",
-    tone: "sand"
-  },
-  {
-    eyebrow: "Partnership readiness",
-    title: "Built for larger sponsor and collaborator conversations.",
-    body: "Organizations and long-term backers can move from a single gift into a more structured discussion around campaigns, reporting, and joint work.",
-    tone: "blush"
-  }
+  { title: "Choose a cause with context", body: "Donors see what the route supports before they commit." },
+  { title: "Stay close to visible outcomes", body: "Projects and program pages make it easier to follow what support helps." },
+  { title: "Keep the relationship open", body: "The intake flow creates a reference and gives the team what they need to follow up." }
 ];
 
 export default function DonatePage() {
   return (
-    <main className="site-main">
+    <main className="site-main page-v2">
       <PageHero
         eyebrow="Donations and support"
-        title="A giving flow that feels warm, secure, and grounded in visible work."
-        body="The donation page brings together clear tiers, specific causes, and trust cues so support feels direct, practical, and connected to real outcomes."
-        primary={{ href: "#tiers", label: "Choose a Tier" }}
+        title="A clear giving route tied to visible work and real follow-up."
+        body="Cause-based support, suggested levels, and a real intake form so supporters can move from interest to action without losing context."
+        primary={{ href: "#donation-intake", label: "Start Giving Request" }}
         secondary={{ href: "/projects", label: "See What Support Funds" }}
         highlights={donationHeroHighlights}
         media={stockMedia.donateHero}
         asideTitle="Support with confidence"
-        asideBody="This route keeps the ask clear, ties giving to visible causes, and reinforces that support stays connected to real work, follow-up, and longer-term trust."
+        asideBody="This route keeps the ask clear, ties giving to visible causes, and turns donor interest into a tracked support request."
         asidePoints={donationHeroAsidePoints}
       />
 
-      <Reveal as="section" className="section" id="tiers" delay={120}>
+      {/* Tiers */}
+      <Reveal as="section" id="tiers" delay={120}>
         <SectionIntro
           eyebrow="Giving routes"
-          title="Choose a level of support based on the kind of difference you want to make."
-          body="These tiers are meant to make giving feel more concrete by pairing an amount with the scale of support it can help unlock."
+          title="Choose a level of support based on the difference you want to make."
+          body="These tiers pair an amount with the scale of support it can help unlock."
         />
-
-        <div className="donation-tier-grid">
-          {tierDetails.map((tier, index) => (
-            <article
-              key={tier.amount}
-              className={`donation-tier${index === 2 ? " donation-tier--featured" : ""}`}
-            >
-              <p className="donation-tier__eyebrow">Suggested tier</p>
-              <p className="donation-tier__amount">{tier.amount}</p>
-              <h3 className="donation-tier__title">{tier.title}</h3>
-              <p className="donation-tier__body">{tier.body}</p>
-              <p className="donation-tier__focus">{tier.focus}</p>
-              <LoadingLink
-                href="#support-pathways"
-                className={`button ${index === 2 ? "button--primary" : "button--secondary"}`}
-              >
-                Choose this route
+        <div className="card-grid-v2">
+          {tierDetails.map((tier, i) => (
+            <article key={tier.amount} className="card-v2">
+              <p className="card-v2__eyebrow">Suggested tier</p>
+              <p style={{ margin: 0, color: "var(--pine)", fontSize: "clamp(1.6rem, 3vw, 2.2rem)", fontWeight: 800, letterSpacing: "-0.04em" }}>{tier.amount}</p>
+              <h3 className="card-v2__title">{tier.title}</h3>
+              <p className="card-v2__body">{tier.body}</p>
+              <p className="card-v2__body" style={{ fontSize: "0.88rem", opacity: 0.8 }}>{tier.focus}</p>
+              <LoadingLink href="#donation-intake" className={`button ${i === 2 ? "button--primary" : "button--secondary"}`} style={{ justifySelf: "start" }}>
+                Select this tier
               </LoadingLink>
             </article>
           ))}
         </div>
       </Reveal>
 
-      <Reveal as="section" className="section" id="support-pathways" delay={180}>
+      {/* Intake form */}
+      <Reveal as="section" id="donation-intake" delay={150}>
         <SectionIntro
-          eyebrow="Cause-based support"
-          title="Every giving route should make it obvious what support is helping move forward."
-          body="Instead of a generic donation ask, the page frames support around the real parts of the mission that donors and partners can actually follow."
+          eyebrow="Donation intake"
+          title="Submit a giving request the team can follow through on."
+          body="This captures donor and sponsor intent in a structured way while the final payment provider is being connected."
         />
-
-        <div className="donation-pathway">
-          <div className="donation-pathway__causes">
-            {donationCauses.map((cause, index) => (
-              <InfoCard
-                key={cause}
-                eyebrow="Support area"
-                title={cause}
-                body="Each route connects to live stories, program pages, and campaign context so donors understand what kind of work they are helping sustain."
-                tone={index % 2 === 0 ? "paper" : "mist"}
-              />
-            ))}
+        <div className="submission-layout">
+          <div className="submission-layout__side">
+            <InfoCard eyebrow="Step 01" title="Choose the cause and giving level." body="Support stays grounded in real programs, not a generic donation bucket." tone="mist" />
+            <InfoCard eyebrow="Step 02" title="Receive a tracked confirmation." body="The form generates a real support request so the team can continue with context." tone="sand" />
+            <InfoCard eyebrow="Need context first?" title="Review live projects before you submit." body="The project explorer and program routes stay one click away." tone="paper" />
+            <LoadingLink href="/projects" className="button button--secondary submission-layout__link" loadingLabel="Opening">Open Project Explorer</LoadingLink>
           </div>
-
-          <article className="donation-pathway__panel">
-            <p className="donation-pathway__eyebrow">What happens after the donate button</p>
-            <h3 className="donation-pathway__title">
-              Trust stays strongest when the giving experience keeps its promise.
-            </h3>
-            <p className="donation-pathway__body">
-              Humanity First is designed to keep support close to field context, visible project
-              routes, and the follow-up information people need to keep believing in the work.
-            </p>
-
-            <div className="donation-pathway__notes">
-              {trustNotes.map((item) => (
-                <article key={item.title} className="donation-pathway__note">
-                  <h4 className="donation-pathway__note-title">{item.title}</h4>
-                  <p className="donation-pathway__note-body">{item.body}</p>
-                </article>
-              ))}
-            </div>
-          </article>
+          <SupportInquiryForm variant="donation" />
         </div>
       </Reveal>
 
-      <Reveal as="section" className="section" delay={240}>
+      {/* Cause-based support */}
+      <Reveal as="section" delay={180}>
         <SectionIntro
-          eyebrow="Confidence layer"
-          title="Support works better when security, transparency, and partnership readiness are part of the design."
-          body="These cues help the donation page feel credible for one-time donors, returning supporters, and larger collaborators alike."
+          eyebrow="Cause-based support"
+          title="Every giving route makes it obvious what support is helping move forward."
+          body="Support framed around the real parts of the mission that donors can actually follow."
         />
-
-        <div className="donation-trust-grid">
-          {transparencyCards.map((card) => (
-            <InfoCard
-              key={card.title}
-              eyebrow={card.eyebrow}
-              title={card.title}
-              body={card.body}
-              tone={card.tone}
-            />
-          ))}
+        <div className="split-v2">
+          <div className="card-grid-v2 card-grid-v2--2">
+            {donationCauses.map((cause, i) => (
+              <article key={cause} className="card-v2">
+                <p className="card-v2__eyebrow">Support area</p>
+                <h3 className="card-v2__title">{cause}</h3>
+                <p className="card-v2__body">Connects to live stories, program pages, and campaign context.</p>
+              </article>
+            ))}
+          </div>
+          <div className="dark-panel-v2">
+            <p className="dark-panel-v2__eyebrow">What happens after the donate button</p>
+            <h3 className="dark-panel-v2__title">Trust stays strongest when the giving experience keeps its promise.</h3>
+            <p className="dark-panel-v2__body">Humanity First keeps support close to field context, visible project routes, and follow-up information.</p>
+            {trustNotes.map((n) => (
+              <article key={n.title} style={{ display: "grid", gap: "0.25rem", padding: "0.85rem", borderRadius: "16px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                <h4 style={{ margin: 0, color: "#fffaf1", fontSize: "0.98rem", fontWeight: 800 }}>{n.title}</h4>
+                <p className="dark-panel-v2__body">{n.body}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </Reveal>
     </main>

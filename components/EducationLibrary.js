@@ -8,115 +8,88 @@ export function EducationLibrary({ items }) {
 
   const categories = useMemo(() => {
     const base = ["Downloads", "Lessons", "Toolkits"];
-    const extra = Array.from(new Set(items.map((item) => item.category))).filter(
-      (item) => !base.includes(item)
-    );
-    const ordered = [...base.filter((item) => items.some((entry) => entry.category === item)), ...extra];
+    const extra = Array.from(new Set(items.map((i) => i.category))).filter((c) => !base.includes(c));
+    const ordered = [...base.filter((c) => items.some((i) => i.category === c)), ...extra];
     return ["All", ...ordered];
   }, [items]);
 
   const counts = useMemo(() => {
-    return items.reduce(
-      (acc, item) => {
-        acc.all += 1;
-        acc[item.category] = (acc[item.category] || 0) + 1;
-        return acc;
-      },
-      { all: 0 }
-    );
+    return items.reduce((acc, i) => { acc.all += 1; acc[i.category] = (acc[i.category] || 0) + 1; return acc; }, { all: 0 });
   }, [items]);
 
-  const visibleItems = useMemo(() => {
-    const trimmed = query.trim().toLowerCase();
+  const visible = useMemo(() => {
+    const q = query.trim().toLowerCase();
     return items.filter((item) => {
-      const matchesFilter = activeFilter === "All" || item.category === activeFilter;
-      if (!matchesFilter) {
-        return false;
-      }
-
-      if (!trimmed) {
-        return true;
-      }
-
-      const haystack = `${item.title} ${item.summary} ${item.category} ${item.format} ${item.level}`.toLowerCase();
-      return haystack.includes(trimmed);
+      if (activeFilter !== "All" && item.category !== activeFilter) return false;
+      if (!q) return true;
+      return `${item.title} ${item.summary} ${item.category} ${item.format} ${item.level}`.toLowerCase().includes(q);
     });
   }, [activeFilter, items, query]);
 
   return (
-    <div className="education-library">
-      <div className="education-library__toolbar">
-        <div className="education-library__search">
-          <label className="education-library__search-label" htmlFor="resource-search">
-            Search resources
-          </label>
+    <div className="edu-library">
+      <div className="edu-library__toolbar">
+        <div className="edu-library__search">
+          <label className="edu-library__search-label" htmlFor="resource-search">Search resources</label>
           <input
             id="resource-search"
-            className="education-library__search-input"
+            className="edu-library__search-input"
             type="search"
             value={query}
-            onChange={(event) => setQuery(event.target.value)}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search by title, category, format, or level"
           />
-          <p className="education-library__search-note">
-            Filter by title, category, format, or level.
-          </p>
         </div>
-
-        <div className="education-library__filters" role="tablist" aria-label="Resource filters">
-          {categories.map((filter) => {
-            const count = filter === "All" ? counts.all : counts[filter] || 0;
+        <div className="edu-library__filters" role="tablist" aria-label="Resource filters">
+          {categories.map((f) => {
+            const count = f === "All" ? counts.all : counts[f] || 0;
             return (
-            <button
-              key={filter}
-              type="button"
-              className={`library-filter${filter === activeFilter ? " is-active" : ""}`}
-              onClick={() => setActiveFilter(filter)}
-              role="tab"
-              aria-selected={filter === activeFilter}
-            >
-              {filter} ({count})
-            </button>
-          );
+              <button
+                key={f}
+                type="button"
+                className={`edu-library__filter${f === activeFilter ? " is-active" : ""}`}
+                onClick={() => setActiveFilter(f)}
+                role="tab"
+                aria-selected={f === activeFilter}
+              >
+                {f} <span className="edu-library__filter-count">{count}</span>
+              </button>
+            );
           })}
         </div>
-
-        <p className="education-library__count">
-          Showing {visibleItems.length} of {items.length} resources
+        <p className="edu-library__count">
+          {visible.length} of {items.length} resources
         </p>
       </div>
 
-      {visibleItems.length ? (
-        <div className="education-library__grid">
-          {visibleItems.map((item) => (
-            <article key={item.title} className="resource-card">
-              <div className="resource-card__meta">
-                <span className="resource-card__tag">{item.category}</span>
-                <span className="resource-card__format">{item.format}</span>
+      {visible.length ? (
+        <div className="edu-library__grid">
+          {visible.map((item) => (
+            <article key={item.title} className="edu-library__card">
+              <div className="edu-library__card-meta">
+                <span className="edu-library__card-tag">{item.category}</span>
+                <span className="edu-library__card-format">{item.format}</span>
               </div>
-
-              <h3 className="resource-card__title">{item.title}</h3>
-              <p className="resource-card__summary">{item.summary}</p>
-
-              <div className="resource-card__footer">
-                <span className="resource-card__level">{item.level}</span>
+              <h3 className="edu-library__card-title">{item.title}</h3>
+              <p className="edu-library__card-body">{item.summary}</p>
+              <div className="edu-library__card-footer">
+                <span className="edu-library__card-level">{item.level}</span>
                 <a
                   href={item.href}
                   target={item.external ? "_blank" : undefined}
                   rel={item.external ? "noreferrer" : undefined}
-                  className="button button--secondary resource-card__action"
+                  className="button button--secondary"
                 >
-                  <span className="button__label">{item.actionLabel || item.action_label}</span>
+                  {item.actionLabel || item.action_label}
                 </a>
               </div>
             </article>
           ))}
         </div>
       ) : (
-        <div className="education-library__empty">
-          <p className="education-library__empty-title">No resources match that search.</p>
-          <p className="education-library__empty-body">
-            Try a different keyword or switch the category filter.
-          </p>
+        <div className="edu-library__empty">
+          <h3 className="edu-library__empty-title">No resources match that search.</h3>
+          <p className="edu-library__empty-body">Try a different keyword or switch the category filter.</p>
         </div>
       )}
     </div>

@@ -12,62 +12,28 @@ import {
   sportsSpotlight
 } from "../components/siteData";
 
-const heroTiles = [
-  {
-    eyebrow: "Current appeal",
-    title: "Support a live youth sports response",
-    body: "The Dodoma Best Sports Center campaign is public, active, and tied to practical equipment and coaching needs.",
-    href: "/projects/dodoma-best-sports-center",
-    label: "Read the project",
-    tone: "ember"
-  },
-  {
-    eyebrow: "Education hub",
-    title: "Low-bandwidth learning for communities",
-    body: "Guides, lessons, and facilitator tools are already organized for phones, classrooms, and community sessions.",
-    href: "/education",
-    label: "Visit education hub",
-    tone: "olive"
-  },
-  {
-    eyebrow: "Get involved",
-    title: "Volunteer, partner, or contribute",
-    body: "The site now gives different supporters a direct path into the mission instead of one generic action.",
-    href: "/get-involved",
-    label: "Choose a route",
-    tone: "sand"
-  }
-];
-
 const fieldStories = [
   {
     eyebrow: "Health outreach",
     title: "Maternal and child health support in focus",
     body: "Mobile clinic visits, hygiene kits, and follow-up check-ins help mothers and newborns stay connected to practical care.",
-    meta: "Maternal care, hygiene kits, follow-ups",
+    meta: "Maternal care · Hygiene kits · Follow-ups",
     media: stockMedia.homeStories[0]
   },
   {
     eyebrow: "Youth development",
-    title: "Sport creates structure, safety, and belonging for young people",
+    title: "Sport creates structure, safety, and belonging",
     body: "Weekly training sessions and mentorship create a disciplined, positive environment that keeps children engaged and growing.",
-    meta: "Training, mentorship, community tournaments",
+    meta: "Training · Mentorship · Tournaments",
     media: stockMedia.homeStories[1]
   },
   {
     eyebrow: "Creative advocacy",
-    title: "Storytelling keeps communities visible beyond a single appeal",
-    body: "Film, photography, and spoken-word projects help translate local experience into public awareness, advocacy, and sustained support.",
-    meta: "Film, photography, spoken word",
+    title: "Storytelling keeps communities visible",
+    body: "Film, photography, and spoken-word projects help translate local experience into public awareness and sustained support.",
+    meta: "Film · Photography · Spoken word",
     media: stockMedia.homeStories[2]
   }
-];
-
-const programVisuals = [
-  stockMedia.educationFeature,
-  stockMedia.homeStories[2],
-  stockMedia.homeStories[0],
-  stockMedia.homeHero
 ];
 
 const supportRoutes = [
@@ -80,147 +46,160 @@ const supportRoutes = [
   },
   {
     eyebrow: "Partner",
-    title: "Collaborate as an organization or sponsor",
+    title: "Collaborate as an organization",
     body: "Work with the initiative on live campaigns, field support, or longer-term community programs.",
     href: "/get-involved",
     label: "Discuss partnership"
   },
   {
     eyebrow: "Volunteer",
-    title: "Contribute time and local support",
+    title: "Contribute time and support",
     body: "Join events, outreach activity, and program delivery where trusted hands are needed most.",
     href: "/get-involved",
     label: "See volunteer routes"
   },
   {
     eyebrow: "Contribute",
-    title: "Share learning tools and specialist expertise",
+    title: "Share tools and expertise",
     body: "Submit resources, creative support, or technical knowledge that strengthens community-facing work.",
     href: "/education/contribute",
     label: "Contribute resources"
   }
 ];
 
+const programVisuals = [
+  stockMedia.educationFeature,
+  stockMedia.homeStories[2],
+  stockMedia.homeStories[0],
+  stockMedia.homeHero
+];
+
 export default function HomePage() {
   return (
-    <main className="site-main site-main--marley">
-      <Reveal as="section" className="marley-home-hero" delay={60}>
-        <div className="marley-home-hero__lead">
-          <p className="marley-home-hero__eyebrow">Humanity First Initiative</p>
-          <h1 className="marley-home-hero__title">
-            Visibility, dignity, and support for communities on the move.
+    <main className="site-main home-redesign">
+      {/* Hero */}
+      <Reveal as="section" className="home-hero-v2" delay={60}>
+        <div className="home-hero-v2__text">
+          <p className="home-hero-v2__eyebrow">Humanity First Initiative</p>
+          <h1 className="home-hero-v2__title">
+            Visibility, dignity, and&nbsp;support for communities on the&nbsp;move.
           </h1>
-          <p className="marley-home-hero__lede">
-            Humanity First connects local programs, field reporting, and practical ways to help
-            across health, education, youth development, and creative advocacy.
+          <p className="home-hero-v2__body">
+            Connecting local programs, field reporting, and practical ways to help across
+            health, education, youth development, and creative advocacy.
           </p>
-
+          <div className="home-hero-v2__tags">
+            {homeMissionPoints.map((p) => (
+              <span key={p} className="home-hero-v2__tag">{p}</span>
+            ))}
+          </div>
           <div className="hero-actions">
             <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">
               Donate now
             </LoadingLink>
-            <LoadingLink
-              href="/projects"
-              className="button button--secondary"
-              loadingLabel="Opening"
-            >
-              Open project explorer
+            <LoadingLink href="/projects" className="button button--secondary" loadingLabel="Opening">
+              Explore projects
             </LoadingLink>
-          </div>
-
-          <div className="marley-home-hero__principles">
-            {homeMissionPoints.map((point) => (
-              <span key={point} className="marley-home-hero__principle">
-                {point}
-              </span>
-            ))}
           </div>
         </div>
 
-        <article className="marley-home-hero__feature">
+        <div className="home-hero-v2__media">
           <StockPhoto
             src={stockMedia.homeHero.src}
             alt={stockMedia.homeHero.alt}
-            label="Featured response"
+            label="Current program"
             priority
-            sizes="(max-width: 1180px) 100vw, 38vw"
-            className="marley-home-hero__feature-media"
+            sizes="(max-width: 1120px) 100vw, 50vw"
+            className="home-hero-v2__photo"
           />
-          <div className="marley-home-hero__feature-copy">
-            <p className="marley-home-hero__feature-eyebrow">Current program in focus</p>
-            <h2 className="marley-home-hero__feature-title">{sportsSpotlight.title}</h2>
-            <p className="marley-home-hero__feature-body">{sportsSpotlight.summary}</p>
-
-            <div className="marley-home-hero__feature-stats">
-              {proofStats.map((item) => (
-                <article key={item.label} className="marley-home-hero__feature-stat">
-                  <p className="marley-home-hero__feature-stat-value">{item.value}</p>
-                  <p className="marley-home-hero__feature-stat-label">{item.label}</p>
-                </article>
-              ))}
-            </div>
-
-            <LoadingLink
-              href="/projects/dodoma-best-sports-center"
-              className="button button--ghost-light"
-              loadingLabel="Opening"
-            >
-              Explore the full project
-            </LoadingLink>
+          <div className="home-hero-v2__stats">
+            {proofStats.map((s) => (
+              <article key={s.label} className="home-hero-v2__stat">
+                <p className="home-hero-v2__stat-value">{s.value}</p>
+                <p className="home-hero-v2__stat-label">{s.label}</p>
+              </article>
+            ))}
           </div>
-        </article>
-
-        <div className="marley-home-hero__rail">
-          {heroTiles.map((tile) => (
-            <article key={tile.title} className={`marley-home-hero__tile marley-home-hero__tile--${tile.tone}`}>
-              <p className="marley-home-hero__tile-eyebrow">{tile.eyebrow}</p>
-              <h3 className="marley-home-hero__tile-title">{tile.title}</h3>
-              <p className="marley-home-hero__tile-body">{tile.body}</p>
-              <LoadingLink href={tile.href} className="marley-home-hero__tile-link" loadingLabel="Opening">
-                {tile.label}
-              </LoadingLink>
-            </article>
-          ))}
         </div>
       </Reveal>
 
-      <Reveal as="section" className="marley-home-proof-strip" delay={110}>
+      {/* Trust strip */}
+      <Reveal as="section" className="home-trust-v2" delay={120}>
         {homeTrustSignals.map((item) => (
-          <article key={item.title} className="marley-home-proof-strip__item">
-            <p className="marley-home-proof-strip__eyebrow">{item.eyebrow}</p>
-            <h3 className="marley-home-proof-strip__title">{item.title}</h3>
-            <p className="marley-home-proof-strip__body">{item.body}</p>
+          <article key={item.title} className="home-trust-v2__card">
+            <p className="home-trust-v2__card-eyebrow">{item.eyebrow}</p>
+            <h3 className="home-trust-v2__card-title">{item.title}</h3>
+            <p className="home-trust-v2__card-body">{item.body}</p>
           </article>
         ))}
       </Reveal>
 
-      <Reveal as="section" className="section" delay={160}>
-        <SectionIntro
-          eyebrow="Current work"
-          title="Program areas presented like a living archive, not a brochure."
-          body="Each route should feel active, image-led, and easy to enter, while still making it clear what the work does for communities."
-        />
+      {/* Spotlight */}
+      <Reveal as="section" className="home-spotlight-v2" delay={180}>
+        <div className="home-spotlight-v2__lead">
+          <p className="home-spotlight-v2__eyebrow">Current appeal</p>
+          <h2 className="home-spotlight-v2__title">{sportsSpotlight.title}</h2>
+          <p className="home-spotlight-v2__body">{sportsSpotlight.summary}</p>
+          <div className="home-spotlight-v2__facts">
+            <div className="home-spotlight-v2__fact">
+              <span className="home-spotlight-v2__fact-label">Location</span>
+              <span className="home-spotlight-v2__fact-value">{sportsSpotlight.location}</span>
+            </div>
+            <div className="home-spotlight-v2__fact">
+              <span className="home-spotlight-v2__fact-label">Reach</span>
+              <span className="home-spotlight-v2__fact-value">{sportsSpotlight.beneficiaries}</span>
+            </div>
+            <div className="home-spotlight-v2__fact">
+              <span className="home-spotlight-v2__fact-label">Support</span>
+              <span className="home-spotlight-v2__fact-value">{sportsSpotlight.orphanSupport}</span>
+            </div>
+            <div className="home-spotlight-v2__fact">
+              <span className="home-spotlight-v2__fact-label">Current ask</span>
+              <span className="home-spotlight-v2__fact-value">{sportsSpotlight.totalRequest}</span>
+            </div>
+          </div>
+          <div className="hero-actions">
+            <LoadingLink href="/projects/dodoma-best-sports-center" className="button button--primary" loadingLabel="Opening">
+              Read the full project
+            </LoadingLink>
+            <LoadingLink href="/donate" className="button button--ghost" loadingLabel="Opening">
+              Donate to this work
+            </LoadingLink>
+          </div>
+        </div>
+        <div className="home-spotlight-v2__visual">
+          <StockPhoto
+            src={stockMedia.homeStories[1].src}
+            alt={stockMedia.homeStories[1].alt}
+            label="Field image"
+            ratio="portrait"
+            sizes="(max-width: 1120px) 100vw, 44vw"
+          />
+        </div>
+      </Reveal>
 
-        <div className="marley-home-programs">
-          {programPillars.map((pillar, index) => (
-            <article key={pillar.title} className="marley-home-programs__card">
+      {/* Programs */}
+      <Reveal as="section" className="section" delay={240}>
+        <SectionIntro
+          eyebrow="Program areas"
+          title="Four routes into the work, each with active projects and clear next steps."
+          body="Every program area presents documented needs, practical ways to take part, and visible progress."
+        />
+        <div className="home-programs-v2">
+          {programPillars.map((pillar, i) => (
+            <article key={pillar.title} className="home-programs-v2__card">
               <StockPhoto
-                src={programVisuals[index].src}
-                alt={programVisuals[index].alt}
-                label={`Route 0${index + 1}`}
-                sizes="(max-width: 1180px) 100vw, 24vw"
-                className="marley-home-programs__media"
+                src={programVisuals[i].src}
+                alt={programVisuals[i].alt}
+                label={`Route 0${i + 1}`}
+                sizes="(max-width: 1120px) 100vw, 24vw"
+                className="home-programs-v2__media"
               />
-              <div className="marley-home-programs__copy">
-                <p className="marley-home-programs__eyebrow">Program area</p>
-                <h3 className="marley-home-programs__title">{pillar.title}</h3>
-                <p className="marley-home-programs__body">{pillar.body}</p>
-                <LoadingLink
-                  href={pillar.href}
-                  className="button button--secondary"
-                  loadingLabel="Opening"
-                >
-                  Explore this route
+              <div className="home-programs-v2__copy">
+                <h3 className="home-programs-v2__title">{pillar.title}</h3>
+                <p className="home-programs-v2__body">{pillar.body}</p>
+                <LoadingLink href={pillar.href} className="button button--secondary" loadingLabel="Opening">
+                  Explore
                 </LoadingLink>
               </div>
             </article>
@@ -228,154 +207,82 @@ export default function HomePage() {
         </div>
       </Reveal>
 
-      <Reveal as="section" className="marley-home-showcase" delay={220}>
-        <div className="marley-home-showcase__feature">
-          <StockPhoto
-            src={stockMedia.homeStories[1].src}
-            alt={stockMedia.homeStories[1].alt}
-            label="Field image"
-            sizes="(max-width: 1180px) 100vw, 46vw"
-            className="marley-home-showcase__media"
-          />
-          <div className="marley-home-showcase__copy">
-            <p className="marley-home-showcase__eyebrow">Response and delivery</p>
-            <h2 className="marley-home-showcase__title">
-              Practical support starts with a clear picture of needs on the ground.
-            </h2>
-            <p className="marley-home-showcase__body">
-              The current sports program illustrates how the initiative works: a community need is
-              documented, priorities are made public, and supporters can trace their help back to
-              a visible program.
-            </p>
-
-            <div className="marley-home-showcase__list">
-              {sportsSpotlight.priorities.slice(0, 3).map((item) => (
-                <article key={item.title} className="marley-home-showcase__list-item">
-                  <h3 className="marley-home-showcase__list-title">{item.title}</h3>
-                  <p className="marley-home-showcase__list-body">{item.body}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <aside className="marley-home-showcase__aside">
-          <p className="marley-home-showcase__aside-label">At a glance</p>
-          <div className="marley-home-showcase__aside-grid">
-            <article className="marley-home-showcase__aside-card">
-              <p className="marley-home-showcase__aside-card-label">Location</p>
-              <p className="marley-home-showcase__aside-card-value">{sportsSpotlight.location}</p>
-            </article>
-            <article className="marley-home-showcase__aside-card">
-              <p className="marley-home-showcase__aside-card-label">Reach</p>
-              <p className="marley-home-showcase__aside-card-value">{sportsSpotlight.beneficiaries}</p>
-            </article>
-            <article className="marley-home-showcase__aside-card">
-              <p className="marley-home-showcase__aside-card-label">Support</p>
-              <p className="marley-home-showcase__aside-card-value">{sportsSpotlight.orphanSupport}</p>
-            </article>
-            <article className="marley-home-showcase__aside-card">
-              <p className="marley-home-showcase__aside-card-label">Current ask</p>
-              <p className="marley-home-showcase__aside-card-value">{sportsSpotlight.totalRequest}</p>
-            </article>
-          </div>
-
-          <div className="hero-actions">
-            <LoadingLink href="/projects" className="button button--secondary" loadingLabel="Opening">
-              Open project explorer
-            </LoadingLink>
-            <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">
-              Donate to this work
-            </LoadingLink>
-          </div>
-        </aside>
-      </Reveal>
-
-      <Reveal as="section" className="section" delay={280}>
+      {/* Stories */}
+      <Reveal as="section" className="section" delay={300}>
         <SectionIntro
           eyebrow="Stories and learning"
-          title="Media-led cards keep the mission alive between appeals."
-          body="This section borrows the rhythm of a music-and-media homepage: visual, browsable, and easy to dip into, but still rooted in field relevance."
+          title="Field stories keep the mission alive between appeals."
+          body="Stories, learning tools, and field media keep supporters informed while staying rooted in community realities."
         />
-
-        <div className="marley-home-stories">
+        <div className="home-stories-v2">
           {fieldStories.map((story) => (
-            <article key={story.title} className="marley-home-stories__card">
+            <article key={story.title} className="home-stories-v2__card">
               <StockPhoto
                 src={story.media.src}
                 alt={story.media.alt}
                 label={story.media.label}
-                sizes="(max-width: 1180px) 100vw, 22vw"
-                className="marley-home-stories__media"
+                sizes="(max-width: 1120px) 100vw, 30vw"
+                className="home-stories-v2__media"
               />
-              <p className="marley-home-stories__eyebrow">{story.eyebrow}</p>
-              <h3 className="marley-home-stories__title">{story.title}</h3>
-              <p className="marley-home-stories__body">{story.body}</p>
-              <p className="marley-home-stories__meta">{story.meta}</p>
+              <p className="home-stories-v2__eyebrow">{story.eyebrow}</p>
+              <h3 className="home-stories-v2__title">{story.title}</h3>
+              <p className="home-stories-v2__body">{story.body}</p>
+              <p className="home-stories-v2__meta">{story.meta}</p>
             </article>
           ))}
+        </div>
 
-          <article className="marley-home-stories__feature">
-            <StockPhoto
-              src={stockMedia.educationFeature.src}
-              alt={stockMedia.educationFeature.alt}
-              label="Education hub"
-              sizes="(max-width: 1180px) 100vw, 22vw"
-              className="marley-home-stories__feature-media"
-            />
-            <div className="marley-home-stories__feature-copy">
-              <p className="marley-home-stories__feature-eyebrow">Education route</p>
-              <h3 className="marley-home-stories__feature-title">
-                Learning resources already organized for phones, classrooms, and facilitators.
-              </h3>
-              <p className="marley-home-stories__feature-body">
-                Teachers, mentors, and volunteers can access practical tools, external lessons,
-                and downloadable guides through the education hub.
-              </p>
-
-              <div className="marley-home-stories__metrics">
-                {educationMetrics.slice(0, 4).map((item) => (
-                  <span key={item.label} className="marley-home-stories__metric">
-                    {item.value} {item.label}
-                  </span>
-                ))}
-              </div>
-
-              <LoadingLink
-                href="/education"
-                className="button button--primary"
-                loadingLabel="Opening"
-              >
-                Visit education hub
-              </LoadingLink>
+        {/* Education feature */}
+        <div className="home-edu-v2">
+          <StockPhoto
+            src={stockMedia.educationFeature.src}
+            alt={stockMedia.educationFeature.alt}
+            label="Education hub"
+            sizes="(max-width: 1120px) 100vw, 40vw"
+            className="home-edu-v2__media"
+          />
+          <div className="home-edu-v2__copy">
+            <p className="home-edu-v2__eyebrow">Education route</p>
+            <h3 className="home-edu-v2__title">
+              Learning resources organized for phones, classrooms, and facilitators.
+            </h3>
+            <p className="home-edu-v2__body">
+              Teachers, mentors, and volunteers can access practical tools, external lessons,
+              and downloadable guides through the education hub.
+            </p>
+            <div className="home-edu-v2__metrics">
+              {educationMetrics.slice(0, 4).map((m) => (
+                <span key={m.label} className="home-edu-v2__metric">
+                  <strong>{m.value}</strong> {m.label}
+                </span>
+              ))}
             </div>
-          </article>
+            <LoadingLink href="/education" className="button button--primary" loadingLabel="Opening">
+              Visit education hub
+            </LoadingLink>
+          </div>
         </div>
       </Reveal>
 
-      <Reveal as="section" className="marley-home-help" delay={340}>
-        <div className="marley-home-help__intro">
-          <p className="marley-home-help__eyebrow">Support the movement</p>
-          <h2 className="marley-home-help__title">
-            Choose the role that fits your capacity and move straight into the work.
+      {/* Support CTA */}
+      <Reveal as="section" className="home-cta-v2" delay={360}>
+        <div className="home-cta-v2__intro">
+          <p className="home-cta-v2__eyebrow">Support the movement</p>
+          <h2 className="home-cta-v2__title">
+            Choose the role that fits your capacity.
           </h2>
-          <p className="marley-home-help__body">
-            The content stays grounded, but the experience now feels more like an active cultural
-            platform: bold, visual, and full of clear entry points.
+          <p className="home-cta-v2__body">
+            Whether someone gives, partners, volunteers, or contributes expertise, the next step
+            should be clear, practical, and easy to act on.
           </p>
         </div>
-
-        <div className="marley-home-help__grid">
+        <div className="home-cta-v2__grid">
           {supportRoutes.map((route) => (
-            <article key={route.title} className="marley-home-help__card">
-              <p className="marley-home-help__card-eyebrow">{route.eyebrow}</p>
-              <h3 className="marley-home-help__card-title">{route.title}</h3>
-              <p className="marley-home-help__card-body">{route.body}</p>
-              <LoadingLink
-                href={route.href}
-                className="button button--secondary"
-                loadingLabel="Opening"
-              >
+            <article key={route.title} className="home-cta-v2__card">
+              <p className="home-cta-v2__card-eyebrow">{route.eyebrow}</p>
+              <h3 className="home-cta-v2__card-title">{route.title}</h3>
+              <p className="home-cta-v2__card-body">{route.body}</p>
+              <LoadingLink href={route.href} className="button button--secondary" loadingLabel="Opening">
                 {route.label}
               </LoadingLink>
             </article>
