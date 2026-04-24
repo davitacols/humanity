@@ -38,6 +38,9 @@ export default function AdminLoginPage() {
       <div className="admin-auth__card">
         <h1>Admin Access</h1>
         <p>Enter the admin access token to manage site content.</p>
+        <p className="admin-auth__setup-note">
+          If this page keeps rejecting access, confirm `ADMIN_TOKEN` is set in the environment.
+        </p>
 
         <form onSubmit={handleSubmit} className="admin-form">
           <label className="admin-label" htmlFor="token">

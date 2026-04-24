@@ -19,10 +19,19 @@ export function LoadingLink({
   className,
   children,
   loadingLabel = "Loading",
+  preserveLabelOnLoad = false,
+  onClick,
   ...props
 }) {
   const pathname = usePathname();
   const [isLoading, setIsLoading] = useState(false);
+  const resolvedLoadingText = preserveLabelOnLoad ? children : loadingLabel;
+  const loadingText =
+    !preserveLabelOnLoad &&
+    typeof resolvedLoadingText === "string" &&
+    !resolvedLoadingText.endsWith("...")
+      ? `${resolvedLoadingText}...`
+      : resolvedLoadingText;
 
   useEffect(() => {
     setIsLoading(false);
@@ -37,6 +46,8 @@ export function LoadingLink({
   }
 
   function handleClick(event) {
+    onClick?.(event);
+
     if (event.defaultPrevented || isModifiedEvent(event) || typeof href !== "string") {
       return;
     }
@@ -53,12 +64,14 @@ export function LoadingLink({
   return (
     <Link
       href={href}
-      className={`${className}${isLoading ? " is-loading" : ""}`}
+      className={[className, isLoading ? "is-loading" : ""].filter(Boolean).join(" ")}
       aria-busy={isLoading}
       onClick={handleClick}
       {...props}
     >
-      <span className="button__label">{isLoading ? loadingLabel : children}</span>
+      <span className="button__label" aria-live={isLoading ? "polite" : undefined}>
+        {isLoading ? loadingText : children}
+      </span>
       <span className="button__spinner" aria-hidden="true" />
     </Link>
   );

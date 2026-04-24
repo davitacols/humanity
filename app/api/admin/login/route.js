@@ -6,7 +6,14 @@ export async function POST(request) {
   const { token } = await request.json().catch(() => ({}));
   const expected = process.env.ADMIN_TOKEN;
 
-  if (!expected || !token || token !== expected) {
+  if (!expected) {
+    return NextResponse.json(
+      { error: "Admin access is not configured. Add ADMIN_TOKEN first." },
+      { status: 503 }
+    );
+  }
+
+  if (!token || token !== expected) {
     return NextResponse.json({ error: "Invalid access token." }, { status: 401 });
   }
 
@@ -15,7 +22,8 @@ export async function POST(request) {
     httpOnly: true,
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
-    path: "/"
+    path: "/",
+    maxAge: 60 * 60 * 8
   });
   return response;
 }

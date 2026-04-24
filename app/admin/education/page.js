@@ -71,12 +71,23 @@ async function fetchTable(table) {
   if (!sql) {
     return [];
   }
-  const tableRef = sql(table);
-  return sql`select * from ${tableRef} order by display_order asc, id asc`;
+
+  try {
+    const tableRef = sql(table);
+    return await sql`select * from ${tableRef} order by display_order asc, id asc`;
+  } catch (error) {
+    if (error?.code !== "42P01") {
+      console.error(`Failed to load admin table ${table}:`, error);
+    }
+
+    return [];
+  }
 }
 
 async function updateRow(formData) {
   "use server";
+  await requireAdmin();
+
   const sql = getSql();
   if (!sql) {
     throw new Error("DATABASE_URL is not configured.");
@@ -116,6 +127,8 @@ async function updateRow(formData) {
 
 async function createRow(formData) {
   "use server";
+  await requireAdmin();
+
   const sql = getSql();
   if (!sql) {
     throw new Error("DATABASE_URL is not configured.");
@@ -147,6 +160,8 @@ async function createRow(formData) {
 
 async function deleteRow(formData) {
   "use server";
+  await requireAdmin();
+
   const sql = getSql();
   if (!sql) {
     throw new Error("DATABASE_URL is not configured.");
@@ -186,11 +201,16 @@ export default async function EducationAdminPage() {
             <p className="admin-error">DATABASE_URL is missing. Admin edits are disabled.</p>
           ) : null}
         </div>
-        <form action="/api/admin/logout" method="post">
-          <button type="submit" className="button button--secondary">
-            <span className="button__label">Sign out</span>
-          </button>
-        </form>
+        <div className="admin-row__actions">
+          <a href="/education/review" className="button button--secondary">
+            <span className="button__label">Open Review Board</span>
+          </a>
+          <form action="/api/admin/logout" method="post">
+            <button type="submit" className="button button--secondary">
+              <span className="button__label">Sign out</span>
+            </button>
+          </form>
+        </div>
       </div>
 
       {Object.entries(TABLES).map(([table, config]) => (

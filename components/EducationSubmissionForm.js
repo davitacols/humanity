@@ -118,6 +118,10 @@ export function EducationSubmissionForm() {
             value={formData.contactName}
             onChange={(event) => updateField("contactName", event.target.value)}
             autoComplete="name"
+            aria-invalid={Boolean(fieldErrors.contactName)}
+            maxLength={80}
+            placeholder="Jane Doe"
+            required
           />
           {fieldErrors.contactName ? (
             <p className="field__error">{fieldErrors.contactName}</p>
@@ -136,6 +140,10 @@ export function EducationSubmissionForm() {
             value={formData.email}
             onChange={(event) => updateField("email", event.target.value)}
             autoComplete="email"
+            inputMode="email"
+            aria-invalid={Boolean(fieldErrors.email)}
+            placeholder="name@example.org"
+            required
           />
           {fieldErrors.email ? <p className="field__error">{fieldErrors.email}</p> : null}
         </div>
@@ -151,6 +159,9 @@ export function EducationSubmissionForm() {
             value={formData.organization}
             onChange={(event) => updateField("organization", event.target.value)}
             autoComplete="organization"
+            aria-invalid={Boolean(fieldErrors.organization)}
+            maxLength={120}
+            placeholder="Optional school, NGO, or community group"
           />
           {fieldErrors.organization ? (
             <p className="field__error">{fieldErrors.organization}</p>
@@ -169,6 +180,8 @@ export function EducationSubmissionForm() {
             name="role"
             value={formData.role}
             onChange={(event) => updateField("role", event.target.value)}
+            aria-invalid={Boolean(fieldErrors.role)}
+            required
           >
             {educationSubmissionRoles.map((role) => (
               <option key={role} value={role}>
@@ -189,6 +202,10 @@ export function EducationSubmissionForm() {
             name="resourceTitle"
             value={formData.resourceTitle}
             onChange={(event) => updateField("resourceTitle", event.target.value)}
+            aria-invalid={Boolean(fieldErrors.resourceTitle)}
+            maxLength={120}
+            placeholder="Digital basics handout"
+            required
           />
           {fieldErrors.resourceTitle ? (
             <p className="field__error">{fieldErrors.resourceTitle}</p>
@@ -205,6 +222,8 @@ export function EducationSubmissionForm() {
             name="resourceType"
             value={formData.resourceType}
             onChange={(event) => updateField("resourceType", event.target.value)}
+            aria-invalid={Boolean(fieldErrors.resourceType)}
+            required
           >
             {educationSubmissionTypes.map((type) => (
               <option key={type} value={type}>
@@ -227,6 +246,8 @@ export function EducationSubmissionForm() {
             name="audienceLevel"
             value={formData.audienceLevel}
             onChange={(event) => updateField("audienceLevel", event.target.value)}
+            aria-invalid={Boolean(fieldErrors.audienceLevel)}
+            required
           >
             {educationAudienceLevels.map((level) => (
               <option key={level} value={level}>
@@ -250,12 +271,16 @@ export function EducationSubmissionForm() {
             type="url"
             value={formData.resourceUrl}
             onChange={(event) => updateField("resourceUrl", event.target.value)}
+            inputMode="url"
+            aria-invalid={Boolean(fieldErrors.resourceUrl)}
+            placeholder="https://example.org/resource"
           />
           {fieldErrors.resourceUrl ? (
             <p className="field__error">{fieldErrors.resourceUrl}</p>
           ) : (
             <p className="field__hint">
-              Use this for a lesson page, Google Drive file, public PDF, or hosted course.
+              Use a public http or https link when possible. If access is private or still being
+              arranged, explain that in the notes below.
             </p>
           )}
         </div>
@@ -271,6 +296,10 @@ export function EducationSubmissionForm() {
             value={formData.summary}
             onChange={(event) => updateField("summary", event.target.value)}
             rows={5}
+            aria-invalid={Boolean(fieldErrors.summary)}
+            maxLength={900}
+            placeholder="Explain who this resource is for, how it is used, and why it belongs in the education hub."
+            required
           />
           {fieldErrors.summary ? (
             <p className="field__error">{fieldErrors.summary}</p>
@@ -292,6 +321,9 @@ export function EducationSubmissionForm() {
             value={formData.notes}
             onChange={(event) => updateField("notes", event.target.value)}
             rows={4}
+            aria-invalid={Boolean(fieldErrors.notes)}
+            maxLength={700}
+            placeholder="Optional review notes, access details, language notes, or setup context."
           />
           {fieldErrors.notes ? <p className="field__error">{fieldErrors.notes}</p> : null}
         </div>
@@ -315,6 +347,7 @@ export function EducationSubmissionForm() {
             type="checkbox"
             checked={formData.consentToContact}
             onChange={(event) => updateField("consentToContact", event.target.checked)}
+            required
           />
           <span>We may contact you by email about review, edits, or publication.</span>
         </label>
@@ -327,6 +360,7 @@ export function EducationSubmissionForm() {
             type="checkbox"
             checked={formData.rightsConfirmed}
             onChange={(event) => updateField("rightsConfirmed", event.target.checked)}
+            required
           />
           <span>I confirm that I have the right to share this material or link for review.</span>
         </label>
@@ -337,7 +371,8 @@ export function EducationSubmissionForm() {
 
       <div className="submission-form__footer">
         <p className="submission-form__footnote">
-          Submissions enter a manual review queue and are not published automatically.
+          Submissions enter a manual review queue and are not published automatically. Public links
+          and strong summaries help the team review faster.
         </p>
         <button
           type="submit"
@@ -346,7 +381,7 @@ export function EducationSubmissionForm() {
           disabled={isSubmitting}
         >
           <span className="button__label">
-            {isSubmitting ? "Submitting resource" : "Submit Resource"}
+            {isSubmitting ? "Submitting resource" : "Submit for Review"}
           </span>
           <span className="button__spinner" aria-hidden="true" />
         </button>

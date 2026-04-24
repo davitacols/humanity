@@ -3,26 +3,22 @@ import { PageHero } from "../../components/PageHero";
 import { Reveal } from "../../components/Reveal";
 import { SectionIntro } from "../../components/SectionIntro";
 import { StockPhoto } from "../../components/StockPhoto";
-import { stockMedia } from "../../components/stockMedia";
+import { getPlatformContentData } from "../../lib/platform-content";
 
-const galleryItems = [
-  { ...stockMedia.homeStories[0], category: "Health" },
-  { ...stockMedia.homeHero, category: "Sports" },
-  { ...stockMedia.homeStories[2], category: "Community" },
-  { ...stockMedia.educationFeature, category: "Education" },
-  { ...stockMedia.homeStories[1], category: "Sports" },
-  { ...stockMedia.aboutHero, category: "Community" },
-  { ...stockMedia.donateHero, category: "Volunteer" },
-  { ...stockMedia.aboutMission, category: "Community" }
-];
+export const revalidate = 300;
 
-const profilePhotos = [
-  { src: "/profile/chidozie-portrait.jpeg", alt: "Ikokwu Chidozie Ikemba at a public event.", label: "Founder", ratio: "portrait" },
-  { src: "/profile/chidozie-group.jpeg", alt: "Circular economy event with international attendees.", label: "Partnership" },
-  { src: "/profile/chidozie-event.jpeg", alt: "Nigeria Circular Economy Week conference stage.", label: "Public event" }
-];
+export default async function GalleryPage() {
+  const { changemakers, galleryItems } = await getPlatformContentData();
+  const profilePhotos = changemakers
+    .filter((person) => person.imageSrc)
+    .slice(0, 3)
+    .map((person) => ({
+      src: person.imageSrc,
+      alt: person.imageAlt,
+      label: person.name,
+      ratio: person.imageRatio
+    }));
 
-export default function GalleryPage() {
   return (
     <main className="site-main page-v2">
       <PageHero
@@ -36,11 +32,15 @@ export default function GalleryPage() {
       />
 
       <Reveal as="section" delay={120}>
-        <SectionIntro eyebrow="Field photography" title="Images from programs, outreach, and community events." body="Health outreach, youth sports, education sessions, and community gatherings documented by the team." />
+        <SectionIntro
+          eyebrow="Field photography"
+          title="Images from programs, outreach, and community events."
+          body="Health outreach, youth sports, education sessions, and community gatherings documented by the team."
+        />
         <div className="gallery-grid">
-          {galleryItems.map((item, i) => (
+          {galleryItems.map((item, index) => (
             <StockPhoto
-              key={`${item.src}-${i}`}
+              key={`${item.src}-${index}`}
               src={item.src}
               alt={item.alt}
               label={item.category}
@@ -52,7 +52,11 @@ export default function GalleryPage() {
       </Reveal>
 
       <Reveal as="section" delay={200}>
-        <SectionIntro eyebrow="Founder and partnerships" title="Leadership, collaboration, and public engagement." body="Images from conferences, partnership events, and public-facing work." />
+        <SectionIntro
+          eyebrow="Founding network"
+          title="Leadership, collaboration, and public engagement."
+          body="Images tied to the founding network and the relationships shaping the platform's regional growth."
+        />
         <div className="gallery-grid gallery-grid--3">
           {profilePhotos.map((item) => (
             <StockPhoto
@@ -69,10 +73,17 @@ export default function GalleryPage() {
 
       <Reveal as="section" className="dark-panel-v2" delay={260}>
         <h2 className="dark-panel-v2__title">More images are added as programs grow.</h2>
-        <p className="dark-panel-v2__body">Field photography, event documentation, and creative media are published as the initiative expands across sectors and countries.</p>
+        <p className="dark-panel-v2__body">
+          Field photography, event documentation, and creative media are published as the
+          initiative expands across sectors and countries.
+        </p>
         <div className="hero-actions">
-          <LoadingLink href="/arts" className="button button--primary" loadingLabel="Opening">Visit arts section</LoadingLink>
-          <LoadingLink href="/projects" className="button button--secondary" loadingLabel="Opening">Explore projects</LoadingLink>
+          <LoadingLink href="/arts" className="button button--primary" loadingLabel="Opening">
+            Visit arts section
+          </LoadingLink>
+          <LoadingLink href="/projects" className="button button--secondary" loadingLabel="Opening">
+            Explore projects
+          </LoadingLink>
         </div>
       </Reveal>
     </main>

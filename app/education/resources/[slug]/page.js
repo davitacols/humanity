@@ -4,97 +4,268 @@ import { PageHero } from "../../../../components/PageHero";
 import { Reveal } from "../../../../components/Reveal";
 import { SectionIntro } from "../../../../components/SectionIntro";
 import { educationResourcePages } from "../../../../components/siteData";
+import { getEducationResourcePageData } from "../../../../lib/education";
 
-function getResource(slug) {
-  return educationResourcePages.find((item) => item.slug === slug);
+export const revalidate = 300;
+
+function buildResourceFacts(resource, currentLibraryItem) {
+  return [
+    {
+      label: "Audience",
+      value: currentLibraryItem?.level || resource.audience
+    },
+    {
+      label: "Format",
+      value: resource.format
+    },
+    {
+      label: "Duration",
+      value: resource.duration
+    },
+    {
+      label: "Hub lane",
+      value: currentLibraryItem?.category || "Education library"
+    }
+  ];
+}
+
+function ResourceLink({ item }) {
+  if (item.external) {
+    return (
+      <a href={item.href} target="_blank" rel="noreferrer" className="button button--secondary">
+        {item.actionLabel}
+      </a>
+    );
+  }
+
+  return (
+    <LoadingLink href={item.href} className="button button--secondary" loadingLabel="Opening">
+      {item.actionLabel}
+    </LoadingLink>
+  );
 }
 
 export function generateStaticParams() {
   return educationResourcePages.map((item) => ({ slug: item.slug }));
 }
 
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const resource = await getEducationResourcePageData(slug);
+
+  if (!resource) {
+    return {
+      title: "Education Resource",
+      description: "A practical education resource from the Humanity First education hub."
+    };
+  }
+
+  return {
+    title: `${resource.title} | Education Hub`,
+    description: resource.summary
+  };
+}
+
 export default async function EducationResourcePage({ params }) {
   const { slug } = await params;
-  const resource = getResource(slug);
-  if (!resource) notFound();
+  const resource = await getEducationResourcePageData(slug);
+
+  if (!resource) {
+    notFound();
+  }
+
+  const resourceFacts = buildResourceFacts(resource, resource.currentLibraryItem);
 
   return (
-    <main className="site-main edu-page">
+    <main className="site-main page-v2 edu-page">
       <PageHero
         eyebrow={resource.eyebrow}
         title={resource.title}
         body={resource.summary}
-        primary={{ href: "/education", label: "Back to Education Hub" }}
-        secondary={{ href: "/education/contribute", label: "Contribute a Resource" }}
-        asideTitle="Resource snapshot"
-        asideBody={`${resource.audience}. ${resource.format}. ${resource.duration}.`}
+        primary={{ href: "#resource-overview", label: "Review resource brief" }}
+        secondary={{ href: "/education#library-explorer", label: "Back to library" }}
+        highlights={[
+          resource.format,
+          resource.duration,
+          resource.currentLibraryItem?.category || "Education resource"
+        ]}
+        asideTitle="Where this resource fits"
+        asideBody={resource.body}
+        asidePoints={[
+          `Primary audience: ${resource.audience}`,
+          `Use this when you need ${resource.format.toLowerCase()} support in a real session`,
+          `${resource.outcomes.length} intended learning outcomes are already mapped for delivery`
+        ]}
       />
 
-      {/* Overview */}
-      <Reveal as="section" className="edu-how" delay={100}>
-        <div className="edu-how__intro">
-          <p className="edu-how__eyebrow">Overview</p>
-          <h2 className="edu-how__title">{resource.title}</h2>
-          <p className="edu-how__body">{resource.body}</p>
-        </div>
-        <div className="edu-how__steps">
-          <article className="edu-how__step">
-            <span className="edu-how__step-num">→</span>
-            <h3 className="edu-how__step-title">Audience</h3>
-            <p className="edu-how__step-body">{resource.audience}</p>
+      <Reveal as="section" id="resource-overview" delay={100}>
+        <SectionIntro
+          eyebrow="Resource brief"
+          title="A clearer teaching summary before a facilitator puts this into practice."
+          body="The best education resources explain who they are for, how they are used, and what a mentor or teacher should expect after the session."
+        />
+        <div className="split-v2 edu-resource-split">
+          <article className="dark-panel-v2">
+            <p className="dark-panel-v2__eyebrow">Practical overview</p>
+            <h2 className="dark-panel-v2__title">Built for real learning environments, not just a content archive.</h2>
+            <p className="dark-panel-v2__body">{resource.body}</p>
+            <p className="dark-panel-v2__body">
+              This resource is strongest when a facilitator can quickly understand the audience,
+              session format, and likely follow-up needed after the first use.
+            </p>
+            <div className="hero-actions">
+              <LoadingLink
+                href="/education/contribute#resource-submission"
+                className="button button--primary"
+                loadingLabel="Opening"
+              >
+                Contribute a related resource
+              </LoadingLink>
+              <LoadingLink
+                href="/donate?fund=education-access#live-checkout"
+                className="button button--secondary"
+                loadingLabel="Opening"
+              >
+                Support education access
+              </LoadingLink>
+            </div>
           </article>
-          <article className="edu-how__step">
-            <span className="edu-how__step-num">→</span>
-            <h3 className="edu-how__step-title">Format</h3>
-            <p className="edu-how__step-body">{resource.format} · {resource.duration}</p>
-          </article>
+
+          <div className="edu-resource-card-grid edu-resource-card-grid--facts">
+            {resourceFacts.map((fact, index) => (
+              <article key={fact.label} className="edu-resource-card">
+                <div className="edu-resource-card__top">
+                  <span className="edu-resource-card__index">{String(index + 1).padStart(2, "0")}</span>
+                  <p className="edu-resource-card__eyebrow">{fact.label}</p>
+                </div>
+                <h3 className="edu-resource-card__title">{fact.value}</h3>
+                <p className="edu-resource-card__body">
+                  {fact.label === "Audience"
+                    ? "This is the clearest starting audience for the resource inside the hub."
+                    : fact.label === "Hub lane"
+                      ? "This shows where the item belongs in the public library and how contributors should classify similar materials."
+                      : "This helps facilitators judge whether the resource fits the delivery moment they are planning."}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </Reveal>
 
-      {/* Use cases */}
       <Reveal as="section" delay={160}>
-        <SectionIntro eyebrow="Use cases" title="How facilitators and mentors apply this resource." />
+        <SectionIntro
+          eyebrow="Use cases"
+          title="How educators, mentors, and workshop leads can apply this resource."
+          body="Strong use cases make the resource easier to deploy in schools, community sessions, and cohort-based follow-up."
+        />
         <div className="edu-tracks">
-          {resource.useCases.map((item, i) => (
+          {resource.useCases.map((item, index) => (
             <article key={item} className="edu-tracks__card">
               <div className="edu-tracks__header">
-                <span className="edu-tracks__num">{String(i + 1).padStart(2, "0")}</span>
+                <span className="edu-tracks__num">{String(index + 1).padStart(2, "0")}</span>
                 <span className="edu-tracks__eyebrow">Use case</span>
               </div>
               <h3 className="edu-tracks__title">{item}</h3>
-              <p className="edu-tracks__body">Gives facilitators a concrete way to apply the resource in real learning environments.</p>
+              <p className="edu-tracks__body">
+                This route keeps the resource grounded in an actual teaching moment instead of
+                leaving the facilitator to improvise from scratch.
+              </p>
             </article>
           ))}
         </div>
       </Reveal>
 
-      {/* Outcomes */}
       <Reveal as="section" delay={220}>
-        <SectionIntro eyebrow="Outcomes" title="Practical learning results the hub supports across cohorts." />
-        <div className="edu-tracks">
-          {resource.outcomes.map((item, i) => (
-            <article key={item} className="edu-tracks__card">
-              <div className="edu-tracks__header">
-                <span className="edu-tracks__num">{String(i + 1).padStart(2, "0")}</span>
-                <span className="edu-tracks__eyebrow">Outcome</span>
-              </div>
-              <h3 className="edu-tracks__title">{item}</h3>
-            </article>
-          ))}
+        <SectionIntro
+          eyebrow="Expected outcomes"
+          title="The kind of learner movement this resource is meant to support."
+          body="Outcome language matters because it helps the hub stay focused on practical progress instead of vague educational claims."
+        />
+        <div className="split-v2 edu-resource-split">
+          <div className="edu-resource-card-grid edu-resource-card-grid--outcomes">
+            {resource.outcomes.map((item, index) => (
+              <article key={item} className="edu-resource-card edu-resource-card--outcome">
+                <div className="edu-resource-card__top">
+                  <span className="edu-resource-card__index">{String(index + 1).padStart(2, "0")}</span>
+                  <p className="edu-resource-card__eyebrow">Outcome</p>
+                </div>
+                <p className="edu-resource-card__statement">{item}</p>
+                <p className="edu-resource-card__body">
+                  This gives facilitators and reviewers a concrete reason the resource belongs in
+                  the public library.
+                </p>
+              </article>
+            ))}
+          </div>
+
+          <article className="dark-panel-v2">
+            <p className="dark-panel-v2__eyebrow">Publishing standard</p>
+            <h2 className="dark-panel-v2__title">Useful resources explain delivery, audience fit, and follow-up clearly.</h2>
+            <p className="dark-panel-v2__body">
+              The education hub is stronger when every item can be understood quickly by a teacher,
+              volunteer, or mentor working with limited time, shared devices, or low-bandwidth conditions.
+            </p>
+            <p className="dark-panel-v2__body">
+              That is why contribution and review focus on clarity, rights to share, practical
+              summaries, and whether the material feels ready for community use.
+            </p>
+          </article>
         </div>
       </Reveal>
 
-      {/* CTA */}
-      <Reveal as="section" className="edu-cta" delay={280}>
+      {resource.relatedResources.length ? (
+        <Reveal as="section" delay={280}>
+          <SectionIntro
+            eyebrow="Related resources"
+            title="Keep moving through the education library with nearby materials."
+            body="These resources share a similar audience or hub category, which makes them a better next step than starting a new search from scratch."
+          />
+          <div className="card-grid-v2 card-grid-v2--3">
+            {resource.relatedResources.map((item, index) => (
+              <article key={item.title} className="card-v2">
+                <div className="card-v2__top">
+                  <span className="card-v2__index">{String(index + 1).padStart(2, "0")}</span>
+                  <p className="card-v2__eyebrow">{item.category}</p>
+                </div>
+                <h3 className="card-v2__title">{item.title}</h3>
+                <p className="card-v2__body">{item.summary}</p>
+                <p className="card-v2__body">
+                  {item.format} - {item.level}
+                </p>
+                <ResourceLink item={item} />
+              </article>
+            ))}
+          </div>
+        </Reveal>
+      ) : null}
+
+      <Reveal as="section" className="edu-cta" delay={340}>
         <div className="edu-cta__text">
-          <h2 className="edu-cta__title">Build a stronger library with guided resources that feel ready to use.</h2>
-          <p className="edu-cta__body">Each resource moves from overview to hosted download, external lesson, or contributor-backed teaching asset.</p>
+          <h2 className="edu-cta__title">Grow the education library with materials that are ready to use in the field.</h2>
+          <p className="edu-cta__body">
+            The public section works best when strong resources, contributor review, and donor
+            support all reinforce each other.
+          </p>
         </div>
         <div className="edu-cta__actions">
-          <LoadingLink href="/education/contribute" className="button button--primary" loadingLabel="Opening">Submit a related resource</LoadingLink>
-          <LoadingLink href="/donate" className="button button--secondary" loadingLabel="Opening">Support learning access</LoadingLink>
+          <LoadingLink
+            href="/education/contribute#resource-submission"
+            className="button button--primary"
+            loadingLabel="Opening"
+          >
+            Submit a resource
+          </LoadingLink>
+          <LoadingLink
+            href="/donate?fund=education-access#live-checkout"
+            className="button button--secondary"
+            loadingLabel="Opening"
+          >
+            Fund learning access
+          </LoadingLink>
         </div>
       </Reveal>
     </main>
   );
 }
+
+

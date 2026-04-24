@@ -1,6 +1,9 @@
-export function SectionIntro({ eyebrow, title, body, align = "left" }) {
+export function SectionIntro({ eyebrow, title, body, align = "left", className = "", ...props }) {
   return (
-    <div className={`section-intro section-intro--${align}`}>
+    <div
+      {...props}
+      className={`section-intro section-intro--${align} ${className}`.trim()}
+    >
       {eyebrow ? <p className="section-intro__eyebrow">{eyebrow}</p> : null}
       <h2 className="section-intro__title">{title}</h2>
       <p className="section-intro__body">{body}</p>

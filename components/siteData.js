@@ -1,3 +1,5 @@
+import { stockMedia } from "./stockMedia";
+
 export const navItems = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
@@ -14,9 +16,10 @@ export const navItems = [
 ];
 
 export const headerUtilityItems = [
-  "Community-led programs",
-  "Transparent support pathways",
-  "Low-bandwidth access"
+  { label: "4 live program routes", href: "/programs" },
+  { label: "Latest field updates", href: "/blog" },
+  { label: "Sib profile live", href: "/about#sib" },
+  { label: "Low-bandwidth friendly access", href: "/education" }
 ];
 
 export const proofStats = [
@@ -65,12 +68,12 @@ export const homeTrustSignals = [
   {
     eyebrow: "Trusted support path",
     title: "Donation asks stay close to context, proof, and next steps.",
-    body: "Visitors understand what support helps fund before they are asked to click through a payment flow.",
+    body: "Visitors understand what support helps fund before they submit a support request or speak with the team.",
     tone: "sand"
   },
   {
     eyebrow: "Designed to scale",
-    title: "The initiative grows from founder-led work into a wider network.",
+    title: "The initiative grows from community-led work into a wider network.",
     body: "Partners, contributors, new campaigns, and additional countries are introduced without rebuilding the core story structure.",
     tone: "leaf"
   }
@@ -94,6 +97,76 @@ export const profileSpotlight = {
   update:
     "He is open to collaborations with organizations, policy platforms, development initiatives, and creative teams seeking culturally grounded strategy with public impact."
 };
+
+export const platformProfiles = [
+  {
+    eyebrow: "Strategic contributor",
+    name: "Ikokwu Chidozie Ikemba",
+    role: "Psychologist, strategist, media practitioner, and environmental entrepreneur",
+    location: "Nigeria",
+    summary:
+      "Contributes public communication, sustainability experience, partnership thinking, and cross-sector storytelling with a focus on civic relevance and visible social impact.",
+    body:
+      "This profile sits alongside other public collaborators in the network. It represents one contributor's communication, sustainability, and public-impact experience without implying a leadership designation.",
+    tags: [
+      "Strategic communication",
+      "Sustainability",
+      "Creative direction",
+      "Public impact"
+    ],
+    href: "https://www.rwms.ng",
+    hrefLabel: "Visit RWMS",
+    imageSrc: "/profile/chidozie-portrait.jpeg",
+    imageAlt: "Ikokwu Chidozie Ikemba in a white traditional outfit during a public event.",
+    imageLabel: "Contributor profile",
+    imageRatio: "portrait"
+  },
+  {
+    eyebrow: "Regional collaborator",
+    name: "Regional partner in Ghana",
+    role: "Community collaborator and regional growth partner",
+    location: "Ghana",
+    summary:
+      "Supports the platform's expansion into Ghana through local relationship building, community listening, partnership development, and field-level collaboration.",
+    body:
+      "This regional collaborator role represents the platform's multi-country direction, helping shape how projects, campaigns, and local changemakers can be represented beyond one public profile.",
+    tags: [
+      "Regional partnerships",
+      "Community outreach",
+      "Field coordination",
+      "Growth across countries"
+    ],
+    href: "/get-involved",
+    hrefLabel: "Discuss partnership",
+    imageSrc: stockMedia.aboutMission.src,
+    imageAlt: stockMedia.aboutMission.alt,
+    imageLabel: "Ghana partnership",
+    imageRatio: stockMedia.aboutMission.ratio || "landscape"
+  },
+  {
+    eyebrow: "Creative collaborator",
+    name: "Sib",
+    role: "Cinematographer, video editor, and creative food and travel photographer",
+    location: "West Midlands, United Kingdom",
+    summary:
+      "Brings cinematography, video editing, and accessibility-led storytelling to the wider network, with a focus on visually compelling work that connects with audiences and drives impact.",
+    body:
+      "Sib is a cinematographer and video editor based in the West Midlands who is passionate about film, TV, and meaningful storytelling for brands, organizations, and independent projects. The work is shaped by a strong commitment to accessibility and a lived autistic perspective, alongside a parallel practice in creative food and travel photography rooted in authenticity, beauty, and impact.",
+    tags: [
+      "Cinematography",
+      "Video editing",
+      "Accessibility-led storytelling",
+      "Food and travel photography",
+      "Impact-driven collaboration"
+    ],
+    href: "https://sib-cinematographer.squarespace.com/",
+    hrefLabel: "View portfolio",
+    imageSrc: "",
+    imageAlt: "",
+    imageLabel: "",
+    imageRatio: "portrait"
+  }
+];
 
 export const sportsSpotlight = {
   title: "Dodoma Best Sports Center",
@@ -168,8 +241,8 @@ export const programPillars = [
 
 export const featuredProject = {
   title: "Safe beginnings for mothers and children",
-  body: "The archive keeps one clear human story close to the front so supporters understand the work before they move deeper into the wider archive.",
-  quote: "Support feels personal, visible, and grounded in work people can truly follow."
+  body: "Health outreach is presented as a human story first: mothers, children, caregivers, volunteers, and the practical support that helps families move through vulnerable moments with more dignity.",
+  quote: "People support more confidently when they can understand the need, see the work, and follow what happens next."
 };
 
 export const projectCards = [
@@ -210,18 +283,18 @@ export const premiumVideoProject = {
   title: "Campaign Documentary Screening",
   eyebrow: "Special film release",
   teaser:
-    "A protected screening route for campaign documentaries, event recordings, and supporter-facing film releases.",
+    "A screening prototype for campaign documentaries, event recordings, and supporter-facing film releases.",
   description:
-    "This feature provides a dedicated documentary release path where viewers unlock one film, access it for a limited window, and watch through a protected playback flow.",
+    "This feature shows how a dedicated documentary release path could work, including timed access, dedicated playback, and supporter-facing release context.",
   price: "NGN 4,500",
   runtime: "12 minute documentary cut",
   accessWindow: "48-hour viewing window",
   videoSrc: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
   benefits: [
-    "Protected documentary playback after access is confirmed",
     "A single-title access window for campaigns or special releases",
+    "A local preview of the access and playback experience",
     "Space for context, partner acknowledgements, and a support call after the film",
-    "Ready for payment verification and protected playback when the final provider is approved"
+    "Ready for a real payment and entitlement layer when the final provider is approved"
   ]
 };
 
@@ -232,6 +305,116 @@ export const donationCauses = [
   "Education access and digital skills",
   "Youth sports development",
   "Creative advocacy campaigns"
+];
+
+export const donationFunds = [
+  {
+    slug: "maternal-child-health",
+    eyebrow: "Health route",
+    title: "Maternal and child health outreach",
+    supportArea: donationCauses[0],
+    summary:
+      "Supports hygiene kits, maternal check-ins, community health education, and nutrition-focused follow-up for women and children.",
+    amountLabel: "Current goal: NGN 2,500,000",
+    targetAmount: 2500000,
+    raisedAmount: 850000,
+    beneficiariesLabel: "50 families in the active outreach pipeline",
+    statusLabel: "Current quarter funding gap",
+    href: "/health",
+    hrefLabel: "Visit health program"
+  },
+  {
+    slug: "education-access",
+    eyebrow: "Education route",
+    title: "Education access and digital skills",
+    supportArea: donationCauses[1],
+    summary:
+      "Keeps books, low-bandwidth learning materials, facilitator guides, and beginner digital-skills sessions available to learners.",
+    amountLabel: "Current goal: NGN 1,800,000",
+    targetAmount: 1800000,
+    raisedAmount: 620000,
+    beneficiariesLabel: "Three learning tracks in active development",
+    statusLabel: "Resource build-out in progress",
+    href: "/education",
+    hrefLabel: "Visit education hub"
+  },
+  {
+    slug: "youth-sports",
+    eyebrow: "Sports route",
+    title: "Youth sports development",
+    supportArea: donationCauses[2],
+    summary:
+      "Backs grassroots training, equipment, tournament logistics, and mentorship for youth programs like Dodoma Best Sports Center.",
+    amountLabel: "Current goal: NGN 1,950,000",
+    targetAmount: 1950000,
+    raisedAmount: 740000,
+    beneficiariesLabel: "Current pathway includes 100 youth participants",
+    statusLabel: "Equipment and logistics still needed",
+    href: "/sports",
+    hrefLabel: "Visit sports program"
+  },
+  {
+    slug: "creative-advocacy",
+    eyebrow: "Arts route",
+    title: "Creative advocacy campaigns",
+    supportArea: donationCauses[3],
+    summary:
+      "Supports documentary production, photography, storytelling campaigns, and artist-led advocacy tied directly to humanitarian work.",
+    amountLabel: "Current goal: NGN 950,000",
+    targetAmount: 950000,
+    raisedAmount: 310000,
+    beneficiariesLabel: "Campaign storytelling and artist collaboration fund",
+    statusLabel: "Next creative campaign preparing for release",
+    href: "/arts",
+    hrefLabel: "Visit arts section"
+  }
+];
+
+export const transparencyEntries = [
+  {
+    periodLabel: "Q2 2026 tracker",
+    title: "Health outreach and family support snapshot",
+    summary:
+      "Current documented allocations cover maternal kits, follow-up visits, and practical community health support for women and children.",
+    amountLabel: "NGN 850,000 documented this cycle",
+    allocationLabel: "Maternal kits 45%, follow-up visits 30%, nutrition support 15%, volunteer logistics 10%",
+    statusLabel: "Published for supporter review",
+    href: "/health",
+    ctaLabel: "Open health work"
+  },
+  {
+    periodLabel: "Q2 2026 tracker",
+    title: "Education resources and facilitator preparation",
+    summary:
+      "Funding in this window supports downloadable materials, coding introductions, and the practical preparation needed for community-led learning sessions.",
+    amountLabel: "NGN 620,000 documented this cycle",
+    allocationLabel: "Learning materials 40%, facilitator prep 30%, printing 20%, connectivity support 10%",
+    statusLabel: "Published for supporter review",
+    href: "/education",
+    ctaLabel: "Open education hub"
+  },
+  {
+    periodLabel: "Q1 2026 tracker",
+    title: "Youth sports equipment and training logistics",
+    summary:
+      "This snapshot covers balls, bibs, markers, and session logistics tied to structured youth development through sports.",
+    amountLabel: "NGN 740,000 documented this cycle",
+    allocationLabel: "Equipment 55%, coaching logistics 25%, community events 20%",
+    statusLabel: "Published for supporter review",
+    href: "/projects/dodoma-best-sports-center",
+    ctaLabel: "Open sports project"
+  },
+  {
+    periodLabel: "Q1 2026 tracker",
+    title: "Creative advocacy production prep",
+    summary:
+      "Documented creative spend currently covers concept development, field documentation, and campaign delivery planning for public-interest storytelling.",
+    amountLabel: "NGN 310,000 documented this cycle",
+    allocationLabel: "Field capture 50%, editing prep 30%, campaign distribution 20%",
+    statusLabel: "Published for supporter review",
+    href: "/arts",
+    ctaLabel: "Open arts section"
+  }
 ];
 
 export const supportInquiryRoutes = [
@@ -296,19 +479,125 @@ export const involvementPaths = [
   }
 ];
 
-export const updateCards = [
+export const platformUpdates = [
   {
-    title: "Field report",
-    body: "Maternal health outreach documentation is ready for publication."
+    title: "Sib creative profile and portfolio added to the network",
+    category: "Profile",
+    date: "April 11, 2026",
+    body:
+      "The public profile now reflects Sib's current cinematography, video editing, photography, and accessibility-led storytelling focus, with a direct portfolio link for media and brand collaborations.",
+    href: "https://sib-cinematographer.squarespace.com/",
+    ctaLabel: "View portfolio"
   },
   {
-    title: "Volunteer call",
-    body: "Community tournament support is open for collaborators and partners."
+    title: "Maternal health kits reach 50 families in first outreach",
+    category: "Field report",
+    date: "April 2026",
+    body:
+      "The first batch of maternal health kits was distributed to mothers and newborns across three communities, with follow-up visits scheduled for the coming weeks."
   },
   {
-    title: "Creative spotlight",
-    body: "A new storytelling and artist advocacy campaign is live with fresh submissions."
+    title: "Dodoma Best Sports Center launches U-7 training group",
+    category: "Program update",
+    date: "March 2026",
+    body:
+      "The youngest age group at the sports center began structured training sessions, expanding the program's reach to children as young as seven."
+  },
+  {
+    title: "Education hub crosses 12 curated resources",
+    category: "Milestone",
+    date: "March 2026",
+    body:
+      "The education library now includes downloadable guides, external lessons, facilitator toolkits, and coding pathways - all reviewed and organized into tracks."
+  },
+  {
+    title: "Community storytelling campaign opens for submissions",
+    category: "Campaign",
+    date: "February 2026",
+    body:
+      "Artists, photographers, and spoken word performers are invited to submit work for the Voices of Resilience creative advocacy campaign."
+  },
+  {
+    title: "Volunteer call for community tournament support",
+    category: "Volunteer",
+    date: "February 2026",
+    body:
+      "The initiative is looking for volunteers to help organize, referee, and document upcoming community football tournaments."
+  },
+  {
+    title: "Nutrition flyer campaign enters design phase",
+    category: "Campaign",
+    date: "January 2026",
+    body:
+      "Quick-use nutrition guides for parents and caregivers are being designed for print distribution at community health events."
   }
+];
+
+export const blogPosts = [
+  {
+    slug: "why-visible-proof-matters-in-humanitarian-work",
+    title: "Why visible proof matters in humanitarian work",
+    excerpt:
+      "Humanitarian trust grows when communities, supporters, and partners can see what is happening, where support is going, and what still needs attention.",
+    category: "Field notes",
+    author: "Humanity First Initiative",
+    publishedAt: "2026-04-18",
+    readingTime: "4 min read",
+    imageSrc: stockMedia.donateHero.src,
+    imageAlt: stockMedia.donateHero.alt,
+    status: "published",
+    featured: true,
+    body:
+      "Humanitarian work cannot rely on good intentions alone. People need to see the route from concern to action: the community need, the support pathway, the people served, and the follow-up that happens after the first visit.\n\nThat is why the platform treats stories, transparent donation routes, program pages, and field updates as part of the work itself. They help supporters understand where help is useful, and they help communities stay visible without being reduced to statistics.\n\nThe goal is simple: publish proof that is respectful, practical, and connected to real needs. When the work is documented clearly, trust becomes easier to build and easier to protect."
+  },
+  {
+    slug: "building-support-routes-around-real-community-needs",
+    title: "Building support routes around real community needs",
+    excerpt:
+      "Donation routes work best when they are connected to specific program areas: maternal health, education access, youth sports, and creative advocacy.",
+    category: "Transparency",
+    author: "Humanity First Initiative",
+    publishedAt: "2026-04-10",
+    readingTime: "5 min read",
+    imageSrc: stockMedia.aboutMission.src,
+    imageAlt: stockMedia.aboutMission.alt,
+    status: "published",
+    featured: false,
+    body:
+      "A useful support route starts with a real need, not a vague appeal. Families may need maternal health kits, learners may need low-data resources, youth programs may need equipment, and creative campaigns may need documentation support.\n\nThe platform organizes these needs into clear routes so donors and partners can understand what each contribution is meant to strengthen. That structure also makes it easier to report back with practical updates instead of broad promises.\n\nAs the work grows, the route system can keep expanding: new programs, new countries, new community partners, and new evidence from the field."
+  },
+  {
+    slug: "creative-storytelling-without-losing-dignity",
+    title: "Creative storytelling without losing dignity",
+    excerpt:
+      "Photography, film, writing, and design can make humanitarian work more visible while still protecting the dignity of people and communities.",
+    category: "Storytelling",
+    author: "Humanity First Initiative",
+    publishedAt: "2026-03-29",
+    readingTime: "3 min read",
+    imageSrc: stockMedia.screeningHero.src,
+    imageAlt: stockMedia.screeningHero.alt,
+    status: "published",
+    featured: false,
+    body:
+      "Creative work can carry humanitarian stories farther than reports alone. A photograph, short film, field note, or campaign poster can help people understand the human reality behind a program.\n\nBut visibility must be handled with care. The aim is not to turn people into symbols of suffering. The aim is to show context, strength, need, and practical action with consent and respect.\n\nThat is the standard this platform is moving toward: storytelling that invites support without flattening the people it exists to serve."
+  }
+];
+
+export const updateCards = platformUpdates.slice(0, 3).map((item) => ({
+  title: item.title,
+  body: item.body
+}));
+
+export const platformGalleryItems = [
+  { ...stockMedia.homeStories[0], category: "Health" },
+  { ...stockMedia.homeHero, category: "Sports" },
+  { ...stockMedia.homeStories[2], category: "Community" },
+  { ...stockMedia.educationFeature, category: "Education" },
+  { ...stockMedia.homeStories[1], category: "Sports" },
+  { ...stockMedia.aboutHero, category: "Community" },
+  { ...stockMedia.donateHero, category: "Volunteer" },
+  { ...stockMedia.aboutMission, category: "Community" }
 ];
 
 export const educationMetrics = [

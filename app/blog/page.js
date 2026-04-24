@@ -2,53 +2,118 @@ import { LoadingLink } from "../../components/LoadingLink";
 import { PageHero } from "../../components/PageHero";
 import { Reveal } from "../../components/Reveal";
 import { SectionIntro } from "../../components/SectionIntro";
+import { StockPhoto } from "../../components/StockPhoto";
+import { stockMedia } from "../../components/stockMedia";
+import { getBlogContentData } from "../../lib/blog-content";
 
-const posts = [
-  { title: "Maternal health kits reach 50 families in first outreach", category: "Field report", date: "April 2026", body: "The first batch of maternal health kits was distributed to mothers and newborns across three communities, with follow-up visits scheduled for the coming weeks." },
-  { title: "Dodoma Best Sports Center launches U-7 training group", category: "Program update", date: "March 2026", body: "The youngest age group at the sports center began structured training sessions, expanding the program's reach to children as young as seven." },
-  { title: "Education hub crosses 12 curated resources", category: "Milestone", date: "March 2026", body: "The education library now includes downloadable guides, external lessons, facilitator toolkits, and coding pathways — all reviewed and organized into tracks." },
-  { title: "Community storytelling campaign opens for submissions", category: "Campaign", date: "February 2026", body: "Artists, photographers, and spoken word performers are invited to submit work for the Voices of Resilience creative advocacy campaign." },
-  { title: "Volunteer call for community tournament support", category: "Volunteer", date: "February 2026", body: "The initiative is looking for volunteers to help organize, referee, and document upcoming community football tournaments." },
-  { title: "Nutrition flyer campaign enters design phase", category: "Campaign", date: "January 2026", body: "Quick-use nutrition guides for parents and caregivers are being designed for print distribution at community health events." }
-];
+export const revalidate = 300;
 
-const categories = ["All", "Field report", "Program update", "Milestone", "Campaign", "Volunteer"];
-
-export default function BlogPage() {
+function PostMeta({ post }) {
   return (
-    <main className="site-main page-v2">
+    <p className="blog-meta">
+      <span>{post.category}</span>
+      <time dateTime={post.publishedAt}>{post.dateLabel}</time>
+      {post.readingTime ? <span>{post.readingTime}</span> : null}
+    </p>
+  );
+}
+
+function BlogCard({ post }) {
+  return (
+    <article className="blog-card">
+      <PostMeta post={post} />
+      <h3>{post.title}</h3>
+      <p>{post.excerpt}</p>
+      <LoadingLink href={`/blog/${post.slug}`} className="blog-link" loadingLabel="Opening">
+        Read the note
+      </LoadingLink>
+    </article>
+  );
+}
+
+export default async function BlogPage() {
+  const { posts } = await getBlogContentData();
+  const [featuredPost, ...recentPosts] = posts;
+
+  return (
+    <main className="site-main page-v2 blog-index">
       <PageHero
-        eyebrow="Blog and news"
-        title="Articles, updates, and field reports from the initiative."
-        body="Stay informed about program progress, campaign launches, volunteer opportunities, and stories from the field."
-        primary={{ href: "/projects", label: "View projects" }}
-        secondary={{ href: "/get-involved", label: "Get involved" }}
-        asideTitle="What you'll find here"
-        asideBody="Field reports, program milestones, campaign announcements, and volunteer calls — all tied to real work on the ground."
+        eyebrow="Blog and field notes"
+        title="Clear updates from the work behind the mission."
+        body="Read practical notes on humanitarian trust, community support routes, field documentation, education access, creative advocacy, and the partnerships that make the platform useful."
+        primary={{ href: "/donate", label: "Support the work" }}
+        secondary={{ href: "/projects", label: "View projects" }}
+        media={{
+          src: stockMedia.aboutMission.src,
+          alt: stockMedia.aboutMission.alt,
+          label: "Humanitarian notes"
+        }}
+        highlights={["Field notes", "Transparency", "Community stories"]}
+        asideTitle="A plain record of progress"
+        asideBody="The blog is for articles, updates, and reflections that help supporters understand the need, the response, and the next step."
       />
 
-      <Reveal as="section" delay={120}>
-        <SectionIntro eyebrow="Latest updates" title="Recent articles and field reports." body="Each post is tied to a real program, campaign, or milestone." />
-        <div className="card-grid-v2 card-grid-v2--2">
-          {posts.map((post) => (
-            <article key={post.title} className="card-v2">
-              <div className="card-v2__top">
-                <p className="card-v2__eyebrow">{post.category}</p>
-                <span className="card-v2__index" style={{ width: "auto", padding: "0 0.6rem", fontSize: "0.72rem" }}>{post.date}</span>
-              </div>
-              <h3 className="card-v2__title">{post.title}</h3>
-              <p className="card-v2__body">{post.body}</p>
-            </article>
-          ))}
-        </div>
+      {featuredPost ? (
+        <Reveal as="section" className="blog-feature" delay={120}>
+          <div className="blog-feature__text">
+            <p className="blog-feature__label">Featured note</p>
+            <PostMeta post={featuredPost} />
+            <h2>{featuredPost.title}</h2>
+            <p>{featuredPost.excerpt}</p>
+            <LoadingLink
+              href={`/blog/${featuredPost.slug}`}
+              className="button button--primary"
+              loadingLabel="Opening"
+            >
+              Read featured note
+            </LoadingLink>
+          </div>
+
+          {featuredPost.imageSrc ? (
+            <StockPhoto
+              src={featuredPost.imageSrc}
+              alt={featuredPost.imageAlt || featuredPost.title}
+              label={featuredPost.category}
+              ratio="landscape"
+              sizes="(max-width: 980px) 100vw, 40vw"
+              className="blog-feature__image"
+            />
+          ) : null}
+        </Reveal>
+      ) : null}
+
+      <Reveal as="section" className="blog-list-section" delay={180}>
+        <SectionIntro
+          eyebrow="Latest posts"
+          title="Field reports, essays, and operational notes."
+          body="Each post is written to keep the mission visible, practical, and accountable."
+        />
+
+        {recentPosts.length ? (
+          <div className="blog-grid">
+            {recentPosts.map((post) => (
+              <BlogCard key={post.slug} post={post} />
+            ))}
+          </div>
+        ) : (
+          <p className="blog-empty">More published posts will appear here as the CMS grows.</p>
+        )}
       </Reveal>
 
-      <Reveal as="section" className="dark-panel-v2" delay={200}>
-        <h2 className="dark-panel-v2__title">More updates are published as programs grow.</h2>
-        <p className="dark-panel-v2__body">Field reports, campaign documentation, and milestone announcements are added as the initiative expands across sectors and countries.</p>
+      <Reveal as="section" className="dark-panel-v2 blog-index__cta" delay={220}>
+        <p className="dark-panel-v2__eyebrow">Keep the record moving</p>
+        <h2 className="dark-panel-v2__title">Support the programs behind these updates.</h2>
+        <p className="dark-panel-v2__body">
+          Contributions help turn field notes into practical support: health kits, learning resources,
+          youth development, and creative advocacy that can be documented clearly.
+        </p>
         <div className="hero-actions">
-          <LoadingLink href="/projects" className="button button--primary" loadingLabel="Opening">Explore projects</LoadingLink>
-          <LoadingLink href="/donate" className="button button--secondary" loadingLabel="Opening">Support the work</LoadingLink>
+          <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">
+            Donate now
+          </LoadingLink>
+          <LoadingLink href="/get-involved" className="button button--secondary" loadingLabel="Opening">
+            Get involved
+          </LoadingLink>
         </div>
       </Reveal>
     </main>

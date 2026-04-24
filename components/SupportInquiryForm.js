@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   donationCadences,
   donationTiers,
@@ -12,10 +12,9 @@ import {
 const donationAmountOptions = [...donationTiers, "Custom amount or partner budget"];
 const involvementRouteOptions = supportInquiryRoutes.filter((item) => item.value !== "donor");
 
-function createInitialForm(variant) {
+function createInitialForm(variant, initialValues = {}) {
   const isDonation = variant === "donation";
-
-  return {
+  const baseForm = {
     sourcePage: isDonation ? "donate" : "get-involved",
     routeType: isDonation ? "donor" : involvementRouteOptions[0].value,
     contactName: "",
@@ -31,14 +30,41 @@ function createInitialForm(variant) {
     wantsUpdates: isDonation,
     website: ""
   };
+
+  return {
+    ...baseForm,
+    ...initialValues,
+    sourcePage: baseForm.sourcePage,
+    routeType: isDonation ? "donor" : initialValues.routeType || baseForm.routeType,
+    supportArea: initialValues.supportArea || baseForm.supportArea,
+    amount: isDonation ? initialValues.amount || baseForm.amount : "",
+    cadence: isDonation ? initialValues.cadence || baseForm.cadence : "",
+    availability: isDonation ? "" : initialValues.availability || baseForm.availability,
+    consentToContact:
+      typeof initialValues.consentToContact === "boolean"
+        ? initialValues.consentToContact
+        : baseForm.consentToContact,
+    wantsUpdates:
+      typeof initialValues.wantsUpdates === "boolean"
+        ? initialValues.wantsUpdates
+        : baseForm.wantsUpdates,
+    website: ""
+  };
 }
 
-export function SupportInquiryForm({ variant = "involvement" }) {
+export function SupportInquiryForm({ variant = "involvement", initialValues }) {
   const isDonation = variant === "donation";
-  const [formData, setFormData] = useState(() => createInitialForm(variant));
+  const initialValuesKey = JSON.stringify(initialValues || {});
+  const [formData, setFormData] = useState(() => createInitialForm(variant, initialValues));
   const [fieldErrors, setFieldErrors] = useState({});
   const [status, setStatus] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    setFormData(createInitialForm(variant, initialValues));
+    setFieldErrors({});
+    setStatus(null);
+  }, [initialValuesKey, variant]);
 
   function updateField(name, value) {
     setFormData((current) => ({ ...current, [name]: value }));
@@ -80,7 +106,7 @@ export function SupportInquiryForm({ variant = "involvement" }) {
       }
 
       const reference = result.submission?.reference;
-      setFormData(createInitialForm(variant));
+      setFormData(createInitialForm(variant, initialValues));
       setStatus({
         tone: "success",
         message: reference
@@ -106,7 +132,7 @@ export function SupportInquiryForm({ variant = "involvement" }) {
         </h2>
         <p className="submission-form__body">
           {isDonation
-            ? "This first release captures donor intent and sponsorship conversations while the final payment provider is being connected."
+            ? "Use this path for sponsorship, custom giving conversations, partner support, or any donation route that still needs a guided follow-up."
             : "Use one form for volunteering, partnership, sponsorship, creative contribution, or specialist support so the right team can follow up quickly."}
         </p>
       </div>
@@ -117,7 +143,7 @@ export function SupportInquiryForm({ variant = "involvement" }) {
         </p>
         <p className="support-form__notice-body">
           {isDonation
-            ? "Submit the amount and cause you want to back. The team will respond by email with the next step, confirmation details, and the best available payment route."
+            ? "Live checkout is available above for direct payment. This form is for custom amounts, sponsorship, partnership budgets, or donor conversations that need a person-to-person next step."
             : "Submit your preferred route, focus area, and availability. The team will follow up by email with the most relevant next step."}
         </p>
       </div>
@@ -375,7 +401,7 @@ export function SupportInquiryForm({ variant = "involvement" }) {
       <div className="submission-form__footer">
         <p className="submission-form__footnote">
           {isDonation
-            ? "This form creates a tracked donor follow-up request. Payment collection is still handled after team confirmation."
+            ? "This form creates a tracked donor follow-up request for support that should not go straight into checkout."
             : "This form creates a tracked support request so volunteer, partner, and contributor follow-up does not get lost."}
         </p>
         <button

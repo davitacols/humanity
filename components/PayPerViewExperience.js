@@ -158,8 +158,8 @@ export function PayPerViewExperience({
           <p className="section-intro__eyebrow">Access this screening</p>
           <h3 className="ppv-paywall__title">{price}</h3>
           <p className="ppv-paywall__body">
-            This release uses device-based access with verified playback and a protected stream
-            delivery flow.
+            This release previews a device-based access experience. The final payment and
+            entitlement layer has not been connected in this version yet.
           </p>
 
           <div className="ppv-benefits">
@@ -197,12 +197,12 @@ export function PayPerViewExperience({
                 disabled={processing}
               >
                 <span className="button__label">
-                  {processing ? "Processing access" : `Unlock for ${price}`}
+                  {processing ? "Opening preview" : `Preview access for ${price}`}
                 </span>
                 <span className="button__spinner" aria-hidden="true" />
               </button>
               <p className="ppv-paywall__note">
-                Payment verification runs through the approved gateway.
+                This local preview simulates the screening step before a real payment gateway is connected.
               </p>
             </div>
           )}

@@ -3,30 +3,26 @@ import Link from "next/link";
 import { LoadingLink } from "./LoadingLink";
 import { navItems } from "./siteData";
 
-const footerExploreLinks = navItems.filter(
-  (item) => !["/", "/donate", "/get-involved"].includes(item.href)
+const footerExploreLinks = navItems.filter((item) =>
+  ["/", "/about", "/projects", "/blog"].includes(item.href)
 );
 
 const footerFocusAreas = [
   { href: "/education", label: "Education Access" },
-  { href: "/programs", label: "Arts and Storytelling" },
-  { href: "/programs", label: "Public Health" },
+  { href: "/arts", label: "Arts and storytelling" },
+  { href: "/health", label: "Public Health" },
   { href: "/projects/dodoma-best-sports-center", label: "Sports Development" }
 ];
 
 const footerSupportLinks = [
   { href: "/donate", label: "Donate" },
-  { href: "/get-involved", label: "Partner or Volunteer" },
-  { href: "/education/contribute", label: "Contribute Resources" }
-];
-
-const footerMeta = [
-  "Community-led humanitarian programs",
-  "Accessible, low-bandwidth experience",
-  "Current footprint: Nigeria and Ghana"
+  { href: "/donate/transparency", label: "Transparency" },
+  { href: "/get-involved", label: "Partner or Volunteer" }
 ];
 
 export function SiteFooter() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="site-footer">
       <div className="site-footer__shell">
@@ -39,24 +35,21 @@ export function SiteFooter() {
               height={48}
               className="site-footer__logo"
             />
-            <p className="site-footer__kicker">Humanity First Initiative</p>
+            <div className="site-footer__brand-copy">
+              <p className="site-footer__kicker">Humanity First Initiative</p>
+              <p className="site-footer__headline">
+                Community-led humanitarian work across education, arts, health, and sports.
+              </p>
+            </div>
           </div>
-          <h2 className="site-footer__headline">
-            Community-led humanitarian work with clear paths to support.
-          </h2>
           <p className="site-footer__description">
-            Humanity First Initiative documents real interventions, organizes program routes
-            clearly, and makes it easier for donors, partners, and volunteers to move with
-            confidence.
+            Explore programs, review project stories, support current work, or move directly into
+            partnership and volunteer routes from one clear footer.
           </p>
-
-          <div className="site-footer__meta">
-            {footerMeta.map((item) => (
-              <span key={item} className="site-footer__meta-item">
-                {item}
-              </span>
-            ))}
-          </div>
+          <p className="site-footer__summary-note">
+            Nigeria + Ghana footprint. Built for donor trust, collaboration, and low-bandwidth
+            access.
+          </p>
 
           <div className="site-footer__cta">
             <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">
@@ -105,9 +98,9 @@ export function SiteFooter() {
       </div>
 
       <div className="site-footer__base">
-        <p>Humanity First Initiative</p>
-        <p>Health, education, sports, and advocacy</p>
-        <p>Built for clarity, trust, and accessible browsing</p>
+        <p>&copy; {currentYear} Humanity First Initiative</p>
+        <p>Community-led humanitarian platform across health, education, arts, and sports.</p>
+        <p>Designed for clarity, donor trust, and low-bandwidth access.</p>
       </div>
     </footer>
   );
