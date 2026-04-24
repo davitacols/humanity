@@ -53,6 +53,11 @@ export const metadata = {
   alternates: {
     canonical: "/"
   },
+  icons: {
+    icon: "/logo.jpeg",
+    shortcut: "/logo.jpeg",
+    apple: "/logo.jpeg"
+  },
   robots: {
     index: true,
     follow: true
