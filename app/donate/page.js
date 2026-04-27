@@ -3,7 +3,6 @@ import { DonationCheckoutForm } from "../../components/DonationCheckoutForm";
 import { Reveal } from "../../components/Reveal";
 import { SectionIntro } from "../../components/SectionIntro";
 import { SupportInquiryForm } from "../../components/SupportInquiryForm";
-import { stockMedia } from "../../components/stockMedia";
 import { donationTiers } from "../../components/siteData";
 import { getDonationContentData } from "../../lib/donation-content";
 import { getPaymentProviderAvailability } from "../../lib/payment-providers";
@@ -46,8 +45,6 @@ function getPaymentNotice(paymentStatus, provider, reference) {
   return { tone: "error", title: "Payment could not be confirmed.", body: `${label} did not return a complete confirmation. Retry or use the follow-up form.` };
 }
 
-const causeImages = [stockMedia.homeStories[0], stockMedia.educationFeature, stockMedia.homeHero, stockMedia.homeStories[2]];
-
 export default async function DonatePage({ searchParams }) {
   const params = (await searchParams) || {};
   const { funds, transparencyEntries, metrics, hasDirectPayments } = await getDonationContentData();
@@ -59,20 +56,16 @@ export default async function DonatePage({ searchParams }) {
 
   return (
     <main className="site-main donate-v2">
-      {/* Hero — immersive */}
       <Reveal as="section" className="donate-hero" delay={60}>
-        <img src={stockMedia.donateHero.src} alt={stockMedia.donateHero.alt} className="donate-hero__bg" />
-        <div className="donate-hero__overlay" />
         <div className="donate-hero__content">
-          <p className="donate-hero__eyebrow">Donations and support</p>
-          <h1 className="donate-hero__title">Choose a route and fund a visible need.</h1>
-          <p className="donate-hero__body">
-            Support health outreach, education access, youth sport, or creative advocacy through
-            named routes with public goals and documented progress.
-          </p>
+          <SectionIntro
+            eyebrow="Donations and support"
+            title="Choose a route and fund a visible need."
+            body="Support health outreach, education access, youth sport, or creative advocacy through named routes with public goals and documented progress."
+          />
           <div className="hero-actions">
             <a href="#giving-routes" className="button button--primary">Choose a giving route</a>
-            <LoadingLink href="/donate/transparency" className="button button--ghost-light" loadingLabel="Opening">
+            <LoadingLink href="/donate/transparency" className="button button--secondary" loadingLabel="Opening">
               View transparency
             </LoadingLink>
           </div>
@@ -87,7 +80,6 @@ export default async function DonatePage({ searchParams }) {
         </div>
       </Reveal>
 
-      {/* Giving routes */}
       <Reveal as="section" id="giving-routes" className="donate-v2__section" delay={100}>
         <SectionIntro
           eyebrow="Giving routes"
@@ -95,14 +87,13 @@ export default async function DonatePage({ searchParams }) {
           body="Each route shows the public goal, documented support so far, and whether checkout or follow-up is the right next step."
         />
         <div className="donate-funds">
-          {funds.map((fund, i) => {
+          {funds.map((fund) => {
             const progress = getProgress(fund);
-            const img = causeImages[i % causeImages.length];
             return (
               <article key={fund.slug} className={`donate-fund${selectedFund?.slug === fund.slug ? " is-selected" : ""}`}>
-                <div className="donate-fund__image">
-                  <img src={img.src} alt={img.alt} />
+                <div className="donate-fund__top">
                   <span className="donate-fund__badge">{fund.eyebrow}</span>
+                  <span className="donate-fund__status">{fund.paymentUrl || hasLiveProviders ? "Checkout route" : "Follow-up route"}</span>
                 </div>
                 <div className="donate-fund__body">
                   <h3 className="donate-fund__title">{fund.title}</h3>
@@ -143,7 +134,6 @@ export default async function DonatePage({ searchParams }) {
         </div>
       </Reveal>
 
-      {/* Suggested tiers */}
       <Reveal as="section" id="tiers" className="donate-v2__section" delay={140}>
         <SectionIntro
           eyebrow="Suggested levels"
@@ -162,7 +152,6 @@ export default async function DonatePage({ searchParams }) {
         </div>
       </Reveal>
 
-      {/* Checkout */}
       <Reveal as="section" id="live-checkout" className="donate-v2__section donate-checkout-section" delay={180}>
         <div className="donate-checkout-layout">
           <div className="donate-checkout-layout__copy">
@@ -198,7 +187,6 @@ export default async function DonatePage({ searchParams }) {
         </div>
       </Reveal>
 
-      {/* Transparency */}
       <Reveal as="section" className="donate-v2__section" delay={220}>
         <SectionIntro
           eyebrow="Trust layer"
@@ -232,7 +220,6 @@ export default async function DonatePage({ searchParams }) {
         </div>
       </Reveal>
 
-      {/* Donor follow-up */}
       <Reveal as="section" id="donation-intake" className="donate-v2__section" delay={260}>
         <SectionIntro
           eyebrow="Donor follow-up"
