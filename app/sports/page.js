@@ -1,5 +1,4 @@
 import { LoadingLink } from "../../components/LoadingLink";
-import { PageHero } from "../../components/PageHero";
 import { Reveal } from "../../components/Reveal";
 import { SectionIntro } from "../../components/SectionIntro";
 import { StockPhoto } from "../../components/StockPhoto";
@@ -27,97 +26,128 @@ const socialChangePillars = [
 
 export default function SportsPage() {
   return (
-    <main className="site-main page-v2">
-      <PageHero
-        eyebrow="Sports development"
-        title="Youth empowerment through grassroots sports."
-        body="Community-based training, talent development, local tournaments, and sports as a pathway to discipline, teamwork, and long-term opportunity."
-        primary={{ href: "/projects/dodoma-best-sports-center", label: "View flagship project" }}
-        secondary={{ href: "/donate", label: "Support sports programs" }}
-        highlights={["Grassroots programs", "Training resources", "Community events", "Talent spotlights", "Sports for social change"]}
-        media={stockMedia.homeHero}
-        asideTitle="Current flagship"
-        asideBody={`${sportsSpotlight.title} — ${sportsSpotlight.beneficiaries}, including ${sportsSpotlight.orphanSupport}.`}
-        asidePoints={[sportsSpotlight.location, sportsSpotlight.ageGroups, sportsSpotlight.totalRequest]}
-      />
-
-      <Reveal as="section" delay={120}>
-        <SectionIntro eyebrow="Grassroots programs" title="Community-based training initiatives." body="Structured programs that make sports accessible to children and youth in underserved communities." />
-        <div className="split-v2">
-          <StockPhoto src={stockMedia.homeHero.src} alt={stockMedia.homeHero.alt} label="Youth football" ratio="portrait" sizes="(max-width: 1120px) 100vw, 48vw" />
-          <div style={{ display: "grid", gap: "0.85rem" }}>
-            {grassrootsPrograms.map((p, i) => (
-              <article key={p.title} className="card-v2">
-                <div className="card-v2__top">
-                  <span className="card-v2__index">{String(i + 1).padStart(2, "0")}</span>
-                </div>
-                <h3 className="card-v2__title">{p.title}</h3>
-                <p className="card-v2__body">{p.body}</p>
-              </article>
-            ))}
+    <main className="site-main sports-v2">
+      {/* Hero */}
+      <Reveal as="section" className="about-hero" delay={60}>
+        <img src={stockMedia.homeHero.src} alt={stockMedia.homeHero.alt} className="about-hero__bg" />
+        <div className="about-hero__overlay" />
+        <div className="about-hero__content">
+          <p className="about-hero__eyebrow">Sports development</p>
+          <h1 className="about-hero__title">Youth empowerment through grassroots sports.</h1>
+          <p className="about-hero__body">
+            Community-based training, talent development, local tournaments, and sports as a
+            pathway to discipline, teamwork, and long-term opportunity.
+          </p>
+          <div className="hero-actions">
+            <LoadingLink href="/projects/dodoma-best-sports-center" className="button button--primary" loadingLabel="Opening">View flagship project</LoadingLink>
+            <LoadingLink href="/donate" className="button button--ghost-light" loadingLabel="Opening">Support sports programs</LoadingLink>
           </div>
         </div>
-      </Reveal>
-
-      <Reveal as="section" delay={180}>
-        <SectionIntro eyebrow="Training resources" title="Basic drills and learning resources for coaches and athletes." body="Practical materials that work with minimal equipment and volunteer-led delivery." />
-        <div className="card-grid-v2 card-grid-v2--3">
-          {trainingResources.map((r, i) => (
-            <article key={r.title} className="card-v2">
-              <div className="card-v2__top">
-                <span className="card-v2__index">{String(i + 1).padStart(2, "0")}</span>
-                <p className="card-v2__eyebrow">Resource</p>
-              </div>
-              <h3 className="card-v2__title">{r.title}</h3>
-              <p className="card-v2__body">{r.body}</p>
-            </article>
-          ))}
+        <div className="about-hero__stats">
+          <article className="about-hero__stat"><p className="about-hero__stat-value">{sportsSpotlight.beneficiaries.split(" ")[0]}</p><p className="about-hero__stat-label">children and youth enrolled</p></article>
+          <article className="about-hero__stat"><p className="about-hero__stat-value">{sportsSpotlight.orphanSupport.split(" ")[0]}</p><p className="about-hero__stat-label">orphans currently supported</p></article>
+          <article className="about-hero__stat"><p className="about-hero__stat-value">3</p><p className="about-hero__stat-label">age groups in training</p></article>
         </div>
       </Reveal>
 
-      <Reveal as="section" delay={240}>
-        <SectionIntro eyebrow="Talent spotlight" title="Showcasing promising young athletes." body="The initiative documents and promotes talented youth to create pathways into academies, clubs, and professional opportunities." />
-        <div className="dossier-v2">
-          <div className="dossier-v2__lead">
-            <h2 className="dossier-v2__title">{sportsSpotlight.title}</h2>
-            <p className="dossier-v2__body">{sportsSpotlight.summary}</p>
-            <p className="dossier-v2__body">{sportsSpotlight.body}</p>
-            <div className="hero-actions">
-              <LoadingLink href="/projects/dodoma-best-sports-center" className="button button--primary" loadingLabel="Opening">Read full proposal</LoadingLink>
+      {/* Grassroots programs */}
+      <Reveal as="section" className="sports-v2__section" delay={100}>
+        <div className="sports-v2__grassroots">
+          <div className="sports-v2__grassroots-media">
+            <StockPhoto src={stockMedia.homeHero.src} alt={stockMedia.homeHero.alt} label="Youth football" ratio="portrait" sizes="(max-width: 1120px) 100vw, 44vw" />
+          </div>
+          <div className="sports-v2__grassroots-copy">
+            <SectionIntro eyebrow="Grassroots programs" title="Community-based training initiatives." body="Structured programs that make sports accessible to children and youth in underserved communities." />
+            <div className="sports-v2__grassroots-list">
+              {grassrootsPrograms.map((p, i) => (
+                <article key={p.title} className="sports-v2__grassroots-item">
+                  <span className="sports-v2__grassroots-index">{String(i + 1).padStart(2, "0")}</span>
+                  <div>
+                    <h3>{p.title}</h3>
+                    <p>{p.body}</p>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
-          <div className="dossier-v2__sidebar">
-            {sportsSpotlight.priorities.slice(0, 3).map((p) => (
-              <article key={p.title} className="dossier-v2__fact">
-                <p className="dossier-v2__fact-eyebrow">Priority</p>
-                <p className="dossier-v2__fact-body">{p.title} — {p.body}</p>
+        </div>
+      </Reveal>
+
+      {/* Training resources */}
+      <Reveal as="section" className="sports-v2__section" delay={160}>
+        <SectionIntro eyebrow="Training resources" title="Basic drills and learning resources for coaches and athletes." body="Practical materials that work with minimal equipment and volunteer-led delivery." />
+        <div className="sports-v2__resources">
+          {trainingResources.map((r, i) => (
+            <article key={r.title} className="sports-v2__resource">
+              <span className="sports-v2__resource-index">{String(i + 1).padStart(2, "0")}</span>
+              <h3 className="sports-v2__resource-title">{r.title}</h3>
+              <p className="sports-v2__resource-body">{r.body}</p>
+            </article>
+          ))}
+        </div>
+      </Reveal>
+
+      {/* Dodoma spotlight */}
+      <Reveal as="section" className="sports-v2__section" delay={220}>
+        <div className="sports-v2__spotlight">
+          <div className="sports-v2__spotlight-copy">
+            <p className="sports-v2__spotlight-eyebrow">Flagship project</p>
+            <h2 className="sports-v2__spotlight-title">{sportsSpotlight.title}</h2>
+            <p className="sports-v2__spotlight-body">{sportsSpotlight.summary}</p>
+            <p className="sports-v2__spotlight-body">{sportsSpotlight.body}</p>
+            <div className="sports-v2__spotlight-facts">
+              {[
+                ["Location", sportsSpotlight.location],
+                ["Reach", sportsSpotlight.beneficiaries],
+                ["Support", sportsSpotlight.orphanSupport],
+                ["Current ask", sportsSpotlight.totalRequest]
+              ].map(([label, value]) => (
+                <div key={label} className="sports-v2__spotlight-fact">
+                  <span className="sports-v2__spotlight-fact-label">{label}</span>
+                  <span className="sports-v2__spotlight-fact-value">{value}</span>
+                </div>
+              ))}
+            </div>
+            <div className="hero-actions">
+              <LoadingLink href="/projects/dodoma-best-sports-center" className="button button--primary" loadingLabel="Opening">Read full proposal</LoadingLink>
+              <LoadingLink href="/donate" className="button button--ghost-light" loadingLabel="Opening">Donate to this work</LoadingLink>
+            </div>
+          </div>
+          <div className="sports-v2__spotlight-priorities">
+            <p className="sports-v2__spotlight-priorities-label">Current priorities</p>
+            {sportsSpotlight.priorities.map((p) => (
+              <article key={p.title} className="sports-v2__spotlight-priority">
+                <h4>{p.title}</h4>
+                <p>{p.body}</p>
               </article>
             ))}
           </div>
         </div>
       </Reveal>
 
-      <Reveal as="section" delay={300}>
+      {/* Social change */}
+      <Reveal as="section" className="sports-v2__section" delay={280}>
         <SectionIntro eyebrow="Sports for social change" title="Promoting discipline, teamwork, and leadership through athletics." body="Sports as a structured alternative that builds character and opens doors." />
-        <div className="card-grid-v2">
+        <div className="sports-v2__pillars">
           {socialChangePillars.map((p, i) => (
-            <article key={p.title} className="card-v2">
-              <div className="card-v2__top">
-                <span className="card-v2__index">{String(i + 1).padStart(2, "0")}</span>
-              </div>
-              <h3 className="card-v2__title">{p.title}</h3>
-              <p className="card-v2__body">{p.body}</p>
+            <article key={p.title} className="sports-v2__pillar">
+              <span className="sports-v2__pillar-index">{String(i + 1).padStart(2, "0")}</span>
+              <h3 className="sports-v2__pillar-title">{p.title}</h3>
+              <p className="sports-v2__pillar-body">{p.body}</p>
             </article>
           ))}
         </div>
       </Reveal>
 
-      <Reveal as="section" className="dark-panel-v2" delay={360}>
-        <h2 className="dark-panel-v2__title">Support youth sports development across the initiative.</h2>
-        <p className="dark-panel-v2__body">Equipment, coaching, tournament logistics, and talent pathways all need sustained support from donors, partners, and volunteers.</p>
-        <div className="hero-actions">
-          <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">Donate to sports programs</LoadingLink>
-          <LoadingLink href="/get-involved" className="button button--secondary" loadingLabel="Opening">Volunteer or partner</LoadingLink>
+      {/* CTA */}
+      <Reveal as="section" className="sports-v2__section" delay={340}>
+        <div className="sports-v2__cta">
+          <h2 className="sports-v2__cta-title">Support youth sports development across the initiative.</h2>
+          <p className="sports-v2__cta-body">Equipment, coaching, tournament logistics, and talent pathways all need sustained support from donors, partners, and volunteers.</p>
+          <div className="hero-actions">
+            <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">Donate to sports programs</LoadingLink>
+            <LoadingLink href="/get-involved" className="button button--ghost-light" loadingLabel="Opening">Volunteer or partner</LoadingLink>
+          </div>
         </div>
       </Reveal>
     </main>

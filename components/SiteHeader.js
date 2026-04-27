@@ -3,17 +3,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { LoadingLink } from "./LoadingLink";
 import { navItems } from "./siteData";
 
 const desktopLeadingNavItems = navItems.filter((item) =>
-  ["/", "/about"].includes(item.href)
+  ["/"].includes(item.href)
 );
 
 const desktopTrailingNavItems = navItems.filter((item) =>
   ["/projects", "/blog"].includes(item.href)
 );
+
+const aboutDropdownItems = ["/about", "/get-involved", "/gallery"];
 
 const programDropdownItems = navItems.filter((item) =>
   ["/programs", "/education", "/arts", "/health", "/sports"].includes(item.href)
@@ -26,65 +28,53 @@ const headerUtilityItems = [
   { href: "/education", label: "Low-bandwidth learning access" }
 ];
 
+const aboutMegaSections = [
+  {
+    title: "The initiative",
+    items: [
+      { href: "/about", label: "About us", description: "Mission, standards, and how the platform works." },
+      { href: "/about#mission", label: "Mission and values", description: "Why the initiative exists and what it stands for." },
+      { href: "/about#standards", label: "Operating standards", description: "Trust, dignity, and accountability principles." }
+    ]
+  },
+  {
+    title: "People",
+    items: [
+      { href: "/about#network", label: "Team and collaborators", description: "Strategy, regional partners, and creative contributors." },
+      { href: "/gallery", label: "Photo gallery", description: "Respectful visual documentation from the field." },
+      { href: "/get-involved", label: "Get involved", description: "Volunteer, partner, or open a support conversation." }
+    ]
+  }
+];
+
+const aboutQuickLinks = [
+  { href: "/about", label: "Open about page" },
+  { href: "/get-involved", label: "Get involved" }
+];
+
 const programMegaSections = [
   {
     title: "Core program routes",
     items: [
-      {
-        href: "/programs",
-        label: "Programs overview",
-        description: "Open the full program map and support routes."
-      },
-      {
-        href: "/health",
-        label: "Maternal and child health",
-        description: "Outreach, kits, care support, and follow-up."
-      },
-      {
-        href: "/education",
-        label: "Education access",
-        description: "Learning tracks, guides, and facilitator tools."
-      }
+      { href: "/programs", label: "Programs overview", description: "Open the full program map and support routes." },
+      { href: "/health", label: "Maternal and child health", description: "Outreach, kits, care support, and follow-up." },
+      { href: "/education", label: "Education access", description: "Learning tracks, guides, and facilitator tools." }
     ]
   },
   {
     title: "Youth and advocacy",
     items: [
-      {
-        href: "/sports",
-        label: "Youth sports development",
-        description: "Training, mentorship, and equipment support."
-      },
-      {
-        href: "/arts",
-        label: "Creative advocacy",
-        description: "Storytelling, arts, film, and campaign work."
-      },
-      {
-        href: "/projects",
-        label: "Projects archive",
-        description: "Project pages, needs, outcomes, and priorities."
-      }
+      { href: "/sports", label: "Youth sports development", description: "Training, mentorship, and equipment support." },
+      { href: "/arts", label: "Creative advocacy", description: "Storytelling, arts, film, and campaign work." },
+      { href: "/projects", label: "Projects archive", description: "Project pages, needs, outcomes, and priorities." }
     ]
   },
   {
     title: "Proof and participation",
     items: [
-      {
-        href: "/blog",
-        label: "Field notes and updates",
-        description: "Stories, evidence, and progress updates."
-      },
-      {
-        href: "/gallery",
-        label: "Photo gallery",
-        description: "Respectful visual documentation from the work."
-      },
-      {
-        href: "/get-involved",
-        label: "Get involved",
-        description: "Volunteer, partner, or open a support conversation."
-      }
+      { href: "/blog", label: "Field notes and updates", description: "Stories, evidence, and progress updates." },
+      { href: "/gallery", label: "Photo gallery", description: "Respectful visual documentation from the work." },
+      { href: "/get-involved", label: "Get involved", description: "Volunteer, partner, or open a support conversation." }
     ]
   }
 ];
@@ -95,87 +85,122 @@ const megaPanelQuickLinks = [
 ];
 
 function isItemActive(pathname, href) {
-  return href === "/"
-    ? pathname === href
-    : pathname === href || pathname.startsWith(`${href}/`);
+  if (href.includes("#")) return false;
+  return href === "/" ? pathname === href : pathname === href || pathname.startsWith(`${href}/`);
+}
+
+function useDropdown() {
+  const ref = useRef(null);
+  const timerRef = useRef(null);
+  const [open, setOpen] = useState(false);
+
+  const clear = useCallback(() => {
+    if (timerRef.current) { window.clearTimeout(timerRef.current); timerRef.current = null; }
+  }, []);
+
+  const doOpen = useCallback(() => { clear(); setOpen(true); }, [clear]);
+  const doClose = useCallback(() => { clear(); setOpen(false); }, [clear]);
+  const scheduleClose = useCallback(() => {
+    clear();
+    timerRef.current = window.setTimeout(() => { setOpen(false); timerRef.current = null; }, 180);
+  }, [clear]);
+
+  useEffect(() => () => clear(), [clear]);
+
+  return { ref, open, doOpen, doClose, scheduleClose };
 }
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
-  const dropdownCloseTimerRef = useRef(null);
-  const programsMenuActive = programDropdownItems.some(
-    (item) => pathname === item.href || pathname.startsWith(`${item.href}/`)
-  );
 
-  function handleMobileNavigate() {
-    setMenuOpen(false);
-  }
+  const about = useDropdown();
+  const programs = useDropdown();
 
-  function clearDropdownCloseTimer() {
-    if (dropdownCloseTimerRef.current) {
-      window.clearTimeout(dropdownCloseTimerRef.current);
-      dropdownCloseTimerRef.current = null;
-    }
-  }
+  const aboutActive = aboutDropdownItems.some((href) => isItemActive(pathname, href));
+  const programsActive = programDropdownItems.some((item) => isItemActive(pathname, item.href));
 
-  function openDesktopDropdown() {
-    clearDropdownCloseTimer();
-    setDesktopDropdownOpen(true);
-  }
+  function closeAll() { about.doClose(); programs.doClose(); }
+  function handleMobileNavigate() { setMenuOpen(false); }
 
-  function closeDesktopDropdown() {
-    clearDropdownCloseTimer();
-    setDesktopDropdownOpen(false);
-  }
-
-  function scheduleDesktopDropdownClose() {
-    clearDropdownCloseTimer();
-    dropdownCloseTimerRef.current = window.setTimeout(() => {
-      setDesktopDropdownOpen(false);
-      dropdownCloseTimerRef.current = null;
-    }, 180);
-  }
+  useEffect(() => { setMenuOpen(false); closeAll(); }, [pathname]);
 
   useEffect(() => {
-    setMenuOpen(false);
-    closeDesktopDropdown();
-  }, [pathname]);
-
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        setMenuOpen(false);
-        closeDesktopDropdown();
-      }
-    };
-
-    const handlePointerDown = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        closeDesktopDropdown();
-      }
+    const onKey = (e) => { if (e.key === "Escape") { setMenuOpen(false); closeAll(); } };
+    const onPointer = (e) => {
+      if (about.ref.current && !about.ref.current.contains(e.target)) about.doClose();
+      if (programs.ref.current && !programs.ref.current.contains(e.target)) programs.doClose();
     };
 
     document.body.classList.toggle("is-menu-open", menuOpen);
-
-    if (menuOpen) {
-      window.addEventListener("keydown", handleKeyDown);
-    }
-
-    if (desktopDropdownOpen) {
-      window.addEventListener("keydown", handleKeyDown);
-      window.addEventListener("pointerdown", handlePointerDown);
-    }
+    if (menuOpen || about.open || programs.open) window.addEventListener("keydown", onKey);
+    if (about.open || programs.open) window.addEventListener("pointerdown", onPointer);
 
     return () => {
       document.body.classList.remove("is-menu-open");
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("pointerdown", handlePointerDown);
-      clearDropdownCloseTimer();
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("pointerdown", onPointer);
     };
-  }, [desktopDropdownOpen, menuOpen]);
+  }, [menuOpen, about.open, programs.open]);
+
+  function renderMegaDropdown(id, label, isActive, dropdown, sections, quickLinks, asideTitle, asideBody) {
+    return (
+      <div
+        ref={dropdown.ref}
+        className={`site-nav__item site-nav__item--dropdown${dropdown.open ? " is-open" : ""}`}
+        onMouseEnter={() => { programs.doClose(); about.doClose(); dropdown.doOpen(); }}
+        onMouseLeave={dropdown.scheduleClose}
+        onFocus={dropdown.doOpen}
+        onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) dropdown.scheduleClose(); }}
+      >
+        <button
+          type="button"
+          className={`site-nav__trigger${isActive ? " is-active" : ""}`}
+          aria-expanded={dropdown.open}
+          aria-haspopup="dialog"
+          aria-controls={id}
+          onClick={() => dropdown.open ? dropdown.doClose() : dropdown.doOpen()}
+        >
+          <span>{label}</span>
+          <span className="site-nav__caret" aria-hidden="true" />
+        </button>
+
+        <div id={id} className="site-nav__dropdown" aria-label={`${label} navigation panel`}>
+          <div className="site-nav__mega-grid">
+            <div className="site-nav__mega-aside">
+              <p className="site-nav__mega-kicker">{label}</p>
+              <h2 className="site-nav__mega-title">{asideTitle}</h2>
+              <p className="site-nav__mega-body">{asideBody}</p>
+              <div className="site-nav__mega-actions">
+                {quickLinks.map((item) => (
+                  <LoadingLink key={item.href} href={item.href} className="site-nav__mega-action" loadingLabel={item.label} preserveLabelOnLoad onClick={dropdown.doClose}>
+                    {item.label}
+                  </LoadingLink>
+                ))}
+              </div>
+            </div>
+
+            {sections.map((section) => (
+              <div key={section.title} className="site-nav__mega-section">
+                <p className="site-nav__mega-section-title">{section.title}</p>
+                <div className="site-nav__mega-links">
+                  {section.items.map((item) => {
+                    const active = isItemActive(pathname, item.href);
+                    return (
+                      <LoadingLink key={item.href} href={item.href} className={`site-nav__dropdown-link${active ? " is-active" : ""}`} aria-current={active ? "page" : undefined} loadingLabel={item.label} preserveLabelOnLoad onClick={dropdown.doClose}>
+                        <span className="site-nav__dropdown-link-title">{item.label}</span>
+                        <span className="site-nav__dropdown-link-desc">{item.description}</span>
+                      </LoadingLink>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -184,13 +209,7 @@ export function SiteHeader() {
           <div className="site-header__utility-inner">
             <span className="site-header__utility-label">Platform signals</span>
             {headerUtilityItems.map((item) => (
-              <LoadingLink
-                key={item.href}
-                href={item.href}
-                className="site-header__utility-item"
-                loadingLabel={item.label}
-                preserveLabelOnLoad
-              >
+              <LoadingLink key={item.href} href={item.href} className="site-header__utility-item" loadingLabel={item.label} preserveLabelOnLoad>
                 {item.label}
               </LoadingLink>
             ))}
@@ -202,14 +221,7 @@ export function SiteHeader() {
         <div className="site-header__panel">
           <div className="site-header__inner">
             <Link href="/" className="site-brand" aria-label="Humanity First Initiative home">
-              <Image
-                src="/logo.jpeg"
-                alt=""
-                width={48}
-                height={48}
-                className="site-brand__logo"
-                priority
-              />
+              <Image src="/logo.jpeg" alt="" width={48} height={48} className="site-brand__logo" priority />
               <div className="site-brand__text">
                 <span className="site-brand__name">Humanity First</span>
                 <span className="site-brand__sub">Community aid platform</span>
@@ -218,123 +230,32 @@ export function SiteHeader() {
 
             <nav className="site-nav site-nav--desktop" aria-label="Primary">
               {desktopLeadingNavItems.map((item) => {
-                const isActive = isItemActive(pathname, item.href);
+                const active = isItemActive(pathname, item.href);
                 return (
-                  <LoadingLink
-                    key={item.href}
-                    href={item.href}
-                    className={`site-nav__link${isActive ? " is-active" : ""}`}
-                    aria-current={isActive ? "page" : undefined}
-                    loadingLabel={item.label}
-                    preserveLabelOnLoad
-                  >
+                  <LoadingLink key={item.href} href={item.href} className={`site-nav__link${active ? " is-active" : ""}`} aria-current={active ? "page" : undefined} loadingLabel={item.label} preserveLabelOnLoad>
                     {item.label}
                   </LoadingLink>
                 );
               })}
 
-              <div
-                ref={dropdownRef}
-                className={`site-nav__item site-nav__item--dropdown${desktopDropdownOpen ? " is-open" : ""}`}
-                onMouseEnter={openDesktopDropdown}
-                onMouseLeave={scheduleDesktopDropdownClose}
-                onFocus={openDesktopDropdown}
-                onBlur={(event) => {
-                  if (!event.currentTarget.contains(event.relatedTarget)) {
-                    scheduleDesktopDropdownClose();
-                  }
-                }}
-              >
-                <button
-                  type="button"
-                  className={`site-nav__trigger${programsMenuActive ? " is-active" : ""}`}
-                  aria-expanded={desktopDropdownOpen}
-                  aria-haspopup="dialog"
-                  aria-controls="programs-mega-panel"
-                  onClick={() => {
-                    if (desktopDropdownOpen) {
-                      closeDesktopDropdown();
-                    } else {
-                      openDesktopDropdown();
-                    }
-                  }}
-                >
-                  <span>Programs</span>
-                  <span className="site-nav__caret" aria-hidden="true" />
-                </button>
+              {renderMegaDropdown(
+                "about-mega-panel", "About", aboutActive, about,
+                aboutMegaSections, aboutQuickLinks,
+                "Learn about the initiative.",
+                "Mission, team, collaborators, standards, and ways to get involved — all in one place."
+              )}
 
-                <div
-                  id="programs-mega-panel"
-                  className="site-nav__dropdown"
-                  aria-label="Programs navigation panel"
-                >
-                  <div className="site-nav__mega-grid">
-                    <div className="site-nav__mega-aside">
-                      <p className="site-nav__mega-kicker">Programs in view</p>
-                      <h2 className="site-nav__mega-title">
-                        Explore trusted program routes.
-                      </h2>
-                      <p className="site-nav__mega-body">
-                        Health, learning, youth development, and advocacy are organized into clear
-                        public pathways supporters can understand quickly.
-                      </p>
-                      <div className="site-nav__mega-actions">
-                        {megaPanelQuickLinks.map((item) => (
-                          <LoadingLink
-                            key={item.href}
-                            href={item.href}
-                            className="site-nav__mega-action"
-                            loadingLabel={item.label}
-                            preserveLabelOnLoad
-                            onClick={closeDesktopDropdown}
-                          >
-                            {item.label}
-                          </LoadingLink>
-                        ))}
-                      </div>
-                    </div>
-
-                    {programMegaSections.map((section) => (
-                      <div key={section.title} className="site-nav__mega-section">
-                        <p className="site-nav__mega-section-title">{section.title}</p>
-                        <div className="site-nav__mega-links">
-                          {section.items.map((item) => {
-                            const isActive = isItemActive(pathname, item.href);
-                            return (
-                              <LoadingLink
-                                key={item.href}
-                                href={item.href}
-                                className={`site-nav__dropdown-link${isActive ? " is-active" : ""}`}
-                                aria-current={isActive ? "page" : undefined}
-                                loadingLabel={item.label}
-                                preserveLabelOnLoad
-                                onClick={closeDesktopDropdown}
-                              >
-                                <span className="site-nav__dropdown-link-title">{item.label}</span>
-                                <span className="site-nav__dropdown-link-desc">
-                                  {item.description}
-                                </span>
-                              </LoadingLink>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              {renderMegaDropdown(
+                "programs-mega-panel", "Programs", programsActive, programs,
+                programMegaSections, megaPanelQuickLinks,
+                "Explore trusted program routes.",
+                "Health, learning, youth development, and advocacy are organized into clear public pathways supporters can understand quickly."
+              )}
 
               {desktopTrailingNavItems.map((item) => {
-                const isActive = isItemActive(pathname, item.href);
+                const active = isItemActive(pathname, item.href);
                 return (
-                  <LoadingLink
-                    key={item.href}
-                    href={item.href}
-                    className={`site-nav__link${isActive ? " is-active" : ""}`}
-                    aria-current={isActive ? "page" : undefined}
-                    loadingLabel={item.label}
-                    preserveLabelOnLoad
-                  >
+                  <LoadingLink key={item.href} href={item.href} className={`site-nav__link${active ? " is-active" : ""}`} aria-current={active ? "page" : undefined} loadingLabel={item.label} preserveLabelOnLoad>
                     {item.label}
                   </LoadingLink>
                 );
@@ -342,67 +263,41 @@ export function SiteHeader() {
             </nav>
 
             <div className="site-header__actions">
-              <LoadingLink
-                href="/get-involved"
-                className="button button--header-secondary"
-                loadingLabel="Opening"
-              >
+              <LoadingLink href="/get-involved" className="button button--header-secondary" loadingLabel="Opening">
                 Contact Team
               </LoadingLink>
-
               <LoadingLink href="/donate" className="button button--header" loadingLabel="Opening">
                 Donate Now
               </LoadingLink>
-
               <button
                 type="button"
-                className={`site-header__menu-button${menuOpen ? " is-open" : ""}`}
+                className={`ham${menuOpen ? " is-open" : ""}`}
                 aria-expanded={menuOpen}
                 aria-controls="primary-navigation"
                 aria-label={menuOpen ? "Close menu" : "Open menu"}
-                onClick={() => setMenuOpen((open) => !open)}
+                onClick={() => setMenuOpen((o) => !o)}
               >
-                <span className="site-header__menu-icon" aria-hidden="true">
-                  <span className="site-header__menu-line" />
-                  <span className="site-header__menu-line" />
-                  <span className="site-header__menu-line" />
-                </span>
+                <span className="ham__label">{menuOpen ? "Close" : "Menu"}</span>
+                <span className="ham__icon" aria-hidden="true"><span /><span /></span>
               </button>
             </div>
           </div>
         </div>
       </header>
 
-      <button
-        type="button"
-        className={`site-header__backdrop${menuOpen ? " is-open" : ""}`}
-        aria-label="Close menu"
-        onClick={() => setMenuOpen(false)}
-      />
+      <button type="button" className={`site-header__backdrop${menuOpen ? " is-open" : ""}`} aria-label="Close menu" onClick={() => setMenuOpen(false)} />
 
       <aside className={`site-header__drawer${menuOpen ? " is-open" : ""}`} aria-hidden={!menuOpen}>
         <div className="site-header__drawer-shell">
           <div className="site-header__drawer-top">
             <div className="site-header__drawer-brand">
-              <Image
-                src="/logo.jpeg"
-                alt=""
-                width={40}
-                height={40}
-                className="site-brand__logo"
-              />
+              <Image src="/logo.jpeg" alt="" width={40} height={40} className="site-brand__logo" />
               <div className="site-brand__text">
                 <span className="site-brand__name">Humanity First</span>
                 <span className="site-brand__sub">Community aid platform</span>
               </div>
             </div>
-
-            <button
-              type="button"
-              className="site-header__drawer-close"
-              aria-label="Close menu"
-              onClick={() => setMenuOpen(false)}
-            >
+            <button type="button" className="site-header__drawer-close" aria-label="Close menu" onClick={() => setMenuOpen(false)}>
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -413,14 +308,7 @@ export function SiteHeader() {
 
           <div className="site-header__drawer-utility">
             {headerUtilityItems.map((item) => (
-              <LoadingLink
-                key={item.href}
-                href={item.href}
-                className="site-header__drawer-chip"
-                loadingLabel={item.label}
-                preserveLabelOnLoad
-                onClick={handleMobileNavigate}
-              >
+              <LoadingLink key={item.href} href={item.href} className="site-header__drawer-chip" loadingLabel={item.label} preserveLabelOnLoad onClick={handleMobileNavigate}>
                 {item.label}
               </LoadingLink>
             ))}
@@ -428,17 +316,9 @@ export function SiteHeader() {
 
           <nav className="site-nav site-nav--mobile" id="primary-navigation" aria-label="Primary">
             {navItems.map((item) => {
-              const isActive = isItemActive(pathname, item.href);
+              const active = isItemActive(pathname, item.href);
               return (
-                <LoadingLink
-                  key={item.href}
-                  href={item.href}
-                  className={`site-nav__link${isActive ? " is-active" : ""}`}
-                  aria-current={isActive ? "page" : undefined}
-                  loadingLabel={item.label}
-                  preserveLabelOnLoad
-                  onClick={handleMobileNavigate}
-                >
+                <LoadingLink key={item.href} href={item.href} className={`site-nav__link${active ? " is-active" : ""}`} aria-current={active ? "page" : undefined} loadingLabel={item.label} preserveLabelOnLoad onClick={handleMobileNavigate}>
                   {item.label}
                 </LoadingLink>
               );
@@ -446,12 +326,8 @@ export function SiteHeader() {
           </nav>
 
           <div className="site-header__drawer-actions">
-            <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">
-              Donate now
-            </LoadingLink>
-            <LoadingLink href="/get-involved" className="button button--secondary" loadingLabel="Opening">
-              Get Involved
-            </LoadingLink>
+            <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">Donate now</LoadingLink>
+            <LoadingLink href="/get-involved" className="button button--secondary" loadingLabel="Opening">Get Involved</LoadingLink>
           </div>
         </div>
       </aside>

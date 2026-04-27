@@ -15,7 +15,7 @@ const impactNumbers = [
   { value: "24", label: "Published project notes and field updates" },
   { value: "4", label: "Active program routes" },
   { value: "100+", label: "Children and youth reached" },
-  { value: "2", label: "Countries in the network" }
+  { value: "9", label: "Countries in the network" }
 ];
 
 const fieldStories = [

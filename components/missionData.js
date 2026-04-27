@@ -177,8 +177,8 @@ export const projectCatalog = [
     supportHref: "/projects/premium-video",
     supportLabel: "Open documentary release",
     image: {
-      src: "/stock/community-gathering.jpg",
-      alt: "Women and children gathered together during a community event.",
+      src: "/stock/volunteer-sorting.jpg",
+      alt: "Volunteers collaborating on creative and campaign materials.",
       label: "Creative advocacy"
     }
   },
@@ -213,8 +213,8 @@ export const projectCatalog = [
     supportHref: "/donate",
     supportLabel: "Support this campaign",
     image: {
-      src: "/stock/community-gathering.jpg",
-      alt: "Women and children gathered together during a community event.",
+      src: "/stock/mother-clinic.jpg",
+      alt: "A mother receiving health guidance and nutrition support.",
       label: "Community information"
     }
   },
@@ -232,7 +232,7 @@ export const projectCatalog = [
     supportLabel: "Support the platform",
     image: {
       src: "/stock/community-gathering.jpg",
-      alt: "A community gathering suitable for documentary and campaign storytelling.",
+      alt: "A community gathering during a documentary and campaign storytelling event.",
       label: "Documentary release"
     }
   }

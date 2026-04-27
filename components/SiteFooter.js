@@ -1,105 +1,115 @@
 import Image from "next/image";
 import Link from "next/link";
 import { LoadingLink } from "./LoadingLink";
-import { navItems } from "./siteData";
 
-const footerExploreLinks = navItems.filter((item) =>
-  ["/", "/about", "/projects", "/blog"].includes(item.href)
-);
+const footerLinks = {
+  explore: [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/projects", label: "Projects" },
+    { href: "/blog", label: "Field notes" },
+    { href: "/gallery", label: "Gallery" }
+  ],
+  programs: [
+    { href: "/health", label: "Maternal and child health" },
+    { href: "/education", label: "Education access" },
+    { href: "/sports", label: "Sports development" },
+    { href: "/arts", label: "Arts and advocacy" },
+    { href: "/programs", label: "All programs" }
+  ],
+  support: [
+    { href: "/donate", label: "Donate" },
+    { href: "/donate/transparency", label: "Transparency tracker" },
+    { href: "/get-involved", label: "Partner or volunteer" },
+    { href: "/education/contribute", label: "Contribute resources" }
+  ],
+  connect: [
+    { href: "/about#network", label: "Team and collaborators" },
+    { href: "/get-involved", label: "Contact the team" },
+    { href: "/projects/dodoma-best-sports-center", label: "Flagship project" }
+  ]
+};
 
-const footerFocusAreas = [
-  { href: "/education", label: "Education Access" },
-  { href: "/arts", label: "Arts and storytelling" },
-  { href: "/health", label: "Public Health" },
-  { href: "/projects/dodoma-best-sports-center", label: "Sports Development" }
-];
-
-const footerSupportLinks = [
-  { href: "/donate", label: "Donate" },
-  { href: "/donate/transparency", label: "Transparency" },
-  { href: "/get-involved", label: "Partner or Volunteer" }
+const signals = [
+  "Community-led programs",
+  "Transparent support pathways",
+  "Low-bandwidth access",
+  "Cross-border network"
 ];
 
 export function SiteFooter() {
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="site-footer">
-      <div className="site-footer__shell">
-        <div className="site-footer__summary">
-          <div className="site-footer__brand-row">
-            <Image
-              src="/logo.jpeg"
-              alt=""
-              width={48}
-              height={48}
-              className="site-footer__logo"
-            />
-            <div className="site-footer__brand-copy">
-              <p className="site-footer__kicker">Humanity First Initiative</p>
-              <p className="site-footer__headline">
-                Community-led humanitarian work across education, arts, health, and sports.
-              </p>
+    <footer className="ft">
+      <div className="ft__main">
+        {/* Brand + CTA */}
+        <div className="ft__brand-section">
+          <div className="ft__brand">
+            <Image src="/logo.jpeg" alt="" width={44} height={44} className="ft__logo" />
+            <div>
+              <p className="ft__brand-name">Humanity First</p>
+              <p className="ft__brand-sub">Initiative</p>
             </div>
           </div>
-          <p className="site-footer__description">
-            Explore programs, review project stories, support current work, or move directly into
-            partnership and volunteer routes from one clear footer.
+          <p className="ft__tagline">
+            Community-led humanitarian work across education, arts, health, and sports development.
           </p>
-          <p className="site-footer__summary-note">
-            Cross-border humanitarian platform. Built for donor trust, collaboration, and
-            low-bandwidth access.
-          </p>
-
-          <div className="site-footer__cta">
+          <div className="ft__signals">
+            {signals.map((s) => (
+              <span key={s} className="ft__signal">{s}</span>
+            ))}
+          </div>
+          <div className="ft__cta">
             <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">
               Donate now
             </LoadingLink>
-            <LoadingLink href="/get-involved" className="button button--secondary" loadingLabel="Opening">
+            <LoadingLink href="/get-involved" className="button button--ghost-light" loadingLabel="Opening">
               Get involved
             </LoadingLink>
           </div>
         </div>
 
-        <div className="site-footer__columns">
-          <nav className="site-footer__column" aria-label="Footer explore">
-            <p className="site-footer__column-title">Explore</p>
-            <div className="site-footer__list">
-              {footerExploreLinks.map((item) => (
-                <Link key={item.href} href={item.href} className="site-footer__link">
-                  {item.label}
-                </Link>
+        {/* Link columns */}
+        <div className="ft__columns">
+          <nav className="ft__column" aria-label="Explore">
+            <p className="ft__column-title">Explore</p>
+            <div className="ft__list">
+              {footerLinks.explore.map((l) => (
+                <Link key={l.href} href={l.href} className="ft__link">{l.label}</Link>
               ))}
             </div>
           </nav>
-
-          <nav className="site-footer__column" aria-label="Footer focus areas">
-            <p className="site-footer__column-title">Focus Areas</p>
-            <div className="site-footer__list">
-              {footerFocusAreas.map((item) => (
-                <Link key={item.label} href={item.href} className="site-footer__link">
-                  {item.label}
-                </Link>
+          <nav className="ft__column" aria-label="Programs">
+            <p className="ft__column-title">Programs</p>
+            <div className="ft__list">
+              {footerLinks.programs.map((l) => (
+                <Link key={l.href} href={l.href} className="ft__link">{l.label}</Link>
               ))}
             </div>
           </nav>
-
-          <nav className="site-footer__column" aria-label="Footer support">
-            <p className="site-footer__column-title">Support</p>
-            <div className="site-footer__list">
-              {footerSupportLinks.map((item) => (
-                <Link key={item.href} href={item.href} className="site-footer__link">
-                  {item.label}
-                </Link>
+          <nav className="ft__column" aria-label="Support">
+            <p className="ft__column-title">Support</p>
+            <div className="ft__list">
+              {footerLinks.support.map((l) => (
+                <Link key={l.href} href={l.href} className="ft__link">{l.label}</Link>
+              ))}
+            </div>
+          </nav>
+          <nav className="ft__column" aria-label="Connect">
+            <p className="ft__column-title">Connect</p>
+            <div className="ft__list">
+              {footerLinks.connect.map((l) => (
+                <Link key={l.href} href={l.href} className="ft__link">{l.label}</Link>
               ))}
             </div>
           </nav>
         </div>
       </div>
 
-      <div className="site-footer__base">
-        <p>&copy; {currentYear} Humanity First Initiative</p>
-        <p>Community-led humanitarian platform across health, education, arts, and sports.</p>
+      {/* Base */}
+      <div className="ft__base">
+        <p>&copy; {year} Humanity First Initiative</p>
         <p>Designed for clarity, donor trust, and low-bandwidth access.</p>
       </div>
     </footer>
