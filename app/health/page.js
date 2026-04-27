@@ -26,7 +26,7 @@ const safetyTopics = [
 
 const campaigns = [
   { title: "Maternal health kits outreach", body: "Distribution of basic care kits for mothers and newborns with on-ground follow-ups.", status: "Active" },
-  { title: "School safety awareness", body: "Safety education for schools and families with practical checklists and flyers.", status: "Active" },
+  { title: "School safety awareness", body: "Safety education for schools and families with checklists and flyers.", status: "Active" },
   { title: "Nutrition flyer campaign", body: "Quick-use nutrition guides and outreach materials for parents and caregivers.", status: "In progress" }
 ];
 
@@ -35,45 +35,45 @@ export default function HealthPage() {
     <main className="site-main page-v2">
       <PageHero
         eyebrow="Public health and safety"
-        title="Educating communities and promoting healthier living."
-        body="Health education content, community campaigns, preventive awareness, safety advocacy, and downloadable resources — all designed for practical community use."
+        title="Health education for families, schools, and community outreach."
+        body="Health education covers hygiene, nutrition, maternal and child care, malaria prevention, vaccination awareness, school safety, and family guidance."
         primary={{ href: "/donate", label: "Support health outreach" }}
         secondary={{ href: "/programs", label: "Back to programs" }}
         highlights={["Health education", "Community campaigns", "Preventive awareness", "Safety advocacy", "Downloadable resources"]}
         media={stockMedia.homeStories[0]}
         asideTitle="Community-first health"
-        asideBody="Content designed for low-bandwidth access, community health workers, and families in underserved areas."
+        asideBody="Resources support community health workers, school safety activities, family education, and low-bandwidth outreach."
       />
 
       <Reveal as="section" delay={120}>
-        <SectionIntro eyebrow="Health education" title="Core topics for community health literacy." body="Practical content on hygiene, nutrition, maternal health, and mental wellbeing." />
+        <SectionIntro eyebrow="Health education" title="Core topics for community health literacy." body="Hygiene, nutrition, maternal care, child health, immunization, and mental wellbeing." />
         <div className="card-grid-v2">
-          {healthTopics.map((t, i) => (
-            <article key={t.title} className="card-v2">
+          {healthTopics.map((topic, index) => (
+            <article key={topic.title} className="card-v2">
               <div className="card-v2__top">
-                <span className="card-v2__index">{String(i + 1).padStart(2, "0")}</span>
+                <span className="card-v2__index">{String(index + 1).padStart(2, "0")}</span>
                 <p className="card-v2__eyebrow">Health topic</p>
               </div>
-              <h3 className="card-v2__title">{t.title}</h3>
-              <p className="card-v2__body">{t.body}</p>
+              <h3 className="card-v2__title">{topic.title}</h3>
+              <p className="card-v2__body">{topic.body}</p>
             </article>
           ))}
         </div>
       </Reveal>
 
       <Reveal as="section" delay={180}>
-        <SectionIntro eyebrow="Community campaigns" title="Outreach documentation and impact reports." body="Active campaigns with real field documentation and measurable outcomes." />
+        <SectionIntro eyebrow="Community campaigns" title="Outreach documentation and impact reports." body="Active campaigns with field documentation, support context, and follow-up notes." />
         <div className="split-v2">
           <StockPhoto src={stockMedia.homeStories[0].src} alt={stockMedia.homeStories[0].alt} label="Health outreach" sizes="(max-width: 1120px) 100vw, 48vw" />
           <div style={{ display: "grid", gap: "0.85rem" }}>
-            {campaigns.map((c) => (
-              <article key={c.title} className="card-v2">
+            {campaigns.map((campaign) => (
+              <article key={campaign.title} className="card-v2">
                 <div className="card-v2__top">
                   <p className="card-v2__eyebrow">Campaign</p>
-                  <span className="card-v2__index" style={{ width: "auto", padding: "0 0.6rem", fontSize: "0.72rem" }}>{c.status}</span>
+                  <span className="card-v2__index" style={{ width: "auto", padding: "0 0.6rem", fontSize: "0.72rem" }}>{campaign.status}</span>
                 </div>
-                <h3 className="card-v2__title">{c.title}</h3>
-                <p className="card-v2__body">{c.body}</p>
+                <h3 className="card-v2__title">{campaign.title}</h3>
+                <p className="card-v2__body">{campaign.body}</p>
               </article>
             ))}
           </div>
@@ -83,28 +83,28 @@ export default function HealthPage() {
       <Reveal as="section" delay={240}>
         <SectionIntro eyebrow="Preventive health" title="Awareness that stops problems before they start." body="Malaria prevention, vaccination awareness, and sanitation drives." />
         <div className="card-grid-v2 card-grid-v2--3">
-          {preventiveAreas.map((a, i) => (
-            <article key={a.title} className="card-v2">
+          {preventiveAreas.map((area, index) => (
+            <article key={area.title} className="card-v2">
               <div className="card-v2__top">
-                <span className="card-v2__index">{String(i + 1).padStart(2, "0")}</span>
+                <span className="card-v2__index">{String(index + 1).padStart(2, "0")}</span>
               </div>
-              <h3 className="card-v2__title">{a.title}</h3>
-              <p className="card-v2__body">{a.body}</p>
+              <h3 className="card-v2__title">{area.title}</h3>
+              <p className="card-v2__body">{area.body}</p>
             </article>
           ))}
         </div>
       </Reveal>
 
       <Reveal as="section" delay={300}>
-        <SectionIntro eyebrow="Safety advocacy" title="Home, school, and environmental safety education." body="Practical safety content for families, schools, and communities." />
+        <SectionIntro eyebrow="Safety advocacy" title="Home, school, and environmental safety education." body="Fire prevention, safe cooking, first aid basics, emergency preparation, flood awareness, and safer school environments." />
         <div className="card-grid-v2 card-grid-v2--3">
-          {safetyTopics.map((t, i) => (
-            <article key={t.title} className="card-v2">
+          {safetyTopics.map((topic, index) => (
+            <article key={topic.title} className="card-v2">
               <div className="card-v2__top">
-                <span className="card-v2__index">{String(i + 1).padStart(2, "0")}</span>
+                <span className="card-v2__index">{String(index + 1).padStart(2, "0")}</span>
               </div>
-              <h3 className="card-v2__title">{t.title}</h3>
-              <p className="card-v2__body">{t.body}</p>
+              <h3 className="card-v2__title">{topic.title}</h3>
+              <p className="card-v2__body">{topic.body}</p>
             </article>
           ))}
         </div>
@@ -113,7 +113,7 @@ export default function HealthPage() {
       <Reveal as="section" className="dark-panel-v2" delay={360}>
         <p className="dark-panel-v2__eyebrow">Downloadable resources</p>
         <h2 className="dark-panel-v2__title">Guides, flyers, and toolkits for community health workers.</h2>
-        <p className="dark-panel-v2__body">Printable materials designed for low-bandwidth settings, community outreach events, and family education.</p>
+        <p className="dark-panel-v2__body">Printable materials cover hygiene, nutrition, maternal care, school safety, and prevention messages for outreach events and family education.</p>
         <div className="hero-actions">
           <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">Support health programs</LoadingLink>
           <LoadingLink href="/education" className="button button--secondary" loadingLabel="Opening">Visit education hub</LoadingLink>

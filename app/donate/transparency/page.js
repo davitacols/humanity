@@ -38,8 +38,8 @@ export default async function DonationTransparencyPage() {
             : "Checkout stays hidden until a route is actually configured"
         ]}
         media={stockMedia.donateHero}
-        asideTitle="What this page does"
-        asideBody="It gives supporters one place to review the public donation story without forcing them to hunt across program pages."
+        asideTitle="Tracker contents"
+        asideBody="Supporters can compare route goals, documented amounts, allocation notes, and related program pages in one place."
         asidePoints={[
           "Funding routes and tracker notes stay grouped together",
           "Public figures here complement provider records and internal reporting",
@@ -50,7 +50,7 @@ export default async function DonationTransparencyPage() {
       <Reveal as="section" delay={90}>
         <SectionIntro
           eyebrow="Current tracker totals"
-          title="The public summary stays simple and easy to scan."
+          title="Current goals, documented support, and tracker entries."
           body="These figures roll up the currently published route goals and transparency notes, not speculative future programs."
         />
         <div className="metric-grid">
@@ -105,8 +105,8 @@ export default async function DonationTransparencyPage() {
       <Reveal as="section" delay={180}>
         <SectionIntro
           eyebrow="Next step"
-          title="If you are ready to act, go back into the live donate flow."
-          body="The donate page is where secure checkout is exposed for configured routes and where donor follow-up stays available for sponsorship or custom support."
+          title="Donate through checkout or request donor follow-up."
+          body="The donate page connects each funding route to live checkout when configured, or to a follow-up form for sponsorship and custom support."
         />
         <div className="hero-actions">
           <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">

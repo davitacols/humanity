@@ -80,8 +80,8 @@ export default async function EducationContributePage() {
       <Reveal as="section" delay={90}>
         <SectionIntro
           eyebrow="Contribution standard"
-          title="The hub should feel curated, practical, and easy to trust."
-          body="These are the habits that help submitted resources move through review quickly and land well in the public library."
+          title="Strong submissions name the learner, access link, and teaching use."
+          body="Resources move through review faster when the audience, permissions, format, and workshop or cohort use are easy to understand."
         />
         <div className="card-grid-v2 card-grid-v2--3">
           {contributionPractices.map((item, index) => (
@@ -120,8 +120,8 @@ export default async function EducationContributePage() {
       <Reveal as="section" delay={190}>
         <SectionIntro
           eyebrow="Align with the hub"
-          title="Submit with the current structure in mind so the library stays easy to navigate."
-          body="These learning tracks show the kinds of delivery routes the education section is already trying to support."
+          title="Match your resource to a current learning track."
+          body="Coding foundations, digital skills for work, and community learning materials are the main routes for new submissions."
         />
         <div className="ledger-grid">
           {tracks.map((track, index) => (
@@ -143,8 +143,8 @@ export default async function EducationContributePage() {
           <p className="edu-how__eyebrow">Review process</p>
           <h2 className="edu-how__title">A lightweight contributor flow with enough structure to protect quality.</h2>
           <p className="edu-how__body">
-            Review should stay simple for contributors while still giving the team enough context
-            to vet rights, audience fit, and whether the material is actually usable.
+            Contributors provide the title, audience, access link, usage summary, and rights context
+            the team needs to review the material.
           </p>
         </div>
         <div className="split-v2">
@@ -160,11 +160,11 @@ export default async function EducationContributePage() {
 
           <article className="dark-panel-v2">
             <p className="dark-panel-v2__eyebrow">Library snapshot</p>
-            <h2 className="dark-panel-v2__title">Contributions should strengthen what learners and facilitators can find quickly.</h2>
+            <h2 className="dark-panel-v2__title">Strong submissions fill a learner or facilitator need.</h2>
             <p className="dark-panel-v2__body">
               The current hub already spans {librarySummary.categories.length} categories and {` `}
-              {librarySummary.levels.length} audience levels. New submissions should add clarity,
-              not duplicate what is already easy to find.
+              {librarySummary.levels.length} audience levels. Add a resource when it serves a
+              missing audience, gives a better low-bandwidth format, or improves session delivery.
             </p>
             <p className="dark-panel-v2__body">
               Before submitting, check whether your resource fills a missing audience need, offers a
@@ -202,7 +202,7 @@ export default async function EducationContributePage() {
               </div>
               <h3 className="edu-tracks__title">Make the reviewer's job easier with a clear summary and clean access note.</h3>
               <p className="edu-tracks__body">
-                Explain the audience, the teaching moment, and any access detail the team should
+                Explain the audience, the teaching moment, and any access detail the team needs to
                 know if the resource is private, draft-only, or shared through a hosted file.
               </p>
             </article>

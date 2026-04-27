@@ -21,6 +21,13 @@ const PROVIDER_CONTENT = {
   }
 };
 
+const UNAVAILABLE_COPY = {
+  title: "Use donor follow-up for this gift.",
+  body:
+    "Direct card and wallet checkout is not active on this page right now. The donor follow-up form below still lets you choose a route, request payment guidance, or start a sponsorship conversation.",
+  action: "Use donor follow-up"
+};
+
 function pickInitialProvider(providers, preferredProvider) {
   if (preferredProvider && providers[preferredProvider]?.configured) {
     return preferredProvider;
@@ -91,8 +98,7 @@ export function DonationCheckoutForm({
     if (!configuredProviders.length) {
       setStatus({
         tone: "error",
-        message:
-          "No live payment provider is configured yet. Add provider credentials in .env.local first."
+        message: "Direct checkout is not active right now. Use the donor follow-up form below."
       });
       return;
     }
@@ -145,23 +151,47 @@ export function DonationCheckoutForm({
 
   const activeProvider = PROVIDER_CONTENT[formData.provider];
 
+  if (!configuredProviders.length) {
+    return (
+      <section className="donation-checkout-form donation-checkout-form--unavailable" aria-labelledby="checkout-unavailable-title">
+        <div className="submission-form__header">
+          <p className="section-kicker">Direct checkout</p>
+          <h2 id="checkout-unavailable-title" className="submission-form__title">
+            {UNAVAILABLE_COPY.title}
+          </h2>
+          <p className="submission-form__body">{UNAVAILABLE_COPY.body}</p>
+        </div>
+
+        <div className="support-form__notice donation-checkout-form__notice">
+          <p className="support-form__notice-title">Current giving path</p>
+          <p className="support-form__notice-body">
+            Send the donor request and the team can reply with the right route, amount,
+            and payment instructions for the program you want to support.
+          </p>
+        </div>
+
+        <a href="#donation-intake" className="button button--primary">
+          {UNAVAILABLE_COPY.action}
+        </a>
+      </section>
+    );
+  }
+
   return (
     <form className="submission-form donation-checkout-form" onSubmit={handleSubmit} noValidate>
       <div className="submission-form__header">
         <p className="section-kicker">Live checkout</p>
-        <h2 className="submission-form__title">Choose your provider and complete the donation.</h2>
+        <h2 className="submission-form__title">Choose a giving route and continue to secure checkout.</h2>
         <p className="submission-form__body">
-          Flutterwave handles NGN donations. PayPal is available for USD support from
-          international donors. Every payment attempt is tracked against a specific giving route.
+          Payments are tied to the route you select, so follow-up and public tracking stay connected
+          to the program being supported.
         </p>
       </div>
 
       <div className="support-form__notice donation-checkout-form__notice">
-        <p className="support-form__notice-title">Provider setup</p>
+        <p className="support-form__notice-title">Secure payment handoff</p>
         <p className="support-form__notice-body">
-          {configuredProviders.length
-            ? "Select the route, enter donor details, and you will be redirected to the provider's secure hosted checkout."
-            : "No payment provider is active yet. Add provider credentials and this checkout will go live immediately."}
+          Select the route, enter donor details, and you will be redirected to the provider's hosted checkout.
         </p>
       </div>
 

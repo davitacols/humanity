@@ -14,47 +14,47 @@ export const revalidate = 300;
 
 const heroSignals = [
   {
-    label: "Community-first support"
+    label: "Maternal and child health"
   },
   {
-    label: "Clear donation context"
+    label: "Education and digital skills"
   },
   {
-    label: "Field stories people can follow"
+    label: "Youth sports and creative advocacy"
   }
 ];
 
 const proofCards = [
   {
     value: "24",
-    label: "documented projects, updates, and support needs"
+    label: "published project notes, field updates, and support needs"
   },
   {
     value: "4",
-    label: "humanitarian program areas"
+    label: "active routes: health, education, sports, arts"
   },
   {
     value: "Cross-border",
-    label: "community-led footprint with room to grow"
+    label: "regional collaboration with Ghana partnerships developing"
   },
   {
     value: "Low-bandwidth",
-    label: "access designed for phones and slower connections"
+    label: "phone-first pages for visitors on slower connections"
   }
 ];
 
 const heroDeskItems = [
   {
-    title: "Visible program routes",
-    body: "Health, learning, youth development, and creative advocacy are each published as clear public pathways."
+    title: "Health and family support",
+    body: "Maternal kits, hygiene guidance, nutrition messages, and follow-up notes are grouped under the health route."
   },
   {
-    title: "Support with context",
-    body: "Donors and partners can understand what a route is for before they are asked to act."
+    title: "Learning and youth pathways",
+    body: "Education resources and sports development show what children and young people need to keep learning, training, and participating."
   },
   {
-    title: "Proof over promises",
-    body: "Stories, updates, and transparency pages keep the initiative legible over time."
+    title: "Creative advocacy",
+    body: "Film, photography, music, and campaign stories help community work reach donors, volunteers, and partner organizations."
   }
 ];
 
@@ -150,13 +150,13 @@ export default function HomePage() {
         </div>
 
         <aside className="home-spline__proof-desk" aria-label="Homepage proof desk">
-          <p className="home-spline__proof-kicker">Why this homepage works</p>
+          <p className="home-spline__proof-kicker">How support moves</p>
           <h2 className="home-spline__proof-title">
-            Support becomes easier when the public route is clear.
+            Choose a program route, review the need, then decide how to help.
           </h2>
           <p className="home-spline__proof-body">
-            The first screen should explain what the initiative is, where the work sits, and why
-            each support route deserves trust before anyone clicks donate.
+            The initiative organizes support around health outreach, education access, youth sports,
+            and creative advocacy so donors and partners can follow the work before they act.
           </p>
 
           <div className="home-spline__proof-points">
@@ -190,9 +190,9 @@ export default function HomePage() {
       <section className="home-spline__section home-spline__proof-section">
         <SectionIntro
           className="home-spline__intro"
-          eyebrow="Platform proof"
-          title="Built around trust, dignity, and practical help."
-          body="Visitors should quickly understand what the initiative does, who the work serves, and how support can move from interest to action."
+          eyebrow="Current footprint"
+          title="Active routes, published updates, and practical access."
+          body="These signals point visitors to published work, active program routes, regional collaboration, and mobile-friendly access."
         />
 
         <div className="home-spline__proof-grid">
@@ -212,14 +212,14 @@ export default function HomePage() {
               className="home-spline__intro"
               eyebrow="Program routes"
               title="Four routes into the same humanitarian mission."
-              body="Each focus area gives supporters a clear way to understand the work, follow updates, and contribute where they care most."
+              body="Each route points to a specific kind of support: family health, learning access, youth development, or creative advocacy."
             />
 
             <div className="home-spline__routes-summary">
               <p className="home-spline__routes-summary-title">One mission. Four practical routes.</p>
               <p className="home-spline__routes-summary-body">
-                The site should make the work feel human and organized: education, arts,
-                health, and sports all serve the same goal of community dignity.
+                Education, arts, health, and sports are kept separate enough to act on and connected
+                enough to show the full community picture.
               </p>
               <div className="home-spline__routes-summary-row">
                 <span className="home-spline__routes-summary-pill">4 focus areas</span>
@@ -273,9 +273,9 @@ export default function HomePage() {
       <section className="home-spline__section home-spline__feature-section">
         <SectionIntro
           className="home-spline__intro"
-          eyebrow="Featured impact story"
-          title="Keep one human story close to the front."
-          body="A humanitarian homepage should slow down enough for visitors to understand the people behind the program categories."
+          eyebrow="Featured health story"
+          title="Maternal and child health support is one of the clearest first needs."
+          body="This route focuses on mothers, newborns, caregivers, hygiene kits, nutrition guidance, and follow-up support."
         />
 
         <div className="home-spline__feature">

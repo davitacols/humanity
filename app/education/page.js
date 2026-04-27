@@ -16,16 +16,16 @@ export const metadata = {
 
 const hubSteps = [
   {
-    title: "Find the right entry point",
-    body: "Learners, mentors, schools, and contributors should be able to identify the right path in one scan."
+    title: "Choose a learner level",
+    body: "Learners, mentors, schools, and contributors can start with beginner, community, mentor, or mixed-level materials."
   },
   {
-    title: "Use resources in real settings",
-    body: "The hub is built for mobile learning, workshops, cohorts, and low-bandwidth community settings."
+    title: "Run a session with available materials",
+    body: "Guides, lessons, workbooks, and checklists support phone-based learning, workshops, cohorts, and low-bandwidth settings."
   },
   {
-    title: "Keep quality visible",
-    body: "Contributor review, rights checks, and structured tracks protect the usefulness of what gets published."
+    title: "Review before publishing",
+    body: "Submitted resources are checked for audience fit, access, permissions, and teaching value before they enter the public library."
   }
 ];
 
@@ -106,7 +106,7 @@ export default async function EducationPage({ searchParams }) {
       <PageHero
         eyebrow="Education hub"
         title="A field classroom for learners, facilitators, and community mentors."
-        body="The education section is built to do three things well: help people find useful resources quickly, place those resources inside a clear learning path, and keep contribution and review trustworthy as the library grows."
+        body="Find digital basics guides, beginner web lessons, facilitator outlines, printable workbooks, mentor checklists, and contribution routes for community education."
         primary={{ href: "#library-explorer", label: "Explore the library" }}
         secondary={{ href: "/education/contribute", label: "Contribute resources" }}
         highlights={[
@@ -117,20 +117,20 @@ export default async function EducationPage({ searchParams }) {
         ]}
         stats={metrics}
         media={stockMedia.educationFeature}
-        asideTitle="What this section is for"
-        asideBody="It should reduce friction for first-time learners, help facilitators deliver stronger sessions, and make contributor review feel dependable instead of improvised."
+        asideTitle="Education access routes"
+        asideBody="The hub connects learners to resources, facilitators to session materials, and contributors to a review process before publication."
         asidePoints={[
-          "Start with a resource, not a maze of pages",
-          "Follow a track that explains where to begin",
-          "Support cohorts, workshops, and reusable teaching materials"
+          "Beginner resources for digital confidence and web basics",
+          "Facilitator materials for workshops and cohort delivery",
+          "Reviewed submissions before anything enters the library"
         ]}
       />
 
       <Reveal as="section" delay={90}>
         <SectionIntro
           eyebrow="Use the hub your way"
-          title="The education section should serve the real ways people enter the work."
-          body="These are the four practical lanes the hub needs to support well: quick downloads, linked lessons, facilitator-ready materials, and visible contribution pathways."
+          title="Start with downloads, lessons, toolkits, or contributed materials."
+          body="The library is organized around the ways people actually use education support: offline handouts, external lessons, facilitator kits, and learner progress stories."
         />
         <div className="browse-grid edu-page__browse-grid">
           {resources.map((resource, index) => {
@@ -197,8 +197,8 @@ export default async function EducationPage({ searchParams }) {
       <Reveal as="section" delay={190}>
         <SectionIntro
           eyebrow="Learning tracks"
-          title="Tracks turn a loose library into a clearer learning route."
-          body="Each track gives a different starting point so learners, mentors, and facilitators know how to use the library in context."
+          title="Three learning tracks organize the materials by use case."
+          body="Coding foundations, digital skills for work, and the community learning library give learners and facilitators a direct starting point."
         />
         <div className="ledger-grid edu-page__tracks-grid">
           {tracks.map((track, index) => {
@@ -243,8 +243,8 @@ export default async function EducationPage({ searchParams }) {
       <Reveal as="section" delay={320}>
         <SectionIntro
           eyebrow="Delivery model"
-          title="The hub should support both live teaching and reusable learning assets."
-          body="These are the two sides of the education work: session formats that happen with people, and support routes that help the library grow responsibly."
+          title="Education support includes live sessions and reusable materials."
+          body="Session formats help people learn together, while reviewed resources keep guides, lessons, and workbooks available after the session ends."
         />
         <div className="split-v2 edu-page__delivery-layout">
           <div className="stack-v2 edu-page__session-stack">
@@ -263,10 +263,10 @@ export default async function EducationPage({ searchParams }) {
           <div className="stack-v2 edu-page__delivery-stack">
             <article className="dark-panel-v2">
               <p className="dark-panel-v2__eyebrow">Quality practice</p>
-              <h2 className="dark-panel-v2__title">Learning content should feel usable before it feels impressive.</h2>
+              <h2 className="dark-panel-v2__title">Useful learning content names the audience, format, and teaching moment.</h2>
               <p className="dark-panel-v2__body">
-                That means mobile-friendly formats, clear audience fit, practical summaries,
-                review before publication, and support routes that map back to real learners and facilitators.
+                The review process favors mobile-friendly formats, clear audience fit, rights-safe
+                access, and materials a teacher, mentor, or learner can use in a real session.
               </p>
               <div className="hero-actions">
                 <LoadingLink href="/education/contribute" className="button button--primary" loadingLabel="Opening">
@@ -297,8 +297,8 @@ export default async function EducationPage({ searchParams }) {
       <Reveal as="section" delay={380}>
         <SectionIntro
           eyebrow="Support and contribute"
-          title="The section is strongest when usage, contribution, and sponsorship stay connected."
-          body="These public actions keep the hub moving: contributors extend the library, while sponsors help cohorts, printing, connectivity, and facilitator delivery stay practical."
+          title="Contribute materials or sponsor education access."
+          body="Resource contributors extend the library. Sponsors help fund cohort delivery, printing, connectivity, devices, and facilitator preparation."
         />
         <div className="info-grid--two card-grid-v2 edu-page__actions-grid">
           {actions.map((action, index) => (

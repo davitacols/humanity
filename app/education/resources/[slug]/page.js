@@ -82,7 +82,7 @@ export default async function EducationResourcePage({ params }) {
         eyebrow={resource.eyebrow}
         title={resource.title}
         body={resource.summary}
-        primary={{ href: "#resource-overview", label: "Review resource brief" }}
+        primary={{ href: "#resource-overview", label: "Open resource brief" }}
         secondary={{ href: "/education#library-explorer", label: "Back to library" }}
         highlights={[
           resource.format,
@@ -94,24 +94,24 @@ export default async function EducationResourcePage({ params }) {
         asidePoints={[
           `Primary audience: ${resource.audience}`,
           `Use this when you need ${resource.format.toLowerCase()} support in a real session`,
-          `${resource.outcomes.length} intended learning outcomes are already mapped for delivery`
+          `${resource.outcomes.length} learning outcomes mapped for delivery`
         ]}
       />
 
       <Reveal as="section" id="resource-overview" delay={100}>
         <SectionIntro
           eyebrow="Resource brief"
-          title="A clearer teaching summary before a facilitator puts this into practice."
-          body="The best education resources explain who they are for, how they are used, and what a mentor or teacher should expect after the session."
+          title="Audience, format, use cases, and outcomes in one place."
+          body="This brief helps a mentor, teacher, or volunteer decide where the resource fits before using it in a session."
         />
         <div className="split-v2 edu-resource-split">
           <article className="dark-panel-v2">
-            <p className="dark-panel-v2__eyebrow">Practical overview</p>
-            <h2 className="dark-panel-v2__title">Built for real learning environments, not just a content archive.</h2>
+            <p className="dark-panel-v2__eyebrow">Resource fit</p>
+            <h2 className="dark-panel-v2__title">Use this resource with the audience and session type named here.</h2>
             <p className="dark-panel-v2__body">{resource.body}</p>
             <p className="dark-panel-v2__body">
-              This resource is strongest when a facilitator can quickly understand the audience,
-              session format, and likely follow-up needed after the first use.
+              The brief names the audience, format, and follow-up points so facilitators can prepare
+              before the first use.
             </p>
             <div className="hero-actions">
               <LoadingLink
@@ -141,10 +141,10 @@ export default async function EducationResourcePage({ params }) {
                 <h3 className="edu-resource-card__title">{fact.value}</h3>
                 <p className="edu-resource-card__body">
                   {fact.label === "Audience"
-                    ? "This is the clearest starting audience for the resource inside the hub."
+                    ? "Use this to decide the first audience for the material."
                     : fact.label === "Hub lane"
-                      ? "This shows where the item belongs in the public library and how contributors should classify similar materials."
-                      : "This helps facilitators judge whether the resource fits the delivery moment they are planning."}
+                      ? "Use this to find similar materials in the public library."
+                      : "Use this to judge whether the material fits the session you are planning."}
                 </p>
               </article>
             ))}
@@ -167,8 +167,8 @@ export default async function EducationResourcePage({ params }) {
               </div>
               <h3 className="edu-tracks__title">{item}</h3>
               <p className="edu-tracks__body">
-                This route keeps the resource grounded in an actual teaching moment instead of
-                leaving the facilitator to improvise from scratch.
+                This route connects the resource to a specific teaching moment, audience, and
+                follow-up activity.
               </p>
             </article>
           ))}
@@ -179,7 +179,7 @@ export default async function EducationResourcePage({ params }) {
         <SectionIntro
           eyebrow="Expected outcomes"
           title="The kind of learner movement this resource is meant to support."
-          body="Outcome language matters because it helps the hub stay focused on practical progress instead of vague educational claims."
+          body="These outcomes describe the learner progress the resource is meant to support after use."
         />
         <div className="split-v2 edu-resource-split">
           <div className="edu-resource-card-grid edu-resource-card-grid--outcomes">
@@ -191,8 +191,7 @@ export default async function EducationResourcePage({ params }) {
                 </div>
                 <p className="edu-resource-card__statement">{item}</p>
                 <p className="edu-resource-card__body">
-                  This gives facilitators and reviewers a concrete reason the resource belongs in
-                  the public library.
+                  This gives facilitators a concrete reason to choose the resource for a session.
                 </p>
               </article>
             ))}
@@ -206,8 +205,8 @@ export default async function EducationResourcePage({ params }) {
               volunteer, or mentor working with limited time, shared devices, or low-bandwidth conditions.
             </p>
             <p className="dark-panel-v2__body">
-              That is why contribution and review focus on clarity, rights to share, practical
-              summaries, and whether the material feels ready for community use.
+              Contribution and review focus on audience fit, rights to share, summary quality, and
+              whether the material can support community use.
             </p>
           </article>
         </div>
@@ -218,7 +217,7 @@ export default async function EducationResourcePage({ params }) {
           <SectionIntro
             eyebrow="Related resources"
             title="Keep moving through the education library with nearby materials."
-            body="These resources share a similar audience or hub category, which makes them a better next step than starting a new search from scratch."
+            body="These resources share a similar audience or hub category, so facilitators can move to the next material faster."
           />
           <div className="card-grid-v2 card-grid-v2--3">
             {resource.relatedResources.map((item, index) => (
@@ -241,10 +240,10 @@ export default async function EducationResourcePage({ params }) {
 
       <Reveal as="section" className="edu-cta" delay={340}>
         <div className="edu-cta__text">
-          <h2 className="edu-cta__title">Grow the education library with materials that are ready to use in the field.</h2>
+          <h2 className="edu-cta__title">Add lessons, guides, and toolkits that support real sessions.</h2>
           <p className="edu-cta__body">
-            The public section works best when strong resources, contributor review, and donor
-            support all reinforce each other.
+            Resource submissions extend the library, while education donations support printing,
+            connectivity, devices, and facilitator preparation.
           </p>
         </div>
         <div className="edu-cta__actions">

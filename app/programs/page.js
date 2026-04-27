@@ -13,7 +13,7 @@ const currentPriorities = [
   {
     eyebrow: "Education",
     title: "Open the education hub",
-    body: "Books, lessons, facilitator tools, and coding pathways are already organized into a simpler education route.",
+    body: "Digital basics guides, beginner web lessons, facilitator tools, and workbook materials are grouped under education access.",
     href: "/education",
     label: "Go to education"
   },
@@ -36,7 +36,7 @@ const currentPriorities = [
 const programHeroStats = [
   { value: "4", label: "connected program pillars" },
   { value: "1", label: "shared archive and donation system" },
-  { value: "Cross-border", label: "current network footprint" }
+  { value: "Regional", label: "partner and contributor network" }
 ];
 
 export default function ProgramsPage() {
@@ -66,11 +66,11 @@ export default function ProgramsPage() {
         <div className="programs-page__section-lead" data-reveal-group>
           <SectionIntro
             eyebrow="Program pillars"
-            title="Each route should feel distinct, but still clearly part of one platform."
-            body="This first section works like a compact map: scan the route, understand the emphasis, and enter the right part of the mission."
+            title="Each program route has a specific community purpose."
+            body="Education supports learning access, arts carries public storytelling, health protects families, and sports creates youth structure and opportunity."
           />
           <p className="programs-page__section-note">
-            Each card is meant to feel like a direct entry point rather than a long explanatory block.
+            Open the route that matches the kind of support, partnership, or field story you want to follow.
           </p>
         </div>
 
@@ -95,8 +95,8 @@ export default function ProgramsPage() {
         <div className="programs-page__section-lead" data-reveal-group>
           <SectionIntro
             eyebrow="Current live routes"
-            title="If someone wants momentum fast, these are the clearest places to start."
-            body="The page should make the active paths feel visible and current instead of equally distant from the visitor."
+            title="Start with the education hub, sports project, or campaign screening."
+            body="These routes already have public pages, support context, or project details available for review."
           />
         </div>
 
@@ -131,9 +131,9 @@ export default function ProgramsPage() {
 
         <div className="programs-page__mission-actions" data-reveal-group>
           <ul className="editorial-list editorial-list--light">
-            <li>Program routes now read like distinct chapters instead of one long overview.</li>
-            <li>Story, support, and archive pages stay connected to the same mission logic.</li>
-            <li>Each pillar can grow independently without breaking the shared system.</li>
+            <li>Education, health, arts, and sports each keep their own program route.</li>
+            <li>Project stories and donation routes remain connected to the program they support.</li>
+            <li>New contributors and partners can enter through the route closest to their work.</li>
           </ul>
           <div className="hero-actions">
             <LoadingLink href="/projects" className="button button--primary" loadingLabel="Opening">

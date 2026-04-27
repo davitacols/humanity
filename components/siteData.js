@@ -25,7 +25,7 @@ export const headerUtilityItems = [
 export const proofStats = [
   { value: "24", label: "documented projects and field updates" },
   { value: "4", label: "core program areas under one mission" },
-  { value: "Cross-border", label: "community-led footprint with regional growth" }
+  { value: "Regional", label: "collaboration with Ghana partnerships developing" }
 ];
 
 export const spotlightStories = [
@@ -53,28 +53,28 @@ export const spotlightStories = [
 ];
 
 export const homeMissionPoints = [
-  "Women and children centered support",
-  "Built for low-bandwidth access",
-  "Built for regional collaboration"
+  "Maternal and child health outreach",
+  "Phone-friendly education resources",
+  "Ghana partnership development"
 ];
 
 export const homeTrustSignals = [
   {
     eyebrow: "Documented impact",
-    title: "Stories are tied to real interventions, not vague promises.",
-    body: "Support is anchored in visible work, field updates, and concrete program categories that people follow with confidence.",
+    title: "Published updates stay tied to specific program work.",
+    body: "Support is anchored in health outreach, education resources, sports development, creative campaigns, and field notes people can review.",
     tone: "mist"
   },
   {
     eyebrow: "Trusted support path",
-    title: "Donation asks stay close to context, proof, and next steps.",
-    body: "Visitors understand what support helps fund before they submit a support request or speak with the team.",
+    title: "Donation asks are connected to the route they fund.",
+    body: "Visitors can see whether support is going toward maternal care, learning resources, youth equipment, or campaign storytelling.",
     tone: "sand"
   },
   {
-    eyebrow: "Designed to scale",
-    title: "The initiative grows from community-led work into a wider network.",
-    body: "Partners, contributors, new campaigns, and additional regions are introduced without rebuilding the core story structure.",
+    eyebrow: "Regional growth",
+    title: "The network is expanding through named collaborators and partner routes.",
+    body: "Ghana relationships, creative contributors, and specialist partners are shown through clear public roles as the network develops.",
     tone: "leaf"
   }
 ];
@@ -107,7 +107,7 @@ export const platformProfiles = [
     summary:
       "Supports campaign strategy, public communication, sustainability framing, and partner-facing storytelling for the initiative.",
     body:
-      "Ikemba brings experience from psychology, media practice, environmental enterprise, and civic communication. His contribution is strongest where a project needs clearer messaging, better public context, stronger campaign structure, or a sustainability angle that partners can understand.",
+      "Ikemba brings experience from psychology, media practice, environmental enterprise, and civic communication. His contribution helps projects with clearer messaging, public context, campaign structure, and sustainability framing.",
     tags: [
       "Strategic communication",
       "Sustainability",
@@ -215,7 +215,7 @@ export const sportsSpotlight = {
 export const programPillars = [
   {
     title: "Education Access",
-    body: "Digital skills, books, downloadable resources, and external lessons designed for practical learning.",
+    body: "Digital basics guides, beginner web lessons, downloadable workbooks, and facilitator materials for community learning.",
     tone: "mist",
     href: "/education"
   },
@@ -241,8 +241,8 @@ export const programPillars = [
 
 export const featuredProject = {
   title: "Safe beginnings for mothers and children",
-  body: "Health outreach is presented as a human story first: mothers, children, caregivers, volunteers, and the practical support that helps families move through vulnerable moments with more dignity.",
-  quote: "People support more confidently when they can understand the need, see the work, and follow what happens next."
+  body: "The health route focuses on mothers, newborns, caregivers, and the practical support families need during vulnerable early-care moments: hygiene kits, nutrition guidance, basic safety information, and follow-up contact.",
+  quote: "Current support helps prepare maternal kits, print simple health guidance, and keep follow-up visits possible."
 };
 
 export const projectCards = [
@@ -283,18 +283,18 @@ export const premiumVideoProject = {
   title: "Campaign Documentary Screening",
   eyebrow: "Special film release",
   teaser:
-    "A screening prototype for campaign documentaries, event recordings, and supporter-facing film releases.",
+    "A dedicated screening route for campaign documentaries, event recordings, and supporter-facing film releases.",
   description:
-    "This feature shows how a dedicated documentary release path could work, including timed access, dedicated playback, and supporter-facing release context.",
+    "This release path gives campaign films their own context, viewing window, playback area, and supporter call to action.",
   price: "NGN 4,500",
   runtime: "12 minute documentary cut",
   accessWindow: "48-hour viewing window",
   videoSrc: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
   benefits: [
     "A single-title access window for campaigns or special releases",
-    "A local preview of the access and playback experience",
+    "A focused viewing space for supporter-facing film content",
     "Space for context, partner acknowledgements, and a support call after the film",
-    "Ready for a real payment and entitlement layer when the final provider is approved"
+    "A structure that can connect to the final payment and access provider"
   ]
 };
 
@@ -452,7 +452,7 @@ export const homeSupportAssurances = [
   },
   {
     title: "The site works well on phones first",
-    body: "Clear sections and responsive layouts keep the site usable for supporters, partners, and communities across different devices and bandwidth conditions."
+    body: "Phone-first sections keep the site usable for supporters, partners, and communities across different devices and bandwidth conditions."
   },
   {
     title: "Growth is built into the structure, not bolted on later",
@@ -601,10 +601,10 @@ export const platformGalleryItems = [
 ];
 
 export const educationMetrics = [
-  { value: "12", label: "curated resources ready to use" },
+  { value: "12", label: "library resources across downloads, lessons, and toolkits" },
   { value: "3", label: "learning tracks for different entry levels" },
-  { value: "Mobile-ready", label: "materials that work on phones" },
-  { value: "Ongoing", label: "new lessons and updates added regularly" }
+  { value: "Mobile-ready", label: "resources selected for phone-first learners" },
+  { value: "Review first", label: "submitted materials checked before publication" }
 ];
 
 export const educationTracks = [
@@ -631,26 +631,26 @@ export const educationTracks = [
 export const educationResources = [
   {
     title: "Foundational book pack",
-    body: "A grouped download area for youth-friendly books, reading guides, and early digital literacy materials.",
-    eyebrow: "Downloadable resource",
+    body: "A grouped download area for reading guides, early digital literacy notes, and youth-friendly learning materials.",
+    eyebrow: "Download pack",
     tone: "paper"
   },
   {
     title: "External lesson playlist",
-    body: "An embedded or linked lesson rail for coding tutorials, recorded sessions, and curated learning videos.",
-    eyebrow: "Hosted externally",
+    body: "A linked lesson rail for beginner coding tutorials, web basics, recorded sessions, and reviewed learning videos.",
+    eyebrow: "Lesson links",
     tone: "blush"
   },
   {
     title: "Facilitator toolkit",
     body: "Printable guides, session outlines, and activity templates for teachers, volunteers, and community mentors.",
-    eyebrow: "Community delivery",
+    eyebrow: "Teaching kit",
     tone: "mist"
   },
   {
     title: "Learner spotlight",
-    body: "A story section for showcasing participant progress, projects, and practical outcomes from the hub.",
-    eyebrow: "Proof of learning",
+    body: "A contribution path for learner projects, cohort updates, classroom outcomes, and community learning progress.",
+    eyebrow: "Learner progress",
     tone: "paper"
   }
 ];
@@ -658,12 +658,12 @@ export const educationResources = [
 export const educationActions = [
   {
     title: "Submit a learning resource",
-    body: "Invite educators, contributors, and volunteers to share vetted books, lessons, or toolkits.",
+    body: "Share a lesson, guide, workbook, checklist, or facilitator kit for review before it enters the public library.",
     tone: "forest-ink"
   },
   {
     title: "Sponsor a learning cohort",
-    body: "Support devices, printing, connectivity, and local training sessions for a cohort.",
+    body: "Fund devices, printing, connectivity, facilitator prep, and local sessions for a learner group.",
     tone: "mist"
   }
 ];
@@ -672,11 +672,11 @@ export const educationLibraryItems = [
   {
     title: "Digital basics guide",
     summary:
-      "A practical orientation resource for learners building confidence with devices, internet use, and basic digital habits.",
+      "An orientation guide for learners building confidence with devices, internet use, safe browsing, and basic digital habits.",
     category: "Downloads",
     format: "PDF guide",
     level: "Beginner",
-    actionLabel: "Open guide overview",
+    actionLabel: "Open guide brief",
     href: "/education/resources/digital-basics-guide",
     external: false
   },
@@ -694,11 +694,11 @@ export const educationLibraryItems = [
   {
     title: "Community facilitator session outline",
     summary:
-      "A session plan template for teachers and volunteers running short digital literacy or coding introductions.",
+      "A session plan for teachers and volunteers running short digital literacy or beginner coding introductions.",
     category: "Toolkits",
     format: "Facilitator kit",
     level: "Community",
-    actionLabel: "Open facilitator outline",
+    actionLabel: "Open session outline",
     href: "/education/resources/facilitator-session-outline",
     external: false
   },
@@ -727,7 +727,7 @@ export const educationLibraryItems = [
   {
     title: "Mentor checklist for cohort support",
     summary:
-      "A practical checklist for volunteers, mentors, and facilitators supporting learners over multiple sessions.",
+      "A checklist for volunteers, mentors, and facilitators supporting learners across multiple sessions.",
     category: "Toolkits",
     format: "Checklist",
     level: "Mentor",
@@ -740,18 +740,18 @@ export const educationLibraryItems = [
 export const educationResourcePages = [
   {
     slug: "digital-basics-guide",
-    eyebrow: "Guide overview",
+    eyebrow: "Guide brief",
     title: "Digital Basics Guide",
     summary:
-      "A practical entry resource covering device confidence, internet basics, safe browsing habits, and first steps for new digital learners.",
+      "An entry resource covering device confidence, internet basics, safe browsing habits, and first steps for new digital learners.",
     body:
-      "This guide is positioned as a simple starting point for community learners, youth cohorts, and first-time adults who need a calm introduction to digital tools before moving into structured classes or coding lessons.",
+      "This guide helps community learners, youth cohorts, and first-time adult users build digital confidence before moving into structured classes or coding lessons.",
     audience: "Beginner learners, youth cohorts, and first-time adult users",
     format: "PDF guide",
     duration: "Short orientation resource",
     useCases: [
       "Use it at the beginning of digital literacy workshops",
-      "Share it with families who need a simple digital confidence handout",
+      "Share it with families who need a short digital confidence handout",
       "Pair it with follow-up sessions on online safety and productivity basics"
     ],
     outcomes: [
@@ -762,19 +762,19 @@ export const educationResourcePages = [
   },
   {
     slug: "facilitator-session-outline",
-    eyebrow: "Toolkit overview",
+    eyebrow: "Session outline",
     title: "Community Facilitator Session Outline",
     summary:
       "A session structure for volunteers, mentors, and teachers leading short digital literacy or coding introductions in community settings.",
     body:
-      "This outline gives facilitators a more confident starting point by breaking a session into welcome, orientation, guided activity, reflection, and follow-up. It is especially useful when multiple volunteers are supporting learners with different confidence levels.",
+      "This outline breaks a session into welcome, orientation, guided activity, reflection, and follow-up so multiple volunteers can support learners with different confidence levels.",
     audience: "Teachers, mentors, volunteers, and community facilitators",
     format: "Facilitator kit",
     duration: "60 to 90 minute session structure",
     useCases: [
       "Use it to standardize workshop delivery across different locations",
       "Adapt it for digital literacy, coding clubs, or resource-sharing events",
-      "Support new volunteers who need a clear teaching flow"
+      "Support new volunteers who need a repeatable teaching flow"
     ],
     outcomes: [
       "Creates more consistent session quality across facilitators",
@@ -784,12 +784,12 @@ export const educationResourcePages = [
   },
   {
     slug: "printable-workbook-set",
-    eyebrow: "Workbook overview",
+    eyebrow: "Workbook pack",
     title: "Printable Workbook Set",
     summary:
       "A reusable pack of worksheets for offline reinforcement after training sessions, school clubs, or digital skills workshops.",
     body:
-      "The workbook set is intended for places where learners need something practical to carry home. It supports repetition, reflection, and guided practice when connectivity is limited or devices are shared across a group.",
+      "The workbook set gives learners offline exercises for repetition, reflection, and guided practice when connectivity is limited or devices are shared across a group.",
     audience: "Children, youth groups, and mixed-level community learners",
     format: "Worksheet pack",
     duration: "Multi-session reinforcement material",
@@ -806,10 +806,10 @@ export const educationResourcePages = [
   },
   {
     slug: "mentor-checklist",
-    eyebrow: "Checklist overview",
+    eyebrow: "Mentor checklist",
     title: "Mentor Checklist for Cohort Support",
     summary:
-      "A practical guide for mentors and volunteers helping learners stay engaged across multiple sessions or short cohort programs.",
+      "A guide for mentors and volunteers helping learners stay engaged across multiple sessions or short cohort programs.",
     body:
       "The checklist focuses on consistency, encouragement, and follow-through. It helps mentors keep track of what learners need, when to check in, and how to offer support without making the process feel heavy or overly formal.",
     audience: "Mentors, volunteers, and learning support staff",
@@ -818,11 +818,11 @@ export const educationResourcePages = [
     useCases: [
       "Use it during weekly check-ins with learners",
       "Support volunteer mentors who are new to structured cohort care",
-      "Create a simple quality baseline for mentorship across programs"
+      "Create a repeatable quality baseline for mentorship across programs"
     ],
     outcomes: [
       "Improves learner follow-through and encouragement",
-      "Keeps mentorship practical and easy to repeat",
+      "Keeps mentorship easy to repeat",
       "Helps the team maintain a more reliable support rhythm"
     ]
   }
@@ -831,7 +831,7 @@ export const educationResourcePages = [
 export const educationSessionCards = [
   {
     title: "Mobile-first coding club",
-    body: "A short-format learning cohort designed for phones first, covering web basics and simple project practice.",
+    body: "A short learning cohort for phone-first learners covering web basics and beginner project practice.",
     eyebrow: "Active cohort",
     tone: "mist"
   },
@@ -878,14 +878,14 @@ export const educationAudienceLevels = [
 export const educationSubmissionGuidelines = [
   {
     eyebrow: "Preferred format",
-    title: "Keep it practical and easy to open on mobile.",
+    title: "Submit public links or lightweight files that open on mobile.",
     body: "Resources work best as public links, lightweight downloads, or clean teaching materials that serve low-bandwidth settings.",
     tone: "mist"
   },
   {
     eyebrow: "Quality filter",
-    title: "Prioritize clarity, usefulness, and community relevance.",
-    body: "We prioritize materials that support real learning moments, not generic content dumps or link collections with weak context.",
+    title: "Name the learner, teaching moment, and outcome.",
+    body: "Submissions need to explain who the material serves, how it will be used, and what a learner or facilitator can do with it.",
     tone: "sand"
   },
   {

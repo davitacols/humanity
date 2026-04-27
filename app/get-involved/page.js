@@ -19,7 +19,7 @@ export default async function GetInvolvedPage() {
       <PageHero
         eyebrow="Get involved"
         title="Turn interest into action with a clear intake path."
-        body="Volunteers, partners, sponsors, and contributors should be able to choose a route quickly and send one clear request."
+        body="Volunteers, partners, sponsors, and contributors can choose a route and send one request with the context the team needs for follow-up."
         primary={{ href: "#support-intake", label: "Open support form" }}
         secondary={{ href: "/donate", label: "Sponsor a program" }}
         highlights={[
@@ -46,10 +46,10 @@ export default async function GetInvolvedPage() {
         <div className="get-involved-page__section-lead" data-reveal-group>
           <p className="dark-panel-v2__eyebrow">Choose how you want to help</p>
           <h2 className="dark-panel-v2__title">
-            The support routes are now framed like invitations into the mission.
+            Volunteer, partner, contribute, or sponsor a program route.
           </h2>
           <p className="dark-panel-v2__body">
-            These cards help visitors orient themselves quickly before they submit, sponsor, or start a conversation.
+            Choose the path that matches your role before sending the intake form.
           </p>
         </div>
 
@@ -72,7 +72,7 @@ export default async function GetInvolvedPage() {
           <SectionIntro
             eyebrow="Support intake"
             title="Send one clear request so the right team can follow up."
-            body="The intake flow should feel practical and proportional: short guidance on one side, the form on the other."
+            body="The form captures your role, support area, availability, and message so the team can reply with the right next step."
           />
         </div>
 
@@ -87,7 +87,7 @@ export default async function GetInvolvedPage() {
             <InfoCard
               eyebrow="Follow-up"
               title="Every request lands in a reviewable queue."
-              body="The team gets enough context to reply with a useful next step."
+              body="The team receives contact details, route interest, timing, and the kind of support being offered."
               tone="sand"
             />
             <LoadingLink href="/education/contribute" className="button button--secondary submission-layout__link" loadingLabel="Opening">
@@ -103,8 +103,8 @@ export default async function GetInvolvedPage() {
         <div className="get-involved-page__section-lead" data-reveal-group>
           <SectionIntro
             eyebrow="Latest updates"
-            title="Recent public updates stay close to the supporter journey."
-            body="These updates help visitors understand that the mission is active before or after they submit a request."
+            title="Recent updates show active field stories and contributor activity."
+            body="Review the latest notes before offering support, sponsorship, creative help, or partnership."
           />
         </div>
 
@@ -126,10 +126,10 @@ export default async function GetInvolvedPage() {
         <div className="get-involved-page__cta-copy" data-reveal-group>
           <p className="dark-panel-v2__eyebrow">Need a simple next step?</p>
           <h2 className="dark-panel-v2__title">
-            Start the conversation here, then move into the right part of the mission.
+            Send the form and choose the route closest to your support.
           </h2>
           <p className="dark-panel-v2__body">
-            Support requests, sponsorship conversations, and partnership offers all begin with the same clear intake route.
+            The intake route covers volunteer work, partnership offers, sponsorship, resource contribution, and specialist support.
           </p>
         </div>
 

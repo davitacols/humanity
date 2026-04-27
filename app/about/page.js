@@ -29,32 +29,32 @@ const aboutPageMap = [
     href: "#mission",
     eyebrow: "Mission",
     title: "Why the platform exists",
-    body: "Start with the public reason for the platform: what it helps people see, and why the work is organized this way.",
-    detail: "Read the mission logic first",
+    body: "Humanity First Initiative connects community needs to health outreach, education access, youth sports, and creative advocacy.",
+    detail: "Purpose and focus",
     actionLabel: "Open mission"
   },
   {
     href: "#programs",
     eyebrow: "Programs",
     title: "Where support goes",
-    body: "Move next into the four live routes where education, health, youth development, and advocacy become practical.",
-    detail: "See the active work routes",
+    body: "Support is organized into four active routes so donors, partners, and volunteers can choose a clear path.",
+    detail: "Health, education, arts, sports",
     actionLabel: "See routes"
   },
   {
     href: "#standards",
     eyebrow: "Standards",
     title: "How trust is protected",
-    body: "This section explains how field stories, contributor profiles, and support asks are kept readable and accountable.",
-    detail: "Review the trust discipline",
+    body: "Field updates, donation asks, and public profiles stay tied to named work, practical needs, and honest roles.",
+    detail: "Accountability and dignity",
     actionLabel: "Review standards"
   },
   {
     href: "#network",
     eyebrow: "Network",
     title: "Who contributes",
-    body: "Contributor profiles are grouped as a working network so visitors understand who adds strategy, creative work, and field perspective.",
-    detail: "Meet the contributor network",
+    body: "The public team brings strategy, regional relationships, creative production, and specialist support into the work.",
+    detail: "Team and collaborators",
     actionLabel: "See contributors"
   }
 ];
@@ -70,7 +70,7 @@ const operatingModel = [
   },
   {
     title: "Mobilize practical support",
-    body: "Donors, volunteers, sponsors, and partner organizations are guided toward specific routes rather than vague calls for help."
+    body: "Donors, volunteers, sponsors, and partner organizations are guided toward health, education, sports, arts, or partnership routes."
   },
   {
     title: "Keep the work visible",
@@ -85,11 +85,11 @@ const trustStandards = [
   },
   {
     title: "Proof before promotion",
-    body: "The site should show needs, project context, field updates, and transparent support paths before asking visitors to act."
+    body: "Needs, project context, field updates, and transparent support paths come before donation appeals."
   },
   {
     title: "Dignity in storytelling",
-    body: "Stories should help people be seen with care and agency, avoiding charity language that reduces communities to hardship."
+    body: "Stories present people with care and agency, avoiding charity language that reduces communities to hardship."
   },
   {
     title: "Collaboration without confusion",
@@ -99,28 +99,28 @@ const trustStandards = [
 
 const supportRoutes = [
   {
-    eyebrow: "Funding route",
-    title: "Donate",
-    body: "Back a current program, campaign, or project with clearer context about the need.",
-    note: "Best for supporters who already know the route they want to strengthen.",
+    eyebrow: "Give",
+    title: "Fund an active route",
+    body: "Support maternal health kits, education resources, youth sports equipment, or creative advocacy production.",
+    note: "Best when you already know which program area you want your contribution to strengthen.",
     href: "/donate",
     label: "Donate now"
   },
   {
-    eyebrow: "Collaboration route",
-    title: "Partner",
-    body: "Work with the initiative as an NGO, donor, school, creative team, or regional organization.",
-    note: "Use this path for sponsorship, field collaboration, skills, or institutional support.",
+    eyebrow: "Partner",
+    title: "Bring field or specialist support",
+    body: "Collaborate as an NGO, school, sponsor, creative team, regional partner, health worker, or education supporter.",
+    note: "Best for organizations and specialists who can help deliver, document, sponsor, or expand a route.",
     href: "/get-involved",
-    label: "Start partnership"
+    label: "Start a conversation"
   },
   {
-    eyebrow: "Review route",
-    title: "Follow the work",
-    body: "Review project pages, program routes, field updates, and transparency notes before deciding how to help.",
-    note: "A good starting point for careful donors, partners, and first-time visitors.",
+    eyebrow: "Review",
+    title: "Check projects before committing",
+    body: "Read the project pages, sports proposal, program routes, field updates, and transparency notes first.",
+    note: "Best for first-time supporters who want context before donating, partnering, or sharing the work.",
     href: "/projects",
-    label: "See projects"
+    label: "Review projects"
   }
 ];
 
@@ -130,7 +130,7 @@ const profileCopyByName = {
     summary:
       "Supports campaign strategy, public communication, sustainability framing, and partner-facing storytelling for the initiative.",
     body:
-      "Ikemba brings experience from psychology, media practice, environmental enterprise, and civic communication. His contribution is strongest where a project needs clearer messaging, better public context, stronger campaign structure, or a sustainability angle that partners can understand.",
+      "Ikemba brings experience from psychology, media practice, environmental enterprise, and civic communication. His contribution helps projects with clearer messaging, public context, campaign structure, and sustainability framing.",
     imageLabel: "Strategy and communications"
   },
   "Regional partner in Ghana": {
@@ -150,9 +150,9 @@ const profileCopyByName = {
 };
 
 const missionChecks = [
-  "What community need is being made easier to understand?",
-  "Which route should a visitor follow if they want to help responsibly?",
-  "What proof helps someone trust the work before they act?"
+  "Community needs are linked to a program route.",
+  "Donation and partnership paths show what support helps fund.",
+  "Field stories and updates give visitors context before they act."
 ];
 
 function normalizeProfile(person) {
@@ -226,22 +226,22 @@ export default async function AboutPage() {
           label: "Community life",
           ratio: stockMedia.aboutHero.ratio || "portrait"
         }}
-        asideLabel="What this page clarifies"
-        asideTitle="This is a mission page, not a personality page."
-        asideBody="The initiative can hold field stories, partner stories, and contributor profiles without confusing public roles or overstating leadership."
+        asideLabel="Working structure"
+        asideTitle="Mission, programs, standards, and team in one place."
+        asideBody="Supporters can see what the initiative does, where help is needed, how trust is handled, and who contributes to the work."
         asidePoints={networkPoints}
       />
 
       <Reveal as="section" className="about-map" delay={80} variant="rise" cascade>
         <article className="about-map__guide" data-reveal-group>
-          <p className="about-map__guide-kicker">How to read this page</p>
+          <p className="about-map__guide-kicker">Mission map</p>
           <h2 className="about-map__guide-title">
-            Start with the mission, then trace the routes, standards, and contributor network.
+            The initiative is organized around four public routes and a small contributor network.
           </h2>
           <p className="about-map__guide-body">
-            The About page is written to answer the questions people ask before they trust a public
-            initiative: what the work is, where support goes, how the platform stays accountable,
-            and who helps carry it.
+            Health, education, arts, and sports remain the main support routes. The team and
+            collaborator profiles show who helps with strategy, regional growth, creative work,
+            and field communication.
           </p>
         </article>
 
@@ -268,18 +268,17 @@ export default async function AboutPage() {
       >
         <div className="about-humanitarian__mission-copy" data-reveal-group>
           <p className="section-kicker">Mission</p>
-          <h2>Humanitarian work should feel close enough to trust and organized enough to support.</h2>
+          <h2>Humanitarian work becomes easier to support when the need, route, and next step are clear.</h2>
           <p>
-            The platform exists to make grassroots work easier to understand. Visitors should be
-            able to see the community need, follow the program route, review the practical support
-            pathway, and decide how to help without searching through scattered updates.
+            Humanity First Initiative makes grassroots work easier to follow by connecting each
+            public need to a program route, a support pathway, and a field update or project context.
           </p>
           <p>
-            The work is intentionally broad, but not vague: education access, public health,
-            youth sports, and creative advocacy each serve a larger goal of dignity, protection,
-            opportunity, and community resilience.
+            Education access, public health, youth sports, and creative advocacy each serve a
+            practical community purpose: learning, protection, opportunity, expression, and
+            resilience.
           </p>
-          <div className="about-humanitarian__mission-checks" aria-label="Questions this page should answer">
+          <div className="about-humanitarian__mission-checks" aria-label="Mission checkpoints">
             {missionChecks.map((item, index) => (
               <article key={item} className="about-humanitarian__mission-check">
                 <span>{String(index + 1).padStart(2, "0")}</span>
@@ -340,8 +339,8 @@ export default async function AboutPage() {
         <SectionIntro
           data-reveal-group
           eyebrow="Operating standards"
-          title="Trust is shaped by how the work is presented, not by branding alone."
-          body="This section explains the discipline behind the page: how community needs are framed, how support routes stay legible, and how contributor visibility avoids confusion."
+          title="Trust is built through specific needs, honest roles, and visible follow-up."
+          body="Community needs are connected to real routes, support requests are described plainly, and contributor roles are named without inflating hierarchy."
         />
 
         <div className="about-humanitarian__standards" data-reveal-group>
@@ -373,8 +372,8 @@ export default async function AboutPage() {
         <SectionIntro
           data-reveal-group
           eyebrow="Team and collaborators"
-          title="The people behind the work are shown by what they help move."
-          body="This is the public working team around the initiative: strategy, regional relationships, creative production, and specialist support shown through named profiles instead of generic status language."
+          title="Strategy, Ghana partnerships, and creative production support the field work."
+          body="Ikemba supports strategy and public communication, the Ghana partner supports regional relationships, and Sib supports film, editing, photography, and accessible storytelling."
         />
 
         <div className="about-humanitarian__team" data-reveal-group>
@@ -478,19 +477,24 @@ export default async function AboutPage() {
         cascade
       >
         <div data-reveal-group>
-          <p className="dark-panel-v2__eyebrow">Ready to help</p>
+          <p className="dark-panel-v2__eyebrow">Support routes</p>
           <h2 className="dark-panel-v2__title">
-            People should be able to choose a support path that matches their relationship to the work.
+            Fund a program, partner on delivery, or review the work first.
           </h2>
           <p className="dark-panel-v2__body">
-            Some visitors are ready to fund. Others want to review, collaborate, or ask careful
-            questions first. The page should make each path feel legitimate and well explained.
+            The next step depends on your role: donor, field partner, sponsor, creative contributor,
+            school, NGO, or first-time supporter.
           </p>
         </div>
 
         <div className="about-humanitarian__support-routes" data-reveal-group>
-          {supportRoutes.map((route) => (
-            <article key={route.title} className="about-humanitarian__support-card">
+          {supportRoutes.map((route, index) => (
+            <article
+              key={route.title}
+              className={`about-humanitarian__support-card ${
+                index === 0 ? "about-humanitarian__support-card--primary" : ""
+              }`.trim()}
+            >
               <p className="about-humanitarian__support-eyebrow">{route.eyebrow}</p>
               <h3>{route.title}</h3>
               <p>{route.body}</p>

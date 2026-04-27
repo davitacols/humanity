@@ -1,7 +1,8 @@
 import { LoadingLink } from "../../components/LoadingLink";
 import { DonationCheckoutForm } from "../../components/DonationCheckoutForm";
+import { PageHero } from "../../components/PageHero";
 import { Reveal } from "../../components/Reveal";
-import { StockPhoto } from "../../components/StockPhoto";
+import { SectionIntro } from "../../components/SectionIntro";
 import { SupportInquiryForm } from "../../components/SupportInquiryForm";
 import { stockMedia } from "../../components/stockMedia";
 import { donationTiers } from "../../components/siteData";
@@ -14,26 +15,26 @@ const tierDetails = [
   {
     amount: donationTiers[0],
     label: "Start",
-    title: "Small practical help",
-    body: "Useful for a first gift toward books, hygiene items, transport, or weekly youth activity."
+    title: "Books, hygiene items, or session transport",
+    body: "A first gift can help cover learning materials, basic hygiene supplies, transport, or weekly youth activity costs."
   },
   {
     amount: donationTiers[1],
     label: "Steady",
-    title: "Keep a route moving",
-    body: "Helps a program cover materials, logistics, volunteer support, and documented follow-up."
+    title: "Materials, logistics, and volunteer support",
+    body: "Helps a program cover repeat materials, local logistics, volunteer coordination, and follow-up notes."
   },
   {
     amount: donationTiers[2],
     label: "Build",
     title: "Back a campaign window",
-    body: "Supports a larger delivery cycle such as health outreach, learning sessions, or sports mentoring."
+    body: "Supports a delivery cycle such as health outreach, learning sessions, creative production, or sports mentoring."
   },
   {
     amount: donationTiers[3],
     label: "Partner",
     title: "Sponsor a visible need",
-    body: "Best for sponsors, organizations, or donors who want a deeper project conversation."
+    body: "Supports a larger project need and opens a direct sponsorship or partner conversation."
   }
 ];
 
@@ -56,7 +57,7 @@ const pathwaySteps = [
 ];
 
 const trustNotes = [
-  "Giving routes point back to visible programs instead of a vague donation bucket.",
+  "Giving routes point back to health, education, sports, or creative advocacy work.",
   "Checkout appears only where a provider route is configured.",
   "The donor form keeps sponsorship and custom support conversations from getting lost.",
   "The transparency tracker stays one click away from every giving route."
@@ -114,7 +115,7 @@ function getPaymentNotice(paymentStatus, provider, reference) {
     return {
       tone: "warning",
       title: "Direct checkout is not ready for that route.",
-      body: "Use the live checkout form below or the donor follow-up form if the route still needs a guided next step."
+      body: "Use the donor follow-up form for payment guidance or choose another route with an active checkout option."
     };
   }
 
@@ -133,121 +134,38 @@ export default async function DonatePage({ searchParams }) {
   const selectedFund = findFundBySlug(funds, params.fund);
   const checkoutUnavailable = params.checkout === "unavailable";
   const paymentNotice = getPaymentNotice(params.payment, params.provider, params.reference);
+  const heroFunds = selectedFund ? [selectedFund, ...funds.filter((fund) => fund.slug !== selectedFund.slug)].slice(0, 2) : funds.slice(0, 2);
 
   return (
     <main className="site-main page-v2 donate-redesign">
-      <section className="donate-redesign__hero">
-        <div className="donate-redesign__hero-media" aria-hidden="true">
-          <StockPhoto
-            src={stockMedia.donateHero.src}
-            alt=""
-            sizes="100vw"
-            className="donate-redesign__hero-photo"
-            priority
+      <PageHero
+        eyebrow="Donations and support"
+        title="Choose a route and fund a visible need."
+        body="Support health outreach, education access, youth sport, or creative advocacy through named routes with public goals, documented progress, and follow-up where direct checkout is not active."
+        primary={{ href: "#giving-routes", label: "Choose a giving route" }}
+        secondary={{ href: "/donate/transparency", label: "View transparency" }}
+        highlights={["Named giving routes", "Public tracker", "Donor follow-up", "Custom sponsorship"]}
+        stats={metrics.slice(0, 3)}
+        media={stockMedia.donateHero}
+        asideLabel="Giving desk"
+        asideTitle={hasLiveProviders || hasDirectPayments ? "Checkout and route tracking are connected." : "Donor follow-up is the current giving path."}
+        asideBody={
+          hasDirectPayments
+            ? "Some routes include hosted checkout links. The public tracker stays close to the giving decision."
+            : hasLiveProviders
+              ? "Use the live checkout form for active providers, or request follow-up for sponsorship and custom support."
+              : "Use the donor form for payment guidance, sponsorship, or custom support while direct checkout is being prepared."
+        }
+        asidePoints={heroFunds.map((fund) => `${fund.title}: ${getProgress(fund)}% covered`)}
+      />
+
+      <Reveal as="section" id="giving-routes" className="donate-redesign__section donate-redesign__routes-section" delay={80} variant="rise" cascade>
+        <div className="donate-redesign__section-lead" data-reveal-group>
+          <SectionIntro
+            eyebrow="Giving routes"
+            title="Choose the fund that matches the work you want to move forward."
+            body="Each route shows the public goal, documented support so far, current status, and whether checkout or follow-up is the right next step."
           />
-        </div>
-
-        <div className="donate-redesign__hero-content">
-          <div className="donate-redesign__hero-copy">
-            <p className="donate-redesign__kicker">Donations and support</p>
-            <h1>Give to work people can see.</h1>
-            <p>
-              Choose a cause-specific giving route, use secure checkout where it is active,
-              or send a tracked donor request when the team needs to guide sponsorship,
-              partnership, or custom support.
-            </p>
-
-            <div className="donate-redesign__hero-actions">
-              <LoadingLink href="#giving-routes" className="button button--primary" loadingLabel="Opening">
-                Choose a giving route
-              </LoadingLink>
-              <LoadingLink
-                href="/donate/transparency"
-                className="button button--secondary"
-                loadingLabel="Opening"
-              >
-                View transparency
-              </LoadingLink>
-            </div>
-          </div>
-
-          <aside className="donate-redesign__giving-desk" aria-label="Donation status summary">
-            <p className="donate-redesign__desk-label">Giving desk</p>
-            <h2>{hasDirectPayments ? "Checkout is live on configured routes." : "Follow-up is the live giving path today."}</h2>
-            <p>
-              {hasDirectPayments
-                ? "Some routes still keep their own hosted checkout links. The live payment form below is the main donation path."
-                : hasLiveProviders
-                  ? "Flutterwave and PayPal are available below. Donors can choose the provider that fits their payment context."
-                  : "Direct payment is not configured yet. The donor form still creates a tracked next step for sponsorship or custom support."}
-            </p>
-            <div className="donate-redesign__desk-metrics">
-              {metrics.slice(0, 3).map((item) => (
-                <div key={item.label} className="donate-redesign__desk-metric">
-                  <strong>{item.value}</strong>
-                  <span>{item.label}</span>
-                </div>
-              ))}
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <Reveal as="section" className="donate-redesign__section donate-redesign__pathway" delay={80} variant="rise">
-        <div className="donate-redesign__section-head">
-          <p className="donate-redesign__kicker">How giving works</p>
-          <h2>Simple enough to act on, clear enough to trust.</h2>
-          <p>
-            The donation flow keeps action and accountability together: route, amount,
-            follow-up, and public proof all stay visible.
-          </p>
-        </div>
-
-        <div className="donate-redesign__pathway-grid">
-          {pathwaySteps.map((item) => (
-            <article key={item.step} className="donate-redesign__pathway-step">
-              <span>{item.step}</span>
-              <h3>{item.title}</h3>
-              <p>{item.body}</p>
-            </article>
-          ))}
-        </div>
-      </Reveal>
-
-      <Reveal as="section" id="tiers" className="donate-redesign__section" delay={120} variant="left" cascade>
-        <div className="donate-redesign__split-head">
-          <div>
-            <p className="donate-redesign__kicker">Suggested levels</p>
-            <h2>Pick a starting level before you choose a cause.</h2>
-          </div>
-          <p>
-            These are prompts, not limits. Donors can still use the form for a custom
-            amount, recurring support, or a partner-level budget.
-          </p>
-        </div>
-
-        <div className="donate-redesign__tier-rail" data-reveal-group>
-          {tierDetails.map((tier) => (
-            <article key={tier.amount} className="donate-redesign__tier">
-              <span>{tier.label}</span>
-              <strong>{tier.amount}</strong>
-              <h3>{tier.title}</h3>
-              <p>{tier.body}</p>
-            </article>
-          ))}
-        </div>
-      </Reveal>
-
-      <Reveal as="section" id="giving-routes" className="donate-redesign__section" delay={160} variant="rise" cascade>
-        <div className="donate-redesign__split-head">
-          <div>
-            <p className="donate-redesign__kicker">Giving routes</p>
-            <h2>Choose the fund that matches the work you want to move forward.</h2>
-          </div>
-          <p>
-            Each route shows the public goal, documented support so far, current status,
-            and whether checkout or follow-up is the right next step.
-          </p>
         </div>
 
         <div className="donate-redesign__route-list" data-reveal-group>
@@ -255,7 +173,10 @@ export default async function DonatePage({ searchParams }) {
             const progress = getProgress(fund);
 
             return (
-              <article key={fund.slug} className="donate-redesign__route">
+              <article
+                key={fund.slug}
+                className={`donate-redesign__route${selectedFund?.slug === fund.slug ? " is-selected" : ""}`}
+              >
                 <div className="donate-redesign__route-main">
                   <div className="donate-redesign__route-label-row">
                     <span className="donate-redesign__route-eyebrow">{fund.eyebrow}</span>
@@ -327,14 +248,88 @@ export default async function DonatePage({ searchParams }) {
         </div>
       </Reveal>
 
+      <Reveal as="section" id="live-checkout" className="donate-redesign__section donate-redesign__checkout" delay={140} variant="rise">
+        <div className="donate-redesign__checkout-grid">
+          <div className="donate-redesign__checkout-copy">
+            <SectionIntro
+              eyebrow={hasLiveProviders ? "Live checkout" : "Donor follow-up"}
+              title={hasLiveProviders ? "Pay through the active checkout route." : "Direct checkout is not active yet."}
+              body={
+                hasLiveProviders
+                  ? "Choose a giving route, enter donor details, and continue to the available secure provider. Each checkout is tied to a route and returned here with a visible status."
+                  : "Use the donor follow-up route below for payment guidance, sponsorship, or custom support while direct checkout is being prepared."
+              }
+            />
+            <div className="donate-redesign__pathway-grid donate-redesign__pathway-grid--compact">
+              {pathwaySteps.map((item) => (
+                <article key={item.step} className="donate-redesign__pathway-step">
+                  <span>{item.step}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="donate-redesign__checkout-panel">
+            {paymentNotice ? (
+              <div className={`donate-redesign__payment-notice donate-redesign__payment-notice--${paymentNotice.tone}`}>
+                <strong>{paymentNotice.title}</strong>
+                <span>{paymentNotice.body}</span>
+              </div>
+            ) : null}
+
+            {selectedFund ? (
+              <div className="donate-redesign__notice">
+                <strong>Selected giving route.</strong>
+                <span>
+                  {hasLiveProviders
+                    ? `Checkout is focused on ${selectedFund.title}. You can still switch to another route in the form.`
+                    : `Follow-up is focused on ${selectedFund.title}. The form below can guide the next payment step.`}
+                </span>
+              </div>
+            ) : null}
+
+            <div className="donate-redesign__checkout-shell">
+              <DonationCheckoutForm
+                funds={funds}
+                providers={providers}
+                initialFundSlug={selectedFund?.slug}
+                initialProvider={params.provider}
+              />
+            </div>
+          </div>
+        </div>
+      </Reveal>
+
+      <Reveal as="section" id="tiers" className="donate-redesign__section" delay={170} variant="left" cascade>
+        <div className="donate-redesign__section-lead" data-reveal-group>
+          <SectionIntro
+            eyebrow="Suggested levels"
+            title="Use a preset amount or enter a custom gift."
+            body="Suggested levels help donors start quickly. Checkout and the follow-up form both support custom amounts and larger sponsorship conversations."
+          />
+        </div>
+
+        <div className="donate-redesign__tier-rail" data-reveal-group>
+          {tierDetails.map((tier) => (
+            <article key={tier.amount} className="donate-redesign__tier">
+              <span>{tier.label}</span>
+              <strong>{tier.amount}</strong>
+              <h3>{tier.title}</h3>
+              <p>{tier.body}</p>
+            </article>
+          ))}
+        </div>
+      </Reveal>
+
       <Reveal as="section" className="donate-redesign__section donate-redesign__ledger" delay={210} variant="right" cascade>
-        <div className="donate-redesign__section-head">
-          <p className="donate-redesign__kicker">Trust layer</p>
-          <h2>The public tracker sits beside the giving flow.</h2>
-          <p>
-            Supporters should not have to guess what the ask is or where to look for updates.
-            The latest tracker notes stay close to the donation decision.
-          </p>
+        <div className="donate-redesign__section-lead" data-reveal-group>
+          <SectionIntro
+            eyebrow="Trust layer"
+            title="The public tracker sits beside the giving flow."
+            body="Each tracker note shows the current ask, documented support, allocation summary, and related program route."
+          />
         </div>
 
         <div className="donate-redesign__ledger-grid">
@@ -371,52 +366,13 @@ export default async function DonatePage({ searchParams }) {
         </div>
       </Reveal>
 
-      <Reveal as="section" id="live-checkout" className="donate-redesign__section donate-redesign__checkout" delay={235} variant="rise">
-        <div className="donate-redesign__split-head">
-          <div>
-            <p className="donate-redesign__kicker">Live checkout</p>
-            <h2>Pay with Flutterwave or PayPal without leaving the donation flow blind.</h2>
-          </div>
-          <p>
-            Flutterwave is set up for NGN support. PayPal is available for USD payments.
-            Each checkout is tied to a specific route and returned here with a visible status.
-          </p>
-        </div>
-
-        {paymentNotice ? (
-          <div className={`donate-redesign__payment-notice donate-redesign__payment-notice--${paymentNotice.tone}`}>
-            <strong>{paymentNotice.title}</strong>
-            <span>{paymentNotice.body}</span>
-          </div>
-        ) : null}
-
-        {selectedFund ? (
-          <div className="donate-redesign__notice">
-            <strong>Selected giving route.</strong>
-            <span>
-              Live checkout is focused on {selectedFund.title}. You can still switch to another route in the form.
-            </span>
-          </div>
-        ) : null}
-
-        <div className="donate-redesign__checkout-shell">
-          <DonationCheckoutForm
-            funds={funds}
-            providers={providers}
-            initialFundSlug={selectedFund?.slug}
-            initialProvider={params.provider}
-          />
-        </div>
-      </Reveal>
-
       <Reveal as="section" id="donation-intake" className="donate-redesign__section donate-redesign__intake" delay={260} variant="rise">
         <div className="donate-redesign__intake-copy">
-          <p className="donate-redesign__kicker">Donor follow-up</p>
-          <h2>Need guidance, sponsorship, or a custom giving step?</h2>
-          <p>
-            Use the tracked form when you want sponsorship, a custom giving arrangement,
-            a partner-level budget, or a route that still needs a guided conversation first.
-          </p>
+          <SectionIntro
+            eyebrow="Donor follow-up"
+            title="Need guidance, sponsorship, or a custom giving step?"
+            body="Use the tracked form when you want sponsorship, a custom giving arrangement, a partner-level budget, or a route that still needs a guided conversation first."
+          />
 
           {(checkoutUnavailable || selectedFund) && (
             <div className="donate-redesign__notice">
