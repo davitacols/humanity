@@ -1,307 +1,212 @@
 import { LoadingLink } from "../components/LoadingLink";
-import { HomeViewportMotion } from "../components/HomeViewportMotion";
+import { Reveal } from "../components/Reveal";
 import { SectionIntro } from "../components/SectionIntro";
 import { StockPhoto } from "../components/StockPhoto";
 import {
-  featuredProject,
-  homeMissionPoints,
+  educationMetrics,
+  homeTrustSignals,
   programPillars,
-  proofStats
+  proofStats,
+  sportsSpotlight
 } from "../components/siteData";
 import { stockMedia } from "../components/stockMedia";
 
-export const revalidate = 300;
-
-const heroSignals = [
-  {
-    label: "Maternal and child health"
-  },
-  {
-    label: "Education and digital skills"
-  },
-  {
-    label: "Youth sports and creative advocacy"
-  }
+const impactNumbers = [
+  { value: "24", label: "Published project notes and field updates" },
+  { value: "4", label: "Active program routes" },
+  { value: "100+", label: "Children and youth reached" },
+  { value: "2", label: "Countries in the network" }
 ];
 
-const proofCards = [
-  {
-    value: "24",
-    label: "published project notes, field updates, and support needs"
-  },
-  {
-    value: "4",
-    label: "active routes: health, education, sports, arts"
-  },
-  {
-    value: "Cross-border",
-    label: "regional collaboration with Ghana partnerships developing"
-  },
-  {
-    value: "Low-bandwidth",
-    label: "phone-first pages for visitors on slower connections"
-  }
+const fieldStories = [
+  { eyebrow: "Health outreach", title: "Maternal and child health support in focus", body: "Mobile clinic visits, hygiene kits, and follow-up check-ins help mothers and newborns stay connected to practical care.", media: stockMedia.homeStories[0] },
+  { eyebrow: "Youth development", title: "Sport creates structure, safety, and belonging", body: "Weekly training sessions and mentorship create a disciplined, positive environment that keeps children engaged.", media: stockMedia.homeStories[1] },
+  { eyebrow: "Creative advocacy", title: "Storytelling keeps communities visible", body: "Film, photography, and spoken-word projects help translate local experience into public awareness and sustained support.", media: stockMedia.homeStories[2] }
 ];
 
-const heroDeskItems = [
-  {
-    title: "Health and family support",
-    body: "Maternal kits, hygiene guidance, nutrition messages, and follow-up notes are grouped under the health route."
-  },
-  {
-    title: "Learning and youth pathways",
-    body: "Education resources and sports development show what children and young people need to keep learning, training, and participating."
-  },
-  {
-    title: "Creative advocacy",
-    body: "Film, photography, music, and campaign stories help community work reach donors, volunteers, and partner organizations."
-  }
+const supportRoutes = [
+  { eyebrow: "Donate", title: "Fund practical work", body: "Support health, education, youth development, and creative advocacy.", href: "/donate", label: "Donate now" },
+  { eyebrow: "Partner", title: "Collaborate with us", body: "Work on live campaigns, field support, or longer-term programs.", href: "/get-involved", label: "Discuss partnership" },
+  { eyebrow: "Volunteer", title: "Give your time", body: "Join events, outreach, and program delivery on the ground.", href: "/get-involved", label: "See routes" },
+  { eyebrow: "Contribute", title: "Share expertise", body: "Submit resources, creative work, or technical knowledge.", href: "/education/contribute", label: "Contribute" }
 ];
 
-const routeDescriptors = {
-  "Education Access": {
-    kicker: "Learning support",
-    note: "Resources that help children, youth, and facilitators keep learning practical.",
-    tags: ["Digital skills", "Books and guides"]
-  },
-  "Arts and Music": {
-    kicker: "Community voice",
-    note: "Creative work that helps real stories travel further with dignity.",
-    tags: ["Artist spotlights", "Advocacy stories"]
-  },
-  "Public Health": {
-    kicker: "Health support",
-    note: "Simple prevention, hygiene, maternal care, and safety messages for families.",
-    tags: ["Maternal health", "Safety education"]
-  },
-  "Sports Development": {
-    kicker: "Youth protection",
-    note: "Structured play, discipline, and mentorship for children who need opportunity.",
-    tags: ["Grassroots training", "Mentorship"]
-  }
-};
+const programImages = [stockMedia.educationFeature, stockMedia.homeStories[2], stockMedia.homeStories[0], stockMedia.homeHero];
 
 export default function HomePage() {
   return (
-    <main className="site-main page-v2 home-spline">
-      <HomeViewportMotion />
-
-      <section className="home-spline__hero home-spline__section home-spline__section--hero">
-        <div className="home-spline__background" aria-hidden="true">
-          <StockPhoto
-            src={stockMedia.homeHero.src}
-            alt=""
-            sizes="100vw"
-            className="home-spline__background-media"
-            priority
-          />
+    <main className="site-main hp">
+      {/* ── 1. Hero ── */}
+      <Reveal as="section" className="about-hero hp-hero-wrap" delay={60}>
+        <img src={stockMedia.aboutHero.src} alt={stockMedia.aboutHero.alt} className="about-hero__bg" />
+        <div className="about-hero__overlay" />
+        <div className="about-hero__content">
+          <p className="about-hero__eyebrow">Humanity First Initiative</p>
+          <h1 className="about-hero__title">Visibility, dignity, and&nbsp;support for communities on the&nbsp;move.</h1>
+          <p className="about-hero__body">
+            Connecting local programs, field reporting, and practical ways to help across
+            health, education, youth development, and creative advocacy.
+          </p>
+          <div className="hero-actions">
+            <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">Donate now</LoadingLink>
+            <LoadingLink href="/projects" className="button button--ghost-light" loadingLabel="Opening">Explore projects</LoadingLink>
+          </div>
         </div>
+        <div className="about-hero__stats">
+          {proofStats.map((s) => (
+            <article key={s.label} className="about-hero__stat">
+              <p className="about-hero__stat-value">{s.value}</p>
+              <p className="about-hero__stat-label">{s.label}</p>
+            </article>
+          ))}
+        </div>
+        <div className="hp-hero__scroll" aria-hidden="true"><span /></div>
+      </Reveal>
 
-        <div className="home-spline__hero-grid">
-          <div className="home-spline__copy">
-            <p className="home-spline__eyebrow">Humanitarian field platform</p>
-            <h1
-              className="home-spline__title"
-              aria-label="Humanitarian work people can see, trust, and support."
-            >
-              <span className="home-spline__title-line">
-                <span>Humanitarian work</span>
-              </span>
-              <span className="home-spline__title-line">
-                <span>people can see,</span>
-              </span>
-              <span className="home-spline__title-line home-spline__title-line--accent">
-                <span>trust, and support.</span>
-              </span>
-            </h1>
-            <p className="home-spline__lede">
-              A public-facing platform for maternal health, education access, youth development,
-              and creative advocacy.
-            </p>
-            <p className="home-spline__body">
-              Humanity First Initiative helps supporters understand the need, the work already in
-              motion, and the clearest next step to help with dignity and context.
-            </p>
-            <div className="hero-actions">
-              <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">
-                Donate now
-              </LoadingLink>
-              <LoadingLink href="/projects" className="button button--secondary" loadingLabel="Opening">
-                See projects
-              </LoadingLink>
-            </div>
-            <div className="home-spline__signal-row">
-              {heroSignals.map((item) => (
-                <span key={item.label} className="home-spline__signal">
-                  <span className="home-spline__signal-dot" aria-hidden="true" />
-                  {item.label}
-                </span>
-              ))}
-            </div>
-            <div className="home-spline__hero-stats">
-              {proofStats.map((item) => (
-                <article key={item.label} className="home-spline__hero-stat">
-                  <p className="home-spline__hero-stat-value">{item.value}</p>
-                  <p className="home-spline__hero-stat-label">{item.label}</p>
+      {/* ── 2. Impact + Trust combined ── */}
+      <Reveal as="section" className="hp-section" delay={60}>
+        <div className="hp-proof">
+          <div className="hp-proof__left">
+            <p className="hp-proof__eyebrow">The work so far</p>
+            <h2 className="hp-proof__title">Documented needs, honest roles, and visible follow-up.</h2>
+            <div className="hp-proof__numbers">
+              {impactNumbers.map((n) => (
+                <article key={n.label} className="hp-proof__number">
+                  <p className="hp-proof__number-value">{n.value}</p>
+                  <p className="hp-proof__number-label">{n.label}</p>
                 </article>
               ))}
             </div>
           </div>
-        </div>
-
-        <aside className="home-spline__proof-desk" aria-label="Homepage proof desk">
-          <p className="home-spline__proof-kicker">How support moves</p>
-          <h2 className="home-spline__proof-title">
-            Choose a program route, review the need, then decide how to help.
-          </h2>
-          <p className="home-spline__proof-body">
-            The initiative organizes support around health outreach, education access, youth sports,
-            and creative advocacy so donors and partners can follow the work before they act.
-          </p>
-
-          <div className="home-spline__proof-points">
-            {homeMissionPoints.map((item) => (
-              <div key={item} className="home-spline__proof-point">
-                <span className="home-spline__proof-point-dot" aria-hidden="true" />
-                <span>{item}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className="home-spline__proof-list">
-            {heroDeskItems.map((item) => (
-              <article key={item.title} className="home-spline__proof-item">
-                <h3 className="home-spline__proof-item-title">{item.title}</h3>
-                <p className="home-spline__proof-item-body">{item.body}</p>
+          <div className="hp-proof__right">
+            {homeTrustSignals.map((item, i) => (
+              <article key={item.title} className="hp-proof__signal">
+                <span className="hp-proof__signal-index">{String(i + 1).padStart(2, "0")}</span>
+                <div className="hp-proof__signal-copy">
+                  <h3 className="hp-proof__signal-title">{item.title}</h3>
+                  <p className="hp-proof__signal-body">{item.body}</p>
+                </div>
               </article>
             ))}
           </div>
+        </div>
+      </Reveal>
 
-          <LoadingLink
-            href="/donate/transparency"
-            className="button button--secondary home-spline__proof-action"
-            loadingLabel="Opening"
-          >
-            View transparency
-          </LoadingLink>
-        </aside>
-      </section>
+      {/* ── 3. Spotlight — Dodoma ── */}
+      <Reveal as="section" className="hp-section" delay={120}>
+        <div className="hp-appeal">
+          <div className="hp-appeal__media">
+            <StockPhoto src={stockMedia.homeStories[1].src} alt={stockMedia.homeStories[1].alt} label="Field image" ratio="portrait" sizes="(max-width: 1120px) 100vw, 44vw" />
+          </div>
+          <div className="hp-appeal__copy">
+            <p className="hp-appeal__eyebrow">Current appeal</p>
+            <h2 className="hp-appeal__title">{sportsSpotlight.title}</h2>
+            <p className="hp-appeal__body">{sportsSpotlight.summary}</p>
+            <div className="hp-appeal__facts">
+              {[
+                ["Location", sportsSpotlight.location],
+                ["Reach", sportsSpotlight.beneficiaries],
+                ["Support", sportsSpotlight.orphanSupport],
+                ["Current ask", sportsSpotlight.totalRequest]
+              ].map(([label, value]) => (
+                <div key={label} className="hp-appeal__fact">
+                  <span className="hp-appeal__fact-label">{label}</span>
+                  <span className="hp-appeal__fact-value">{value}</span>
+                </div>
+              ))}
+            </div>
+            <div className="hero-actions">
+              <LoadingLink href="/projects/dodoma-best-sports-center" className="button button--primary" loadingLabel="Opening">Read the full project</LoadingLink>
+              <LoadingLink href="/donate" className="button button--secondary" loadingLabel="Opening">Donate to this work</LoadingLink>
+            </div>
+          </div>
+        </div>
+      </Reveal>
 
-      <section className="home-spline__section home-spline__proof-section">
-        <SectionIntro
-          className="home-spline__intro"
-          eyebrow="Current footprint"
-          title="Active routes, published updates, and practical access."
-          body="These signals point visitors to published work, active program routes, regional collaboration, and mobile-friendly access."
-        />
-
-        <div className="home-spline__proof-grid">
-          {proofCards.map((item) => (
-            <article key={item.label} className="home-spline__proof-card">
-              <p className="home-spline__proof-value">{item.value}</p>
-              <p className="home-spline__proof-label">{item.label}</p>
+      {/* ── 5. Programs ── */}
+      <Reveal as="section" className="hp-section" delay={180}>
+        <SectionIntro eyebrow="Program areas" title="Four routes into the work, each with active projects and clear next steps." body="Every program area presents documented needs, practical ways to take part, and visible progress." />
+        <div className="hp-programs">
+          {programPillars.map((pillar, i) => (
+            <article key={pillar.title} className="hp-program">
+              <StockPhoto src={programImages[i].src} alt={programImages[i].alt} label={`Route 0${i + 1}`} sizes="(max-width: 1120px) 100vw, 24vw" className="hp-program__media" />
+              <div className="hp-program__copy">
+                <span className="hp-program__index">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="hp-program__title">{pillar.title}</h3>
+                <p className="hp-program__body">{pillar.body}</p>
+                <LoadingLink href={pillar.href} className="button button--secondary" loadingLabel="Opening">Explore</LoadingLink>
+              </div>
             </article>
           ))}
         </div>
-      </section>
+      </Reveal>
 
-      <section className="home-spline__section home-spline__routes-section">
-        <div className="home-spline__routes-layout">
-          <div className="home-spline__routes-sidebar">
-            <SectionIntro
-              className="home-spline__intro"
-              eyebrow="Program routes"
-              title="Four routes into the same humanitarian mission."
-              body="Each route points to a specific kind of support: family health, learning access, youth development, or creative advocacy."
-            />
-
-            <div className="home-spline__routes-summary">
-              <p className="home-spline__routes-summary-title">One mission. Four practical routes.</p>
-              <p className="home-spline__routes-summary-body">
-                Education, arts, health, and sports are kept separate enough to act on and connected
-                enough to show the full community picture.
-              </p>
-              <div className="home-spline__routes-summary-row">
-                <span className="home-spline__routes-summary-pill">4 focus areas</span>
-                <span className="home-spline__routes-summary-pill">Cross-border network</span>
-                <span className="home-spline__routes-summary-pill">People-first stories</span>
-              </div>
+      {/* ── 6. Field stories ── */}
+      <Reveal as="section" className="hp-section" delay={220}>
+        <SectionIntro eyebrow="Stories from the field" title="Field stories keep the mission alive between appeals." body="Stories, learning tools, and field media keep supporters informed while staying rooted in community realities." />
+        <div className="hp-stories">
+          <article className="hp-stories__featured">
+            <StockPhoto src={fieldStories[0].media.src} alt={fieldStories[0].media.alt} label={fieldStories[0].media.label} sizes="(max-width: 1120px) 100vw, 56vw" className="hp-stories__featured-media" />
+            <div className="hp-stories__featured-copy">
+              <p className="hp-stories__eyebrow">{fieldStories[0].eyebrow}</p>
+              <h3 className="hp-stories__featured-title">{fieldStories[0].title}</h3>
+              <p className="hp-stories__featured-body">{fieldStories[0].body}</p>
+              <LoadingLink href="/health" className="button button--secondary" loadingLabel="Opening">Read more</LoadingLink>
             </div>
-          </div>
-
-          <div className="home-spline__routes-board">
-            <div className="home-spline__routes">
-              {programPillars.map((pillar, index) => {
-                const descriptor = routeDescriptors[pillar.title];
-                const routeNumber = String(index + 1).padStart(2, "0");
-
-                return (
-                  <article
-                    key={pillar.title}
-                    className={`home-spline__route home-spline__route--${pillar.tone}`}
-                    data-route-index={routeNumber}
-                  >
-                    <div className="home-spline__route-head">
-                      <span className="home-spline__route-kicker">{descriptor.kicker}</span>
-                      <span className="home-spline__route-label">Route {routeNumber}</span>
-                    </div>
-                    <h3>{pillar.title}</h3>
-                    <p className="home-spline__route-body">{pillar.body}</p>
-                    <p className="home-spline__route-note">{descriptor.note}</p>
-                    <div className="home-spline__route-tags">
-                      {descriptor.tags.map((tag) => (
-                        <span key={tag} className="home-spline__route-tag">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    <LoadingLink
-                      href={pillar.href}
-                      className="home-spline__route-action"
-                      loadingLabel="Opening"
-                    >
-                      Explore section
-                    </LoadingLink>
-                  </article>
-                );
-              })}
-            </div>
+          </article>
+          <div className="hp-stories__stack">
+            {fieldStories.slice(1).map((story) => (
+              <article key={story.title} className="hp-stories__card">
+                <StockPhoto src={story.media.src} alt={story.media.alt} label={story.media.label} sizes="(max-width: 1120px) 100vw, 40vw" className="hp-stories__card-media" />
+                <div className="hp-stories__card-copy">
+                  <p className="hp-stories__eyebrow">{story.eyebrow}</p>
+                  <h3 className="hp-stories__card-title">{story.title}</h3>
+                  <p className="hp-stories__card-body">{story.body}</p>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
-      </section>
+      </Reveal>
 
-      <section className="home-spline__section home-spline__feature-section">
-        <SectionIntro
-          className="home-spline__intro"
-          eyebrow="Featured health story"
-          title="Maternal and child health support is one of the clearest first needs."
-          body="This route focuses on mothers, newborns, caregivers, hygiene kits, nutrition guidance, and follow-up support."
-        />
-
-        <div className="home-spline__feature">
-          <StockPhoto
-            src={stockMedia.homeStories[0].src}
-            alt={stockMedia.homeStories[0].alt}
-            label={stockMedia.homeStories[0].label}
-            sizes="(max-width: 1120px) 100vw, 38vw"
-            className="home-spline__feature-media"
-          />
-
-          <div className="home-spline__feature-copy">
-            <h2>{featuredProject.title}</h2>
-            <p>{featuredProject.body}</p>
-            <blockquote>{featuredProject.quote}</blockquote>
-            <div className="hero-actions">
-              <LoadingLink href="/health" className="button button--primary" loadingLabel="Opening">
-                Read full story
-              </LoadingLink>
-              <LoadingLink href="/donate/transparency" className="button button--secondary" loadingLabel="Opening">
-                View report
-              </LoadingLink>
+      {/* ── 7. Education feature ── */}
+      <Reveal as="section" className="hp-section" delay={260}>
+        <div className="hp-edu">
+          <StockPhoto src={stockMedia.educationFeature.src} alt={stockMedia.educationFeature.alt} label="Education hub" sizes="(max-width: 1120px) 100vw, 40vw" className="hp-edu__media" />
+          <div className="hp-edu__copy">
+            <p className="hp-edu__eyebrow">Education route</p>
+            <h3 className="hp-edu__title">Learning resources organized for phones, classrooms, and facilitators.</h3>
+            <p className="hp-edu__body">Teachers, mentors, and volunteers can access practical tools, external lessons, and downloadable guides through the education hub.</p>
+            <div className="hp-edu__metrics">
+              {educationMetrics.slice(0, 4).map((m) => (
+                <span key={m.label} className="hp-edu__metric"><strong>{m.value}</strong> {m.label}</span>
+              ))}
             </div>
+            <LoadingLink href="/education" className="button button--primary" loadingLabel="Opening">Visit education hub</LoadingLink>
           </div>
         </div>
-      </section>
+      </Reveal>
+
+      {/* ── 8. Support CTA ── */}
+      <Reveal as="section" className="hp-section" delay={300}>
+        <div className="hp-cta">
+          <div className="hp-cta__lead">
+            <p className="hp-cta__eyebrow">Support the movement</p>
+            <h2 className="hp-cta__title">Choose the role that fits your capacity.</h2>
+            <p className="hp-cta__body">Whether someone gives, partners, volunteers, or contributes expertise, the next step should be clear, practical, and easy to act on.</p>
+          </div>
+          <div className="hp-cta__grid">
+            {supportRoutes.map((route) => (
+              <article key={route.title} className="hp-cta__card">
+                <p className="hp-cta__card-eyebrow">{route.eyebrow}</p>
+                <h3 className="hp-cta__card-title">{route.title}</h3>
+                <p className="hp-cta__card-body">{route.body}</p>
+                <LoadingLink href={route.href} className="button button--secondary" loadingLabel="Opening">{route.label}</LoadingLink>
+              </article>
+            ))}
+          </div>
+        </div>
+      </Reveal>
     </main>
   );
 }
