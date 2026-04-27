@@ -16661,3 +16661,102 @@ button {
     flex-direction: column;
   }
 }
+
+/* ── Arts: Featured artist reel embed ── */
+
+.arts-v2__featured-artist {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.82fr) minmax(0, 1.18fr);
+  gap: 1.6rem;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(16,38,28,0.1);
+  background:
+    radial-gradient(circle at top left, rgba(223,188,114,0.1), transparent 22rem),
+    linear-gradient(180deg, rgba(255,255,255,0.94), rgba(250,245,236,0.96));
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.arts-v2__reel-card {
+  position: relative;
+  display: block;
+  border-radius: 18px;
+  overflow: hidden;
+  text-decoration: none;
+  background: #0a0a08;
+}
+
+.arts-v2__reel-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  object-fit: cover;
+  border-radius: 18px;
+  transition: transform 400ms ease, filter 400ms ease;
+}
+
+.arts-v2__reel-card:hover .arts-v2__reel-video {
+  transform: scale(1.04);
+  filter: brightness(0.85);
+}
+
+.arts-v2__reel-card:hover .arts-v2__reel-overlay {
+  opacity: 0;
+}
+
+.arts-v2__reel-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.4));
+  transition: opacity 400ms ease;
+}
+
+.arts-v2__reel-overlay svg {
+  filter: drop-shadow(0 6px 20px rgba(0,0,0,0.35));
+  transition: transform 280ms ease;
+}
+
+.arts-v2__reel-card:hover .arts-v2__reel-overlay svg {
+  transform: scale(1.14);
+}
+
+.arts-v2__reel-overlay span {
+  color: #ffffff;
+  font-size: 0.84rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.arts-v2__featured-copy {
+  display: grid;
+  gap: 0.7rem;
+  align-content: center;
+}
+
+@media (max-width: 1120px) {
+  .arts-v2__featured-artist {
+    grid-template-columns: 1fr;
+  }
+
+  .arts-v2__reel-video {
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 820px) {
+  .arts-v2__featured-artist {
+    padding: 1.3rem;
+    border-radius: 20px;
+  }
+}

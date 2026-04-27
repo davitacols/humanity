@@ -2,17 +2,24 @@ import { LoadingLink } from "../../components/LoadingLink";
 import { Reveal } from "../../components/Reveal";
 import { SectionIntro } from "../../components/SectionIntro";
 import { StockPhoto } from "../../components/StockPhoto";
+import { VideoPreview } from "../../components/VideoPreview";
 import { stockMedia } from "../../components/stockMedia";
 
 const musicLinks = [
-  { platform: "Facebook Reel", label: "Watch first artist", href: "https://www.facebook.com/share/r/18KMAN2G4k/?mibextid=wwXIfr", description: "The first featured artist performance linked directly from the arts section." },
+  { platform: "Facebook Reel", label: "Watch first artist", href: "https://www.facebook.com/share/r/1E5HyPvYgP/", description: "The first featured artist performance linked directly from the arts section." },
   { platform: "YouTube", label: "Watch on YouTube", href: "https://youtube.com", description: "Campaign films, spoken word performances, and community event recordings." },
   { platform: "Audiomack", label: "Listen on Audiomack", href: "https://audiomack.com", description: "Original tracks, advocacy anthems, and community-produced audio." },
   { platform: "Spotify", label: "Listen on Spotify", href: "https://spotify.com", description: "Curated playlists tied to campaign themes and cultural storytelling." }
 ];
 
+const featuredArtist = {
+  name: "First featured artist",
+  role: "Music artist",
+  body: "The first artist performance is now live on Facebook. Tap the preview to watch the full reel.",
+  href: "https://www.facebook.com/share/r/1E5HyPvYgP/"
+};
+
 const artistSpotlights = [
-  { name: "First featured artist", role: "Music artist", body: "The first artist profile is now live with a direct Facebook reel link for supporters to watch.", href: "https://www.facebook.com/share/r/18KMAN2G4k/?mibextid=wwXIfr", hrefLabel: "Watch artist" },
   { name: "Community storytellers", role: "Spoken word and oral history", body: "Local voices documenting community experience through performance, poetry, and narrative." },
   { name: "Visual advocates", role: "Photography and illustration", body: "Artists using imagery to amplify humanitarian stories and campaign visibility." },
   { name: "Music for change", role: "Songwriting and production", body: "Musicians creating original work tied to health, education, and youth empowerment themes." }
@@ -81,18 +88,36 @@ export default function ArtsPage() {
         </div>
       </Reveal>
 
-      {/* Artist spotlights */}
+      {/* Featured artist preview */}
       <Reveal as="section" className="arts-v2__section" delay={220}>
-        <SectionIntro eyebrow="Artist spotlights" title="The people behind the creative work." body="Highlighting storytellers, visual artists, and musicians whose work supports the mission." />
+        <SectionIntro eyebrow="Featured artist" title="Watch the first artist performance." body="A live reel preview embedded directly — no need to leave the page." />
+        <div className="arts-v2__featured-artist">
+          <VideoPreview
+            src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+            poster={stockMedia.homeStories[2].src}
+            href={featuredArtist.href}
+            label="Watch on Facebook"
+          />
+          <div className="arts-v2__featured-copy">
+            <p className="arts-v2__artist-role">{featuredArtist.role}</p>
+            <h3 className="arts-v2__artist-name">{featuredArtist.name}</h3>
+            <p className="arts-v2__artist-body">{featuredArtist.body}</p>
+            <a href={featuredArtist.href} target="_blank" rel="noreferrer" className="button button--primary">
+              Open reel on Facebook
+            </a>
+          </div>
+        </div>
+      </Reveal>
+
+      {/* More artist spotlights */}
+      <Reveal as="section" className="arts-v2__section" delay={250}>
+        <SectionIntro eyebrow="More spotlights" title="The people behind the creative work." body="Highlighting storytellers, visual artists, and musicians whose work supports the mission." />
         <div className="arts-v2__artists">
           {artistSpotlights.map((artist) => (
             <article key={artist.name} className="arts-v2__artist">
               <p className="arts-v2__artist-role">{artist.role}</p>
               <h3 className="arts-v2__artist-name">{artist.name}</h3>
               <p className="arts-v2__artist-body">{artist.body}</p>
-              {artist.href && (
-                <a href={artist.href} target="_blank" rel="noreferrer" className="button button--secondary">{artist.hrefLabel}</a>
-              )}
             </article>
           ))}
         </div>
