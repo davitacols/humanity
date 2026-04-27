@@ -34,8 +34,8 @@ const proofCards = [
     label: "humanitarian program areas"
   },
   {
-    value: "Nigeria + Ghana",
-    label: "current cross-country footprint"
+    value: "Cross-border",
+    label: "community-led footprint with room to grow"
   },
   {
     value: "Low-bandwidth",
@@ -223,7 +223,7 @@ export default function HomePage() {
               </p>
               <div className="home-spline__routes-summary-row">
                 <span className="home-spline__routes-summary-pill">4 focus areas</span>
-                <span className="home-spline__routes-summary-pill">Nigeria + Ghana</span>
+                <span className="home-spline__routes-summary-pill">Cross-border network</span>
                 <span className="home-spline__routes-summary-pill">People-first stories</span>
               </div>
             </div>

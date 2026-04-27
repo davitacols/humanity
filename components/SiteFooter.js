@@ -47,8 +47,8 @@ export function SiteFooter() {
             partnership and volunteer routes from one clear footer.
           </p>
           <p className="site-footer__summary-note">
-            Nigeria + Ghana footprint. Built for donor trust, collaboration, and low-bandwidth
-            access.
+            Cross-border humanitarian platform. Built for donor trust, collaboration, and
+            low-bandwidth access.
           </p>
 
           <div className="site-footer__cta">

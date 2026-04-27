@@ -25,7 +25,7 @@ export const headerUtilityItems = [
 export const proofStats = [
   { value: "24", label: "documented projects and field updates" },
   { value: "4", label: "core program areas under one mission" },
-  { value: "Nigeria + Ghana", label: "current footprint with regional growth" }
+  { value: "Cross-border", label: "community-led footprint with regional growth" }
 ];
 
 export const spotlightStories = [
@@ -55,7 +55,7 @@ export const spotlightStories = [
 export const homeMissionPoints = [
   "Women and children centered support",
   "Built for low-bandwidth access",
-  "Ready for cross-country growth"
+  "Built for regional collaboration"
 ];
 
 export const homeTrustSignals = [
@@ -74,7 +74,7 @@ export const homeTrustSignals = [
   {
     eyebrow: "Designed to scale",
     title: "The initiative grows from community-led work into a wider network.",
-    body: "Partners, contributors, new campaigns, and additional countries are introduced without rebuilding the core story structure.",
+    body: "Partners, contributors, new campaigns, and additional regions are introduced without rebuilding the core story structure.",
     tone: "leaf"
   }
 ];
@@ -100,14 +100,14 @@ export const profileSpotlight = {
 
 export const platformProfiles = [
   {
-    eyebrow: "Strategic contributor",
+    eyebrow: "Strategy and communications",
     name: "Ikokwu Chidozie Ikemba",
     role: "Psychologist, strategist, media practitioner, and environmental entrepreneur",
     location: "Nigeria",
     summary:
-      "Contributes public communication, sustainability experience, partnership thinking, and cross-sector storytelling with a focus on civic relevance and visible social impact.",
+      "Supports campaign strategy, public communication, sustainability framing, and partner-facing storytelling for the initiative.",
     body:
-      "This profile sits alongside other public collaborators in the network. It represents one contributor's communication, sustainability, and public-impact experience without implying a leadership designation.",
+      "Ikemba brings experience from psychology, media practice, environmental enterprise, and civic communication. His contribution is strongest where a project needs clearer messaging, better public context, stronger campaign structure, or a sustainability angle that partners can understand.",
     tags: [
       "Strategic communication",
       "Sustainability",
@@ -122,14 +122,14 @@ export const platformProfiles = [
     imageRatio: "portrait"
   },
   {
-    eyebrow: "Regional collaborator",
+    eyebrow: "Ghana partnerships",
     name: "Regional partner in Ghana",
     role: "Community collaborator and regional growth partner",
     location: "Ghana",
     summary:
-      "Supports the platform's expansion into Ghana through local relationship building, community listening, partnership development, and field-level collaboration.",
+      "Helps build Ghana-based relationships, listen to community needs, and identify credible local collaboration paths.",
     body:
-      "This regional collaborator role represents the platform's multi-country direction, helping shape how projects, campaigns, and local changemakers can be represented beyond one public profile.",
+      "This partner gives the team a practical regional point of view as the platform grows beyond one country. The role is focused on introductions, community listening, field coordination, and helping local changemakers or organizations connect with the right support route.",
     tags: [
       "Regional partnerships",
       "Community outreach",
@@ -144,14 +144,14 @@ export const platformProfiles = [
     imageRatio: stockMedia.aboutMission.ratio || "landscape"
   },
   {
-    eyebrow: "Creative collaborator",
+    eyebrow: "Film and visual storytelling",
     name: "Sib",
     role: "Cinematographer, video editor, and creative food and travel photographer",
     location: "West Midlands, United Kingdom",
     summary:
-      "Brings cinematography, video editing, and accessibility-led storytelling to the wider network, with a focus on visually compelling work that connects with audiences and drives impact.",
+      "Contributes film, editing, photography, and accessibility-led visual storytelling for campaigns, profiles, and public updates.",
     body:
-      "Sib is a cinematographer and video editor based in the West Midlands who is passionate about film, TV, and meaningful storytelling for brands, organizations, and independent projects. The work is shaped by a strong commitment to accessibility and a lived autistic perspective, alongside a parallel practice in creative food and travel photography rooted in authenticity, beauty, and impact.",
+      "Sib is a West Midlands-based cinematographer and video editor with a strong interest in film, TV, and meaningful visual work for brands, organizations, and independent projects. Their creative practice also includes food and travel photography, shaped by authenticity, accessibility, and a lived autistic perspective.",
     tags: [
       "Cinematography",
       "Video editing",

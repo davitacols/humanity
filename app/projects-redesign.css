@@ -3,6 +3,11 @@ body:has(.admin-shell) .site-footer {
   display: none;
 }
 
+body {
+  --font-body: var(--font-league-spartan), Arial, Helvetica, sans-serif;
+  --font-display: var(--font-league-spartan), Arial, Helvetica, sans-serif;
+}
+
 .page-chrome {
   padding-top: clamp(8.1rem, 10.8vw, 9.45rem);
 }
@@ -80,6 +85,64 @@ body:has(.admin-shell) .page-chrome {
   color: rgba(62, 74, 59, 0.72);
   font-size: 0.77rem;
   font-weight: 700;
+}
+
+.site-brand__name,
+.site-nav__link,
+.site-nav__trigger,
+.section-intro__eyebrow,
+.section-intro__title,
+.page-hero__title,
+.page-hero-v2__title,
+.page-hero-v2__aside-title,
+.card-v2__title,
+.browse-card__title,
+.ledger-card__title,
+.dark-panel-v2__title,
+.about-map__title,
+.about-map__guide-title,
+.home-spline__title,
+.home-spline__proof-title,
+.home-spline__proof-item-title {
+  font-family: var(--font-display), var(--font-body), Arial, Helvetica, sans-serif;
+}
+
+.site-brand__name {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-transform: none;
+}
+
+.site-nav__link,
+.site-nav__trigger {
+  font-weight: 720;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.section-intro__eyebrow {
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.section-intro__title,
+.page-hero__title,
+.page-hero-v2__title,
+.page-hero-v2__aside-title,
+.card-v2__title,
+.browse-card__title,
+.ledger-card__title,
+.dark-panel-v2__title,
+.about-map__title,
+.about-map__guide-title,
+.home-spline__title,
+.home-spline__proof-title,
+.home-spline__proof-item-title {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-transform: none;
 }
 
 .site-header__panel {
@@ -652,6 +715,380 @@ body:has(.admin-shell) .page-chrome {
   justify-self: start;
 }
 
+.about-map {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.about-map__guide {
+  grid-column: span 4;
+  display: grid;
+  gap: 0.85rem;
+  align-content: start;
+  padding: clamp(1.15rem, 2.6vw, 1.45rem);
+  border: 1px solid rgba(72, 88, 70, 0.14);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top left, rgba(23, 122, 89, 0.08), transparent 18rem),
+    linear-gradient(180deg, rgba(255, 253, 248, 0.97), rgba(245, 237, 223, 0.92));
+  box-shadow: 0 16px 34px rgba(75, 62, 39, 0.08);
+}
+
+.about-map__guide-kicker {
+  margin: 0;
+  color: rgba(167, 105, 58, 0.94);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.about-map__guide-title {
+  margin: 0;
+  color: var(--pine);
+  font-size: clamp(1.55rem, 2.25vw, 2.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+
+.about-map__guide-body {
+  margin: 0;
+  color: rgba(46, 61, 49, 0.8);
+  line-height: 1.68;
+}
+
+.about-map__card {
+  grid-column: span 2;
+  gap: 0.68rem;
+  border-color: rgba(72, 88, 70, 0.14);
+  background:
+    linear-gradient(180deg, rgba(255, 253, 248, 0.98), rgba(246, 239, 227, 0.9));
+  box-shadow: 0 14px 28px rgba(75, 62, 39, 0.07);
+}
+
+.about-map__eyebrow {
+  color: rgba(167, 105, 58, 0.94);
+}
+
+.about-map__title {
+  color: var(--pine);
+}
+
+.about-map__body {
+  color: rgba(64, 75, 66, 0.82);
+}
+
+.about-map__detail {
+  margin: 0;
+  color: rgba(49, 83, 65, 0.9);
+  font-size: 0.83rem;
+  font-weight: 760;
+  line-height: 1.45;
+}
+
+.about-map__link {
+  border-color: rgba(72, 88, 70, 0.14);
+  background: rgba(255, 253, 248, 0.82);
+  color: var(--pine);
+  letter-spacing: 0.08em;
+}
+
+.about-map__link:hover {
+  background: rgba(23, 122, 89, 0.08);
+}
+
+.about-humanitarian__mission-checks {
+  display: grid;
+  gap: 0.72rem;
+  padding-top: 0.3rem;
+}
+
+.about-humanitarian__mission-check {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: start;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid rgba(72, 88, 70, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 253, 248, 0.84);
+}
+
+.about-humanitarian__mission-check span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(23, 122, 89, 0.1);
+  color: var(--humanity-green);
+  font-size: 0.88rem;
+  font-weight: 820;
+}
+
+.about-humanitarian__mission-check p {
+  margin: 0;
+  color: var(--pine);
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.48;
+}
+
+.about-humanitarian__team {
+  display: grid;
+  gap: clamp(1rem, 2.6vw, 1.5rem);
+}
+
+.about-humanitarian__team-lanes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.78rem;
+}
+
+.about-humanitarian__team-lane {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: start;
+  padding: 0.95rem;
+  border: 1px solid rgba(72, 88, 70, 0.13);
+  border-radius: 18px;
+  background: rgba(255, 252, 245, 0.72);
+}
+
+.about-humanitarian__team-lane span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(23, 122, 89, 0.1);
+  color: var(--humanity-green);
+  font-size: 0.78rem;
+  font-weight: 820;
+}
+
+.about-humanitarian__team-lane h3 {
+  margin: 0 0 0.2rem;
+  color: var(--pine);
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.about-humanitarian__team-lane p {
+  margin: 0;
+  color: rgba(64, 75, 66, 0.78);
+  font-size: 0.9rem;
+  line-height: 1.48;
+}
+
+.about-humanitarian__team-lead {
+  display: grid;
+  gap: clamp(1rem, 2.5vw, 1.6rem);
+  align-items: stretch;
+  padding: clamp(1.1rem, 2.6vw, 1.55rem);
+  border: 1px solid rgba(72, 88, 70, 0.14);
+  border-radius: 26px;
+  background:
+    linear-gradient(135deg, rgba(255, 252, 245, 0.96), rgba(241, 232, 213, 0.9)),
+    rgba(255, 252, 245, 0.96);
+}
+
+.about-humanitarian__team-lead-copy {
+  display: grid;
+  gap: 0.9rem;
+  align-content: start;
+}
+
+.about-humanitarian__team-lead h3,
+.about-humanitarian__collaborator-card h3 {
+  margin: 0;
+  color: var(--pine);
+  font-size: clamp(1.45rem, 2.2vw, 2.15rem);
+  line-height: 1.04;
+}
+
+.about-humanitarian__team-lead-summary {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--pine);
+  font-size: clamp(1.02rem, 1.35vw, 1.16rem);
+  font-weight: 680;
+  line-height: 1.45;
+}
+
+.about-humanitarian__team-lead-body {
+  margin: 0;
+  max-width: 68ch;
+  color: rgba(46, 61, 49, 0.82);
+  line-height: 1.62;
+}
+
+.about-humanitarian__profile-meta {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.about-humanitarian__profile-location {
+  color: rgba(64, 75, 66, 0.74);
+  font-size: 0.94rem;
+}
+
+.about-humanitarian__collaborator-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.about-humanitarian__collaborator-card {
+  display: grid;
+  gap: 0.85rem;
+  align-content: start;
+  min-height: 100%;
+  padding: clamp(1rem, 2.2vw, 1.25rem);
+  border: 1px solid rgba(72, 88, 70, 0.14);
+  border-radius: 22px;
+  background: rgba(255, 252, 245, 0.9);
+}
+
+.about-humanitarian__collaborator-card h3 {
+  font-size: clamp(1.24rem, 1.7vw, 1.58rem);
+}
+
+.about-humanitarian__collaborator-card > p {
+  margin: 0;
+  color: rgba(46, 61, 49, 0.8);
+  line-height: 1.58;
+}
+
+.about-humanitarian__profile-footer {
+  display: grid;
+  gap: 0.8rem;
+  align-content: start;
+  margin-top: auto;
+  padding-top: 0.3rem;
+}
+
+.about-humanitarian__support-eyebrow {
+  margin: 0;
+  color: rgba(224, 191, 115, 0.96);
+  font-size: 0.73rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.about-humanitarian__support-note {
+  color: rgba(255, 248, 238, 0.92);
+  font-size: 0.9rem;
+  font-weight: 640;
+  line-height: 1.58;
+}
+
+.edu-page {
+  gap: clamp(2.2rem, 4.8vw, 4rem);
+}
+
+.edu-page__browse-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.edu-page__browse-card,
+.edu-page__track-card {
+  display: grid;
+  gap: 0.88rem;
+  align-content: start;
+  min-height: 100%;
+}
+
+.edu-page__browse-card .browse-card__title,
+.edu-page__track-card .ledger-card__title {
+  max-width: 11ch;
+  color: var(--pine);
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-transform: none;
+}
+
+.edu-page__browse-card .browse-card__body,
+.edu-page__track-card .ledger-card__body {
+  color: rgba(64, 75, 66, 0.82);
+  font-size: 0.96rem;
+  line-height: 1.68;
+}
+
+.edu-page__browse-card .browse-card__eyebrow,
+.edu-page__track-card .ledger-card__eyebrow {
+  color: rgba(167, 105, 58, 0.94);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.edu-page__browse-card .browse-card__index,
+.edu-page__track-card .ledger-card__index {
+  color: var(--pine);
+}
+
+.edu-page__featured-grid,
+.edu-page__practice-grid,
+.edu-page__actions-grid {
+  align-items: stretch;
+}
+
+.edu-page__delivery-layout {
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  align-items: start;
+}
+
+.edu-page__session-stack,
+.edu-page__delivery-stack {
+  gap: 1rem;
+}
+
+.edu-page__practice-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.edu-page__featured-card,
+.edu-page__session-card,
+.edu-page__practice-card,
+.edu-page__action-card {
+  display: grid;
+  gap: 0.78rem;
+  align-content: start;
+  min-height: 100%;
+}
+
+.edu-page__featured-card .card-v2__title,
+.edu-page__session-card .card-v2__title,
+.edu-page__practice-card .card-v2__title,
+.edu-page__action-card .card-v2__title {
+  color: var(--pine);
+  font-size: clamp(1.2rem, 1.7vw, 1.55rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-transform: none;
+}
+
+.edu-page__featured-card .card-v2__body,
+.edu-page__session-card .card-v2__body,
+.edu-page__practice-card .card-v2__body,
+.edu-page__action-card .card-v2__body {
+  color: rgba(64, 75, 66, 0.82);
+}
+
+.edu-page__practice-card .card-v2__title {
+  max-width: 9ch;
+}
+
 @media (max-width: 1180px) {
   .site-header__utility-note {
     display: none;
@@ -664,6 +1101,27 @@ body:has(.admin-shell) .page-chrome {
   .site-nav__mega-grid {
     grid-template-columns: minmax(180px, 0.68fr) repeat(3, minmax(150px, 1fr));
     gap: 0.9rem;
+  }
+
+  .about-map__guide {
+    grid-column: span 12;
+  }
+
+  .about-map__card {
+    grid-column: span 6;
+  }
+
+  .edu-page__browse-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .edu-page__delivery-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .about-humanitarian__team-lanes,
+  .about-humanitarian__team-lead {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -721,6 +1179,15 @@ body:has(.admin-shell) .page-chrome {
     width: min(100%, 680px);
     margin-top: 1.2rem;
   }
+
+  .about-humanitarian__mission-check {
+    grid-template-columns: 1fr;
+  }
+
+  .about-humanitarian__team-lanes,
+  .about-humanitarian__collaborator-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 760px) {
@@ -764,5 +1231,14 @@ body:has(.admin-shell) .page-chrome {
 
   .home-spline__hero-stats {
     grid-template-columns: 1fr;
+  }
+
+  .about-map__card {
+    grid-column: span 12;
+  }
+
+  .about-humanitarian__team-lead,
+  .about-humanitarian__collaborator-card {
+    border-radius: 22px;
   }
 }

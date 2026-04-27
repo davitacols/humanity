@@ -36,7 +36,7 @@ const currentPriorities = [
 const programHeroStats = [
   { value: "4", label: "connected program pillars" },
   { value: "1", label: "shared archive and donation system" },
-  { value: "Nigeria + Ghana", label: "current network footprint" }
+  { value: "Cross-border", label: "current network footprint" }
 ];
 
 export default function ProgramsPage() {
