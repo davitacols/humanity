@@ -537,8 +537,7 @@ export const blogPosts = [
   {
     slug: "why-visible-proof-matters-in-humanitarian-work",
     title: "Why visible proof matters in humanitarian work",
-    excerpt:
-      "Humanitarian trust grows when communities, supporters, and partners can see what is happening, where support is going, and what still needs attention.",
+    excerpt: "Humanitarian trust grows when communities, supporters, and partners can see what is happening, where support is going, and what still needs attention.",
     category: "Field notes",
     author: "Humanity First Initiative",
     publishedAt: "2026-04-18",
@@ -547,14 +546,12 @@ export const blogPosts = [
     imageAlt: stockMedia.donateHero.alt,
     status: "published",
     featured: true,
-    body:
-      "Humanitarian work cannot rely on good intentions alone. People need to see the route from concern to action: the community need, the support pathway, the people served, and the follow-up that happens after the first visit.\n\nThat is why the platform treats stories, transparent donation routes, program pages, and field updates as part of the work itself. They help supporters understand where help is useful, and they help communities stay visible without being reduced to statistics.\n\nThe goal is simple: publish proof that is respectful, practical, and connected to real needs. When the work is documented clearly, trust becomes easier to build and easier to protect."
+    body: "Humanitarian work cannot rely on good intentions alone. People need to see the route from concern to action: the community need, the support pathway, the people served, and the follow-up that happens after the first visit.\n\nThat is why the platform treats stories, transparent donation routes, program pages, and field updates as part of the work itself. They help supporters understand where help is useful, and they help communities stay visible without being reduced to statistics.\n\nThe goal is simple: publish proof that is respectful, practical, and connected to real needs. When the work is documented clearly, trust becomes easier to build and easier to protect."
   },
   {
     slug: "building-support-routes-around-real-community-needs",
     title: "Building support routes around real community needs",
-    excerpt:
-      "Donation routes work best when they are connected to specific program areas: maternal health, education access, youth sports, and creative advocacy.",
+    excerpt: "Donation routes work best when they are connected to specific program areas: maternal health, education access, youth sports, and creative advocacy.",
     category: "Transparency",
     author: "Humanity First Initiative",
     publishedAt: "2026-04-10",
@@ -563,14 +560,12 @@ export const blogPosts = [
     imageAlt: stockMedia.aboutMission.alt,
     status: "published",
     featured: false,
-    body:
-      "A useful support route starts with a real need, not a vague appeal. Families may need maternal health kits, learners may need low-data resources, youth programs may need equipment, and creative campaigns may need documentation support.\n\nThe platform organizes these needs into clear routes so donors and partners can understand what each contribution is meant to strengthen. That structure also makes it easier to report back with practical updates instead of broad promises.\n\nAs the work grows, the route system can keep expanding: new programs, new countries, new community partners, and new evidence from the field."
+    body: "A useful support route starts with a real need, not a vague appeal. Families may need maternal health kits, learners may need low-data resources, youth programs may need equipment, and creative campaigns may need documentation support.\n\nThe platform organizes these needs into clear routes so donors and partners can understand what each contribution is meant to strengthen. That structure also makes it easier to report back with practical updates instead of broad promises.\n\nAs the work grows, the route system can keep expanding: new programs, new countries, new community partners, and new evidence from the field."
   },
   {
     slug: "creative-storytelling-without-losing-dignity",
     title: "Creative storytelling without losing dignity",
-    excerpt:
-      "Photography, film, writing, and design can make humanitarian work more visible while still protecting the dignity of people and communities.",
+    excerpt: "Photography, film, writing, and design can make humanitarian work more visible while still protecting the dignity of people and communities.",
     category: "Storytelling",
     author: "Humanity First Initiative",
     publishedAt: "2026-03-29",
@@ -579,8 +574,77 @@ export const blogPosts = [
     imageAlt: stockMedia.screeningHero.alt,
     status: "published",
     featured: false,
-    body:
-      "Creative work can carry humanitarian stories farther than reports alone. A photograph, short film, field note, or campaign poster can help people understand the human reality behind a program.\n\nBut visibility must be handled with care. The aim is not to turn people into symbols of suffering. The aim is to show context, strength, need, and practical action with consent and respect.\n\nThat is the standard this platform is moving toward: storytelling that invites support without flattening the people it exists to serve."
+    body: "Creative work can carry humanitarian stories farther than reports alone. A photograph, short film, field note, or campaign poster can help people understand the human reality behind a program.\n\nBut visibility must be handled with care. The aim is not to turn people into symbols of suffering. The aim is to show context, strength, need, and practical action with consent and respect.\n\nThat is the standard this platform is moving toward: storytelling that invites support without flattening the people it exists to serve."
+  },
+  {
+    slug: "sahel-food-crisis-what-communities-need-now",
+    title: "Sahel food crisis: what communities need now",
+    excerpt: "Across the Sahel region, over 45 million people face acute food insecurity driven by conflict, climate shocks, and rising costs. Local response networks are stretched thin.",
+    category: "Humanitarian report",
+    author: "Humanity First Initiative",
+    publishedAt: "2026-04-22",
+    readingTime: "6 min read",
+    imageSrc: stockMedia.homeStories[0].src,
+    imageAlt: stockMedia.homeStories[0].alt,
+    status: "published",
+    featured: false,
+    body: "The Sahel food crisis is not new, but its scale in 2026 is unprecedented. Burkina Faso, Mali, Niger, Chad, and northern Nigeria are experiencing overlapping emergencies: armed conflict displacing millions, erratic rainfall destroying harvests, and global food price inflation making basic staples unaffordable.\n\nFor families already living on the edge, the gap between one meal and none is measured in days, not weeks. Mothers are walking hours to reach distribution points. Children under five are arriving at nutrition centers with severe acute malnutrition.\n\nWhat communities need is not abstract. They need ready-to-use therapeutic food for malnourished children, clean water access at displacement sites, seed and tool kits so displaced farmers can plant again, and cash transfers that let families buy what they actually need at local markets.\n\nThe humanitarian system is responding, but funding gaps remain enormous. Community-based organizations are often the first responders, yet they receive a fraction of the resources. Supporting local networks is not just efficient — it is the only way to reach people in areas where international access is restricted."
+  },
+  {
+    slug: "maternal-health-gaps-in-sub-saharan-africa",
+    title: "Maternal health gaps in sub-Saharan Africa",
+    excerpt: "Sub-Saharan Africa accounts for roughly two-thirds of global maternal deaths. Most are preventable with basic care, skilled birth attendance, and postnatal follow-up.",
+    category: "Health report",
+    author: "Humanity First Initiative",
+    publishedAt: "2026-04-15",
+    readingTime: "5 min read",
+    imageSrc: stockMedia.homeStories[0].src,
+    imageAlt: stockMedia.homeStories[0].alt,
+    status: "published",
+    featured: false,
+    body: "Every year, approximately 287,000 women die from complications during pregnancy and childbirth globally. Sub-Saharan Africa carries a disproportionate share of this burden — roughly two out of every three maternal deaths happen in the region.\n\nThe causes are well understood: hemorrhage, infection, hypertensive disorders, and unsafe abortion. The solutions are equally well documented: skilled birth attendants, emergency obstetric care, antenatal check-ups, postnatal follow-up, and access to family planning.\n\nYet millions of women still deliver without a trained health worker present. Rural clinics lack basic supplies. Transport to referral hospitals can take hours on unpaved roads. And cultural barriers sometimes delay care-seeking until complications become emergencies.\n\nCommunity health workers, mobile clinics, and maternal health kit distribution programs are closing some of these gaps. But sustained funding, training, and supply chain support are needed to make these interventions reliable rather than occasional."
+  },
+  {
+    slug: "education-access-after-conflict-rebuilding-classrooms",
+    title: "Education access after conflict: rebuilding classrooms",
+    excerpt: "Over 100 million children in conflict-affected countries are out of school. Rebuilding education infrastructure is one of the slowest parts of post-conflict recovery.",
+    category: "Education report",
+    author: "Humanity First Initiative",
+    publishedAt: "2026-04-08",
+    readingTime: "5 min read",
+    imageSrc: stockMedia.educationFeature.src,
+    imageAlt: stockMedia.educationFeature.alt,
+    status: "published",
+    featured: false,
+    body: "When conflict ends, schools are often among the last institutions to recover. Buildings are damaged or occupied. Teachers have fled. Curricula are outdated. And children who spent years out of school face learning gaps that standard classrooms are not designed to address.\n\nAcross the Democratic Republic of Congo, South Sudan, northern Mozambique, and the Lake Chad Basin, millions of children have missed years of formal education. For girls, the disruption is often permanent — early marriage, pregnancy, and household labor replace the classroom.\n\nAccelerated learning programs, community-based education, radio and phone-based instruction, and teacher training initiatives are showing results in some contexts. But they need consistent funding and local ownership to scale.\n\nThe education hub model — curated resources, facilitator guides, and low-bandwidth materials — is one practical response. It does not replace a functioning school system, but it keeps learning alive while systems are being rebuilt."
+  },
+  {
+    slug: "climate-displacement-east-africa-horn",
+    title: "Climate displacement across the Horn of Africa",
+    excerpt: "Prolonged drought followed by devastating floods has displaced over 8 million people across Somalia, Ethiopia, and Kenya. Climate adaptation funding remains critically low.",
+    category: "Humanitarian report",
+    author: "Humanity First Initiative",
+    publishedAt: "2026-03-25",
+    readingTime: "6 min read",
+    imageSrc: stockMedia.aboutHero.src,
+    imageAlt: stockMedia.aboutHero.alt,
+    status: "published",
+    featured: false,
+    body: "The Horn of Africa has experienced five consecutive failed rainy seasons followed by catastrophic flooding — a pattern climate scientists attribute directly to accelerating global warming. The result is a displacement crisis that has uprooted over 8 million people.\n\nPastoralist communities have lost entire herds. Farmers have watched crops fail year after year. Urban areas are absorbing displaced populations faster than services can expand. And women and children bear the heaviest burden — walking further for water, facing greater protection risks in displacement camps, and losing access to healthcare and education.\n\nInternational climate adaptation funding for Africa remains far below what is needed. Less than 10 percent of global climate finance reaches the continent, despite Africa contributing less than 4 percent of global emissions.\n\nLocal organizations are leading the response: early warning systems, drought-resistant seed distribution, water harvesting, and community-managed displacement sites. But without sustained investment, these efforts remain fragile."
+  },
+  {
+    slug: "youth-sports-as-protection-in-displacement-settings",
+    title: "Youth sports as protection in displacement settings",
+    excerpt: "Structured sports programs in refugee and displacement camps reduce violence, improve mental health, and give young people a sense of routine and belonging.",
+    category: "Field notes",
+    author: "Humanity First Initiative",
+    publishedAt: "2026-03-18",
+    readingTime: "4 min read",
+    imageSrc: stockMedia.homeHero.src,
+    imageAlt: stockMedia.homeHero.alt,
+    status: "published",
+    featured: false,
+    body: "In displacement settings, young people face compounding risks: interrupted education, family separation, exposure to violence, recruitment by armed groups, and the psychological toll of uncertainty. Structured sports programs address several of these risks simultaneously.\n\nRegular training sessions create routine. Team membership builds social bonds across ethnic and community lines. Coaches become trusted adults. And the physical activity itself helps manage stress, anxiety, and trauma symptoms.\n\nPrograms like Dodoma Best Sports Center demonstrate how grassroots sports initiatives can serve as both development and protection tools. The model is simple: volunteer coaches, basic equipment, consistent scheduling, and a safe space.\n\nScaling these programs requires modest but reliable funding — balls, bibs, cones, and transport. The return on investment, measured in reduced youth vulnerability and improved community cohesion, is significant."
   }
 ];
 
