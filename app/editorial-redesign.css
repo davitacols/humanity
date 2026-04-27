@@ -19,7 +19,7 @@
   --radius-md: 22px;
   --radius-sm: 16px;
   --content-width: min(1180px, calc(100vw - 2rem));
-  --font-editorial: var(--font-display), var(--font-body), Arial, Helvetica, sans-serif;
+  --font-editorial: var(--font-league-spartan), 'League Spartan', Arial, Helvetica, sans-serif;
 }
 
 html {

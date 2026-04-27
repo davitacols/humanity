@@ -104,7 +104,7 @@ body:has(.admin-shell) .page-chrome {
 .home-spline__title,
 .home-spline__proof-title,
 .home-spline__proof-item-title {
-  font-family: var(--font-display), var(--font-body), Arial, Helvetica, sans-serif;
+  font-family: var(--font-league-spartan), 'League Spartan', Arial, Helvetica, sans-serif;
 }
 
 .site-brand__name {
