@@ -16162,6 +16162,8 @@ button {
   backdrop-filter: blur(12px);
   color: var(--pine);
   cursor: pointer;
+  z-index: 10;
+  position: relative;
   transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
@@ -18106,4 +18108,37 @@ button {
   .hp-appeal__title { font-size: 1.5rem; }
   .hp-edu__title { font-size: 1.2rem; }
   .hp-cta__title { font-size: 1.3rem; }
+}
+
+/* ── Fix hamburger visibility ── */
+.site-header__actions {
+  position: relative;
+  z-index: 10;
+}
+
+.site-header__panel {
+  position: relative;
+  z-index: 2;
+}
+
+.site-header__utility {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Fix drawer hiding under header ── */
+.site-header__drawer {
+  z-index: 9999 !important;
+}
+
+.site-header__drawer.is-open {
+  z-index: 9999 !important;
+}
+
+.site-header__backdrop {
+  z-index: 9998 !important;
+}
+
+.site-header__backdrop.is-open {
+  z-index: 9998 !important;
 }
