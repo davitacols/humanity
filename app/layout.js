@@ -3,6 +3,7 @@ import "./button-overrides.css";
 import "./editorial-redesign.css";
 import "./spline-inspired.css";
 import "./projects-redesign.css";
+import "./reggae-theme.css";
 import { League_Spartan } from "next/font/google";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
@@ -54,9 +55,9 @@ export const metadata = {
     canonical: "/"
   },
   icons: {
-    icon: "/logo.jpeg",
-    shortcut: "/logo.jpeg",
-    apple: "/logo.jpeg"
+    icon: "/logo/HFI%20(1).png",
+    shortcut: "/logo/HFI%20(1).png",
+    apple: "/logo/HFI%20(1).png"
   },
   robots: {
     index: true,

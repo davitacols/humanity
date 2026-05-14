@@ -46,7 +46,7 @@ export function SiteFooter() {
         {/* Brand + CTA */}
         <div className="ft__brand-section">
           <div className="ft__brand">
-            <Image src="/logo.jpeg" alt="" width={44} height={44} className="ft__logo" />
+            <Image src="/logo/HFI%20(1).png" alt="" width={44} height={44} className="ft__logo" />
             <div>
               <p className="ft__brand-name">Humanity First</p>
               <p className="ft__brand-sub">Initiative</p>

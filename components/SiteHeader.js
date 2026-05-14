@@ -221,7 +221,7 @@ export function SiteHeader() {
         <div className="site-header__panel">
           <div className="site-header__inner">
             <Link href="/" className="site-brand" aria-label="Humanity First Initiative home">
-              <Image src="/logo.jpeg" alt="" width={48} height={48} className="site-brand__logo" priority />
+              <Image src="/logo/HFI%20(1).png" alt="" width={48} height={48} className="site-brand__logo" priority />
               <div className="site-brand__text">
                 <span className="site-brand__name">Humanity First</span>
                 <span className="site-brand__sub">Community aid platform</span>
@@ -291,7 +291,7 @@ export function SiteHeader() {
         <div className="site-header__drawer-shell">
           <div className="site-header__drawer-top">
             <div className="site-header__drawer-brand">
-              <Image src="/logo.jpeg" alt="" width={40} height={40} className="site-brand__logo" />
+              <Image src="/logo/HFI%20(1).png" alt="" width={40} height={40} className="site-brand__logo" />
               <div className="site-brand__text">
                 <span className="site-brand__name">Humanity First</span>
                 <span className="site-brand__sub">Community aid platform</span>
