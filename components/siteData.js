@@ -144,17 +144,18 @@ export const platformProfiles = [
     imageRatio: stockMedia.aboutMission.ratio || "landscape"
   },
   {
-    eyebrow: "Film and visual storytelling",
+    eyebrow: "Film, PPV screenings, and visual storytelling",
     name: "Sib",
-    role: "Cinematographer, video editor, and creative food and travel photographer",
+    role: "Cinematographer, video editor, creative photographer, and private screening contributor",
     location: "West Midlands, United Kingdom",
     summary:
-      "Contributes film, editing, photography, and accessibility-led visual storytelling for campaigns, profiles, and public updates.",
+      "Contributes film, editing, photography, and password-protected screening content for campaigns, profiles, and supporter-facing updates.",
     body:
-      "Sib is a West Midlands-based cinematographer and video editor with a strong interest in film, TV, and meaningful visual work for brands, organizations, and independent projects. Their creative practice also includes food and travel photography, shaped by authenticity, accessibility, and a lived autistic perspective.",
+      "Sib is a West Midlands-based cinematographer and video editor with a strong interest in film, TV, private campaign releases, and meaningful visual work for brands, organizations, and independent projects. Their creative practice also includes food and travel photography, shaped by authenticity, accessibility, and a lived autistic perspective.",
     tags: [
       "Cinematography",
       "Video editing",
+      "Password-protected screenings",
       "Accessibility-led storytelling",
       "Food and travel photography",
       "Impact-driven collaboration"
@@ -485,9 +486,9 @@ export const platformUpdates = [
     category: "Profile",
     date: "April 11, 2026",
     body:
-      "The public profile now reflects Sib's current cinematography, video editing, photography, and accessibility-led storytelling focus, with a direct portfolio link for media and brand collaborations.",
-    href: "https://sib-cinematographer.squarespace.com/",
-    ctaLabel: "View portfolio"
+      "The public profile now reflects Sib's cinematography, video editing, photography, accessibility-led storytelling, and password-protected screening direction for supporter-facing media.",
+    href: "/projects/premium-video",
+    ctaLabel: "Open screening page"
   },
   {
     title: "Maternal health kits reach 50 families in first outreach",

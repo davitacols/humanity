@@ -7,6 +7,10 @@ import { stockMedia } from "../../../components/stockMedia";
 import { premiumVideoProject } from "../../../components/siteData";
 
 export default function PremiumVideoPage() {
+  const screeningPaymentUrl =
+    process.env.SIB_SCREENING_PAYMENT_URL || "/donate?fund=creative-advocacy#live-checkout";
+  const screeningSupportUrl = process.env.SIB_SCREENING_SUPPORT_URL || "/get-involved";
+
   return (
     <main className="site-main page-v2">
       <PageHero
@@ -29,7 +33,8 @@ export default function PremiumVideoPage() {
           accessWindow={premiumVideoProject.accessWindow}
           teaser={premiumVideoProject.teaser}
           benefits={premiumVideoProject.benefits}
-          videoSrc={premiumVideoProject.videoSrc}
+          paymentUrl={screeningPaymentUrl}
+          supportUrl={screeningSupportUrl}
         />
       </Reveal>
 

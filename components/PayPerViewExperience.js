@@ -27,6 +27,10 @@ function formatRemaining(ms) {
   return `${hours}h ${minutes}m left`;
 }
 
+function isExternalUrl(href) {
+  return /^https?:\/\//i.test(href);
+}
+
 export function PayPerViewExperience({
   storageKey,
   title,
@@ -35,9 +39,12 @@ export function PayPerViewExperience({
   accessWindow,
   teaser,
   benefits,
-  videoSrc
+  paymentUrl,
+  supportUrl
 }) {
   const [purchase, setPurchase] = useState(null);
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [processing, setProcessing] = useState(false);
   const [hydrated, setHydrated] = useState(false);
   const [now, setNow] = useState(Date.now());
@@ -49,7 +56,7 @@ export function PayPerViewExperience({
       try {
         const parsed = JSON.parse(raw);
 
-        if (parsed.expiresAt > Date.now()) {
+        if (parsed.expiresAt > Date.now() && parsed.videoSrc) {
           setPurchase(parsed);
         } else {
           window.localStorage.removeItem(storageKey);
@@ -91,16 +98,49 @@ export function PayPerViewExperience({
     return formatRemaining(purchase.expiresAt - now);
   }, [accessWindow, now, purchase]);
 
-  function handleUnlock() {
-    setProcessing(true);
+  async function handleUnlock(event) {
+    event.preventDefault();
 
-    window.setTimeout(() => {
-      const nextPurchase = createLocalPurchase();
+    if (!password.trim()) {
+      setError("Enter the screening password to unlock this film.");
+      return;
+    }
+
+    setProcessing(true);
+    setError("");
+
+    try {
+      const response = await fetch("/api/premium-video/access", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ password })
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.ok) {
+        setError(result.error || "That password did not unlock the screening.");
+        return;
+      }
+
+      const nextPurchase = {
+        ...createLocalPurchase(),
+        expiresAt: result.expiresAt,
+        orderRef: result.orderRef,
+        videoSrc: result.videoSrc
+      };
+
       window.localStorage.setItem(storageKey, JSON.stringify(nextPurchase));
       setPurchase(nextPurchase);
+      setPassword("");
       setNow(Date.now());
+    } catch {
+      setError("We could not check the password right now. Please try again.");
+    } finally {
       setProcessing(false);
-    }, 1600);
+    }
   }
 
   function handleReset() {
@@ -119,7 +159,7 @@ export function PayPerViewExperience({
               controls
               preload="metadata"
               playsInline
-              src={videoSrc}
+              src={purchase.videoSrc}
             />
           ) : (
             <div className="ppv-preview">
@@ -158,9 +198,27 @@ export function PayPerViewExperience({
           <p className="section-intro__eyebrow">Access this screening</p>
           <h3 className="ppv-paywall__title">{price}</h3>
           <p className="ppv-paywall__body">
-            This release previews a device-based access experience. The final payment and
-            entitlement layer has not been connected in this version yet.
+            Pay for the screening, then use the password sent after confirmation to
+            unlock this film on your device for the viewing window.
           </p>
+
+          <div className="ppv-steps" aria-label="How pay-per-view access works">
+            <div className="ppv-step">
+              <span>01</span>
+              <strong>Pay</strong>
+              <p>Complete the approved checkout or request payment instructions.</p>
+            </div>
+            <div className="ppv-step">
+              <span>02</span>
+              <strong>Receive password</strong>
+              <p>The screening password is shared after payment is confirmed.</p>
+            </div>
+            <div className="ppv-step">
+              <span>03</span>
+              <strong>Watch</strong>
+              <p>Unlock the video and watch within the active access window.</p>
+            </div>
+          </div>
 
           <div className="ppv-benefits">
             {benefits.map((benefit) => (
@@ -189,22 +247,54 @@ export function PayPerViewExperience({
               <p className="ppv-paywall__receipt">Order ref: {purchase?.orderRef}</p>
             </div>
           ) : (
-            <div className="ppv-paywall__actions">
+            <form className="ppv-paywall__actions" onSubmit={handleUnlock}>
+              {paymentUrl ? (
+                <a
+                  href={paymentUrl}
+                  className="button button--primary"
+                  target={isExternalUrl(paymentUrl) ? "_blank" : undefined}
+                  rel={isExternalUrl(paymentUrl) ? "noreferrer" : undefined}
+                >
+                  Pay for access
+                </a>
+              ) : null}
+              <label className="ppv-password-field">
+                <span>Screening password</span>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  autoComplete="off"
+                  placeholder="Enter password"
+                  disabled={processing}
+                />
+              </label>
+              {error ? <p className="ppv-paywall__error">{error}</p> : null}
               <button
-                type="button"
+                type="submit"
                 className={`button button--primary${processing ? " is-loading" : ""}`}
-                onClick={handleUnlock}
                 disabled={processing}
               >
                 <span className="button__label">
-                  {processing ? "Opening preview" : `Preview access for ${price}`}
+                  {processing ? "Checking password" : "Unlock screening"}
                 </span>
                 <span className="button__spinner" aria-hidden="true" />
               </button>
               <p className="ppv-paywall__note">
-                This local preview simulates the screening step before a real payment gateway is connected.
+                Already paid? Enter the password you received. If access does not work,
+                use the support link below with your payment reference.
               </p>
-            </div>
+              {supportUrl ? (
+                <a
+                  href={supportUrl}
+                  className="ppv-paywall__support"
+                  target={isExternalUrl(supportUrl) ? "_blank" : undefined}
+                  rel={isExternalUrl(supportUrl) ? "noreferrer" : undefined}
+                >
+                  Need help with access?
+                </a>
+              ) : null}
+            </form>
           )}
         </aside>
       </div>

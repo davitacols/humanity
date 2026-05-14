@@ -34,9 +34,11 @@ const profileCopyByName = {
     body: "This partner gives the team a practical regional point of view as the platform grows beyond one country."
   },
   Sib: {
-    eyebrow: "Film and visual storytelling",
-    summary: "Contributes film, editing, photography, and accessibility-led visual storytelling for campaigns and updates.",
-    body: "Sib is a West Midlands-based cinematographer and video editor with a strong interest in meaningful visual work."
+    eyebrow: "Film, PPV screenings, and visual storytelling",
+    summary: "Contributes cinematography, editing, photography, and password-protected screening content for supporter-facing campaigns.",
+    body: "Sib is a West Midlands-based cinematographer and video editor whose work can support campaign documentaries, private releases, and pay-per-view screening experiences. Their practice combines film, TV, food and travel photography, accessibility-led storytelling, and meaningful visual work for brands, organizations, and independent projects.",
+    href: "/projects/premium-video",
+    hrefLabel: "Open screening page"
   }
 };
 
@@ -209,7 +211,7 @@ export default async function AboutPage() {
           )}
           <div className="about-team__grid">
             {collaborators.map((person) => (
-              <article key={person.name} className="about-team__card">
+              <article key={person.name} id={person.name === "Sib" ? "sib" : undefined} className="about-team__card">
                 <p className="about-team__eyebrow">{person.eyebrow}</p>
                 <h3 className="about-team__name">{person.name}</h3>
                 <p className="about-team__role">{person.role}</p>
