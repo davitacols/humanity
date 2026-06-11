@@ -531,3 +531,64 @@ h1, h2, h3, h4,
     scroll-behavior: auto !important;
   }
 }
+
+/* ── Responsive safety net ────────────────────────────────────────────────────
+   Sitewide guards so every page behaves on phones/tablets without per-page work.
+   `overflow-x: clip` kills stray horizontal scroll (the #1 mobile bug) WITHOUT
+   creating a scroll container — so it does not break position: sticky asides. */
+html,
+body {
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Media never forces the viewport wider than the screen. (No height:auto — that
+   would break Next.js fill images that rely on height:100% in a sized box.) */
+img,
+video,
+canvas,
+svg,
+iframe {
+  max-width: 100%;
+}
+
+/* Long URLs, refs and unbroken strings wrap instead of pushing layout wide. */
+:where(p, li, h1, h2, h3, h4, h5, blockquote, figcaption, dd, dt, td, th, a, label, strong) {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Wide content (code blocks, data tables) scrolls inside its box, not the page. */
+pre,
+table {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+.table-scroll,
+figure.table {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Grid/flex children can shrink below their content width (prevents blowout). */
+:where([class*="grid"], [class*="cols"], [class*="row"]) > * {
+  min-width: 0;
+}
+
+/* Comfortable tap targets + no zoom-on-focus for form controls on mobile. */
+@media (max-width: 640px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px; /* iOS Safari zooms in on focus when below 16px */
+  }
+  .button,
+  button.button,
+  a.button {
+    min-height: 44px; /* WCAG-friendly touch target */
+  }
+}
