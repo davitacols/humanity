@@ -1,0 +1,230 @@
+/* Footer */
+
+.ft {
+  position: relative;
+  margin-top: 5rem;
+  border-top: 1px solid rgba(244, 195, 24, 0.16);
+  background: linear-gradient(180deg, rgba(255, 248, 224, 0.02), transparent 40%);
+}
+
+/* Rasta hairline along the footer's top edge */
+.ft::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--reggae-red) 0 33%, var(--reggae-gold) 33% 66%, var(--reggae-green) 66% 100%);
+}
+
+.ft__inner {
+  width: var(--site-width);
+  margin: 0 auto;
+  padding: 3rem 0 2rem;
+}
+
+.ft__top {
+  display: grid;
+  grid-template-columns: 1fr 2.2fr;
+  gap: 3rem;
+  padding-bottom: 2.5rem;
+}
+
+.ft__brand {
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+}
+
+.ft__brand-name {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--head);
+}
+
+.ft__desc {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  max-width: 28ch;
+}
+
+.ft__columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.ft__column {
+  display: grid;
+  gap: 0.45rem;
+  align-content: start;
+}
+
+.ft__column-title {
+  margin: 0 0 0.3rem;
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: rgba(244, 195, 24, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.ft__link {
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  font-weight: 500;
+  line-height: 1.6;
+  transition: color 150ms ease;
+}
+
+.ft__link:hover {
+  color: var(--reggae-gold);
+}
+
+.ft__org {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.ft__org-line {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+a.ft__org-line:hover { color: var(--reggae-gold); }
+
+.ft__socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.2rem;
+}
+
+.ft__social {
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink-soft);
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.ft__social:hover { border-color: rgba(244, 195, 24, 0.5); color: var(--reggae-gold); }
+
+/* ── Newsletter signup ────────────────────────────────────────────────────── */
+.ft-news {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 1.1rem;
+  max-width: 22rem;
+}
+
+.ft-news__label {
+  color: var(--head);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.ft-news__row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ft-news__input {
+  flex: 1;
+  min-width: 0;
+  min-height: 42px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255, 248, 224, 0.05);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.88rem;
+}
+
+.ft-news__input::placeholder { color: rgba(244, 239, 224, 0.4); }
+
+.ft-news__input:focus {
+  border-color: var(--reggae-green);
+  box-shadow: 0 0 0 3px rgba(244, 195, 24, 0.18);
+  outline: 0;
+}
+
+.ft-news__button {
+  flex: 0 0 auto;
+  padding: 0 1rem;
+  border: 0;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--reggae-gold), #ffe066);
+  color: #11140f;
+  font-weight: 800;
+  font-size: 0.84rem;
+  cursor: pointer;
+  transition: transform 150ms ease;
+}
+
+.ft-news__button:hover:not(:disabled) { transform: translateY(-1px); }
+.ft-news__button:disabled { opacity: 0.7; cursor: default; }
+
+.ft-news__hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.ft-news__status {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+.ft-news__status--success { color: var(--reggae-green); }
+.ft-news__status--error { color: #ff9a92; }
+
+.ft__base {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.ft__base p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+}
+
+.ft__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+}
+
+.ft__legal .ft__link { font-size: 0.8rem; }
+
+@media (max-width: 900px) {
+  .ft__top {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .ft__columns {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 1rem;
+  }
+}

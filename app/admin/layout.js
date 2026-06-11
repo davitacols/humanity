@@ -1,4 +1,5 @@
 import { AdminNav } from "../../components/AdminNav";
+import "./admin.css";
 
 export const metadata = {
   robots: {

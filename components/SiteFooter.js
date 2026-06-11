@@ -1,116 +1,93 @@
-import Image from "next/image";
 import Link from "next/link";
-import { LoadingLink } from "./LoadingLink";
+import { getOrgContact } from "../lib/org";
+import { NewsletterForm } from "./NewsletterForm";
 
-const footerLinks = {
-  explore: [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/projects", label: "Projects" },
-    { href: "/blog", label: "Field notes" },
-    { href: "/gallery", label: "Gallery" }
-  ],
-  programs: [
-    { href: "/health", label: "Maternal and child health" },
-    { href: "/education", label: "Education access" },
-    { href: "/sports", label: "Sports development" },
-    { href: "/arts", label: "Arts and advocacy" },
-    { href: "/programs", label: "All programs" }
-  ],
-  support: [
-    { href: "/donate", label: "Donate" },
-    { href: "/donate/transparency", label: "Transparency tracker" },
-    { href: "/get-involved", label: "Partner or volunteer" },
-    { href: "/education/contribute", label: "Contribute resources" }
-  ],
-  connect: [
-    { href: "/about#network", label: "Team and collaborators" },
-    { href: "/get-involved", label: "Contact the team" },
-    { href: "/projects/dodoma-best-sports-center", label: "Flagship project" }
-  ]
-};
-
-const signals = [
-  "Community-led programs",
-  "Transparent support pathways",
-  "Low-bandwidth access",
-  "Cross-border network"
+const columns = [
+  {
+    title: "Programs",
+    links: [
+      { href: "/health", label: "Health" },
+      { href: "/education", label: "Education" },
+      { href: "/sports", label: "Sports" },
+      { href: "/arts", label: "Arts" }
+    ]
+  },
+  {
+    title: "Platform",
+    links: [
+      { href: "/lms", label: "LMS" },
+      { href: "/projects", label: "Projects" },
+      { href: "/blog", label: "Blog" },
+      { href: "/gallery", label: "Gallery" }
+    ]
+  },
+  {
+    title: "Organization",
+    links: [
+      { href: "/about", label: "About" },
+      { href: "/team", label: "Team" },
+      { href: "/donate/transparency", label: "Transparency" },
+      { href: "/contact", label: "Contact" }
+    ]
+  },
+  {
+    title: "Support",
+    links: [
+      { href: "/donate", label: "Donate" },
+      { href: "/get-involved", label: "Volunteer" },
+      { href: "/get-involved", label: "Partner" },
+      { href: "/education/contribute", label: "Contribute" }
+    ]
+  }
 ];
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
+  const org = getOrgContact();
 
   return (
     <footer className="ft">
-      <div className="ft__main">
-        {/* Brand + CTA */}
-        <div className="ft__brand-section">
+      <div className="ft__inner">
+        <div className="ft__top">
           <div className="ft__brand">
-            <Image src="/logo/HFI%20(1).png" alt="" width={44} height={44} className="ft__logo" />
-            <div>
-              <p className="ft__brand-name">Humanity First</p>
-              <p className="ft__brand-sub">Initiative</p>
-            </div>
+            <span className="ft__brand-name">Humanity First Initiative</span>
+            <p className="ft__desc">Connecting communities with health, education, sports, and creative advocacy across Africa.</p>
+            {(org.email || org.registration || org.socials.length > 0) && (
+              <div className="ft__org">
+                {org.email && (
+                  <a href={`mailto:${org.email}`} className="ft__org-line">{org.email}</a>
+                )}
+                {org.registration && <span className="ft__org-line">{org.registration}</span>}
+                {org.socials.length > 0 && (
+                  <div className="ft__socials">
+                    {org.socials.map((s) => (
+                      <a key={s.label} href={s.href} target="_blank" rel="noreferrer" className="ft__social">{s.label}</a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+            <NewsletterForm />
           </div>
-          <p className="ft__tagline">
-            Community-led humanitarian work across education, arts, health, and sports development.
-          </p>
-          <div className="ft__signals">
-            {signals.map((s) => (
-              <span key={s} className="ft__signal">{s}</span>
+          <div className="ft__columns">
+            {columns.map((col) => (
+              <nav key={col.title} className="ft__column">
+                <p className="ft__column-title">{col.title}</p>
+                {col.links.map((l) => (
+                  <Link key={l.href + l.label} href={l.href} className="ft__link">{l.label}</Link>
+                ))}
+              </nav>
             ))}
           </div>
-          <div className="ft__cta">
-            <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">
-              Donate now
-            </LoadingLink>
-            <LoadingLink href="/get-involved" className="button button--ghost-light" loadingLabel="Opening">
-              Get involved
-            </LoadingLink>
-          </div>
         </div>
-
-        {/* Link columns */}
-        <div className="ft__columns">
-          <nav className="ft__column" aria-label="Explore">
-            <p className="ft__column-title">Explore</p>
-            <div className="ft__list">
-              {footerLinks.explore.map((l) => (
-                <Link key={l.href} href={l.href} className="ft__link">{l.label}</Link>
-              ))}
-            </div>
-          </nav>
-          <nav className="ft__column" aria-label="Programs">
-            <p className="ft__column-title">Programs</p>
-            <div className="ft__list">
-              {footerLinks.programs.map((l) => (
-                <Link key={l.href} href={l.href} className="ft__link">{l.label}</Link>
-              ))}
-            </div>
-          </nav>
-          <nav className="ft__column" aria-label="Support">
-            <p className="ft__column-title">Support</p>
-            <div className="ft__list">
-              {footerLinks.support.map((l) => (
-                <Link key={l.href} href={l.href} className="ft__link">{l.label}</Link>
-              ))}
-            </div>
-          </nav>
-          <nav className="ft__column" aria-label="Connect">
-            <p className="ft__column-title">Connect</p>
-            <div className="ft__list">
-              {footerLinks.connect.map((l) => (
-                <Link key={l.href} href={l.href} className="ft__link">{l.label}</Link>
-              ))}
-            </div>
+        <div className="ft__base">
+          <p>© {year} Humanity First Initiative{org.country ? ` · ${org.country}` : ""}</p>
+          <nav className="ft__legal" aria-label="Legal">
+            <Link href="/privacy" className="ft__link">Privacy</Link>
+            <Link href="/terms" className="ft__link">Terms</Link>
+            <Link href="/contact" className="ft__link">Contact</Link>
           </nav>
         </div>
-      </div>
-
-      {/* Base */}
-      <div className="ft__base">
-        <p>&copy; {year} Humanity First Initiative</p>
-        <p>Designed for clarity, donor trust, and low-bandwidth access.</p>
       </div>
     </footer>
   );

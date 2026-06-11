@@ -1,0 +1,460 @@
+/* ==========================================================================
+   Instructor Studio — matches the LMS / site editorial design system.
+   Renders inside .site-main (global shell), so no separate width/chrome here.
+   ========================================================================== */
+
+.inst {
+  display: grid;
+  gap: 1.75rem;
+  align-content: start;
+  color: var(--ink);
+  padding-top: 1rem;
+}
+
+/* ---- Header ------------------------------------------------------------- */
+.inst__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+.inst__eyebrow {
+  margin: 0;
+  color: var(--reggae-green);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.inst__title {
+  margin: 0.35rem 0 0;
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--pine);
+}
+.inst__subtitle {
+  margin: 0.5rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  max-width: 680px;
+  line-height: 1.6;
+}
+.inst__header-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+/* ---- Metrics ------------------------------------------------------------ */
+.inst__metrics {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.85rem;
+}
+.inst__metric {
+  padding: 1.1rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper-solid);
+  text-align: center;
+}
+.inst__metric strong {
+  display: block;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--pine);
+}
+.inst__metric span {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
+/* ---- Panels ------------------------------------------------------------- */
+.inst__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+.inst__panel {
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper-solid);
+}
+.inst__panel--wide {
+  grid-column: 1 / -1;
+}
+.inst__panel--hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, rgba(7, 132, 63, 0.1), rgba(244, 195, 24, 0.14)), var(--paper-solid);
+  border-color: rgba(7, 132, 63, 0.25);
+}
+.inst__panel-title {
+  margin: 0 0 1.1rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--pine);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.inst__panel-title--plain {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 1.35rem;
+}
+.inst__panel-title > span {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(7, 132, 63, 0.12);
+  color: var(--reggae-green);
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+/* ---- Forms -------------------------------------------------------------- */
+.inst__form {
+  display: grid;
+  gap: 0.9rem;
+}
+.inst__form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.85rem;
+}
+.inst__field {
+  display: grid;
+  gap: 0.3rem;
+}
+.inst__field > span {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--pine);
+}
+.inst__input {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255, 248, 224, 0.05);
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+.inst__input:focus-visible {
+  outline: 2px solid var(--reggae-green);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+.inst__textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+.inst__form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.4rem;
+}
+.inst__checks {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.inst__check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+.inst__check input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--reggae-green);
+}
+
+/* ---- Workflow chips ----------------------------------------------------- */
+.inst__workflow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: 440px;
+}
+.inst__workflow span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid rgba(27, 163, 76, 0.35);
+  border-radius: 999px;
+  background: rgba(255, 248, 224, 0.06);
+  color: var(--pine);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+/* ---- Course studio ------------------------------------------------------ */
+.inst__courses {
+  display: grid;
+  gap: 1.25rem;
+}
+.inst__section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.inst__section-title {
+  margin: 0.2rem 0 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--pine);
+}
+.inst__section-note {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+.inst__course-list {
+  display: grid;
+  gap: 1rem;
+}
+.inst__course-item {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper-solid);
+  overflow: hidden;
+}
+.inst__course-item::before {
+  content: "";
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, var(--reggae-green), var(--reggae-gold), var(--coral));
+}
+.inst__course-item-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+.inst__course-item-head h3 {
+  margin: 0.25rem 0 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--pine);
+}
+.inst__course-item-head p {
+  margin: 0.25rem 0 0;
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+}
+.inst__course-item-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.inst__studio {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1.1rem;
+  background: rgba(17, 20, 15, 0.015);
+}
+
+/* Collapsible editors */
+.inst__course-editor,
+.inst__lesson-editor {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 248, 224, 0.05);
+  overflow: hidden;
+}
+.inst__course-editor > summary,
+.inst__lesson-editor > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.95rem 1.1rem;
+  color: var(--pine);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.inst__course-editor > summary::-webkit-details-marker,
+.inst__lesson-editor > summary::-webkit-details-marker {
+  display: none;
+}
+.inst__course-editor > summary::after,
+.inst__lesson-editor > summary::after {
+  content: "+";
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  background: rgba(7, 132, 63, 0.12);
+  color: var(--reggae-green);
+  font-weight: 800;
+  flex: 0 0 auto;
+}
+.inst__course-editor[open] > summary::after,
+.inst__lesson-editor[open] > summary::after {
+  content: "\2013";
+}
+.inst__lesson-editor > summary {
+  font-size: 0.92rem;
+}
+.inst__lesson-editor small {
+  color: var(--ink-soft);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.inst__form--studio,
+.inst__module-stack,
+.inst__question-stack {
+  padding: 1.1rem;
+  border-top: 1px solid var(--line);
+}
+.inst__module-stack,
+.inst__lesson-stack,
+.inst__question-stack {
+  display: grid;
+  gap: 0.85rem;
+}
+.inst__module-card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper-solid);
+}
+.inst__module-edit {
+  grid-template-columns: 90px minmax(0, 1fr) auto;
+  align-items: end;
+  padding: 1rem;
+}
+.inst__field--order {
+  min-width: 80px;
+}
+.inst__lesson-stack {
+  padding: 0 1rem 1rem;
+}
+.inst__lesson-editor {
+  background: var(--paper-solid);
+}
+.inst__question-card {
+  padding: 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper-solid);
+}
+.inst__assignment-card {
+  margin-top: 0.85rem;
+  padding: 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper-solid);
+}
+.inst__inline-delete {
+  padding: 0 1rem 1rem;
+  text-align: right;
+}
+.inst__inline-delete button {
+  border: 0;
+  background: transparent;
+  color: var(--coral);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.inst__inline-delete button:hover {
+  text-decoration: underline;
+}
+
+/* ---- Empty states ------------------------------------------------------- */
+.inst__empty {
+  color: var(--ink-soft);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+}
+.inst__empty--compact {
+  padding: 1rem;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  background: rgba(17, 20, 15, 0.02);
+  font-size: 0.86rem;
+}
+
+/* Compact buttons inside the dense studio forms */
+.inst .button {
+  min-height: 42px;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.88rem;
+}
+
+/* ---- Responsive --------------------------------------------------------- */
+@media (max-width: 900px) {
+  .inst__metrics {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .inst__grid {
+    grid-template-columns: 1fr;
+  }
+  .inst__panel--wide {
+    grid-column: auto;
+  }
+  .inst__panel--hero {
+    grid-template-columns: 1fr;
+  }
+  .inst__workflow {
+    justify-content: flex-start;
+  }
+  .inst__module-edit {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .inst__metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .inst__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .inst__course-item-head {
+    flex-direction: column;
+  }
+  .inst__course-item-actions,
+  .inst__header-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

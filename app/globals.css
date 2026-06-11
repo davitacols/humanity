@@ -18110,6 +18110,392 @@ button {
   .hp-cta__title { font-size: 1.3rem; }
 }
 
+/* Modern Education LMS landing */
+.edu-modern {
+  display: grid;
+  gap: 2rem;
+  padding-top: 2rem;
+}
+
+.edu-modern__hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+  gap: 1.5rem;
+  align-items: stretch;
+  padding: clamp(1.4rem, 3vw, 2.4rem);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 28px;
+  background:
+    linear-gradient(135deg, rgba(10, 14, 12, 0.94), rgba(18, 38, 27, 0.92)),
+    linear-gradient(90deg, #1c8f47 0%, #f5c542 48%, #d8272f 100%);
+  color: #fffaf0;
+  overflow: hidden;
+}
+
+.edu-modern__hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(120deg, rgba(28, 143, 71, 0.28), transparent 34%),
+    linear-gradient(300deg, rgba(216, 39, 47, 0.25), transparent 38%),
+    radial-gradient(circle at 72% 18%, rgba(245, 197, 66, 0.24), transparent 26rem);
+  pointer-events: none;
+}
+
+.edu-modern__hero-copy,
+.edu-modern__hero-panel {
+  position: relative;
+  z-index: 1;
+}
+
+.edu-modern__hero-copy {
+  display: grid;
+  align-content: center;
+  gap: 1rem;
+  min-height: 520px;
+}
+
+.edu-modern__eyebrow {
+  margin: 0;
+  color: #f5c542;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.edu-modern__hero h1,
+.edu-modern__section-head h2,
+.edu-modern__split h2,
+.edu-modern__faq h2 {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 4.8rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.edu-modern__hero p,
+.edu-modern__split p {
+  margin: 0;
+  max-width: 48rem;
+  color: rgba(255, 250, 240, 0.76);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.edu-modern__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 0.4rem;
+}
+
+.edu-modern__hero-panel {
+  align-self: center;
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+}
+
+.edu-modern__browser {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.edu-modern__browser span {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.44);
+}
+
+.edu-modern__preview-card {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1.25rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #111412;
+}
+
+.edu-modern__preview-card p,
+.edu-modern__preview-card h2,
+.edu-modern__preview-card small {
+  margin: 0;
+}
+
+.edu-modern__preview-card h2 {
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.edu-modern__progress {
+  height: 0.7rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(17, 20, 18, 0.12);
+}
+
+.edu-modern__progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #1c8f47, #f5c542, #d8272f);
+}
+
+.edu-modern__mini-grid,
+.edu-modern__stats,
+.edu-modern__course-grid,
+.edu-modern__feature-grid,
+.edu-modern__testimonials {
+  display: grid;
+  gap: 1rem;
+}
+
+.edu-modern__mini-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.edu-modern__mini-grid div,
+.edu-modern__stats article,
+.edu-modern__course-card,
+.edu-modern__feature-grid article,
+.edu-modern__testimonials blockquote,
+.edu-modern__faq-list article {
+  border: 1px solid rgba(17, 20, 18, 0.1);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 18px 54px rgba(17, 20, 18, 0.08);
+}
+
+.edu-modern__mini-grid div {
+  display: grid;
+  gap: 0.2rem;
+  padding: 1rem;
+  color: #fffaf0;
+  background: rgba(255, 255, 255, 0.11);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.edu-modern__mini-grid strong,
+.edu-modern__stats strong {
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.edu-modern__mini-grid span,
+.edu-modern__stats span {
+  color: rgba(255, 250, 240, 0.72);
+  font-size: 0.9rem;
+}
+
+.edu-modern__stats {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.edu-modern__stats article {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1.2rem;
+}
+
+.edu-modern__stats span {
+  color: var(--ink-soft);
+}
+
+.edu-modern__section,
+.edu-modern__split,
+.edu-modern__faq {
+  display: grid;
+  gap: 1.2rem;
+  padding-top: 2.4rem;
+}
+
+.edu-modern__section-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.2rem;
+  align-items: flex-end;
+}
+
+.edu-modern__section-head h2,
+.edu-modern__split h2,
+.edu-modern__faq h2 {
+  max-width: 12ch;
+  color: var(--ink);
+  font-size: clamp(1.8rem, 4vw, 3.1rem);
+}
+
+.edu-modern__section-head a {
+  color: #1c8f47;
+  font-weight: 800;
+}
+
+.edu-modern__course-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.edu-modern__course-card {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1.25rem;
+}
+
+.edu-modern__course-top,
+.edu-modern__course-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.edu-modern__course-card h3,
+.edu-modern__feature-grid h3,
+.edu-modern__faq-list h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.22rem;
+  line-height: 1.1;
+}
+
+.edu-modern__course-card p,
+.edu-modern__feature-grid p,
+.edu-modern__faq-list p,
+.edu-modern__testimonials p {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.62;
+}
+
+.edu-modern__split {
+  grid-template-columns: minmax(0, 0.9fr) minmax(300px, 1.1fr);
+  align-items: center;
+  padding: 1.8rem;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #111412, #183321);
+}
+
+.edu-modern__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.edu-modern__chips span {
+  padding: 0.7rem 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fffaf0;
+  font-weight: 700;
+}
+
+.edu-modern__feature-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.edu-modern__feature-grid article {
+  display: grid;
+  gap: 0.65rem;
+  padding: 1.2rem;
+}
+
+.edu-modern__feature-grid article > span {
+  width: 2.2rem;
+  height: 0.35rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #1c8f47, #f5c542, #d8272f);
+}
+
+.edu-modern__testimonials {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.edu-modern__testimonials blockquote {
+  display: grid;
+  gap: 0.9rem;
+  margin: 0;
+  padding: 1.4rem;
+}
+
+.edu-modern__testimonials cite {
+  color: var(--ink);
+  font-style: normal;
+  font-weight: 800;
+}
+
+.edu-modern__faq {
+  grid-template-columns: minmax(0, 0.7fr) minmax(320px, 1.3fr);
+}
+
+.edu-modern__faq-list {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.edu-modern__faq-list article {
+  padding: 1.1rem;
+}
+
+@media (max-width: 980px) {
+  .edu-modern__hero,
+  .edu-modern__split,
+  .edu-modern__faq {
+    grid-template-columns: 1fr;
+  }
+
+  .edu-modern__hero-copy {
+    min-height: auto;
+  }
+
+  .edu-modern__stats,
+  .edu-modern__course-grid,
+  .edu-modern__feature-grid,
+  .edu-modern__testimonials {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .edu-modern__hero {
+    padding: 1rem;
+    border-radius: 20px;
+  }
+
+  .edu-modern__stats,
+  .edu-modern__course-grid,
+  .edu-modern__feature-grid,
+  .edu-modern__testimonials,
+  .edu-modern__mini-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .edu-modern__section-head {
+    display: grid;
+    align-items: start;
+  }
+
+  .edu-modern__actions {
+    display: grid;
+  }
+
+  .edu-modern__actions .button {
+    width: 100%;
+  }
+}
+
 /* ── Fix hamburger visibility ── */
 .site-header__actions {
   position: relative;

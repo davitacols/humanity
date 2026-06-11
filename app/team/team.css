@@ -1,0 +1,406 @@
+/* ============================================================================
+   Team & Collaborators — dark / bobmarley.com palette
+   ========================================================================== */
+
+.site-main.team {
+  width: var(--site-width);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0 clamp(3rem, 6vw, 5rem);
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 5rem);
+}
+
+.team-kicker,
+.team-card__eyebrow,
+.team-lead__eyebrow,
+.team-cta__kicker {
+  margin: 0;
+  color: var(--reggae-gold);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.team-heading {
+  margin: 0;
+  max-width: 22ch;
+  color: var(--head);
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4.4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.team-section {
+  display: grid;
+  gap: clamp(1.4rem, 3vw, 2.2rem);
+}
+
+.team-section__header {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 60rem;
+}
+
+.team-section__body {
+  margin: 0;
+  max-width: 54rem;
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────────── */
+.team-hero {
+  display: grid;
+  gap: 1.4rem;
+  justify-items: start;
+  padding: clamp(1.5rem, 4vw, 3rem) 0 clamp(1rem, 2vw, 1.5rem);
+}
+
+.team-hero__title {
+  margin: 0;
+  max-width: 16ch;
+  color: var(--head);
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 7vw, 5.4rem);
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.team-hero__body {
+  margin: 0;
+  max-width: 60ch;
+  color: var(--ink-soft);
+  font-size: clamp(1.02rem, 1.4vw, 1.18rem);
+  line-height: 1.72;
+}
+
+.team-hero__actions,
+.team-lead__actions,
+.team-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.team-hero__signals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1.5rem, 5vw, 3.5rem);
+  margin-top: 0.6rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  width: 100%;
+}
+
+.team-signal {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.team-signal strong {
+  color: var(--reggae-gold);
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.team-signal span {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* ── Lead profile ─────────────────────────────────────────────────────────── */
+.team-lead {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1fr);
+  gap: clamp(1.25rem, 3vw, 2.25rem);
+  align-items: stretch;
+  padding: clamp(1.1rem, 2.5vw, 1.6rem);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--card-grad);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+.team-lead__media .stock-photo,
+.team-lead__media .team-monogram {
+  height: 100%;
+  min-height: 440px;
+  border-radius: 14px;
+  border: 1px solid rgba(244, 195, 24, 0.22);
+}
+
+.team-lead__copy {
+  display: grid;
+  gap: 0.7rem;
+  align-content: center;
+}
+
+.team-lead__name {
+  margin: 0;
+  color: var(--head);
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.6vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+.team-lead__role {
+  margin: 0;
+  color: var(--head);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.team-lead__location,
+.team-card__location {
+  margin: 0;
+  color: var(--reggae-gold);
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.team-lead__summary {
+  margin: 0;
+  max-width: 56rem;
+  color: var(--head);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.team-lead__bio {
+  margin: 0;
+  max-width: 60rem;
+  color: var(--ink-soft);
+  line-height: 1.72;
+}
+
+/* ── Collaborator grid ────────────────────────────────────────────────────── */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+.team-card {
+  display: grid;
+  align-content: start;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--card-grad);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  transition: border-color 180ms ease, transform 180ms ease;
+}
+
+.team-card:hover {
+  border-color: rgba(244, 195, 24, 0.5);
+  transform: translateY(-3px);
+}
+
+.team-card__media .stock-photo,
+.team-card__media .team-monogram {
+  border-radius: 0;
+  min-height: 200px;
+}
+
+.team-card__copy {
+  display: grid;
+  gap: 0.55rem;
+  padding: clamp(1.1rem, 2.4vw, 1.4rem);
+}
+
+.team-card__name {
+  margin: 0;
+  color: var(--head);
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+}
+
+.team-card__role {
+  margin: 0;
+  color: var(--head);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.team-card__summary {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.62;
+}
+
+.team-card .button {
+  margin-top: 0.35rem;
+  justify-self: start;
+}
+
+/* ── Monogram tile (no confirmed photo) ───────────────────────────────────── */
+.team-monogram {
+  display: grid;
+  align-content: end;
+  gap: 0.4rem;
+  width: 100%;
+  min-height: 200px;
+  padding: clamp(1.1rem, 3vw, 1.6rem);
+  color: #fff;
+  background:
+    linear-gradient(135deg, rgba(226, 59, 50, 0.55), rgba(244, 195, 24, 0.42), rgba(27, 163, 76, 0.55)),
+    var(--pine-deep, #0c5a31);
+}
+
+.team-monogram__tag {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.team-monogram strong {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* ── Tags ─────────────────────────────────────────────────────────────────── */
+.team-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding-top: 0.15rem;
+}
+
+.team-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 248, 224, 0.05);
+  color: var(--head);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+/* ── Principles ───────────────────────────────────────────────────────────── */
+.team-principles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.team-principle {
+  display: grid;
+  grid-template-columns: 3.2rem minmax(0, 1fr);
+  gap: 0.9rem;
+  padding: clamp(1.1rem, 2.5vw, 1.5rem);
+  background: linear-gradient(180deg, #16180e, #101206);
+}
+
+.team-principle__num {
+  color: var(--reggae-gold);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.team-principle h3 {
+  margin: 0;
+  color: var(--head);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.team-principle p {
+  margin: 0.35rem 0 0;
+  color: var(--ink-soft);
+  line-height: 1.62;
+}
+
+/* ── CTA ──────────────────────────────────────────────────────────────────── */
+.team-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  align-items: center;
+  padding: clamp(1.6rem, 4vw, 2.6rem);
+  border: 1px solid rgba(244, 195, 24, 0.2);
+  border-radius: 20px;
+  background:
+    radial-gradient(120% 160% at 0% 0%, rgba(27, 163, 76, 0.22), transparent 50%),
+    radial-gradient(120% 160% at 100% 100%, rgba(226, 59, 50, 0.18), transparent 55%),
+    linear-gradient(135deg, #131509, #0a0b05);
+}
+
+.team-cta__kicker { color: var(--reggae-gold); }
+
+.team-cta__title {
+  margin: 0.75rem 0 0;
+  max-width: 20ch;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.team-cta__body {
+  margin: 0.9rem 0 0;
+  max-width: 48rem;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.7;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .team-lead { grid-template-columns: 1fr; }
+  .team-lead__media .stock-photo,
+  .team-lead__media .team-monogram { min-height: 340px; }
+}
+
+@media (max-width: 760px) {
+  .team-principles { grid-template-columns: 1fr; }
+  .team-cta { grid-template-columns: 1fr; }
+  .team-hero__signals { gap: 1.5rem; }
+  .team-hero__actions,
+  .team-lead__actions,
+  .team-cta__actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .team-hero__actions > .button,
+  .team-lead__actions > .button,
+  .team-cta__actions > .button { width: 100%; }
+}

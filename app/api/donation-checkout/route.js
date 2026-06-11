@@ -9,6 +9,7 @@ import { getDonationFundBySlug } from "../../../lib/donation-content";
 import {
   createFlutterwaveCheckout,
   createPayPalOrder,
+  createPayPalSubscription,
   getPaymentProviderAvailability
 } from "../../../lib/payment-providers";
 
@@ -82,6 +83,7 @@ export async function GET(request) {
 }
 
 export async function POST(request) {
+  const { origin } = new URL(request.url);
   let payload;
 
   try {
@@ -125,44 +127,48 @@ export async function POST(request) {
     );
   }
 
+  const { provider, donorName, donorEmail, amount, currency, frequency } = validation.data;
+
   try {
     const payment = await createDonationPaymentAttempt({
       fund,
-      provider: validation.data.provider,
-      donorName: validation.data.donorName,
-      donorEmail: validation.data.donorEmail,
-      amount: validation.data.amount,
-      currency: validation.data.currency
+      provider,
+      donorName,
+      donorEmail,
+      amount,
+      currency,
+      frequency
     });
 
-    const checkout =
-      validation.data.provider === "flutterwave"
-        ? await createFlutterwaveCheckout({
-            reference: payment.reference,
-            fund,
-            donorName: validation.data.donorName,
-            donorEmail: validation.data.donorEmail,
-            amount: validation.data.amount,
-            siteOrigin: origin
-          })
-        : await createPayPalOrder({
-            reference: payment.reference,
-            fund,
-            donorName: validation.data.donorName,
-            donorEmail: validation.data.donorEmail,
-            amount: validation.data.amount,
-            siteOrigin: origin
-          });
+    const checkoutArgs = {
+      reference: payment.reference,
+      fund,
+      donorName,
+      donorEmail,
+      amount,
+      siteOrigin: origin
+    };
+
+    let checkout;
+    if (provider === "flutterwave") {
+      checkout = await createFlutterwaveCheckout({ ...checkoutArgs, frequency });
+    } else if (frequency === "monthly") {
+      checkout = await createPayPalSubscription(checkoutArgs);
+    } else {
+      checkout = await createPayPalOrder(checkoutArgs);
+    }
 
     await updateDonationPaymentCheckout(payment.reference, {
       providerPaymentId: checkout.providerPaymentId,
+      providerSubscriptionId: checkout.providerSubscriptionId,
       checkoutUrl: checkout.redirectUrl,
       rawPayload: checkout.payload
     });
 
     return NextResponse.json({
       ok: true,
-      provider: validation.data.provider,
+      provider,
+      frequency,
       reference: payment.reference,
       redirectUrl: checkout.redirectUrl
     });

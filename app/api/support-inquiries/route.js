@@ -3,6 +3,7 @@ import {
   createSupportInquiry,
   validateSupportInquiry
 } from "../../../lib/support-inquiries";
+import { notifyTeam } from "../../../lib/email";
 
 export async function POST(request) {
   let payload;
@@ -34,6 +35,11 @@ export async function POST(request) {
 
   try {
     const submission = await createSupportInquiry(validation.data);
+    await notifyTeam(
+      validation.data.sourcePage === "donate" ? "giving request" : "support inquiry",
+      validation.data,
+      validation.data.email
+    );
     const message =
       validation.data.sourcePage === "donate"
         ? "Thanks. Your giving request has been logged and the team will follow up by email with the next step."

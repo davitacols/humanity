@@ -43,6 +43,7 @@ function createInitialState({ funds, providers, initialFundSlug, initialProvider
   return {
     fundSlug: initialFundSlug || funds[0]?.slug || "",
     provider,
+    frequency: "one-time",
     donorName: "",
     donorEmail: "",
     amount: String(preset),
@@ -116,6 +117,7 @@ export function DonationCheckoutForm({
         body: JSON.stringify({
           fundSlug: formData.fundSlug,
           provider: formData.provider,
+          frequency: formData.frequency,
           donorName: formData.donorName,
           donorEmail: formData.donorEmail,
           amount: formData.amount,
@@ -236,6 +238,27 @@ export function DonationCheckoutForm({
           {fieldErrors.provider ? <p className="field__error">{fieldErrors.provider}</p> : null}
         </div>
 
+        <div className="field field--full">
+          <span className="field__label">Frequency</span>
+          <div className="donation-checkout-form__providers">
+            {[
+              { value: "one-time", label: "One-time", helper: "A single gift." },
+              { value: "monthly", label: "Monthly", helper: "Give automatically every month — cancel anytime." }
+            ].map((option) => (
+              <button
+                key={option.value}
+                type="button"
+                className={`donation-checkout-form__provider${formData.frequency === option.value ? " is-active" : ""}`}
+                onClick={() => updateField("frequency", option.value)}
+                aria-pressed={formData.frequency === option.value}
+              >
+                <strong>{option.label}</strong>
+                <span>{option.helper}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div className="field">
           <label className="field__label" htmlFor="donation-fundSlug">
             Giving route
@@ -294,7 +317,7 @@ export function DonationCheckoutForm({
 
         <div className="field field--full">
           <label className="field__label" htmlFor="donation-amount">
-            {activeProvider.amountLabel}
+            {formData.frequency === "monthly" ? `${activeProvider.amountLabel} (per month)` : activeProvider.amountLabel}
           </label>
           <div className="donation-checkout-form__amount-row">
             <input
@@ -341,7 +364,11 @@ export function DonationCheckoutForm({
           disabled={isSubmitting || !configuredProviders.length}
         >
           <span className="button__label">
-            {isSubmitting ? "Preparing checkout" : `Continue with ${activeProvider.label}`}
+            {isSubmitting
+              ? "Preparing checkout"
+              : formData.frequency === "monthly"
+                ? `Give monthly with ${activeProvider.label}`
+                : `Continue with ${activeProvider.label}`}
           </span>
           <span className="button__spinner" aria-hidden="true" />
         </button>

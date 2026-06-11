@@ -437,46 +437,46 @@ const donationFunds = [
 
 const transparencyEntries = [
   {
-    period_label: "Q2 2026 tracker",
-    title: "Health outreach and family support snapshot",
+    period_label: "Allocation plan",
+    title: "Health outreach and family support",
     summary:
-      "Current documented allocations cover maternal kits, follow-up visits, and practical community health support for women and children.",
-    amount_label: "NGN 850,000 documented this cycle",
-    allocation_label: "Maternal kits 45%, follow-up visits 30%, nutrition support 15%, volunteer logistics 10%",
-    status_label: "Published for supporter review",
+      "Planned allocations will direct support toward maternal kits, follow-up visits, and practical community health care for women and children.",
+    amount_label: "Allocations published as funds are received",
+    allocation_label: "Planned split — maternal kits 45%, follow-up visits 30%, nutrition support 15%, volunteer logistics 10%",
+    status_label: "Tracking begins with the first documented donation",
     href: "/health",
     cta_label: "Open health work"
   },
   {
-    period_label: "Q2 2026 tracker",
+    period_label: "Allocation plan",
     title: "Education resources and facilitator preparation",
     summary:
-      "Funding in this window supports downloadable materials, coding introductions, and the practical preparation needed for community-led learning sessions.",
-    amount_label: "NGN 620,000 documented this cycle",
-    allocation_label: "Learning materials 40%, facilitator prep 30%, printing 20%, connectivity support 10%",
-    status_label: "Published for supporter review",
+      "Planned funding will support downloadable materials, coding introductions, and the preparation needed for community-led learning sessions.",
+    amount_label: "Allocations published as funds are received",
+    allocation_label: "Planned split — learning materials 40%, facilitator prep 30%, printing 20%, connectivity support 10%",
+    status_label: "Tracking begins with the first documented donation",
     href: "/education",
     cta_label: "Open education hub"
   },
   {
-    period_label: "Q1 2026 tracker",
+    period_label: "Allocation plan",
     title: "Youth sports equipment and training logistics",
     summary:
-      "This snapshot covers balls, bibs, markers, and session logistics tied to structured youth development through sports.",
-    amount_label: "NGN 740,000 documented this cycle",
-    allocation_label: "Equipment 55%, coaching logistics 25%, community events 20%",
-    status_label: "Published for supporter review",
+      "Planned support covers balls, bibs, markers, and session logistics tied to structured youth development through sports.",
+    amount_label: "Allocations published as funds are received",
+    allocation_label: "Planned split — equipment 55%, coaching logistics 25%, community events 20%",
+    status_label: "Tracking begins with the first documented donation",
     href: "/projects/dodoma-best-sports-center",
     cta_label: "Open sports project"
   },
   {
-    period_label: "Q1 2026 tracker",
-    title: "Creative advocacy production prep",
+    period_label: "Allocation plan",
+    title: "Creative advocacy production",
     summary:
-      "Documented creative spend currently covers concept development, field documentation, and campaign delivery planning for public-interest storytelling.",
-    amount_label: "NGN 310,000 documented this cycle",
-    allocation_label: "Field capture 50%, editing prep 30%, campaign distribution 20%",
-    status_label: "Published for supporter review",
+      "Planned creative support covers concept development, field documentation, and campaign delivery for public-interest storytelling.",
+    amount_label: "Allocations published as funds are received",
+    allocation_label: "Planned split — field capture 50%, editing prep 30%, campaign distribution 20%",
+    status_label: "Tracking begins with the first documented donation",
     href: "/arts",
     cta_label: "Open arts section"
   }

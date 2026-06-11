@@ -3,6 +3,7 @@ import { stockMedia } from "./stockMedia";
 export const navItems = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
+  { href: "/team", label: "Team" },
   { href: "/projects", label: "Projects" },
   { href: "/programs", label: "Programs" },
   { href: "/education", label: "Education" },
@@ -18,8 +19,8 @@ export const navItems = [
 export const headerUtilityItems = [
   { label: "4 live program routes", href: "/programs" },
   { label: "Latest field updates", href: "/blog" },
-  { label: "Sib profile live", href: "/about#sib" },
-  { label: "Low-bandwidth friendly access", href: "/education" }
+  { label: "Sib profile live", href: "/team#sib" },
+  { label: "Education platform", href: "/education" }
 ];
 
 export const proofStats = [
@@ -100,6 +101,26 @@ export const profileSpotlight = {
 
 export const platformProfiles = [
   {
+    eyebrow: "Founder",
+    name: "Adam Mustafa",
+    role: "Founder — mental health and community support advocate",
+    location: "United Kingdom",
+    summary:
+      "Founder of Humanity First Initiative, drawing on more than a decade supporting families affected by mental health challenges through community engagement and talking therapies.",
+    body:
+      "Adam has supported families affected by mental health challenges for over ten years, drawing on both professional and personal experience following a family breakdown in 2016. He works closely with local authorities to strengthen community relations and bridge the gap between Community Mental Health Teams and the people they serve, championing communication, support, and talking therapies alongside medical treatment where appropriate. As a former BAME Officer for the Labour Party, he gained valuable experience engaging communities across a wide range of cultural backgrounds, and brings more than twenty years of community work to improving mental health awareness, support, and engagement for individuals and families.",
+    tags: [
+      "Mental health advocacy",
+      "Community relations",
+      "Talking therapies",
+      "Diversity & inclusion"
+    ],
+    imageSrc: "/Adams.jpeg",
+    imageAlt: "Adam Mustafa, founder of Humanity First Initiative.",
+    imageLabel: "Founder",
+    imageRatio: "portrait"
+  },
+  {
     eyebrow: "Strategy and communications",
     name: "Ikokwu Chidozie Ikemba",
     role: "Psychologist, strategist, media practitioner, and environmental entrepreneur",
@@ -144,27 +165,27 @@ export const platformProfiles = [
     imageRatio: stockMedia.aboutMission.ratio || "landscape"
   },
   {
-    eyebrow: "Film, PPV screenings, and visual storytelling",
+    eyebrow: "Film, pay-per-view screenings & visual storytelling",
     name: "Sib",
-    role: "Cinematographer, video editor, creative photographer, and private screening contributor",
+    role: "Cinematographer, video editor, creative photographer, and pay-per-view screening contributor",
     location: "West Midlands, United Kingdom",
     summary:
-      "Contributes film, editing, photography, and password-protected screening content for campaigns, profiles, and supporter-facing updates.",
+      "Contributes film, editing, photography, and pay-per-view screening content for campaigns, profiles, and supporter-facing updates.",
     body:
-      "Sib is a West Midlands-based cinematographer and video editor with a strong interest in film, TV, private campaign releases, and meaningful visual work for brands, organizations, and independent projects. Their creative practice also includes food and travel photography, shaped by authenticity, accessibility, and a lived autistic perspective.",
+      "Sib is a West Midlands-based cinematographer and video editor crafting visually compelling stories that connect with audiences and drive impact — for brands, organisations, and independent projects, including a feature documentary. For Humanity First Initiative, this includes producing pay-per-view screening content that helps fund and sustain the work. Their practice is shaped by a commitment to more accessible content and a perspective informed by being autistic, and extends to creative food and travel photography focused on authenticity.",
     tags: [
       "Cinematography",
       "Video editing",
-      "Password-protected screenings",
+      "Pay-per-view screenings",
       "Accessibility-led storytelling",
       "Food and travel photography",
-      "Impact-driven collaboration"
+      "Documentary"
     ],
     href: "https://sib-cinematographer.squarespace.com/",
     hrefLabel: "View portfolio",
-    imageSrc: "",
-    imageAlt: "",
-    imageLabel: "",
+    imageSrc: "/sib.jpeg",
+    imageAlt: "Sib, cinematographer and video editor based in the West Midlands.",
+    imageLabel: "Film & visual storytelling",
     imageRatio: "portrait"
   }
 ];
@@ -215,8 +236,8 @@ export const sportsSpotlight = {
 
 export const programPillars = [
   {
-    title: "Education Access",
-    body: "Digital basics guides, beginner web lessons, downloadable workbooks, and facilitator materials for community learning.",
+    title: "Education Platform",
+    body: "A login-based course platform for lessons, modules, quizzes, assignments, certificates, and learner progress.",
     tone: "mist",
     href: "/education"
   },
@@ -318,7 +339,7 @@ export const donationFunds = [
       "Supports hygiene kits, maternal check-ins, community health education, and nutrition-focused follow-up for women and children.",
     amountLabel: "Current goal: NGN 2,500,000",
     targetAmount: 2500000,
-    raisedAmount: 850000,
+    raisedAmount: 0,
     beneficiariesLabel: "50 families in the active outreach pipeline",
     statusLabel: "Current quarter funding gap",
     href: "/health",
@@ -327,17 +348,17 @@ export const donationFunds = [
   {
     slug: "education-access",
     eyebrow: "Education route",
-    title: "Education access and digital skills",
+    title: "Education LMS and digital skills",
     supportArea: donationCauses[1],
     summary:
       "Keeps books, low-bandwidth learning materials, facilitator guides, and beginner digital-skills sessions available to learners.",
     amountLabel: "Current goal: NGN 1,800,000",
     targetAmount: 1800000,
-    raisedAmount: 620000,
+    raisedAmount: 0,
     beneficiariesLabel: "Three learning tracks in active development",
     statusLabel: "Resource build-out in progress",
     href: "/education",
-    hrefLabel: "Visit education hub"
+    hrefLabel: "Open education"
   },
   {
     slug: "youth-sports",
@@ -348,7 +369,7 @@ export const donationFunds = [
       "Backs grassroots training, equipment, tournament logistics, and mentorship for youth programs like Dodoma Best Sports Center.",
     amountLabel: "Current goal: NGN 1,950,000",
     targetAmount: 1950000,
-    raisedAmount: 740000,
+    raisedAmount: 0,
     beneficiariesLabel: "Current pathway includes 100 youth participants",
     statusLabel: "Equipment and logistics still needed",
     href: "/sports",
@@ -363,7 +384,7 @@ export const donationFunds = [
       "Supports documentary production, photography, storytelling campaigns, and artist-led advocacy tied directly to humanitarian work.",
     amountLabel: "Current goal: NGN 950,000",
     targetAmount: 950000,
-    raisedAmount: 310000,
+    raisedAmount: 0,
     beneficiariesLabel: "Campaign storytelling and artist collaboration fund",
     statusLabel: "Next creative campaign preparing for release",
     href: "/arts",
@@ -373,46 +394,46 @@ export const donationFunds = [
 
 export const transparencyEntries = [
   {
-    periodLabel: "Q2 2026 tracker",
-    title: "Health outreach and family support snapshot",
+    periodLabel: "Allocation plan",
+    title: "Health outreach and family support",
     summary:
-      "Current documented allocations cover maternal kits, follow-up visits, and practical community health support for women and children.",
-    amountLabel: "NGN 850,000 documented this cycle",
-    allocationLabel: "Maternal kits 45%, follow-up visits 30%, nutrition support 15%, volunteer logistics 10%",
-    statusLabel: "Published for supporter review",
+      "Planned allocations will direct support toward maternal kits, follow-up visits, and practical community health care for women and children.",
+    amountLabel: "Allocations published as funds are received",
+    allocationLabel: "Planned split — maternal kits 45%, follow-up visits 30%, nutrition support 15%, volunteer logistics 10%",
+    statusLabel: "Tracking begins with the first documented donation",
     href: "/health",
     ctaLabel: "Open health work"
   },
   {
-    periodLabel: "Q2 2026 tracker",
+    periodLabel: "Allocation plan",
     title: "Education resources and facilitator preparation",
     summary:
-      "Funding in this window supports downloadable materials, coding introductions, and the practical preparation needed for community-led learning sessions.",
-    amountLabel: "NGN 620,000 documented this cycle",
-    allocationLabel: "Learning materials 40%, facilitator prep 30%, printing 20%, connectivity support 10%",
-    statusLabel: "Published for supporter review",
+      "Planned funding will support downloadable materials, coding introductions, and the preparation needed for community-led learning sessions.",
+    amountLabel: "Allocations published as funds are received",
+    allocationLabel: "Planned split — learning materials 40%, facilitator prep 30%, printing 20%, connectivity support 10%",
+    statusLabel: "Tracking begins with the first documented donation",
     href: "/education",
-    ctaLabel: "Open education hub"
+    ctaLabel: "Open education"
   },
   {
-    periodLabel: "Q1 2026 tracker",
+    periodLabel: "Allocation plan",
     title: "Youth sports equipment and training logistics",
     summary:
-      "This snapshot covers balls, bibs, markers, and session logistics tied to structured youth development through sports.",
-    amountLabel: "NGN 740,000 documented this cycle",
-    allocationLabel: "Equipment 55%, coaching logistics 25%, community events 20%",
-    statusLabel: "Published for supporter review",
+      "Planned support covers balls, bibs, markers, and session logistics tied to structured youth development through sports.",
+    amountLabel: "Allocations published as funds are received",
+    allocationLabel: "Planned split — equipment 55%, coaching logistics 25%, community events 20%",
+    statusLabel: "Tracking begins with the first documented donation",
     href: "/projects/dodoma-best-sports-center",
     ctaLabel: "Open sports project"
   },
   {
-    periodLabel: "Q1 2026 tracker",
-    title: "Creative advocacy production prep",
+    periodLabel: "Allocation plan",
+    title: "Creative advocacy production",
     summary:
-      "Documented creative spend currently covers concept development, field documentation, and campaign delivery planning for public-interest storytelling.",
-    amountLabel: "NGN 310,000 documented this cycle",
-    allocationLabel: "Field capture 50%, editing prep 30%, campaign distribution 20%",
-    statusLabel: "Published for supporter review",
+      "Planned creative support covers concept development, field documentation, and campaign delivery for public-interest storytelling.",
+    amountLabel: "Allocations published as funds are received",
+    allocationLabel: "Planned split — field capture 50%, editing prep 30%, campaign distribution 20%",
+    statusLabel: "Tracking begins with the first documented donation",
     href: "/arts",
     ctaLabel: "Open arts section"
   }
@@ -799,6 +820,202 @@ export const educationLibraryItems = [
     actionLabel: "Open mentor checklist",
     href: "/education/resources/mentor-checklist",
     external: false
+  }
+];
+
+export const educationLmsCourses = [
+  {
+    id: "digital-foundations",
+    title: "Digital Foundations",
+    level: "Beginner",
+    duration: "4 modules",
+    track: "Digital literacy",
+    summary:
+      "A practical first course for learners building confidence with devices, internet access, online safety, and everyday digital tasks.",
+    outcomes: [
+      "Use a browser, search, and basic productivity tools with confidence",
+      "Recognize common online safety risks",
+      "Complete a simple digital task independently"
+    ],
+    modules: [
+      {
+        id: "device-confidence",
+        title: "Device confidence",
+        lessons: [
+          { id: "buttons-ports", title: "Know the device", duration: "15 min", format: "Guide", objective: "Identify buttons, ports, charging needs, and safe handling habits." },
+          { id: "settings-access", title: "Basic settings", duration: "20 min", format: "Practice", objective: "Adjust brightness, volume, Wi-Fi, language, and accessibility settings." }
+        ]
+      },
+      {
+        id: "internet-basics",
+        title: "Internet basics",
+        lessons: [
+          { id: "browser-search", title: "Browser and search", duration: "25 min", format: "Lesson", objective: "Open a browser, search clearly, and identify useful results." },
+          { id: "email-intro", title: "Email essentials", duration: "25 min", format: "Practice", objective: "Read, reply, and write a clear email message." }
+        ]
+      },
+      {
+        id: "online-safety",
+        title: "Online safety",
+        lessons: [
+          { id: "strong-passwords", title: "Passwords and privacy", duration: "20 min", format: "Checklist", objective: "Create safer passwords and understand private information." },
+          { id: "scams", title: "Spot scams", duration: "20 min", format: "Scenario", objective: "Recognize suspicious links, messages, and payment requests." }
+        ]
+      },
+      {
+        id: "everyday-task",
+        title: "Capstone task",
+        lessons: [
+          { id: "task-submit", title: "Complete a digital task", duration: "35 min", format: "Assignment", objective: "Find information, write a short note, and submit it to a facilitator." }
+        ]
+      }
+    ],
+    quiz: [
+      {
+        id: "safety-password",
+        question: "Which password habit is safest?",
+        options: ["Use your birth year", "Reuse one password everywhere", "Use a long unique password", "Share it with a friend"],
+        answer: 2
+      },
+      {
+        id: "search-result",
+        question: "What should a learner check before trusting a search result?",
+        options: ["The source and date", "Only the color of the page", "How many ads it has", "Whether it loads slowly"],
+        answer: 0
+      }
+    ],
+    assignment:
+      "Write a short message explaining one safe online habit and one digital task you can now complete.",
+    resourceHref: "/education/resources/digital-basics-guide"
+  },
+  {
+    id: "web-starter",
+    title: "Web Starter Pathway",
+    level: "Beginner to intermediate",
+    duration: "5 modules",
+    track: "Coding foundations",
+    summary:
+      "A low-bandwidth web course that introduces HTML, CSS, page structure, accessibility, and a first published project.",
+    outcomes: [
+      "Understand how web pages are structured",
+      "Build a simple HTML and CSS page",
+      "Explain accessibility basics for public-facing pages"
+    ],
+    modules: [
+      {
+        id: "web-map",
+        title: "How the web works",
+        lessons: [
+          { id: "client-server", title: "Client, server, browser", duration: "20 min", format: "Lesson", objective: "Explain what happens when a page opens." },
+          { id: "files-folders", title: "Files and folders", duration: "15 min", format: "Practice", objective: "Organize project files for a simple website." }
+        ]
+      },
+      {
+        id: "html",
+        title: "HTML foundations",
+        lessons: [
+          { id: "tags", title: "Tags and structure", duration: "30 min", format: "Practice", objective: "Use headings, paragraphs, lists, links, and images." },
+          { id: "semantic-html", title: "Semantic HTML", duration: "25 min", format: "Lesson", objective: "Choose elements that describe content clearly." }
+        ]
+      },
+      {
+        id: "css",
+        title: "CSS foundations",
+        lessons: [
+          { id: "selectors", title: "Selectors and colors", duration: "30 min", format: "Practice", objective: "Style text, colors, spacing, and simple layouts." },
+          { id: "responsive", title: "Responsive basics", duration: "30 min", format: "Practice", objective: "Make a page readable on a phone and desktop." }
+        ]
+      },
+      {
+        id: "accessibility",
+        title: "Accessible pages",
+        lessons: [
+          { id: "alt-text", title: "Alt text and labels", duration: "20 min", format: "Checklist", objective: "Write useful alt text and label important controls." },
+          { id: "contrast", title: "Readable contrast", duration: "20 min", format: "Review", objective: "Check whether text is readable against its background." }
+        ]
+      },
+      {
+        id: "project",
+        title: "First website project",
+        lessons: [
+          { id: "build-project", title: "Build and present", duration: "45 min", format: "Assignment", objective: "Create a small page about a community topic and present it." }
+        ]
+      }
+    ],
+    quiz: [
+      {
+        id: "html-purpose",
+        question: "What is HTML mainly used for?",
+        options: ["Structuring page content", "Charging a phone", "Buying domain names", "Compressing video"],
+        answer: 0
+      },
+      {
+        id: "responsive-purpose",
+        question: "Why should a page be responsive?",
+        options: ["So it works on different screen sizes", "So it uses more data", "So images disappear", "So links stop working"],
+        answer: 0
+      }
+    ],
+    assignment:
+      "Describe the website you would build for your community and list the HTML sections it needs.",
+    resourceHref: "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web",
+    external: true
+  },
+  {
+    id: "facilitator-lab",
+    title: "Facilitator Lab",
+    level: "Facilitator",
+    duration: "3 modules",
+    track: "Teaching and cohort delivery",
+    summary:
+      "A course for mentors, volunteers, and teachers preparing sessions, tracking learners, and adapting resources for low-bandwidth contexts.",
+    outcomes: [
+      "Plan a 60 to 90 minute learning session",
+      "Support mixed-confidence learners",
+      "Track learner progress and follow-up needs"
+    ],
+    modules: [
+      {
+        id: "session-design",
+        title: "Session design",
+        lessons: [
+          { id: "session-flow", title: "Build the session flow", duration: "25 min", format: "Template", objective: "Plan welcome, demo, practice, reflection, and follow-up." },
+          { id: "materials", title: "Prepare materials", duration: "20 min", format: "Checklist", objective: "Prepare print, phone, and offline backup materials." }
+        ]
+      },
+      {
+        id: "learner-support",
+        title: "Learner support",
+        lessons: [
+          { id: "mixed-levels", title: "Mixed levels", duration: "25 min", format: "Scenario", objective: "Group learners and support different confidence levels." },
+          { id: "mentor-checkins", title: "Mentor check-ins", duration: "20 min", format: "Practice", objective: "Use short check-ins to reduce dropout." }
+        ]
+      },
+      {
+        id: "cohort-review",
+        title: "Cohort review",
+        lessons: [
+          { id: "progress-review", title: "Progress and evidence", duration: "25 min", format: "Review", objective: "Record attendance, completed tasks, and learner needs." }
+        ]
+      }
+    ],
+    quiz: [
+      {
+        id: "session-parts",
+        question: "Which session structure is easiest to repeat?",
+        options: ["Random activities only", "Welcome, demo, practice, reflection", "A lecture with no practice", "Only homework"],
+        answer: 1
+      },
+      {
+        id: "offline-backup",
+        question: "Why prepare offline materials?",
+        options: ["Connectivity may fail", "They replace all teaching", "They make sessions longer", "They stop learners asking questions"],
+        answer: 0
+      }
+    ],
+    assignment:
+      "Draft a 60 minute session plan for a mixed-confidence learner group.",
+    resourceHref: "/education/resources/facilitator-session-outline"
   }
 ];
 

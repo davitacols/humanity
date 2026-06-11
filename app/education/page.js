@@ -1,183 +1,115 @@
-import { EducationLibrary } from "../../components/EducationLibrary";
+import Link from "next/link";
 import { LoadingLink } from "../../components/LoadingLink";
-import { Reveal } from "../../components/Reveal";
-import { SectionIntro } from "../../components/SectionIntro";
 import { StockPhoto } from "../../components/StockPhoto";
+import { educationLmsCourses, educationLibraryItems } from "../../components/siteData";
 import { stockMedia } from "../../components/stockMedia";
-import { getEducationHubData } from "../../lib/education";
+import "./education.css";
 
 export const revalidate = 300;
 
 export const metadata = {
-  title: "Education Hub",
-  description: "Explore learning tracks, practical teaching resources, downloadable guides, facilitator tools, and contribution pathways for community education."
+  title: "Education — Humanity First Academy",
+  description: "Free courses, learning resources, and facilitator tools for community learners across Africa."
 };
 
-function getResourceAction(resource) {
-  const t = resource.title.toLowerCase();
-  if (t.includes("lesson")) return { href: "/education?category=Lessons#library", label: "Browse lessons" };
-  if (t.includes("toolkit")) return { href: "/education?category=Toolkits#library", label: "Browse toolkits" };
-  if (t.includes("spotlight")) return { href: "/education/contribute", label: "Contribute a resource" };
-  return { href: "/education?category=Downloads#library", label: "Browse downloads" };
-}
-
-function getTrackAction(track) {
-  const t = track.title.toLowerCase();
-  if (t.includes("coding")) return { href: "/education?level=Beginner#library", label: "Open beginner resources" };
-  if (t.includes("work")) return { href: "/education?category=Lessons#library", label: "Open work-ready lessons" };
-  return { href: "/education?category=Toolkits#library", label: "Open facilitator resources" };
-}
-
-export default async function EducationPage({ searchParams }) {
-  const params = (await searchParams) || {};
-  const { actions, featuredLibraryItems, libraryItems, librarySummary, metrics, resources, sessions, tracks } = await getEducationHubData();
+export default function EducationPage() {
+  const courses = educationLmsCourses.slice(0, 3);
+  const resources = educationLibraryItems.slice(0, 3);
 
   return (
-    <main className="site-main edu-v2">
+    <main className="site-main edu">
       {/* Hero */}
-      <Reveal as="section" className="about-hero" delay={60}>
-        <img src={stockMedia.educationFeature.src} alt={stockMedia.educationFeature.alt} className="about-hero__bg" />
-        <div className="about-hero__overlay" />
-        <div className="about-hero__content">
-          <p className="about-hero__eyebrow">Education hub</p>
-          <h1 className="about-hero__title">A field classroom for learners, facilitators, and community mentors.</h1>
-          <p className="about-hero__body">
-            Digital basics guides, beginner web lessons, facilitator outlines, printable workbooks,
-            mentor checklists, and contribution routes for community education.
+      <section className="edu__hero">
+        <div className="edu__hero-content">
+          <h1>Education for community learners.</h1>
+          <p>
+            Digital skills, coding, and facilitator training — mobile-friendly, 
+            self-paced, and built for learners who need practical skills, not just certificates.
           </p>
-          <div className="hero-actions">
-            <a href="#library" className="button button--primary">Explore the library</a>
-            <LoadingLink href="/education/contribute" className="button button--ghost-light" loadingLabel="Opening">Contribute resources</LoadingLink>
+          <div className="edu__hero-actions">
+            <LoadingLink href="/lms" className="button button--primary" loadingLabel="Opening">Start learning</LoadingLink>
+            <LoadingLink href="/education/contribute" className="button button--ghost" loadingLabel="Opening">Contribute a resource</LoadingLink>
           </div>
         </div>
-        <div className="about-hero__stats">
-          {metrics.slice(0, 3).map((m) => (
-            <article key={m.label} className="about-hero__stat">
-              <p className="about-hero__stat-value">{m.value}</p>
-              <p className="about-hero__stat-label">{m.label}</p>
-            </article>
+        <div className="edu__hero-media">
+          <StockPhoto src={stockMedia.educationFeature.src} alt={stockMedia.educationFeature.alt} sizes="(max-width: 900px) 100vw, 50vw" />
+        </div>
+      </section>
+
+      {/* Courses */}
+      <section className="edu__section">
+        <div className="edu__section-top">
+          <h2>Courses</h2>
+          <LoadingLink href="/lms" className="edu__see-all" loadingLabel="Opening">View all →</LoadingLink>
+        </div>
+        <div className="edu__courses">
+          {courses.map((course) => (
+            <Link key={course.id} href={`/lms/courses/${course.id}`} className="edu__course">
+              <span className="edu__course-track">{course.track}</span>
+              <h3>{course.title}</h3>
+              <p>{course.summary}</p>
+              <span className="edu__course-meta">{course.duration} · {course.modules.length} modules · {course.level}</span>
+            </Link>
           ))}
         </div>
-      </Reveal>
+      </section>
 
-      {/* Resource types */}
-      <Reveal as="section" className="edu-v2__section" delay={100}>
-        <SectionIntro eyebrow="Use the hub your way" title="Start with downloads, lessons, toolkits, or contributed materials." body="The library is organized around the ways people actually use education support." />
-        <div className="edu-v2__resources">
-          {resources.map((r, i) => {
-            const action = getResourceAction(r);
-            return (
-              <article key={r.title} className="edu-v2__resource">
-                <span className="edu-v2__resource-index">{String(i + 1).padStart(2, "0")}</span>
-                <p className="edu-v2__resource-eyebrow">{r.eyebrow}</p>
-                <h3 className="edu-v2__resource-title">{r.title}</h3>
-                <p className="edu-v2__resource-body">{r.body}</p>
-                <LoadingLink href={action.href} className="button button--secondary" loadingLabel="Opening">{action.label}</LoadingLink>
-              </article>
-            );
-          })}
+      {/* How it works */}
+      <section className="edu__section edu__how">
+        <div className="edu__how-content">
+          <h2>How the platform works</h2>
+          <p>Students sign up, enroll in courses, work through lessons at their own pace, take quizzes, submit assignments, and earn certificates when they're ready.</p>
+          <dl className="edu__how-steps">
+            <div><dt>Enroll</dt><dd>Pick a course and create a free student account.</dd></div>
+            <div><dt>Learn</dt><dd>Work through modules and lessons on any device.</dd></div>
+            <div><dt>Prove</dt><dd>Complete quizzes and submit your final assignment.</dd></div>
+            <div><dt>Earn</dt><dd>Get your certificate when requirements are met.</dd></div>
+          </dl>
         </div>
-      </Reveal>
+        <div className="edu__how-stats">
+          <div><strong>7</strong><span>Courses</span></div>
+          <div><strong>24/7</strong><span>Access</span></div>
+          <div><strong>Free</strong><span>Always</span></div>
+        </div>
+      </section>
 
-      {/* Featured resources */}
-      <Reveal as="section" className="edu-v2__section" delay={140}>
-        <SectionIntro eyebrow="Start here" title="Three strong first steps for schools, mentors, and first-time learners." body="These featured resources are the fastest way to enter the library." />
-        <div className="edu-v2__featured">
-          {featuredLibraryItems.map((item, i) => (
-            <article key={item.title} className="edu-v2__featured-card">
-              <div className="edu-v2__featured-top">
-                <span className="edu-v2__featured-index">{String(i + 1).padStart(2, "0")}</span>
-                <span className="edu-v2__featured-cat">{item.category}</span>
+      {/* Resources */}
+      <section className="edu__section">
+        <div className="edu__section-top">
+          <h2>Resource library</h2>
+          <LoadingLink href="/education/contribute" className="edu__see-all" loadingLabel="Opening">Submit a resource →</LoadingLink>
+        </div>
+        <p className="edu__section-desc">Guides, toolkits, and lesson materials for learners and facilitators — curated and reviewed before publication.</p>
+        <div className="edu__resources">
+          {resources.map((item) => (
+            <Link key={item.title} href={item.href} className="edu__resource" {...(item.external ? { target: "_blank", rel: "noreferrer" } : {})}>
+              <div className="edu__resource-meta">
+                <span>{item.category}</span>
+                <span>{item.level}</span>
               </div>
-              <h3 className="edu-v2__featured-title">{item.title}</h3>
-              <p className="edu-v2__featured-body">{item.summary}</p>
-              <p className="edu-v2__featured-meta">{item.format} · {item.level}</p>
-              {item.external ? (
-                <a href={item.href} target="_blank" rel="noreferrer" className="button button--secondary">{item.actionLabel}</a>
-              ) : (
-                <LoadingLink href={item.href} className="button button--secondary" loadingLabel="Opening">{item.actionLabel}</LoadingLink>
-              )}
-            </article>
+              <h3>{item.title}</h3>
+              <p>{item.summary}</p>
+            </Link>
           ))}
         </div>
-      </Reveal>
+      </section>
 
-      {/* Learning tracks */}
-      <Reveal as="section" className="edu-v2__section" delay={180}>
-        <SectionIntro eyebrow="Learning tracks" title="Three tracks organize materials by use case." body="Coding foundations, digital skills for work, and the community learning library give learners and facilitators a direct starting point." />
-        <div className="edu-v2__tracks">
-          {tracks.map((track, i) => {
-            const action = getTrackAction(track);
-            return (
-              <article key={track.title} className="edu-v2__track">
-                <span className="edu-v2__track-index">{track.eyebrow}</span>
-                <h3 className="edu-v2__track-title">{track.title}</h3>
-                <p className="edu-v2__track-body">{track.body}</p>
-                <LoadingLink href={action.href} className="button button--secondary" loadingLabel="Opening">{action.label}</LoadingLink>
-              </article>
-            );
-          })}
-        </div>
-      </Reveal>
-
-      {/* Library explorer */}
-      <Reveal as="section" id="library" className="edu-v2__section" delay={220}>
-        <SectionIntro eyebrow="Library explorer" title="Search by what the material is, who it is for, and what kind of session you are planning." body="Discovery works better when a mentor can search by need and a contributor can see what already exists." />
-        <EducationLibrary
-          items={libraryItems}
-          initialCategory={typeof params.category === "string" ? params.category : "All"}
-          initialLevel={typeof params.level === "string" ? params.level : "All levels"}
-          initialQuery={typeof params.q === "string" ? params.q : ""}
-        />
-      </Reveal>
-
-      {/* Delivery + sessions */}
-      <Reveal as="section" className="edu-v2__section" delay={280}>
-        <div className="edu-v2__delivery">
-          <div className="edu-v2__delivery-copy">
-            <SectionIntro eyebrow="Delivery model" title="Live sessions and reusable materials work together." body="Session formats help people learn together, while reviewed resources keep guides and workbooks available after the session ends." />
-            <div className="edu-v2__sessions">
-              {sessions.map((s, i) => (
-                <article key={s.title} className="edu-v2__session">
-                  <span className="edu-v2__session-index">{String(i + 1).padStart(2, "0")}</span>
-                  <div>
-                    <p className="edu-v2__session-eyebrow">{s.eyebrow}</p>
-                    <h3 className="edu-v2__session-title">{s.title}</h3>
-                    <p className="edu-v2__session-body">{s.body}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-          <div className="edu-v2__delivery-media">
-            <StockPhoto src={stockMedia.educationFeature.src} alt={stockMedia.educationFeature.alt} label="Education delivery" ratio="portrait" sizes="(max-width: 1120px) 100vw, 40vw" />
-          </div>
-        </div>
-      </Reveal>
+      {/* For instructors */}
+      <section className="edu__section edu__instructors">
+        <h2>For instructors</h2>
+        <p>
+          Mentors and teachers get a private dashboard to create courses, organize modules, 
+          upload lessons, build quizzes, and review student submissions — no code required.
+        </p>
+        <LoadingLink href="/lms/login?role=instructor" className="button button--ghost" loadingLabel="Opening">Instructor access →</LoadingLink>
+      </section>
 
       {/* CTA */}
-      <Reveal as="section" className="edu-v2__section" delay={340}>
-        <div className="edu-v2__cta">
-          <div className="edu-v2__cta-copy">
-            <p className="edu-v2__cta-eyebrow">Support and contribute</p>
-            <h2 className="edu-v2__cta-title">Contribute materials or sponsor education access.</h2>
-            <p className="edu-v2__cta-body">Resource contributors extend the library. Sponsors help fund cohort delivery, printing, connectivity, devices, and facilitator preparation.</p>
-            <div className="hero-actions">
-              <LoadingLink href="/education/contribute" className="button button--primary" loadingLabel="Opening">Submit a resource</LoadingLink>
-              <LoadingLink href="/donate?fund=education-access" className="button button--ghost-light" loadingLabel="Opening">Support a cohort</LoadingLink>
-            </div>
-          </div>
-          <div className="edu-v2__cta-cards">
-            {actions.map((a, i) => (
-              <article key={a.title} className="edu-v2__cta-card">
-                <span className="edu-v2__cta-card-index">{String(i + 1).padStart(2, "0")}</span>
-                <h3>{a.title}</h3>
-                <p>{a.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </Reveal>
+      <section className="edu__cta">
+        <h2>Start learning today.</h2>
+        <p>No fees. No prerequisites. Just practical skills for community learners.</p>
+        <LoadingLink href="/lms" className="button button--primary" loadingLabel="Opening">Open the LMS</LoadingLink>
+      </section>
     </main>
   );
 }

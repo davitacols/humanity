@@ -1,26 +1,26 @@
 import { LoadingLink } from "../../components/LoadingLink";
 import { DonationCheckoutForm } from "../../components/DonationCheckoutForm";
 import { Reveal } from "../../components/Reveal";
-import { SectionIntro } from "../../components/SectionIntro";
 import { SupportInquiryForm } from "../../components/SupportInquiryForm";
 import { donationTiers } from "../../components/siteData";
 import { getDonationContentData } from "../../lib/donation-content";
 import { getPaymentProviderAvailability } from "../../lib/payment-providers";
+import "./donate.css";
 
 export const revalidate = 300;
 
 const tierDetails = [
-  { amount: donationTiers[0], label: "Start", title: "Books, hygiene items, or session transport", body: "Covers learning materials, basic hygiene supplies, transport, or weekly youth activity costs." },
-  { amount: donationTiers[1], label: "Steady", title: "Materials, logistics, and volunteer support", body: "Helps a program cover repeat materials, local logistics, and volunteer coordination." },
-  { amount: donationTiers[2], label: "Build", title: "Back a campaign window", body: "Supports a delivery cycle such as health outreach, learning sessions, or sports mentoring." },
-  { amount: donationTiers[3], label: "Partner", title: "Sponsor a visible need", body: "Supports a larger project need and opens a direct sponsorship conversation." }
+  { amount: donationTiers[0], label: "Start", body: "Learning materials, basic hygiene supplies, transport, or a week of youth activity." },
+  { amount: donationTiers[1], label: "Steady", body: "Repeat materials, local logistics, and volunteer coordination for a program." },
+  { amount: donationTiers[2], label: "Build", body: "A full delivery cycle — health outreach, learning sessions, or sports mentoring." },
+  { amount: donationTiers[3], label: "Partner", body: "A larger project need, and a direct sponsorship conversation." }
 ];
 
 const trustNotes = [
-  "Giving routes point back to health, education, sports, or creative advocacy work.",
-  "Checkout appears only where a provider route is configured.",
-  "The donor form keeps sponsorship and custom support conversations from getting lost.",
-  "The transparency tracker stays one click away from every giving route."
+  "Every route points back to real health, education, sports, or creative-advocacy work.",
+  "Checkout only appears where a payment provider is actually configured.",
+  "Sponsorship and custom-amount requests are tracked, never lost.",
+  "The public transparency tracker is one click from every giving route."
 ];
 
 function formatNaira(value) {
@@ -40,14 +40,19 @@ function getPaymentNotice(paymentStatus, provider, reference) {
   if (!paymentStatus) return null;
   const label = provider === "flutterwave" ? "Flutterwave" : provider === "paypal" ? "PayPal" : "The provider";
   if (paymentStatus === "success") return { tone: "success", title: "Payment confirmed.", body: `${label} returned a successful confirmation${reference ? ` for ${reference}` : ""}.` };
-  if (paymentStatus === "canceled") return { tone: "warning", title: "Checkout was canceled.", body: `No payment was completed. You can start again below.` };
-  if (paymentStatus === "unavailable") return { tone: "warning", title: "Direct checkout is not ready for that route.", body: "Use the donor follow-up form or choose another route." };
-  return { tone: "error", title: "Payment could not be confirmed.", body: `${label} did not return a complete confirmation. Retry or use the follow-up form.` };
+  if (paymentStatus === "canceled") return { tone: "warning", title: "Checkout was canceled.", body: "No payment was completed — you can start again below." };
+  if (paymentStatus === "unavailable") return { tone: "warning", title: "Direct checkout isn't ready for that route.", body: "Use the donor follow-up form or choose another route." };
+  return { tone: "error", title: "Payment could not be confirmed.", body: `${label} didn't return a complete confirmation. Retry or use the follow-up form.` };
 }
+
+export const metadata = {
+  title: "Donate",
+  description: "Fund a visible need at Humanity First Initiative — health, education, youth sport, or creative advocacy — through named routes with public goals and documented progress."
+};
 
 export default async function DonatePage({ searchParams }) {
   const params = (await searchParams) || {};
-  const { funds, transparencyEntries, metrics, hasDirectPayments } = await getDonationContentData();
+  const { funds, transparencyEntries, metrics } = await getDonationContentData();
   const providers = getPaymentProviderAvailability();
   const hasLiveProviders = Object.values(providers).some((p) => p.configured);
   const selectedFund = findFundBySlug(funds, params.fund);
@@ -55,37 +60,81 @@ export default async function DonatePage({ searchParams }) {
   const paymentNotice = getPaymentNotice(params.payment, params.provider, params.reference);
 
   return (
-    <main className="site-main donate-v2">
+    <main className="site-main donate">
+      {/* ── Hero ──────────────────────────────────────────────── */}
       <Reveal as="section" className="donate-hero" delay={60}>
-        <div className="donate-hero__content">
-          <SectionIntro
-            eyebrow="Donations and support"
-            title="Choose a route and fund a visible need."
-            body="Support health outreach, education access, youth sport, or creative advocacy through named routes with public goals and documented progress."
-          />
-          <div className="hero-actions">
-            <a href="#giving-routes" className="button button--primary">Choose a giving route</a>
-            <LoadingLink href="/donate/transparency" className="button button--secondary" loadingLabel="Opening">
-              View transparency
-            </LoadingLink>
-          </div>
+        <span className="donate-kicker">Support the work</span>
+        <h1 className="donate-hero__title">Fund a visible need.</h1>
+        <p className="donate-hero__lead">
+          Health outreach, education access, youth sport, and creative advocacy — each a named
+          route with a public goal and documented progress. Give once, and see where it goes.
+        </p>
+        <div className="donate-hero__actions">
+          <a href="#live-checkout" className="button button--primary">Donate now</a>
+          <LoadingLink href="/donate/transparency" className="button button--ghost-light" loadingLabel="Opening">
+            See transparency
+          </LoadingLink>
         </div>
-        <div className="donate-hero__stats">
+        <div className="donate-hero__stats" aria-label="Giving at a glance">
           {metrics.slice(0, 4).map((m) => (
-            <article key={m.label} className="donate-hero__stat">
-              <p className="donate-hero__stat-value">{m.value}</p>
-              <p className="donate-hero__stat-label">{m.label}</p>
+            <article key={m.label} className="donate-stat">
+              <strong>{m.value}</strong>
+              <span>{m.label}</span>
             </article>
           ))}
         </div>
       </Reveal>
 
-      <Reveal as="section" id="giving-routes" className="donate-v2__section" delay={100}>
-        <SectionIntro
-          eyebrow="Giving routes"
-          title="Choose the fund that matches the work you want to move forward."
-          body="Each route shows the public goal, documented support so far, and whether checkout or follow-up is the right next step."
-        />
+      {/* ── Give (focal checkout block) ───────────────────────── */}
+      <Reveal as="section" id="live-checkout" className="donate-give" delay={100}>
+        <div className="donate-give__aside">
+          <span className="donate-kicker">{hasLiveProviders ? "Secure checkout" : "Donor follow-up"}</span>
+          <h2 className="donate-heading">
+            {hasLiveProviders ? "Give to the work in a few steps." : "Start a giving conversation."}
+          </h2>
+          <p className="donate-give__body">
+            {hasLiveProviders
+              ? "Pick a route, choose an amount, and continue to a secure provider. Your gift stays tied to the program you chose."
+              : "Direct checkout isn't live yet. Use the follow-up form and the team will reply with the right route, amount, and payment instructions."}
+          </p>
+
+          {paymentNotice && (
+            <div className={`donate-notice donate-notice--${paymentNotice.tone}`}>
+              <strong>{paymentNotice.title}</strong>
+              <span>{paymentNotice.body}</span>
+            </div>
+          )}
+          {selectedFund && (
+            <div className="donate-notice donate-notice--selected">
+              <strong>Selected: {selectedFund.title}</strong>
+              <span>{hasLiveProviders ? "You can still switch routes in the form." : "The form below can guide the next payment step."}</span>
+            </div>
+          )}
+
+          <ul className="donate-trust">
+            {trustNotes.map((n) => <li key={n}>{n}</li>)}
+          </ul>
+          <LoadingLink href="/donate/transparency" className="donate-give__ledger-link" loadingLabel="Opening">
+            Open the public tracker →
+          </LoadingLink>
+          <LoadingLink href="/donate/manage" className="donate-give__ledger-link" loadingLabel="Opening">
+            Manage a monthly donation →
+          </LoadingLink>
+        </div>
+
+        <div className="donate-give__form">
+          <DonationCheckoutForm funds={funds} providers={providers} initialFundSlug={selectedFund?.slug} initialProvider={params.provider} />
+        </div>
+      </Reveal>
+
+      {/* ── Routes (what your gift supports) ──────────────────── */}
+      <Reveal as="section" id="giving-routes" className="donate-section donate-routes" delay={140}>
+        <div className="donate-section__head">
+          <span className="donate-kicker">What your gift supports</span>
+          <h2 className="donate-heading">Four routes, each with a public goal.</h2>
+          <p className="donate-section__sub">Pick the work you want to move forward — the giving form follows your choice.</p>
+        </div>
+
         <div className="donate-funds">
           {funds.map((fund) => {
             const progress = getProgress(fund);
@@ -95,105 +144,55 @@ export default async function DonatePage({ searchParams }) {
                   <span className="donate-fund__badge">{fund.eyebrow}</span>
                   <span className="donate-fund__status">{fund.paymentUrl || hasLiveProviders ? "Checkout route" : "Follow-up route"}</span>
                 </div>
-                <div className="donate-fund__body">
-                  <h3 className="donate-fund__title">{fund.title}</h3>
-                  <p className="donate-fund__summary">{fund.summary}</p>
-                  <div className="donate-fund__progress-wrap">
-                    <div className="donate-fund__progress-bar" role="meter" aria-valuenow={progress} aria-valuemin="0" aria-valuemax="100" aria-label={`${fund.title} progress`}>
-                      <span style={{ width: `${progress}%` }} />
-                    </div>
-                    <div className="donate-fund__progress-meta">
-                      <span>{formatNaira(fund.raisedAmount)} raised</span>
-                      <strong>{progress}%</strong>
-                    </div>
+                <h3 className="donate-fund__title">{fund.title}</h3>
+                <p className="donate-fund__summary">{fund.summary}</p>
+                <div className="donate-fund__progress">
+                  <div className="donate-fund__bar" role="meter" aria-valuenow={progress} aria-valuemin="0" aria-valuemax="100" aria-label={`${fund.title} progress`}>
+                    <span style={{ width: `${progress}%` }} />
                   </div>
-                  <div className="donate-fund__details">
-                    <span>{fund.beneficiariesLabel}</span>
-                    <span>{fund.statusLabel}</span>
+                  <div className="donate-fund__progress-meta">
+                    <span>{formatNaira(fund.raisedAmount)} raised</span>
+                    <strong>{progress}%</strong>
                   </div>
-                  <div className="donate-fund__actions">
-                    {hasLiveProviders ? (
-                      <LoadingLink href={`/donate?fund=${encodeURIComponent(fund.slug)}#live-checkout`} className="button button--primary" loadingLabel="Opening">
-                        Donate now
-                      </LoadingLink>
-                    ) : (
-                      <LoadingLink href={`/donate?fund=${encodeURIComponent(fund.slug)}#donation-intake`} className="button button--primary" loadingLabel="Opening">
-                        Request follow-up
-                      </LoadingLink>
-                    )}
-                    {fund.href && (
-                      <LoadingLink href={fund.href} className="button button--secondary" loadingLabel="Opening">
-                        {fund.hrefLabel || "Open route"}
-                      </LoadingLink>
-                    )}
-                  </div>
+                </div>
+                <div className="donate-fund__meta">
+                  <span>{fund.beneficiariesLabel}</span>
+                  <span>{fund.statusLabel}</span>
+                </div>
+                <div className="donate-fund__actions">
+                  <LoadingLink href={`/donate?fund=${encodeURIComponent(fund.slug)}#live-checkout`} className="button button--primary" loadingLabel="Opening">
+                    {hasLiveProviders ? "Give to this route" : "Request follow-up"}
+                  </LoadingLink>
+                  {fund.href && (
+                    <LoadingLink href={fund.href} className="button button--secondary" loadingLabel="Opening">
+                      {fund.hrefLabel || "Open route"}
+                    </LoadingLink>
+                  )}
                 </div>
               </article>
             );
           })}
         </div>
-      </Reveal>
 
-      <Reveal as="section" id="tiers" className="donate-v2__section" delay={140}>
-        <SectionIntro
-          eyebrow="Suggested levels"
-          title="Use a preset amount or enter a custom gift."
-          body="Suggested levels help donors start quickly. Checkout and the follow-up form both support custom amounts."
-        />
-        <div className="donate-tiers">
+        <div className="donate-tiers" aria-label="What different amounts cover">
           {tierDetails.map((tier) => (
-            <article key={tier.amount} className="donate-tier-card">
-              <span className="donate-tier-card__label">{tier.label}</span>
-              <strong className="donate-tier-card__amount">{tier.amount}</strong>
-              <h3 className="donate-tier-card__title">{tier.title}</h3>
-              <p className="donate-tier-card__body">{tier.body}</p>
+            <article key={tier.amount} className="donate-tier">
+              <span className="donate-tier__label">{tier.label}</span>
+              <strong className="donate-tier__amount">{tier.amount}</strong>
+              <p className="donate-tier__body">{tier.body}</p>
             </article>
           ))}
         </div>
       </Reveal>
 
-      <Reveal as="section" id="live-checkout" className="donate-v2__section donate-checkout-section" delay={180}>
-        <div className="donate-checkout-layout">
-          <div className="donate-checkout-layout__copy">
-            <SectionIntro
-              eyebrow={hasLiveProviders ? "Live checkout" : "Donor follow-up"}
-              title={hasLiveProviders ? "Pay through the active checkout route." : "Direct checkout is not active yet."}
-              body={hasLiveProviders
-                ? "Choose a giving route, enter donor details, and continue to the available secure provider."
-                : "Use the donor follow-up route below for payment guidance while direct checkout is being prepared."}
-            />
-            <div className="donate-trust-notes">
-              <p className="donate-trust-notes__label">What supporters can expect</p>
-              <ul>
-                {trustNotes.map((n) => <li key={n}>{n}</li>)}
-              </ul>
-            </div>
-          </div>
-          <div className="donate-checkout-layout__form">
-            {paymentNotice && (
-              <div className={`donate-notice donate-notice--${paymentNotice.tone}`}>
-                <strong>{paymentNotice.title}</strong>
-                <span>{paymentNotice.body}</span>
-              </div>
-            )}
-            {selectedFund && (
-              <div className="donate-notice">
-                <strong>Selected: {selectedFund.title}</strong>
-                <span>{hasLiveProviders ? "You can still switch routes in the form." : "The form below can guide the next payment step."}</span>
-              </div>
-            )}
-            <DonationCheckoutForm funds={funds} providers={providers} initialFundSlug={selectedFund?.slug} initialProvider={params.provider} />
-          </div>
+      {/* ── Transparency ──────────────────────────────────────── */}
+      <Reveal as="section" className="donate-section donate-ledger" delay={180}>
+        <div className="donate-section__head">
+          <span className="donate-kicker">Where it goes</span>
+          <h2 className="donate-heading">The public tracker sits beside the giving flow.</h2>
+          <p className="donate-section__sub">Each entry shows the current ask, documented support, and the program it ties back to.</p>
         </div>
-      </Reveal>
-
-      <Reveal as="section" className="donate-v2__section" delay={220}>
-        <SectionIntro
-          eyebrow="Trust layer"
-          title="The public tracker sits beside the giving flow."
-          body="Each tracker note shows the current ask, documented support, allocation summary, and related program route."
-        />
-        <div className="donate-ledger">
+        <div className="donate-ledger__rows">
           {transparencyEntries.slice(0, 4).map((entry) => (
             <article key={`${entry.periodLabel}-${entry.title}`} className="donate-ledger__row">
               <span className="donate-ledger__period">{entry.periodLabel}</span>
@@ -213,22 +212,23 @@ export default async function DonatePage({ searchParams }) {
             </article>
           ))}
         </div>
-        <div className="donate-v2__center-action">
+        <div className="donate-ledger__cta">
           <LoadingLink href="/donate/transparency" className="button button--primary" loadingLabel="Opening">
             Open full tracker
           </LoadingLink>
         </div>
       </Reveal>
 
-      <Reveal as="section" id="donation-intake" className="donate-v2__section" delay={260}>
-        <SectionIntro
-          eyebrow="Donor follow-up"
-          title="Need guidance, sponsorship, or a custom giving step?"
-          body="Use the tracked form for sponsorship, custom giving, partner-level budgets, or routes that need a guided conversation."
-        />
+      {/* ── Other ways to give (follow-up) ────────────────────── */}
+      <Reveal as="section" id="donation-intake" className="donate-section donate-followup" delay={220}>
+        <div className="donate-section__head">
+          <span className="donate-kicker">Other ways to give</span>
+          <h2 className="donate-heading">Sponsorship, custom gifts, or a guided step.</h2>
+          <p className="donate-section__sub">For partner-level budgets, custom giving, or routes that need a conversation, use the tracked form below.</p>
+        </div>
         {(checkoutUnavailable || selectedFund) && (
-          <div className="donate-notice">
-            <strong>{checkoutUnavailable ? "Checkout is not active for this route yet." : `Selected: ${selectedFund?.title}`}</strong>
+          <div className="donate-notice donate-notice--selected">
+            <strong>{checkoutUnavailable ? "Checkout isn't active for this route yet." : `Selected: ${selectedFund?.title}`}</strong>
             <span>{selectedFund ? `Focused on ${selectedFund.supportArea}. The team can guide the next step.` : "Use the form and the team will follow up by email."}</span>
           </div>
         )}

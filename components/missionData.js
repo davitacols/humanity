@@ -154,9 +154,9 @@ export const projectCatalog = [
     location: "Education hub",
     summary:
       "Coding sessions, curated learning materials, and facilitator tools designed for low-bandwidth access.",
-    href: "/education",
+    href: "/lms",
     actionLabel: "Open education hub",
-    supportHref: "/education/contribute",
+    supportHref: "/lms",
     supportLabel: "Contribute a resource",
     image: {
       src: "/stock/classroom-session.jpg",

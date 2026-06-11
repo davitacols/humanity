@@ -10,6 +10,7 @@ import {
   publishEducationSubmission,
   updateEducationSubmissionStatus
 } from "../../../lib/education-submissions";
+import "../education.css";
 
 const REVIEW_PATH = "/education/review";
 

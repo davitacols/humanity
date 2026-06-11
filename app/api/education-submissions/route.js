@@ -3,6 +3,7 @@ import {
   createEducationSubmission,
   validateEducationSubmission
 } from "../../../lib/education-submissions";
+import { notifyTeam } from "../../../lib/email";
 
 export async function POST(request) {
   let payload;
@@ -34,6 +35,7 @@ export async function POST(request) {
 
   try {
     const submission = await createEducationSubmission(validation.data);
+    await notifyTeam("education resource submission", validation.data, validation.data.email);
 
     return NextResponse.json(
       {

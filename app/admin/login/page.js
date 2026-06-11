@@ -11,20 +11,17 @@ export default function AdminLoginPage() {
     event.preventDefault();
     setLoading(true);
     setError("");
-
     try {
       const response = await fetch("/api/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token })
       });
-
       if (!response.ok) {
         const data = await response.json();
         setError(data?.error || "Invalid access token.");
         return;
       }
-
       window.location.href = "/admin";
     } catch {
       setError("Login failed. Please try again.");
@@ -39,25 +36,24 @@ export default function AdminLoginPage() {
         <h1>Admin Access</h1>
         <p>Enter the admin access token to manage site content.</p>
         <p className="admin-auth__setup-note">
-          If this page keeps rejecting access, confirm `ADMIN_TOKEN` is set in the environment.
+          If access is rejected, confirm ADMIN_TOKEN is set in the environment.
         </p>
 
         <form onSubmit={handleSubmit} className="admin-form">
-          <label className="admin-label" htmlFor="token">
-            Access token
+          <label className="admin-field">
+            <span>Access token</span>
+            <input
+              type="password"
+              className="admin-input"
+              required
+              value={token}
+              onChange={(e) => setToken(e.target.value)}
+              placeholder="Paste admin token"
+            />
           </label>
-          <input
-            id="token"
-            name="token"
-            type="password"
-            className="admin-input"
-            required
-            value={token}
-            onChange={(event) => setToken(event.target.value)}
-          />
-          {error ? <p className="admin-error">{error}</p> : null}
-          <button type="submit" className="button button--primary" disabled={loading}>
-            <span className="button__label">{loading ? "Checking..." : "Enter Admin"}</span>
+          {error && <p className="admin-error">{error}</p>}
+          <button type="submit" className="button button--primary" disabled={loading} style={{ width: "100%", minHeight: "44px" }}>
+            {loading ? "Checking..." : "Enter Admin"}
           </button>
         </form>
       </div>

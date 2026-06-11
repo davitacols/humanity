@@ -1,0 +1,133 @@
+/* Shared layout for legal + contact pages — dark / bobmarley.com palette */
+
+.legal {
+  width: var(--site-width);
+  max-width: 860px;
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 4rem) 0 clamp(3rem, 6vw, 5rem);
+  display: grid;
+  gap: 1.5rem;
+}
+
+.legal__eyebrow {
+  margin: 0;
+  color: var(--reggae-gold);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.legal__title {
+  margin: 0;
+  color: var(--head);
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.legal__updated {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+.legal__note {
+  margin: 0;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid rgba(244, 195, 24, 0.4);
+  border-radius: 12px;
+  background: rgba(244, 195, 24, 0.1);
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.legal__body {
+  display: grid;
+  gap: 1.2rem;
+  color: var(--ink-soft);
+  line-height: 1.72;
+}
+
+.legal__body h2 {
+  margin: 1rem 0 0;
+  color: var(--head);
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.legal__body h3 {
+  margin: 0.4rem 0 0;
+  color: var(--head);
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+
+.legal__body p { margin: 0; }
+.legal__body ul { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.5rem; }
+.legal__body a { color: var(--reggae-gold); }
+.legal__body a:hover { color: #ffe066; text-decoration: underline; }
+.legal__body strong { color: var(--head); }
+
+/* ── Contact page extras ──────────────────────────────────────────────────── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+}
+
+.contact-details {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.contact-detail {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card-grad);
+}
+.contact-detail span {
+  color: var(--reggae-gold);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.contact-detail a, .contact-detail p { margin: 0; color: var(--head); font-weight: 600; }
+.contact-detail a:hover { color: var(--reggae-gold); }
+
+.contact-socials { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.contact-socials a {
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--head);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+.contact-socials a:hover { border-color: rgba(244, 195, 24, 0.5); color: var(--reggae-gold); }
+
+.contact-empty {
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 248, 224, 0.04);
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+@media (max-width: 860px) {
+  .contact-grid { grid-template-columns: 1fr; }
+}

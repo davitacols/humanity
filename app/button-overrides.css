@@ -18,17 +18,16 @@
 }
 
 .button--primary {
-  color: #fffdf8;
-  background: linear-gradient(135deg, #183023 0%, #0d1b13 100%);
+  color: #11140f;
+  background: linear-gradient(135deg, var(--reggae-gold), #ffe77a);
   border: 0;
-  box-shadow: 0 16px 30px rgba(16, 38, 28, 0.2);
+  box-shadow: 0 16px 30px rgba(141, 100, 0, 0.2);
 }
 
 .button--secondary {
   color: var(--pine);
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(16, 38, 28, 0.12);
-  backdrop-filter: blur(14px);
+  background: #fffdf5;
+  border: 1px solid rgba(16, 38, 28, 0.14);
   box-shadow: 0 10px 24px rgba(33, 28, 19, 0.06);
 }
 
@@ -39,18 +38,26 @@
 }
 
 .button--ghost-light {
-  color: #fffdf8;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fffdf5;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(244, 195, 24, 0.35);
 }
 
 .button--header {
   min-height: 42px;
   padding: 0.64rem 0.95rem;
-  color: var(--pine);
-  background: rgba(255, 255, 255, 0.64);
-  border: 1px solid rgba(16, 38, 28, 0.12);
-  box-shadow: 0 10px 20px rgba(33, 28, 19, 0.07);
+  color: #11140f;
+  background: linear-gradient(135deg, var(--reggae-gold), #ffe77a);
+  border: 0;
+  box-shadow: 0 10px 20px rgba(141, 100, 0, 0.18);
+}
+
+.button--header-secondary {
+  min-height: 42px;
+  padding: 0.64rem 0.95rem;
+  color: #fffdf5;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(244, 195, 24, 0.3);
 }
 
 .button__spinner {

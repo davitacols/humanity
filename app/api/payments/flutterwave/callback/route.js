@@ -7,6 +7,7 @@ import {
   markDonationPaymentSucceeded
 } from "../../../../../lib/donation-payments";
 import { verifyFlutterwaveTransaction } from "../../../../../lib/payment-providers";
+import { notifyTeamOfDonation, sendDonationReceipt } from "../../../../../lib/email";
 
 function buildDonateRedirect(origin, params = {}) {
   const url = new URL("/donate", origin);
@@ -91,10 +92,14 @@ export async function GET(request) {
     const statusMatches = verified?.status === "successful";
 
     if (amountMatches && currencyMatches && referenceMatches && statusMatches) {
-      await markDonationPaymentSucceeded(reference, {
+      const confirmed = await markDonationPaymentSucceeded(reference, {
         providerPaymentId: String(verified.id),
         rawPayload: verification
       });
+
+      if (confirmed) {
+        await Promise.allSettled([sendDonationReceipt(confirmed), notifyTeamOfDonation(confirmed)]);
+      }
 
       return NextResponse.redirect(
         buildDonateRedirect(origin, {

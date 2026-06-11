@@ -4,6 +4,7 @@ const ADMIN_COOKIE = "humanity_admin";
 
 export function middleware(request) {
   const { pathname } = request.nextUrl;
+
   if (!pathname.startsWith("/admin")) {
     return NextResponse.next();
   }

@@ -2,27 +2,24 @@ import Link from "next/link";
 import { requireAdmin } from "../../lib/admin-auth";
 import { getBlogMetrics } from "../../lib/blog-content";
 import { getDonationContentData } from "../../lib/donation-content";
-import { getEducationHubData } from "../../lib/education";
 import { getPlatformContentData } from "../../lib/platform-content";
 import { getSupportInquiryDashboardData } from "../../lib/support-inquiries";
 
 export default async function AdminDashboard() {
   await requireAdmin();
 
-  const [donationData, educationData, platformData, supportData, blogMetrics] = await Promise.all([
+  const [donationData, platformData, supportData, blogMetrics] = await Promise.all([
     getDonationContentData(),
-    getEducationHubData(),
     getPlatformContentData(),
     getSupportInquiryDashboardData(),
     getBlogMetrics()
   ]);
 
-  const overviewMetrics = [
-    { value: String(donationData.funds.length), label: "giving routes" },
-    { value: String(platformData.changemakers.length), label: "public profiles" },
-    { value: String(educationData.libraryItems.length), label: "education resources" },
-    { value: String(blogMetrics.published), label: "published blog posts" },
-    supportData.metrics[1] || { value: "0", label: "pending follow-up" }
+  const metrics = [
+    { value: String(donationData.funds.length), label: "Giving routes" },
+    { value: String(platformData.changemakers.length), label: "Public profiles" },
+    { value: String(blogMetrics.published), label: "Blog posts" },
+    { value: String(supportData.metrics?.[0]?.value || "0"), label: "Inquiries" }
   ];
 
   return (
@@ -30,17 +27,15 @@ export default async function AdminDashboard() {
       <div className="admin-header">
         <div>
           <h1>Content Admin</h1>
-          <p>Manage platform content, education hub data, and incoming submissions.</p>
+          <p>Manage platform content, LMS courses, support requests, and public updates.</p>
         </div>
         <form action="/api/admin/logout" method="post">
-          <button type="submit" className="button button--secondary">
-            <span className="button__label">Sign out</span>
-          </button>
+          <button type="submit" className="button button--secondary">Sign out</button>
         </form>
       </div>
 
       <section className="admin-overview">
-        {overviewMetrics.map((item) => (
+        {metrics.map((item) => (
           <article key={item.label} className="admin-overview__metric">
             <strong>{item.value}</strong>
             <span>{item.label}</span>
@@ -50,33 +45,28 @@ export default async function AdminDashboard() {
 
       <div className="admin-grid">
         <Link href="/admin/donations" className="admin-card">
-          <h2>Donation Admin</h2>
-          <p>Manage giving routes, hosted payment URLs, and public transparency tracker entries.</p>
+          <h2>Donations</h2>
+          <p>Manage giving routes, payment URLs, and transparency tracker entries.</p>
         </Link>
-
         <Link href="/admin/platform" className="admin-card">
-          <h2>Platform Content</h2>
+          <h2>Platform</h2>
           <p>Manage changemakers, public updates, and gallery items.</p>
         </Link>
-
         <Link href="/admin/blog" className="admin-card">
           <h2>Blog CMS</h2>
-          <p>Create, draft, feature, and publish humanitarian articles and field notes.</p>
+          <p>Create, draft, feature, and publish articles and field notes.</p>
         </Link>
-
+        <Link href="/admin/lms" className="admin-card">
+          <h2>LMS</h2>
+          <p>Courses, modules, lessons, quizzes, assignments, and enrollments.</p>
+        </Link>
         <Link href="/admin/education" className="admin-card">
-          <h2>Education Hub</h2>
-          <p>Metrics, tracks, library items, sessions, and actions.</p>
+          <h2>Education</h2>
+          <p>Review resource submissions and manage the public library.</p>
         </Link>
-
         <Link href="/admin/support" className="admin-card">
           <h2>Support Inbox</h2>
-          <p>Review donor, volunteer, partner, sponsor, and contributor requests.</p>
-        </Link>
-
-        <Link href="/education/review" className="admin-card">
-          <h2>Education Review Board</h2>
-          <p>Review incoming submissions from contributors.</p>
+          <p>Review donor, volunteer, partner, and contributor requests.</p>
         </Link>
       </div>
     </main>

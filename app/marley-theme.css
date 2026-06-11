@@ -1,0 +1,533 @@
+/* ============================================================================
+   MARLEY THEME  —  bobmarley.com-inspired dark, photographic, poster-bold skin.
+   Loaded last in layout.js so it wins over globals + reggae-theme + page CSS.
+
+   Strategy:
+   - Redefine design tokens to dark. Most body text / accents use these vars,
+     so they flip automatically.
+   - Explicitly re-skin the two things that were hard-coded light in
+     reggae-theme.css: SURFACES (#fffdf5 cards) and HEADINGS (var(--pine)/#111412).
+   - Keep the rasta red/gold/green as sharp accents, gold as the hero accent.
+   ========================================================================== */
+
+:root {
+  /* Surfaces */
+  --bg: #0c0d08;
+  --bg-strong: #070803;
+  --paper: #17190f;
+  --paper-solid: #17190f;
+  --mist: #1b1d12;
+  --sand: #1a1c10;
+  --leaf: #11240f;
+  --blush: #241511;
+
+  /* Ink → warm cream on dark */
+  --ink: #f4efe0;
+  --ink-soft: rgba(244, 239, 224, 0.62);
+
+  /* Heading + hairline */
+  --head: #fbf7ec;
+  --line: rgba(244, 239, 224, 0.12);
+
+  /* --pine was a dark green used as heading TEXT in hundreds of places site-wide.
+     Flip it to cream so every heading reads on dark in one move. The handful of
+     places that used --pine as a SURFACE get --pine-deep below. */
+  --pine: #f4efe0;
+  --pine-soft: #f4efe0;
+  --pine-deep: #0c5a31;
+
+  /* Depth */
+  --shadow: 0 28px 64px rgba(0, 0, 0, 0.55);
+  --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.42);
+
+  /* Rasta accents (unchanged hues, kept vivid for dark) */
+  --reggae-red: #e23b32;
+  --reggae-gold: #f4c318;
+  --reggae-green: #1ba34c;
+  --reggae-black: #0c0d08;
+
+  /* Local card gradients reused below */
+  --card-grad: linear-gradient(180deg, #1a1c12 0%, #121307 100%);
+  --card-grad-warm: linear-gradient(180deg, #1d1d12 0%, #14140a 100%);
+
+  /* Display font → condensed poster voice */
+  --font-display: var(--font-marley-display), "Oswald", "Archivo Narrow", system-ui, sans-serif;
+}
+
+/* ── Base canvas: deep warm black + faint top glow + film grain ───────────── */
+body {
+  background-color: #0a0b06;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"),
+    radial-gradient(120% 80% at 50% -10%, rgba(244, 195, 24, 0.08), transparent 60%),
+    linear-gradient(180deg, #100f09 0%, #0a0b06 40%, #060702 100%);
+  background-attachment: fixed, fixed, fixed;
+  color: var(--ink);
+}
+
+/* ── Display typography ───────────────────────────────────────────────────── */
+h1, h2, h3, h4,
+.home__hero-title,
+.page-hero__title, .page-hero-v2__title,
+.section-title, .hp-cta__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.005em;
+}
+
+/* The big poster headlines: uppercase + tight tracking */
+.home__hero-title,
+.home__cta h2,
+.page-hero__title, .page-hero-v2__title,
+.home__programs-header h2, .home__stories-header h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.012em;
+}
+
+/* ── Global heading colour (mirror reggae-theme's var(--pine) groups) ─────── */
+.page-hero__title, .page-hero-v2__title, .page-hero-v2__aside-title,
+.page-hero__aside h2, .card-v2__title, .browse-card__title, .ledger-card__title,
+.resource-card__title, .project-explorer__title, .donate-redesign__route h3,
+.donate-redesign__tier h3, .donate-redesign__ledger-row h3, .blog-v2__card-title,
+.blog-v2__featured-title, .bp__title, .bp__related-title, .giv__route-title,
+.giv__update-title, .admin-card h2, .admin-section h2,
+.school-lms h2, .school-delivery h2, .school-cta h2, .school-section__head h2,
+.school-hero__copy h1, .school-pathway h3, .school-starter h3, .school-department h3,
+.school-delivery h3, .school-cta h3, .school-metrics strong,
+.academy-enroll h3, .academy-room__banner h3, .academy__summary strong,
+.academy-card strong, .academy-video__body h4, .academy-panel h4,
+.academy-outline__top strong, .academy-module h4, .academy-lesson strong,
+.lms-auth__roles strong, .lms-staff__panel h2, .lms-staff__row strong,
+.lms-staff__metrics strong, .lms-builder__head h2,
+.lms-course-preview__body strong, .lms-course-structure__head strong,
+.lms-course-structure__lesson span,
+.admin-header h1, .admin-section__header h2, .admin-auth__card h1,
+.admin-overview__metric strong {
+  color: var(--head);
+}
+
+/* Section intros + legacy redesign headings that defaulted to dark ink/pine */
+.section-intro__title, .dossier-v2__title, .info-card__title,
+.feature-panel__content h3, .closing-cta__title, .editorial-band__title,
+.campaign-dossier__title, .home-route-panel h3, .priority-card__title,
+.assurance-card__title, .story-ledger__title, .network-profile-card h3,
+.home-spline__title, .section-kicker + h2, .programs-page__section-lead .section-intro__title,
+.projects-page__section-lead .section-intro__title,
+.get-involved-page__section-lead .section-intro__title {
+  color: var(--head);
+}
+.section-intro__body, .info-card__body, .closing-cta__body,
+.editorial-band__body, .feature-panel__content p, .campaign-dossier__body,
+.priority-card__body, .assurance-card__body {
+  color: var(--ink-soft);
+}
+/* legacy ink token used by the spline redesign titles → cream */
+:root { --humanity-ink: #fbf7ec; }
+
+/* lms-pro / market block hard-coded #111412 headings → cream */
+.lms-pro__dashboard strong, .lms-section-head h3, .lms-market-card strong,
+.lms-player-card__body h4, .lms-curriculum h4, .lms-curriculum__lesson strong,
+.lms-assessment legend, .lms-enroll-gate strong {
+  color: var(--head);
+}
+
+/* dark-on-white body copy inside the lms-pro block → muted cream */
+.lms-pro__dashboard span, .lms-section-head span, .lms-course-shell__meta span,
+.lms-curriculum__top span, .lms-curriculum__lesson small,
+.lms-market-card button > span:not(.lms-market-card__image):not(.lms-market-card__progress),
+.lms-market-card small, .lms-market-card em, .lms-market-card > a,
+.lms-player-card__body p, .lms-assignment p, .lms-assessment label,
+.lms-enroll-gate p, .lms-outcomes > div:last-child span {
+  color: var(--ink-soft);
+}
+.lms-market-card > a, .lms-enroll-gate strong { color: var(--head); }
+
+/* ── SURFACES: every cream card/panel/hero → dark ─────────────────────────── */
+
+/* Heroes + headline panels */
+.page-hero, .page-hero-v2 {
+  border-color: var(--line);
+  background:
+    radial-gradient(120% 140% at 0% 0%, rgba(226, 59, 50, 0.12), transparent 45%),
+    radial-gradient(120% 140% at 100% 0%, rgba(27, 163, 76, 0.12), transparent 45%),
+    var(--card-grad);
+  box-shadow: var(--shadow-soft);
+}
+
+/* The master card / panel group from reggae-theme.css */
+.hp-proof__left, .hp-appeal, .hp-edu, .hp-stories__featured, .hp-stories__card,
+.hp-program, .media-home-feature, .metric-card, .info-card, .page-hero__aside,
+.feature-panel, .growth-map__visual,
+.page-hero__highlight, .page-hero-v2__highlight, .page-hero-v2__stat,
+.page-hero-v2__aside-card, .page-hero__aside-point, .card-v2, .browse-card,
+.ledger-card, .resource-card, .education-library__toolbar, .education-library__empty,
+.project-explorer__toolbar, .project-explorer__card, .project-explorer__empty,
+.support-form__notice, .support-stage, .donation-checkout-form,
+.admin-auth__card, .admin-card, .admin-section, .blog-v2__featured, .blog-v2__card,
+.bp__article, .bp__related-card, .giv__route, .giv__form-note, .giv__update,
+.edu-page__browse-card, .edu-page__track-card, .edu-page__featured-card,
+.edu-page__session-card, .edu-page__practice-card, .edu-page__action-card,
+.programs-page__pillar-card, .programs-page__priority-card, .projects-page__archive-card,
+.card-v2--mist, .card-v2--sand, .card-v2--leaf, .card-v2--blush,
+.browse-card--mist, .browse-card--sand, .browse-card--leaf, .browse-card--blush,
+.ledger-card--mist, .ledger-card--sand, .ledger-card--leaf, .ledger-card--blush {
+  border-color: var(--line);
+  background: var(--card-grad);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Hover lift accent for interactive cards */
+.card-v2:hover, .browse-card:hover, .blog-v2__card:hover, .project-explorer__card:hover,
+.programs-page__pillar-card:hover, .edu-page__browse-card:hover, .admin-card:hover {
+  border-color: rgba(244, 195, 24, 0.5);
+}
+
+/* School / academy / admin / lms surfaces */
+.school-hero, .school-lms, .school-delivery, .school-cta,
+.school-metrics article, .school-pathway, .school-starter, .school-department,
+.school-delivery__panel, .school-cta article, .school-section--library,
+.school-page,
+.academy__intro, .academy__summary, .academy-enroll, .academy-card, .academy-room,
+.academy-outline, .academy-panel, .academy-video,
+.lms-auth__panel, .lms-auth__roles, .lms-staff__panel, .lms-staff__metrics article,
+.admin-header, .admin-overview__metric,
+.lms-builder__panel, .lms-market-preview, .lms-course-preview {
+  border-color: var(--line);
+  background: var(--card-grad);
+  box-shadow: var(--shadow-soft);
+}
+
+/* School hero keeps a copy column; flatten its light gradient */
+.school-hero,
+.school-hero__copy { background: transparent; }
+.school-hero { background: var(--card-grad); }
+
+/* Shells / page backdrops */
+.admin-shell,
+.lms-staff,
+.school-page {
+  background:
+    radial-gradient(100% 60% at 50% 0%, rgba(244, 195, 24, 0.05), transparent 60%),
+    linear-gradient(180deg, #0e0f09, #08090400);
+}
+
+/* Soft inset rows / tints */
+.admin-row, .lms-course-structure section, .academy-lesson, .academy-question,
+.school-sessions article, .school-cta article, .academy__catalog .academy-card {
+  background: rgba(255, 248, 224, 0.04);
+  border-color: var(--line);
+}
+
+/* lms-pro white theme block → dark */
+.lms-pro__topbar, .lms-pro__dashboard, .lms-pro__layout, .lms-market,
+.lms-course-shell, .lms-assessment, .lms-assignment, .lms-outcomes,
+.lms-market-card, .lms-player-card, .lms-curriculum, .lms-assessment fieldset {
+  border-color: var(--line);
+  background: var(--card-grad);
+  box-shadow: var(--shadow-soft);
+}
+.lms-assignment textarea,
+.lms-market-card { background: rgba(255, 248, 224, 0.04); }
+
+/* ── Inputs / selects / textareas → dark ──────────────────────────────────── */
+.education-library__search-input, .project-explorer__search-input,
+.admin-input, .admin-textarea, .admin-field select,
+.support-form input, .support-form textarea, .support-form select,
+.donation-checkout-form input, .donation-checkout-form textarea,
+.donation-checkout-form select,
+.lms-auth__field input, .lms-auth__field select,
+.academy-enroll input, .academy-assignment textarea, .lms-assignment textarea,
+.ppv-password-field input {
+  border-color: var(--line);
+  background: rgba(255, 248, 224, 0.05);
+  color: var(--ink);
+}
+.education-library__search-input::placeholder,
+.project-explorer__search-input::placeholder,
+.admin-input::placeholder, .admin-textarea::placeholder,
+.support-form input::placeholder, .donation-checkout-form input::placeholder,
+.academy-enroll input::placeholder {
+  color: rgba(244, 239, 224, 0.4);
+}
+
+/* ── Generic submission / inquiry forms (contribute, contact, get-involved) ──
+   These used a light card + white inputs; on the dark theme that left cream text
+   on white (invisible). Re-skin the whole .submission-form / .field family dark. */
+.submission-form {
+  border-color: var(--line);
+  background: var(--card-grad);
+  box-shadow: var(--shadow-soft);
+}
+.submission-form__title { color: var(--head); }
+.submission-form__body,
+.field__hint,
+.submission-form__footnote,
+.support-form__notice-body {
+  color: var(--ink-soft);
+}
+.submission-form .section-kicker,
+.support-form__notice-title {
+  color: var(--reggae-gold);
+}
+.field__label { color: var(--head); }
+.field__input,
+.submission-form select,
+.submission-form textarea {
+  border-color: var(--line);
+  background: rgba(255, 248, 224, 0.05);
+  color: var(--ink);
+}
+.field__input::placeholder,
+.submission-form textarea::placeholder {
+  color: rgba(244, 239, 224, 0.4);
+}
+.field__input:focus,
+.submission-form select:focus,
+.submission-form textarea:focus {
+  border-color: var(--reggae-green);
+  box-shadow: 0 0 0 4px rgba(244, 195, 24, 0.18);
+  outline: 0;
+}
+.field__input.has-error { border-color: rgba(226, 59, 50, 0.6); }
+.field__error { color: #ff9a92; }
+.support-form__notice,
+.donation-checkout-form__notice {
+  border-color: var(--line);
+  background: rgba(255, 248, 224, 0.05);
+}
+.submission-status {
+  border: 1px solid var(--line);
+  background: rgba(255, 248, 224, 0.05);
+  color: var(--ink);
+}
+.submission-status--success { border-color: rgba(27, 163, 76, 0.5); background: rgba(27, 163, 76, 0.12); }
+.submission-status--error { border-color: rgba(226, 59, 50, 0.5); background: rgba(226, 59, 50, 0.12); }
+.submission-status--warning { border-color: rgba(244, 195, 24, 0.5); background: rgba(244, 195, 24, 0.12); }
+
+/* ── Filter chips ─────────────────────────────────────────────────────────── */
+.library-filter, .project-filter, .blog-v2__cat,
+.donation-checkout-form__provider, .donation-checkout-form__presets .button {
+  border-color: var(--line);
+  background: rgba(255, 248, 224, 0.05);
+  color: var(--ink);
+}
+.library-filter:hover, .library-filter.is-active,
+.project-filter:hover, .project-filter.is-active,
+.blog-v2__cat:hover, .blog-v2__cat.is-active,
+.donation-checkout-form__provider.is-active {
+  border-color: rgba(244, 195, 24, 0.7);
+  background: rgba(244, 195, 24, 0.16);
+  color: var(--head);
+}
+
+/* ── Buttons: gold primary pops; secondary/ghost go dark-glass ────────────── */
+.button--secondary {
+  color: var(--head);
+  background: rgba(255, 248, 224, 0.06);
+  border: 1px solid var(--line);
+  box-shadow: none;
+}
+.button--secondary:hover {
+  border-color: rgba(244, 195, 24, 0.5);
+  background: rgba(244, 195, 24, 0.12);
+}
+.button--ghost {
+  color: var(--head);
+  background: rgba(255, 248, 224, 0.05);
+  border: 1px solid var(--line);
+}
+.button--ghost-light {
+  color: var(--head);
+  background: rgba(255, 248, 224, 0.08);
+  border: 1px solid rgba(244, 195, 24, 0.4);
+}
+
+/* ── Misc light pills / tints that need contrast on dark ──────────────────── */
+.starter div span, .school-starter div span,
+.academy-card__status, .academy-enrollment-gate__meta span,
+.lms-course-preview__meta span, .lms-course-preview__body small,
+.education-library__count, .project-explorer__meta-pill {
+  color: var(--head);
+  background: rgba(244, 195, 24, 0.16);
+}
+
+/* Badges / number-circles / media covers that used --pine as a surface → deep green */
+.school-sessions span, .academy-module h4 span, .academy-question legend span,
+.academy-card__details, .lms-auth__switch button.is-active {
+  background: var(--pine-deep);
+}
+.school-hero__media {
+  background:
+    linear-gradient(180deg, rgba(226, 59, 50, 0.18), transparent 34%, rgba(27, 163, 76, 0.18)),
+    var(--pine-deep);
+}
+.academy-card__cover {
+  background:
+    linear-gradient(135deg, rgba(226, 59, 50, 0.84), rgba(244, 195, 24, 0.74), rgba(27, 163, 76, 0.86)),
+    var(--pine-deep);
+}
+.lms-course-preview__media {
+  background:
+    linear-gradient(135deg, rgba(226, 59, 50, 0.88), rgba(244, 195, 24, 0.72), rgba(27, 163, 76, 0.86)),
+    var(--pine-deep);
+}
+
+/* Section dividers that used dark hairlines */
+.home__feature, .home__stories-section, .home__cta,
+.home__programs, .home__program {
+  border-color: var(--line);
+}
+
+/* ── projects-redesign.css light blocks: donate checkout + about page ─────── */
+/* Donate-redesign is a black-on-white editorial layout; re-skin to dark. */
+.donate-redesign { background: transparent; }
+.donate-redesign__route, .donate-redesign__tier,
+.donate-redesign__checkout-shell, .donate-redesign__form-shell,
+.donate-redesign__pathway-step {
+  border-color: var(--line);
+  background: var(--card-grad);
+}
+.donate-redesign__route-eyebrow, .donate-redesign__route-status,
+.donate-redesign__route-meta span, .donate-redesign__tier span,
+.donate-redesign__payment-notice,
+.donate-redesign__intake .donate-redesign__notice {
+  border-color: var(--line);
+  background: rgba(255, 248, 224, 0.05);
+  color: var(--ink-soft);
+}
+.donate-redesign__pathway-step span { background: var(--pine-deep); color: #fff; }
+.donate-redesign__pathway-step p, .donate-redesign__payment-notice span,
+.donate-redesign__notice span, .donate-redesign__route p,
+.donate-redesign__tier p, .donate-redesign__intake .donate-redesign__notice span {
+  color: var(--ink-soft);
+}
+.donate-redesign__pathway-step h3 { color: var(--head); }
+
+/* About page (about-humanitarian / about-map) → dark surfaces + light text */
+.about-map__link, .about-humanitarian__mission-check,
+.about-humanitarian__team-lane, .about-humanitarian__team-lead,
+.about-humanitarian__collaborator-card {
+  border-color: var(--line);
+  background: var(--card-grad);
+}
+.about-map__detail, .about-humanitarian__team-lane p,
+.about-humanitarian__team-lead-body, .about-humanitarian__profile-location,
+.about-humanitarian__team-lead-summary {
+  color: var(--ink-soft);
+}
+.about-humanitarian__team-lane h3, .about-humanitarian__team-lead h3,
+.about-humanitarian__collaborator-card h3,
+.about-humanitarian__mission-check p { color: var(--head); }
+
+/* ── Projects featured section: dark-mode override ────────────────────────── */
+.proj__featured {
+  border-color: var(--line);
+  background: var(--card-grad);
+  box-shadow: var(--shadow-soft);
+}
+
+.proj__featured-fact {
+  border-color: var(--line);
+  background: rgba(255, 248, 224, 0.05);
+}
+
+.proj__featured-fact-label {
+  color: var(--ink-soft);
+}
+
+.proj__featured-fact-value {
+  color: var(--head);
+}
+
+.proj__featured-priority {
+  border-color: var(--line);
+  background: rgba(255, 248, 224, 0.05);
+}
+
+.proj__featured-priority h4 {
+  color: var(--head);
+}
+
+.proj__featured-priority p {
+  color: var(--ink-soft);
+}
+
+.proj__featured-eyebrow {
+  color: var(--reggae-gold);
+}
+
+.proj__doc {
+  border-color: var(--line);
+  background: var(--card-grad);
+  box-shadow: var(--shadow-soft);
+}
+
+.proj__doc-eyebrow {
+  color: var(--reggae-gold);
+}
+
+.proj__doc-list {
+  color: var(--ink-soft);
+}
+
+.proj__cats {
+  border-color: var(--line);
+}
+
+.proj__cat {
+  color: var(--head);
+  border-color: var(--line);
+  background: rgba(255, 248, 224, 0.05);
+}
+
+.proj__cat:hover {
+  border-color: rgba(244, 195, 24, 0.6);
+  background: rgba(244, 195, 24, 0.14);
+}
+
+/* Stock photos: a touch warmer/punchier to match archival look */
+.stock-photo, .home__hero-img, .blog-v2__featured-img, .blog-v2__card-img,
+.bp__hero-img {
+  filter: saturate(1.08) contrast(1.05) brightness(0.98);
+}
+
+/* ── Accessibility ────────────────────────────────────────────────────────── */
+.skip-link {
+  position: fixed;
+  top: -120px;
+  left: 12px;
+  z-index: 200;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  background: var(--reggae-gold);
+  color: #11140f;
+  font-weight: 800;
+  text-decoration: none;
+  transition: top 150ms ease;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+#main-content:focus {
+  outline: none;
+}
+
+/* Visible keyboard focus across the site */
+:focus-visible {
+  outline: 2px solid var(--reggae-gold);
+  outline-offset: 2px;
+}
+
+/* Honour reduced-motion globally (GSAP Reveal already opts out separately) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

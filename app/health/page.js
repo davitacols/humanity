@@ -116,7 +116,7 @@ export default function HealthPage() {
         <p className="dark-panel-v2__body">Printable materials cover hygiene, nutrition, maternal care, school safety, and prevention messages for outreach events and family education.</p>
         <div className="hero-actions">
           <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">Support health programs</LoadingLink>
-          <LoadingLink href="/education" className="button button--secondary" loadingLabel="Opening">Visit education hub</LoadingLink>
+          <LoadingLink href="/lms" className="button button--secondary" loadingLabel="Opening">Open LMS</LoadingLink>
         </div>
       </Reveal>
     </main>

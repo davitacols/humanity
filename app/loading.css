@@ -1,0 +1,229 @@
+/* ═══════════════════════════════════════════════════════════════
+   Loading Animations
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Page loading bar */
+.page-loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 9999;
+  background: transparent;
+  pointer-events: none;
+}
+
+.page-loading-bar__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--reggae-red), var(--reggae-gold), var(--reggae-green));
+  border-radius: 0 2px 2px 0;
+  transition: width 300ms ease;
+  box-shadow: 0 0 10px rgba(244, 195, 24, 0.5);
+}
+
+/* Page transition */
+.page-transition {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 280ms ease, transform 280ms ease;
+}
+
+.page-transition.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Button loading states */
+.button,
+.lms__btn,
+[class*="button--"] {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.button.is-loading,
+.lms__btn.is-loading {
+  pointer-events: none;
+  cursor: progress;
+}
+
+/* Shimmer effect on loading buttons */
+.button.is-loading::after,
+.lms__btn.is-loading::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.25) 45%,
+    transparent 100%
+  );
+  animation: btn-shimmer 1.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Spinner inside buttons */
+.button__spinner {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 0;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  opacity: 0;
+  transition: width 200ms ease, height 200ms ease, margin-left 200ms ease, opacity 200ms ease;
+}
+
+.button.is-loading .button__spinner {
+  width: 14px;
+  height: 14px;
+  margin-left: 8px;
+  opacity: 1;
+  border-color: currentColor;
+  border-right-color: transparent;
+  animation: btn-spin 600ms linear infinite;
+}
+
+.button.is-loading .button__label {
+  opacity: 0.85;
+}
+
+/* Click ripple effect */
+.button.is-clicked,
+.lms__btn.is-clicked {
+  transform: scale(0.97);
+}
+
+/* Keyframes */
+@keyframes btn-shimmer {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
+}
+
+@keyframes btn-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Page content fade-in on load */
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.site-main,
+.lms,
+.admin-dashboard,
+.admin-auth {
+  animation: page-fade-in 400ms ease both;
+}
+
+/* Staggered card animations */
+@keyframes card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home__impact-card,
+.home__trust-card,
+.home__program-card,
+.home__story-card,
+.home__cta-card,
+.edu__stat,
+.edu__course-card,
+.edu__track-card,
+.edu__feature-card,
+.edu__library-card,
+.lms__stat-card,
+.lms__course-card,
+.admin-card,
+.admin-overview__metric,
+.inst__metric {
+  animation: card-rise 500ms ease both;
+}
+
+.home__impact-card:nth-child(1), .edu__stat:nth-child(1), .lms__stat-card:nth-child(1), .admin-overview__metric:nth-child(1), .inst__metric:nth-child(1) { animation-delay: 60ms; }
+.home__impact-card:nth-child(2), .edu__stat:nth-child(2), .lms__stat-card:nth-child(2), .admin-overview__metric:nth-child(2), .inst__metric:nth-child(2) { animation-delay: 120ms; }
+.home__impact-card:nth-child(3), .edu__stat:nth-child(3), .lms__stat-card:nth-child(3), .admin-overview__metric:nth-child(3), .inst__metric:nth-child(3) { animation-delay: 180ms; }
+.home__impact-card:nth-child(4), .edu__stat:nth-child(4), .lms__stat-card:nth-child(4), .admin-overview__metric:nth-child(4), .inst__metric:nth-child(4) { animation-delay: 240ms; }
+.home__impact-card:nth-child(5), .inst__metric:nth-child(5) { animation-delay: 300ms; }
+
+.home__trust-card:nth-child(1), .edu__course-card:nth-child(1), .lms__course-card:nth-child(1), .admin-card:nth-child(1) { animation-delay: 100ms; }
+.home__trust-card:nth-child(2), .edu__course-card:nth-child(2), .lms__course-card:nth-child(2), .admin-card:nth-child(2) { animation-delay: 160ms; }
+.home__trust-card:nth-child(3), .edu__course-card:nth-child(3), .lms__course-card:nth-child(3), .admin-card:nth-child(3) { animation-delay: 220ms; }
+
+.home__program-card:nth-child(1), .edu__track-card:nth-child(1), .edu__feature-card:nth-child(1) { animation-delay: 80ms; }
+.home__program-card:nth-child(2), .edu__track-card:nth-child(2), .edu__feature-card:nth-child(2) { animation-delay: 140ms; }
+.home__program-card:nth-child(3), .edu__track-card:nth-child(3), .edu__feature-card:nth-child(3) { animation-delay: 200ms; }
+.home__program-card:nth-child(4), .edu__feature-card:nth-child(4) { animation-delay: 260ms; }
+.edu__feature-card:nth-child(5) { animation-delay: 320ms; }
+.edu__feature-card:nth-child(6) { animation-delay: 380ms; }
+
+.home__story-card:nth-child(1), .edu__library-card:nth-child(1) { animation-delay: 100ms; }
+.home__story-card:nth-child(2), .edu__library-card:nth-child(2) { animation-delay: 180ms; }
+.home__story-card:nth-child(3), .edu__library-card:nth-child(3) { animation-delay: 260ms; }
+.edu__library-card:nth-child(4) { animation-delay: 340ms; }
+
+.home__cta-card:nth-child(1) { animation-delay: 80ms; }
+.home__cta-card:nth-child(2) { animation-delay: 140ms; }
+.home__cta-card:nth-child(3) { animation-delay: 200ms; }
+.home__cta-card:nth-child(4) { animation-delay: 260ms; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .page-transition,
+  .site-main,
+  .lms,
+  .admin-dashboard,
+  .admin-auth,
+  .home__impact-card,
+  .home__trust-card,
+  .home__program-card,
+  .home__story-card,
+  .home__cta-card,
+  .edu__stat,
+  .edu__course-card,
+  .edu__track-card,
+  .edu__feature-card,
+  .edu__library-card,
+  .lms__stat-card,
+  .lms__course-card,
+  .admin-card,
+  .admin-overview__metric,
+  .inst__metric {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .page-transition {
+    opacity: 1;
+    transform: none;
+  }
+
+  .button.is-loading::after,
+  .lms__btn.is-loading::after {
+    animation: none;
+  }
+}

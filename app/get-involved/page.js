@@ -1,108 +1,133 @@
+import "./get-involved.css";
 import { LoadingLink } from "../../components/LoadingLink";
 import { Reveal } from "../../components/Reveal";
-import { SectionIntro } from "../../components/SectionIntro";
 import { SupportInquiryForm } from "../../components/SupportInquiryForm";
 import { stockMedia } from "../../components/stockMedia";
 import { involvementPaths } from "../../components/siteData";
 import { getPlatformContentData } from "../../lib/platform-content";
+import { StockPhoto } from "../../components/StockPhoto";
 
 export const revalidate = 300;
 
-const routeIcons = ["🤝", "🏛", "📦", "💡"];
+const routeMeta = [
+  { icon: "🤝", accent: "var(--reggae-green)", tag: "Hands-on" },
+  { icon: "🏛", accent: "var(--reggae-gold)", tag: "Institutional" },
+  { icon: "📦", accent: "var(--reggae-red)", tag: "Creative" },
+  { icon: "💡", accent: "var(--reggae-gold)", tag: "Financial" }
+];
+
+const impactNumbers = [
+  { value: "4", label: "Program pillars accepting support" },
+  { value: "6", label: "Contributor roles recognized" },
+  { value: "50+", label: "Families reached this quarter" },
+  { value: "3", label: "Countries in the network" }
+];
 
 export default async function GetInvolvedPage() {
   const { updates } = await getPlatformContentData();
-  const latestUpdates = updates.slice(0, 4);
+  const latestUpdates = updates.slice(0, 6);
 
   return (
-    <main className="site-main giv">
-      {/* Hero */}
-      <Reveal as="section" className="about-hero" delay={60}>
-        <img src={stockMedia.getInvolvedHero.src} alt={stockMedia.getInvolvedHero.alt} className="about-hero__bg" />
-        <div className="about-hero__overlay" />
-        <div className="about-hero__content">
-          <p className="about-hero__eyebrow">Get involved</p>
-          <h1 className="about-hero__title">Turn interest into action with a clear intake path.</h1>
-          <p className="about-hero__body">
-            Volunteers, partners, sponsors, and contributors can choose a route and send one
-            request with the context the team needs for follow-up.
+    <main className="site-main giv-redesign">
+      {/* ── Hero ──────────────────────────────────────────────── */}
+      <Reveal as="section" className="giv-hero" delay={60}>
+        <div className="giv-hero__media">
+          <StockPhoto src={stockMedia.getInvolvedHero.src} alt={stockMedia.getInvolvedHero.alt} />
+        </div>
+        <div className="giv-hero__overlay" />
+        <div className="giv-hero__content">
+          <span className="giv-hero__eyebrow">Get involved</span>
+          <h1 className="giv-hero__title">Your support starts with one clear step.</h1>
+          <p className="giv-hero__body">
+            Choose a route — volunteer, partner, contribute, or sponsor — and send a single
+            request with the context we need to follow up.
           </p>
-          <div className="hero-actions">
-            <a href="#support-intake" className="button button--primary">Open support form</a>
+          <div className="giv-hero__actions">
+            <a href="#support-intake" className="button button--primary">Open intake form</a>
             <LoadingLink href="/donate" className="button button--ghost-light" loadingLabel="Opening">Sponsor a program</LoadingLink>
           </div>
         </div>
-        <div className="about-hero__stats">
-          <article className="about-hero__stat">
-            <p className="about-hero__stat-value">{involvementPaths.length}</p>
-            <p className="about-hero__stat-label">support routes</p>
-          </article>
-          <article className="about-hero__stat">
-            <p className="about-hero__stat-value">1</p>
-            <p className="about-hero__stat-label">shared intake form</p>
-          </article>
-          <article className="about-hero__stat">
-            <p className="about-hero__stat-value">{latestUpdates.length}</p>
-            <p className="about-hero__stat-label">recent updates</p>
-          </article>
-        </div>
       </Reveal>
 
-      {/* Routes */}
-      <Reveal as="section" className="giv__section" delay={100}>
-        <SectionIntro eyebrow="Choose how you want to help" title="Volunteer, partner, contribute, or sponsor a program route." body="Choose the path that matches your role before sending the intake form." />
-        <div className="giv__routes">
+      {/* ── Impact numbers ────────────────────────────────────── */}
+      <Reveal as="section" className="giv-metrics" delay={80}>
+        {impactNumbers.map((m) => (
+          <article key={m.label} className="giv-metrics__card">
+            <strong>{m.value}</strong>
+            <span>{m.label}</span>
+          </article>
+        ))}
+      </Reveal>
+
+      {/* ── Routes ────────────────────────────────────────────── */}
+      <Reveal as="section" className="giv-routes" delay={120}>
+        <div className="giv-routes__header">
+          <span className="giv-routes__eyebrow">Support routes</span>
+          <h2 className="giv-routes__title">Pick the path that matches your role.</h2>
+          <p className="giv-routes__body">Each route is designed for a different kind of support. Choose what fits and the form adapts.</p>
+        </div>
+        <div className="giv-routes__grid">
           {involvementPaths.map((path, i) => (
-            <a key={path.title} href="#support-intake" className="giv__route">
-              <span className="giv__route-icon">{routeIcons[i]}</span>
-              <h3 className="giv__route-title">{path.title}</h3>
-              <p className="giv__route-body">{path.body}</p>
-              <span className="giv__route-action">Select this route →</span>
+            <a key={path.title} href="#support-intake" className="giv-routes__card" style={{ "--route-accent": routeMeta[i].accent }}>
+              <span className="giv-routes__card-icon">{routeMeta[i].icon}</span>
+              <span className="giv-routes__card-tag">{routeMeta[i].tag}</span>
+              <h3 className="giv-routes__card-title">{path.title}</h3>
+              <p className="giv-routes__card-body">{path.body}</p>
+              <span className="giv-routes__card-cta">Select route →</span>
             </a>
           ))}
         </div>
       </Reveal>
 
-      {/* Form */}
-      <Reveal as="section" id="support-intake" className="giv__section" delay={160}>
-        <div className="giv__form-layout">
-          <div className="giv__form-intro">
-            <SectionIntro eyebrow="Support intake" title="Send one clear request so the right team can follow up." body="The form captures your role, support area, availability, and message so the team can reply with the right next step." />
-            <div className="giv__form-notes">
-              <article className="giv__form-note">
-                <h4>One shared route</h4>
-                <p>The form captures who you are, what kind of help you can offer, and where you want to plug in.</p>
-              </article>
-              <article className="giv__form-note">
-                <h4>Reviewable queue</h4>
-                <p>Every request lands in a tracked queue with contact details, route interest, timing, and support type.</p>
-              </article>
-            </div>
-            <LoadingLink href="/education/contribute" className="button button--secondary" loadingLabel="Opening">Open contributor form</LoadingLink>
+      {/* ── Form ──────────────────────────────────────────────── */}
+      <Reveal as="section" id="support-intake" className="giv-form" delay={160}>
+        <div className="giv-form__intro">
+          <span className="giv-form__eyebrow">Support intake</span>
+          <h2 className="giv-form__title">One form. The right team follows up.</h2>
+          <p className="giv-form__body">
+            Tell us who you are, what kind of help you can offer, and where you want to plug in.
+            The team replies with the right next step.
+          </p>
+          <div className="giv-form__features">
+            <article className="giv-form__feature">
+              <strong>Tracked queue</strong>
+              <p>Every request lands in a reviewed queue with contact details, route, timing, and support type.</p>
+            </article>
+            <article className="giv-form__feature">
+              <strong>Fast follow-up</strong>
+              <p>The team reviews inquiries weekly and replies with an onboarding note or clarifying question.</p>
+            </article>
+            <article className="giv-form__feature">
+              <strong>Multiple roles</strong>
+              <p>Donors, volunteers, creatives, partners, specialists, and sponsors all use one shared intake path.</p>
+            </article>
           </div>
-          <div className="giv__form-shell">
-            <SupportInquiryForm variant="involvement" />
-          </div>
+        </div>
+        <div className="giv-form__shell">
+          <SupportInquiryForm variant="involvement" />
         </div>
       </Reveal>
 
-      {/* Updates */}
-      <Reveal as="section" className="giv__section" delay={220}>
-        <SectionIntro eyebrow="Latest updates" title="Recent field stories and contributor activity." body="Review the latest notes before offering support, sponsorship, creative help, or partnership." />
-        <div className="giv__updates">
+      {/* ── Updates ───────────────────────────────────────────── */}
+      <Reveal as="section" className="giv-updates" delay={200}>
+        <div className="giv-updates__header">
+          <span className="giv-updates__eyebrow">Field updates</span>
+          <h2 className="giv-updates__title">Recent stories and contributor activity.</h2>
+        </div>
+        <div className="giv-updates__grid">
           {latestUpdates.map((update) => (
-            <article key={update.title} className="giv__update">
-              <div className="giv__update-top">
-                <span className="giv__update-cat">{update.category}</span>
-                <span className="giv__update-date">{update.date}</span>
+            <article key={update.title} className="giv-updates__card">
+              <div className="giv-updates__card-top">
+                <span className="giv-updates__card-cat">{update.category}</span>
+                <span className="giv-updates__card-date">{update.date}</span>
               </div>
-              <h3 className="giv__update-title">{update.title}</h3>
-              <p className="giv__update-body">{update.body}</p>
+              <h3 className="giv-updates__card-title">{update.title}</h3>
+              <p className="giv-updates__card-body">{update.body}</p>
               {update.href && (
                 update.href.startsWith("http") ? (
-                  <a href={update.href} target="_blank" rel="noreferrer" className="giv__update-link">{update.ctaLabel || "View"} →</a>
+                  <a href={update.href} target="_blank" rel="noreferrer" className="giv-updates__card-link">{update.ctaLabel || "View"} →</a>
                 ) : (
-                  <LoadingLink href={update.href} className="giv__update-link" loadingLabel="Opening">{update.ctaLabel || "View"} →</LoadingLink>
+                  <LoadingLink href={update.href} className="giv-updates__card-link" loadingLabel="Opening">{update.ctaLabel || "View"} →</LoadingLink>
                 )
               )}
             </article>
@@ -110,15 +135,15 @@ export default async function GetInvolvedPage() {
         </div>
       </Reveal>
 
-      {/* CTA */}
-      <Reveal as="section" className="giv__section" delay={280}>
-        <div className="giv__cta">
-          <div className="giv__cta-copy">
-            <p className="giv__cta-eyebrow">Need a simple next step?</p>
-            <h2 className="giv__cta-title">Send the form and choose the route closest to your support.</h2>
-            <p className="giv__cta-body">The intake route covers volunteer work, partnership offers, sponsorship, resource contribution, and specialist support.</p>
-          </div>
-          <div className="hero-actions">
+      {/* ── Closing CTA ───────────────────────────────────────── */}
+      <Reveal as="section" className="giv-closing" delay={260}>
+        <div className="giv-closing__inner">
+          <span className="giv-closing__eyebrow">Ready?</span>
+          <h2 className="giv-closing__title">Choose your route and send the form.</h2>
+          <p className="giv-closing__body">
+            The intake covers volunteer work, partnerships, sponsorship, resource contribution, and specialist support — all in one place.
+          </p>
+          <div className="giv-closing__actions">
             <a href="#support-intake" className="button button--primary">Start with the form</a>
             <LoadingLink href="/donate" className="button button--ghost-light" loadingLabel="Opening">Sponsor a program</LoadingLink>
           </div>

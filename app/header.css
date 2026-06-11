@@ -1,0 +1,402 @@
+/* ============================================================================
+   Header — immersive, scroll-aware (bobmarley.com palette)
+   • Transparent + floating over the hero at the top of the page
+   • Condenses into a solid glass bar once you scroll past the hero
+   • Animated gold underline nav · morphing burger
+   • Full-screen poster overlay menu on mobile
+   ========================================================================== */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 110;
+  padding: 0;
+  background: rgba(10, 11, 6, 0.86);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(244, 195, 24, 0.16);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.32);
+  transition: box-shadow 300ms ease;
+}
+
+/* Rasta accent stripe along the very top edge — always present */
+.site-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--reggae-red) 0 33%, var(--reggae-gold) 33% 66%, var(--reggae-green) 66% 100%);
+  z-index: 1;
+}
+
+/* Slightly deeper shadow once scrolled */
+.site-header.is-scrolled {
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.46);
+}
+
+/* While the overlay menu is open, stay transparent above it */
+.site-header.is-menu-open {
+  background: transparent;
+  border-bottom-color: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.site-header__inner {
+  width: var(--site-width);
+  max-width: none;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  height: 74px;
+  gap: 2rem;
+  /* Clear the legacy reggae-theme pill (rounded border + translucent fill) */
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Reserve space for the fixed header */
+.page-chrome {
+  padding-top: 74px;
+}
+
+body.is-menu-open {
+  overflow: hidden;
+}
+
+/* ── Brand lockup ─────────────────────────────────────────────────────────── */
+.site-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex-shrink: 0;
+}
+
+.site-brand__logo {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  object-fit: cover;
+  border: 2px solid var(--reggae-gold);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+.site-brand__lockup {
+  display: grid;
+  gap: 2px;
+  line-height: 1;
+}
+
+.site-brand__name {
+  font-family: var(--font-display);
+  font-size: 1.22rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--head);
+}
+
+.site-brand__sub {
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--reggae-gold);
+}
+
+/* ── Desktop nav — animated gold underline ────────────────────────────────── */
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: 0.5rem;
+}
+
+.site-nav__link {
+  position: relative;
+  padding: 0.5rem 0.3rem;
+  margin: 0 0.5rem;
+  color: #fbf7ec !important;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: color 160ms ease;
+}
+
+.site-nav__link::after { display: none !important; }
+
+.site-nav__link span {
+  position: relative;
+  display: inline-block;
+}
+
+.site-nav__link span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--reggae-gold);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 240ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.site-nav__link:hover {
+  color: var(--head);
+}
+
+.site-nav__link:hover span::after,
+.site-nav__link.is-active span::after {
+  transform: scaleX(1);
+}
+
+.site-nav__link.is-active {
+  color: var(--head);
+}
+
+/* ── Right side ───────────────────────────────────────────────────────────── */
+.site-header__right {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-left: auto;
+}
+
+.site-header__secondary {
+  padding: 0.52rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 239, 224, 0.32);
+  color: var(--head);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  transition: border-color 150ms ease, background 150ms ease;
+}
+
+.site-header__secondary:hover,
+.site-header__secondary:focus-visible {
+  border-color: rgba(244, 195, 24, 0.6);
+  background: rgba(244, 195, 24, 0.12);
+}
+
+.site-header:not(.is-scrolled) .site-header__secondary {
+  box-shadow: 0 1px 14px rgba(0, 0, 0, 0.35);
+}
+
+.site-header__donate {
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--reggae-gold), #ffe066);
+  color: #11140f;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+  box-shadow: 0 10px 26px rgba(244, 195, 24, 0.24);
+}
+
+.site-header__donate:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(244, 195, 24, 0.34);
+}
+
+.site-header.is-menu-open .site-header__donate,
+.site-header.is-menu-open .site-header__secondary {
+  display: none;
+}
+
+/* ── Morphing burger (mobile) ─────────────────────────────────────────────── */
+.site-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  padding: 10px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.site-burger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--head);
+  transition: transform 260ms ease, opacity 180ms ease;
+}
+
+.site-burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.site-burger.is-open span:nth-child(2) { opacity: 0; }
+.site-burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── Full-screen poster overlay menu ──────────────────────────────────────── */
+.site-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background:
+    radial-gradient(120% 80% at 100% 0%, rgba(27, 163, 76, 0.16), transparent 55%),
+    radial-gradient(120% 80% at 0% 100%, rgba(226, 59, 50, 0.16), transparent 55%),
+    linear-gradient(180deg, #0c0d08, #060702);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 340ms ease, visibility 0s linear 340ms;
+}
+
+.site-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 340ms ease;
+}
+
+.site-menu__shell {
+  width: var(--site-width);
+  min-height: 100%;
+  margin: 0 auto;
+  padding: clamp(6rem, 12vh, 8rem) 0 clamp(2rem, 5vh, 3rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.site-menu__eyebrow {
+  color: var(--reggae-gold);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.site-menu__nav {
+  display: flex;
+  flex-direction: column;
+  margin: auto 0;
+}
+
+.site-menu__link {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: clamp(0.5rem, 1.4vh, 0.9rem) 0;
+  border-bottom: 1px solid rgba(244, 239, 224, 0.08);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 7vw, 4.4rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--head);
+  opacity: 0;
+  transform: translateY(18px);
+  transition: color 180ms ease;
+}
+
+.site-menu.is-open .site-menu__link {
+  animation: menuItemIn 520ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  animation-delay: calc(var(--i) * 55ms + 140ms);
+}
+
+@keyframes menuItemIn {
+  to { opacity: 1; transform: none; }
+}
+
+.site-menu__link i {
+  font-style: normal;
+  font-size: clamp(0.8rem, 1.4vw, 1rem);
+  font-weight: 700;
+  color: var(--reggae-gold);
+  letter-spacing: 0.1em;
+}
+
+.site-menu__link:hover,
+.site-menu__link:focus-visible,
+.site-menu__link.is-active {
+  color: var(--reggae-gold);
+}
+
+.site-menu__foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 2rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.site-menu__trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.4rem;
+}
+
+.site-menu__trust-link {
+  color: rgba(244, 239, 224, 0.66);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 140ms ease;
+}
+
+.site-menu__trust-link:hover {
+  color: var(--reggae-gold);
+}
+
+.site-menu__actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+/* Neutralize legacy reggae header scaffolding */
+.site-header__utility,
+.site-header__panel {
+  display: contents !important;
+}
+
+.site-header__panel::before,
+.site-header__panel::after,
+.site-header::before {
+  display: none !important;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 920px) {
+  .site-nav { display: none; }
+  .site-header__secondary { display: none; }
+  .site-burger { display: flex; }
+  .site-header__inner { height: 66px; gap: 1rem; }
+  .page-chrome { padding-top: 66px; }
+}
+
+@media (max-width: 560px) {
+  .site-brand__logo { width: 42px; height: 42px; }
+  .site-header .site-brand__sub { display: none; }
+  .site-menu__foot { flex-direction: column; align-items: flex-start; }
+  .site-menu__actions { width: 100%; }
+  .site-menu__actions .button { flex: 1; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-menu.is-open .site-menu__link { animation: none; opacity: 1; transform: none; }
+  .site-nav__link span::after { transition: none; }
+}

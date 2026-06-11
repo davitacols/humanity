@@ -4,17 +4,32 @@ import "./editorial-redesign.css";
 import "./spline-inspired.css";
 import "./projects-redesign.css";
 import "./reggae-theme.css";
-import { League_Spartan } from "next/font/google";
+import "./header.css";
+import "./footer.css";
+import "./loading.css";
+import "./marley-theme.css";
+import Script from "next/script";
+import { League_Spartan, Oswald } from "next/font/google";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { ButtonClickFeedback } from "../components/ButtonClickFeedback";
+import { PageLoadingBar } from "../components/PageLoadingBar";
+import { PageTransition } from "../components/PageTransition";
 import { getSiteUrl } from "../lib/site";
 
-const leagueSpartan = League_Spartan({
+const siteFont = League_Spartan({
   subsets: ["latin"],
   variable: "--font-league-spartan",
   display: "swap",
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"]
+  weight: ["400", "500", "600", "700"]
+});
+
+// Display: condensed, bold — the bobmarley.com "concert poster" headline voice.
+const displayFont = Oswald({
+  subsets: ["latin"],
+  variable: "--font-marley-display",
+  display: "swap",
+  weight: ["500", "600", "700"]
 });
 
 const siteUrl = getSiteUrl();
@@ -74,13 +89,27 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${leagueSpartan.className} ${leagueSpartan.variable}`}>
+      <body className={`${siteFont.className} ${siteFont.variable} ${displayFont.variable}`}>
+        <a href="#main-content" className="skip-link">Skip to content</a>
+        <PageLoadingBar />
         <ButtonClickFeedback />
         <div className="page-chrome">
           <SiteHeader />
-          {children}
+          <div id="main-content" tabIndex={-1}>
+            <PageTransition>
+              {children}
+            </PageTransition>
+          </div>
           <SiteFooter />
         </div>
+        {process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN ? (
+          <Script
+            defer
+            data-domain={process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN}
+            src="https://plausible.io/js/script.js"
+            strategy="afterInteractive"
+          />
+        ) : null}
       </body>
     </html>
   );
