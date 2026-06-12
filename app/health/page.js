@@ -30,6 +30,11 @@ const campaigns = [
   { title: "Nutrition flyer campaign", body: "Quick-use nutrition guides and outreach materials for parents and caregivers.", status: "In progress" }
 ];
 
+export const metadata = {
+  title: "Public Health",
+  description: "Community health education covering hygiene, nutrition, maternal and child health, mental health, and preventive care."
+};
+
 export default function HealthPage() {
   return (
     <main className="site-main page-v2">

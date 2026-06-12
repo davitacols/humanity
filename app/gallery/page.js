@@ -7,6 +7,11 @@ import { getPlatformContentData } from "../../lib/platform-content";
 
 export const revalidate = 300;
 
+export const metadata = {
+  title: "Gallery",
+  description: "Photography and media from community outreach, education programs, sports development, and creative advocacy work."
+};
+
 export default async function GalleryPage() {
   const { changemakers, galleryItems } = await getPlatformContentData();
   const profilePhotos = changemakers
@@ -53,9 +58,9 @@ export default async function GalleryPage() {
 
       <Reveal as="section" delay={200}>
         <SectionIntro
-          eyebrow="Founding network"
+          eyebrow="The team"
           title="Leadership, collaboration, and public engagement."
-          body="Images tied to the founding network and the relationships shaping the platform's regional growth."
+          body="The people and partnerships shaping the platform's regional growth."
         />
         <div className="gallery-grid gallery-grid--3">
           {profilePhotos.map((item) => (

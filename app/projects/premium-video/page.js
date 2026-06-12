@@ -6,6 +6,11 @@ import { Reveal } from "../../../components/Reveal";
 import { stockMedia } from "../../../components/stockMedia";
 import { premiumVideoProject } from "../../../components/siteData";
 
+export const metadata = {
+  title: "Premium Screening",
+  description: "A pay-per-view documentary screening supporting the initiative's storytelling and advocacy work."
+};
+
 export default function PremiumVideoPage() {
   const screeningPaymentUrl =
     process.env.SIB_SCREENING_PAYMENT_URL || "/donate?fund=creative-advocacy#live-checkout";
@@ -15,7 +20,7 @@ export default function PremiumVideoPage() {
     <main className="site-main page-v2">
       <PageHero
         eyebrow={premiumVideoProject.eyebrow}
-        title="A dedicated screening experience for campaign documentaries."
+        title="A dedicated screening experience for campaign films."
         body="Supporter films, special event footage, and documentary stories can sit in one focused release page with context, playback, and a timed viewing window."
         primary={{ href: "/projects", label: "Back to Projects" }}
         secondary={{ href: "/donate", label: "Support the Initiative" }}

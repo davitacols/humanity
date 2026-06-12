@@ -24,6 +24,11 @@ const socialChangePillars = [
   { title: "Alternative to risk", body: "Structured sports programs reduce exposure to risky behaviors by offering positive, engaging alternatives." }
 ];
 
+export const metadata = {
+  title: "Sports Development",
+  description: "Youth sports programs building discipline, belonging, and opportunity — including the Dodoma Best Sports Center project."
+};
+
 export default function SportsPage() {
   return (
     <main className="site-main sports-v2">

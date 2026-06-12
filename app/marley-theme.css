@@ -168,6 +168,8 @@ h1, h2, h3, h4,
 .edu-page__browse-card, .edu-page__track-card, .edu-page__featured-card,
 .edu-page__session-card, .edu-page__practice-card, .edu-page__action-card,
 .programs-page__pillar-card, .programs-page__priority-card, .projects-page__archive-card,
+.arts-v2__platform, .arts-v2__artist, .arts-v2__campaign,
+.sports-v2__pillar, .sports-v2__resource, .edu-v2__resource, .edu-v2__track,
 .card-v2--mist, .card-v2--sand, .card-v2--leaf, .card-v2--blush,
 .browse-card--mist, .browse-card--sand, .browse-card--leaf, .browse-card--blush,
 .ledger-card--mist, .ledger-card--sand, .ledger-card--leaf, .ledger-card--blush {
@@ -485,6 +487,38 @@ h1, h2, h3, h4,
   background: rgba(244, 195, 24, 0.14);
 }
 
+/* Full-bleed photographic hero (arts / sports / projects / about / home):
+   neutralise the legacy two-column profile-hero grid + light panel chrome
+   that squeezed hero copy into a narrow column with mid-word breaks. */
+.about-hero {
+  grid-template-columns: 1fr;
+  padding: 0;
+  box-shadow: none;
+}
+
+/* Pay-per-view: benefits list sat on a light sage panel — make it dark */
+.ppv-benefits {
+  background: rgba(10, 12, 7, 0.45);
+  border: 1px solid rgba(244, 239, 224, 0.14);
+}
+
+/* Arts: platforms not yet live render as muted, non-interactive cards */
+.arts-v2__platform--soon {
+  opacity: 0.55;
+  cursor: default;
+}
+.arts-v2__platform--soon:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--line);
+}
+.arts-v2__platform--soon .arts-v2__platform-action {
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+}
+
 /* Stock photos: a touch warmer/punchier to match archival look */
 .stock-photo, .home__hero-img, .blog-v2__featured-img, .blog-v2__card-img,
 .bp__hero-img {
@@ -553,10 +587,11 @@ iframe {
   max-width: 100%;
 }
 
-/* Long URLs, refs and unbroken strings wrap instead of pushing layout wide. */
+/* Long URLs, refs and unbroken strings wrap instead of pushing layout wide.
+   overflow-wrap only — word-break:break-word also shrinks min-content widths,
+   which made narrow grid columns break headings mid-word. */
 :where(p, li, h1, h2, h3, h4, h5, blockquote, figcaption, dd, dt, td, th, a, label, strong) {
   overflow-wrap: break-word;
-  word-break: break-word;
 }
 
 /* Wide content (code blocks, data tables) scrolls inside its box, not the page. */

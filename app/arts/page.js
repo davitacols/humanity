@@ -7,9 +7,9 @@ import { stockMedia } from "../../components/stockMedia";
 
 const musicLinks = [
   { platform: "Facebook Reel", label: "Watch first artist", href: "https://www.facebook.com/share/r/1E5HyPvYgP/", description: "The first featured artist performance linked directly from the arts section." },
-  { platform: "YouTube", label: "Watch on YouTube", href: "https://youtube.com", description: "Campaign films, spoken word performances, and community event recordings." },
-  { platform: "Audiomack", label: "Listen on Audiomack", href: "https://audiomack.com", description: "Original tracks, advocacy anthems, and community-produced audio." },
-  { platform: "Spotify", label: "Listen on Spotify", href: "https://spotify.com", description: "Curated playlists tied to campaign themes and cultural storytelling." }
+  { platform: "YouTube", label: "Channel coming soon", description: "Campaign films, spoken word performances, and community event recordings." },
+  { platform: "Audiomack", label: "Coming soon", description: "Original tracks, advocacy anthems, and community-produced audio." },
+  { platform: "Spotify", label: "Coming soon", description: "Curated playlists tied to campaign themes and cultural storytelling." }
 ];
 
 const featuredArtist = {
@@ -38,6 +38,11 @@ const galleryImages = [
   { ...stockMedia.homeHero, label: "Youth development" }
 ];
 
+export const metadata = {
+  title: "Arts and Music",
+  description: "Film, photography, music, spoken word, and storytelling that amplify community voices and drive social change."
+};
+
 export default function ArtsPage() {
   return (
     <main className="site-main arts-v2">
@@ -58,9 +63,9 @@ export default function ArtsPage() {
           </div>
         </div>
         <div className="about-hero__stats">
-          <article className="about-hero__stat"><p className="about-hero__stat-value">4</p><p className="about-hero__stat-label">external music platforms linked</p></article>
-          <article className="about-hero__stat"><p className="about-hero__stat-value">3</p><p className="about-hero__stat-label">active creative campaigns</p></article>
-          <article className="about-hero__stat"><p className="about-hero__stat-value">4</p><p className="about-hero__stat-label">artist spotlights published</p></article>
+          <article className="about-hero__stat"><p className="about-hero__stat-value">1</p><p className="about-hero__stat-label">artist performance live</p></article>
+          <article className="about-hero__stat"><p className="about-hero__stat-value">3</p><p className="about-hero__stat-label">creative campaigns underway</p></article>
+          <article className="about-hero__stat"><p className="about-hero__stat-value">3</p><p className="about-hero__stat-label">artist spotlights published</p></article>
         </div>
       </Reveal>
 
@@ -68,13 +73,21 @@ export default function ArtsPage() {
       <Reveal as="section" className="arts-v2__section" delay={100}>
         <SectionIntro eyebrow="Listen and watch" title="Music and video linked from platforms communities already use." body="External links keep the site fast while connecting supporters to the creative work." />
         <div className="arts-v2__platforms">
-          {musicLinks.map((link) => (
-            <a key={link.platform} href={link.href} target="_blank" rel="noreferrer" className="arts-v2__platform">
-              <span className="arts-v2__platform-name">{link.platform}</span>
-              <p className="arts-v2__platform-desc">{link.description}</p>
-              <span className="arts-v2__platform-action">{link.label} →</span>
-            </a>
-          ))}
+          {musicLinks.map((link) =>
+            link.href ? (
+              <a key={link.platform} href={link.href} target="_blank" rel="noreferrer" className="arts-v2__platform">
+                <span className="arts-v2__platform-name">{link.platform}</span>
+                <p className="arts-v2__platform-desc">{link.description}</p>
+                <span className="arts-v2__platform-action">{link.label} →</span>
+              </a>
+            ) : (
+              <article key={link.platform} className="arts-v2__platform arts-v2__platform--soon">
+                <span className="arts-v2__platform-name">{link.platform}</span>
+                <p className="arts-v2__platform-desc">{link.description}</p>
+                <span className="arts-v2__platform-action">{link.label}</span>
+              </article>
+            )
+          )}
         </div>
       </Reveal>
 
@@ -93,7 +106,6 @@ export default function ArtsPage() {
         <SectionIntro eyebrow="Featured artist" title="Watch the first artist performance." body="A live reel preview embedded directly — no need to leave the page." />
         <div className="arts-v2__featured-artist">
           <VideoPreview
-            src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
             poster={stockMedia.homeStories[2].src}
             href={featuredArtist.href}
             label="Watch on Facebook"

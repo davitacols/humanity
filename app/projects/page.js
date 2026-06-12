@@ -9,6 +9,11 @@ import { premiumVideoProject, sportsSpotlight } from "../../components/siteData"
 
 const categories = Array.from(new Set(projectCatalog.map((p) => p.category)));
 
+export const metadata = {
+  title: "Projects",
+  description: "Documented field projects with real needs, budgets, and progress — from sports facilities to community screenings."
+};
+
 export default function ProjectsPage() {
   return (
     <main className="site-main proj">

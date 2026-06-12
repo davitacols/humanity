@@ -9,6 +9,11 @@ import { StockPhoto } from "../../components/StockPhoto";
 
 export const revalidate = 300;
 
+export const metadata = {
+  title: "Get Involved",
+  description: "Volunteer, partner, contribute resources, or sponsor a program — practical ways to support grassroots humanitarian work."
+};
+
 const routeMeta = [
   { icon: "🤝", accent: "var(--reggae-green)", tag: "Hands-on" },
   { icon: "🏛", accent: "var(--reggae-gold)", tag: "Institutional" },

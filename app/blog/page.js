@@ -6,6 +6,11 @@ import "./blog.css";
 
 export const revalidate = 300;
 
+export const metadata = {
+  title: "Blog",
+  description: "Field notes, project updates, and stories from communities across the initiative's education, health, sports, and arts work."
+};
+
 export default async function BlogPage() {
   const { posts } = await getBlogContentData();
   const [featured, ...rest] = posts;
