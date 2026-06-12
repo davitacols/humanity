@@ -386,14 +386,49 @@ body.is-menu-open {
   .site-burger { display: flex; }
   .site-header__inner { height: 66px; gap: 1rem; }
   .page-chrome { padding-top: 66px; }
+  /* Keep the Donate pill + burger anchored: let the brand wordmark
+     shrink/ellipsize first so the action group never gets pushed off-screen. */
+  .site-brand { flex-shrink: 1; min-width: 0; }
+  .site-brand__lockup { min-width: 0; overflow: hidden; }
+  .site-brand__name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .site-header__right { flex-shrink: 0; gap: 0.6rem; }
+  /* Compact the gold Donate pill so it sits cleanly beside the burger */
+  .site-header__donate {
+    padding: 0.48rem 0.95rem;
+    font-size: 0.8rem;
+    box-shadow: 0 6px 16px rgba(244, 195, 24, 0.22);
+  }
 }
 
 @media (max-width: 560px) {
+  .site-header__inner { gap: 0.7rem; }
   .site-brand__logo { width: 42px; height: 42px; }
+  .site-brand__name { font-size: 1rem; letter-spacing: 0.02em; }
   .site-header .site-brand__sub { display: none; }
+  /* Hard-cap the wordmark so the Donate pill + burger always keep their space. */
+  .site-brand__lockup { max-width: 44vw; }
+  /* Tighten further so brand + Donate + burger never overflow narrow phones */
+  .site-header__right { gap: 0.45rem; }
+  .site-header__donate {
+    padding: 0.44rem 0.85rem;
+    font-size: 0.74rem;
+    letter-spacing: 0.02em;
+  }
+  .site-burger { width: 40px; height: 40px; padding: 9px; }
   .site-menu__foot { flex-direction: column; align-items: flex-start; }
   .site-menu__actions { width: 100%; }
   .site-menu__actions .button { flex: 1; justify-content: center; }
+}
+
+/* Very narrow phones (≤380px): shave the wordmark + pill a touch more */
+@media (max-width: 380px) {
+  .site-brand__lockup { max-width: 38vw; }
+  .site-brand__name { font-size: 0.92rem; }
+  .site-header__donate { padding: 0.42rem 0.74rem; font-size: 0.71rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
