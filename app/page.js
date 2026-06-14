@@ -2,9 +2,12 @@ import { LoadingLink } from "../components/LoadingLink";
 import { StockPhoto } from "../components/StockPhoto";
 import { programPillars, sportsSpotlight } from "../components/siteData";
 import { stockMedia } from "../components/stockMedia";
+import { getServerT } from "../lib/i18n/server";
 import "./home.css";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const { t } = await getServerT();
+
   return (
     <main className="site-main home">
       {/* Hero */}
@@ -15,23 +18,20 @@ export default function HomePage() {
         </div>
         <div className="home__hero-inner">
           <div className="home__hero-content">
-            <span className="home__hero-eyebrow">Humanity First Initiative</span>
-            <h1 className="home__hero-title">Every child deserves a chance to thrive.</h1>
-            <p className="home__hero-body">
-              We connect communities across Africa with health outreach, education, youth sports, 
-              and creative advocacy — so families get the support they need, when they need it.
-            </p>
+            <span className="home__hero-eyebrow">{t("home.heroEyebrow")}</span>
+            <h1 className="home__hero-title">{t("home.heroTitle")}</h1>
+            <p className="home__hero-body">{t("home.heroBody")}</p>
             <div className="home__hero-actions">
-              <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">Donate now</LoadingLink>
-              <LoadingLink href="/get-involved" className="button button--ghost-light" loadingLabel="Opening">Get involved</LoadingLink>
+              <LoadingLink href="/donate" className="button button--primary" loadingLabel={t("common.opening")}>{t("common.donateNow")}</LoadingLink>
+              <LoadingLink href="/get-involved" className="button button--ghost-light" loadingLabel={t("common.opening")}>{t("common.getInvolved")}</LoadingLink>
             </div>
           </div>
           <div className="home__hero-impact">
-            <p className="home__hero-impact-label">Your impact so far</p>
+            <p className="home__hero-impact-label">{t("home.impactLabel")}</p>
             <div className="home__hero-impact-grid">
-              <div><strong>100+</strong><span>Children supported</span></div>
-              <div><strong>4</strong><span>Active programs</span></div>
-              <div><strong>9</strong><span>Communities reached</span></div>
+              <div><strong>100+</strong><span>{t("home.impactChildren")}</span></div>
+              <div><strong>4</strong><span>{t("home.impactPrograms")}</span></div>
+              <div><strong>9</strong><span>{t("home.impactCommunities")}</span></div>
             </div>
           </div>
         </div>
@@ -40,8 +40,8 @@ export default function HomePage() {
       {/* Programs — horizontal scroll-style row */}
       <section className="home__programs-section">
         <div className="home__programs-header">
-          <h2>Programs we run</h2>
-          <LoadingLink href="/programs" className="home__link" loadingLabel="Opening">See all programs →</LoadingLink>
+          <h2>{t("home.programsTitle")}</h2>
+          <LoadingLink href="/programs" className="home__link" loadingLabel={t("common.opening")}>{t("home.seeAllPrograms")}</LoadingLink>
         </div>
         <div className="home__programs">
           {programPillars.map((pillar) => (
@@ -57,21 +57,21 @@ export default function HomePage() {
       {/* Featured appeal — big visual */}
       <section className="home__feature">
         <div className="home__feature-media">
-          <StockPhoto src={stockMedia.homeStories[1].src} alt={stockMedia.homeStories[1].alt} label="Current project" sizes="(max-width: 900px) 100vw, 50vw" />
+          <StockPhoto src={stockMedia.homeStories[1].src} alt={stockMedia.homeStories[1].alt} label={t("home.featuredLabel")} sizes="(max-width: 900px) 100vw, 50vw" />
         </div>
         <div className="home__feature-content">
-          <span className="home__label">Featured project</span>
+          <span className="home__label">{t("home.featuredLabel")}</span>
           <h2>{sportsSpotlight.title}</h2>
           <p>{sportsSpotlight.summary}</p>
           <p>{sportsSpotlight.body}</p>
           <dl className="home__feature-meta">
-            <div><dt>Location</dt><dd>{sportsSpotlight.location}</dd></div>
-            <div><dt>Beneficiaries</dt><dd>{sportsSpotlight.beneficiaries}</dd></div>
-            <div><dt>Founded</dt><dd>{sportsSpotlight.founded}</dd></div>
+            <div><dt>{t("home.locationLabel")}</dt><dd>{sportsSpotlight.location}</dd></div>
+            <div><dt>{t("home.beneficiariesLabel")}</dt><dd>{sportsSpotlight.beneficiaries}</dd></div>
+            <div><dt>{t("home.foundedLabel")}</dt><dd>{sportsSpotlight.founded}</dd></div>
           </dl>
           <div className="home__feature-actions">
-            <LoadingLink href="/projects/dodoma-best-sports-center" className="button button--primary" loadingLabel="Opening">Read full project</LoadingLink>
-            <LoadingLink href="/donate" className="button button--ghost" loadingLabel="Opening">Support this work</LoadingLink>
+            <LoadingLink href="/projects/dodoma-best-sports-center" className="button button--primary" loadingLabel={t("common.opening")}>{t("home.readFullProject")}</LoadingLink>
+            <LoadingLink href="/donate" className="button button--ghost" loadingLabel={t("common.opening")}>{t("home.supportThisWork")}</LoadingLink>
           </div>
         </div>
       </section>
@@ -79,24 +79,24 @@ export default function HomePage() {
       {/* Stories row */}
       <section className="home__stories-section">
         <div className="home__stories-header">
-          <h2>From the field</h2>
-          <LoadingLink href="/blog" className="home__link" loadingLabel="Opening">All updates →</LoadingLink>
+          <h2>{t("home.fieldTitle")}</h2>
+          <LoadingLink href="/blog" className="home__link" loadingLabel={t("common.opening")}>{t("home.allUpdates")}</LoadingLink>
         </div>
         <div className="home__stories">
-          <LoadingLink href="/health" className="home__story" loadingLabel="Opening">
+          <LoadingLink href="/health" className="home__story" loadingLabel={t("common.opening")}>
             <StockPhoto src={stockMedia.homeStories[0].src} alt={stockMedia.homeStories[0].alt} sizes="(max-width: 820px) 100vw, 33vw" className="home__story-img" />
-            <h3>Maternal and child health support</h3>
-            <p>Mobile clinic visits, hygiene kits, and follow-up check-ins for mothers and newborns in underserved communities.</p>
+            <h3>{t("home.story1Title")}</h3>
+            <p>{t("home.story1Body")}</p>
           </LoadingLink>
-          <LoadingLink href="/sports" className="home__story" loadingLabel="Opening">
+          <LoadingLink href="/sports" className="home__story" loadingLabel={t("common.opening")}>
             <StockPhoto src={stockMedia.homeStories[1].src} alt={stockMedia.homeStories[1].alt} sizes="(max-width: 820px) 100vw, 33vw" className="home__story-img" />
-            <h3>Sport creates structure and belonging</h3>
-            <p>Weekly training sessions and mentorship create a disciplined, positive environment for young people.</p>
+            <h3>{t("home.story2Title")}</h3>
+            <p>{t("home.story2Body")}</p>
           </LoadingLink>
-          <LoadingLink href="/arts" className="home__story" loadingLabel="Opening">
+          <LoadingLink href="/arts" className="home__story" loadingLabel={t("common.opening")}>
             <StockPhoto src={stockMedia.homeStories[2].src} alt={stockMedia.homeStories[2].alt} sizes="(max-width: 820px) 100vw, 33vw" className="home__story-img" />
-            <h3>Storytelling keeps communities visible</h3>
-            <p>Film, photography, and spoken-word projects amplify community voices and campaign goals.</p>
+            <h3>{t("home.story3Title")}</h3>
+            <p>{t("home.story3Body")}</p>
           </LoadingLink>
         </div>
       </section>
@@ -104,26 +104,26 @@ export default function HomePage() {
       {/* Education banner */}
       <section className="home__edu-banner">
         <div className="home__edu-banner-content">
-          <span className="home__label">Education platform</span>
-          <h2>Free courses for community learners</h2>
-          <p>Digital skills, coding foundations, and facilitator training — all mobile-friendly, self-paced, and certificate-ready.</p>
-          <LoadingLink href="/lms" className="button button--primary" loadingLabel="Opening">Open the LMS</LoadingLink>
+          <span className="home__label">{t("home.eduLabel")}</span>
+          <h2>{t("home.eduTitle")}</h2>
+          <p>{t("home.eduBody")}</p>
+          <LoadingLink href="/lms" className="button button--primary" loadingLabel={t("common.opening")}>{t("home.openLms")}</LoadingLink>
         </div>
         <div className="home__edu-banner-stats">
-          <div><strong>7</strong><span>Courses</span></div>
-          <div><strong>24/7</strong><span>Access</span></div>
-          <div><strong>Free</strong><span>Always</span></div>
+          <div><strong>7</strong><span>{t("home.eduCourses")}</span></div>
+          <div><strong>24/7</strong><span>{t("home.eduAccess")}</span></div>
+          <div><strong>{t("home.eduFreeValue")}</strong><span>{t("home.eduAlways")}</span></div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="home__cta">
-        <h2>Ready to make a difference?</h2>
-        <p>Every contribution — time, money, expertise, or partnership — goes directly to documented community programs.</p>
+        <h2>{t("home.ctaTitle")}</h2>
+        <p>{t("home.ctaBody")}</p>
         <div className="home__cta-actions">
-          <LoadingLink href="/donate" className="button button--primary" loadingLabel="Opening">Donate now</LoadingLink>
-          <LoadingLink href="/get-involved" className="button button--ghost-light" loadingLabel="Opening">Get involved</LoadingLink>
-          <LoadingLink href="/projects" className="button button--ghost-light" loadingLabel="Opening">View projects</LoadingLink>
+          <LoadingLink href="/donate" className="button button--primary" loadingLabel={t("common.opening")}>{t("common.donateNow")}</LoadingLink>
+          <LoadingLink href="/get-involved" className="button button--ghost-light" loadingLabel={t("common.opening")}>{t("common.getInvolved")}</LoadingLink>
+          <LoadingLink href="/projects" className="button button--ghost-light" loadingLabel={t("common.opening")}>{t("common.viewProjects")}</LoadingLink>
         </div>
       </section>
     </main>

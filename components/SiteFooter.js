@@ -1,49 +1,51 @@
 import Link from "next/link";
 import { getOrgContact } from "../lib/org";
+import { getServerT } from "../lib/i18n/server";
 import { NewsletterForm } from "./NewsletterForm";
 
 const columns = [
   {
-    title: "Programs",
+    titleKey: "footer.colPrograms",
     links: [
-      { href: "/health", label: "Health" },
-      { href: "/education", label: "Education" },
-      { href: "/sports", label: "Sports" },
-      { href: "/arts", label: "Arts" }
+      { href: "/health", key: "common.health" },
+      { href: "/education", key: "common.education" },
+      { href: "/sports", key: "common.sports" },
+      { href: "/arts", key: "common.arts" }
     ]
   },
   {
-    title: "Platform",
+    titleKey: "footer.colPlatform",
     links: [
-      { href: "/lms", label: "LMS" },
-      { href: "/projects", label: "Projects" },
-      { href: "/blog", label: "Blog" },
-      { href: "/gallery", label: "Gallery" }
+      { href: "/lms", key: "common.lms" },
+      { href: "/projects", key: "common.projects" },
+      { href: "/blog", key: "common.blog" },
+      { href: "/gallery", key: "common.gallery" }
     ]
   },
   {
-    title: "Organization",
+    titleKey: "footer.colOrganization",
     links: [
-      { href: "/about", label: "About" },
-      { href: "/team", label: "Team" },
-      { href: "/donate/transparency", label: "Transparency" },
-      { href: "/contact", label: "Contact" }
+      { href: "/about", key: "common.about" },
+      { href: "/team", key: "common.team" },
+      { href: "/donate/transparency", key: "common.transparency" },
+      { href: "/contact", key: "common.contact" }
     ]
   },
   {
-    title: "Support",
+    titleKey: "footer.colSupport",
     links: [
-      { href: "/donate", label: "Donate" },
-      { href: "/get-involved", label: "Volunteer" },
-      { href: "/get-involved", label: "Partner" },
-      { href: "/education/contribute", label: "Contribute" }
+      { href: "/donate", key: "common.donate" },
+      { href: "/get-involved", key: "common.volunteer" },
+      { href: "/get-involved", key: "common.partner" },
+      { href: "/education/contribute", key: "common.contribute" }
     ]
   }
 ];
 
-export function SiteFooter() {
+export async function SiteFooter() {
   const year = new Date().getFullYear();
   const org = getOrgContact();
+  const { t } = await getServerT();
 
   return (
     <footer className="ft">
@@ -51,7 +53,7 @@ export function SiteFooter() {
         <div className="ft__top">
           <div className="ft__brand">
             <span className="ft__brand-name">Humanity First Initiative</span>
-            <p className="ft__desc">Connecting communities with health, education, sports, and creative advocacy across Africa.</p>
+            <p className="ft__desc">{t("footer.tagline")}</p>
             {(org.email || org.registration || org.socials.length > 0) && (
               <div className="ft__org">
                 {org.email && (
@@ -71,10 +73,10 @@ export function SiteFooter() {
           </div>
           <div className="ft__columns">
             {columns.map((col) => (
-              <nav key={col.title} className="ft__column">
-                <p className="ft__column-title">{col.title}</p>
+              <nav key={col.titleKey} className="ft__column">
+                <p className="ft__column-title">{t(col.titleKey)}</p>
                 {col.links.map((l) => (
-                  <Link key={l.href + l.label} href={l.href} className="ft__link">{l.label}</Link>
+                  <Link key={l.href + l.key} href={l.href} className="ft__link">{t(l.key)}</Link>
                 ))}
               </nav>
             ))}
@@ -83,9 +85,9 @@ export function SiteFooter() {
         <div className="ft__base">
           <p>© {year} Humanity First Initiative{org.country ? ` · ${org.country}` : ""}</p>
           <nav className="ft__legal" aria-label="Legal">
-            <Link href="/privacy" className="ft__link">Privacy</Link>
-            <Link href="/terms" className="ft__link">Terms</Link>
-            <Link href="/contact" className="ft__link">Contact</Link>
+            <Link href="/privacy" className="ft__link">{t("common.privacy")}</Link>
+            <Link href="/terms" className="ft__link">{t("common.terms")}</Link>
+            <Link href="/contact" className="ft__link">{t("common.contact")}</Link>
           </nav>
         </div>
       </div>

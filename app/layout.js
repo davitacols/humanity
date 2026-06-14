@@ -8,6 +8,7 @@ import "./header.css";
 import "./footer.css";
 import "./loading.css";
 import "./marley-theme.css";
+import "./i18n.css";
 import Script from "next/script";
 import { League_Spartan, Oswald } from "next/font/google";
 import { SiteHeader } from "../components/SiteHeader";
@@ -15,6 +16,8 @@ import { SiteFooter } from "../components/SiteFooter";
 import { ButtonClickFeedback } from "../components/ButtonClickFeedback";
 import { PageLoadingBar } from "../components/PageLoadingBar";
 import { PageTransition } from "../components/PageTransition";
+import { LanguageProvider } from "../components/i18n/LanguageProvider";
+import { getLocale } from "../lib/i18n/server";
 import { getSiteUrl } from "../lib/site";
 
 const siteFont = League_Spartan({
@@ -86,22 +89,26 @@ export const viewport = {
   viewportFit: "cover"
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const locale = await getLocale();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={`${siteFont.className} ${siteFont.variable} ${displayFont.variable}`}>
-        <a href="#main-content" className="skip-link">Skip to content</a>
-        <PageLoadingBar />
-        <ButtonClickFeedback />
-        <div className="page-chrome">
-          <SiteHeader />
-          <div id="main-content" tabIndex={-1}>
-            <PageTransition>
-              {children}
-            </PageTransition>
+        <LanguageProvider initialLocale={locale}>
+          <a href="#main-content" className="skip-link">Skip to content</a>
+          <PageLoadingBar />
+          <ButtonClickFeedback />
+          <div className="page-chrome">
+            <SiteHeader />
+            <div id="main-content" tabIndex={-1}>
+              <PageTransition>
+                {children}
+              </PageTransition>
+            </div>
+            <SiteFooter />
           </div>
-          <SiteFooter />
-        </div>
+        </LanguageProvider>
         {process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN ? (
           <Script
             defer

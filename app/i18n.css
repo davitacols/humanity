@@ -1,0 +1,143 @@
+/* ============================================================================
+   Language switcher — compact pill in the header bar (desktop) and a
+   full-width control inside the mobile overlay menu.
+   ========================================================================== */
+
+.lang-switch {
+  position: relative;
+  display: inline-flex;
+}
+
+.lang-switch__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.46rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 239, 224, 0.24);
+  background: transparent;
+  color: var(--head);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 150ms ease, background 150ms ease;
+}
+
+.lang-switch__trigger:hover,
+.lang-switch__trigger[aria-expanded="true"] {
+  border-color: rgba(244, 195, 24, 0.6);
+  background: rgba(244, 195, 24, 0.12);
+}
+
+.lang-switch__globe {
+  opacity: 0.85;
+}
+
+.lang-switch__chevron {
+  opacity: 0.7;
+  transition: transform 180ms ease;
+}
+
+.lang-switch__trigger[aria-expanded="true"] .lang-switch__chevron {
+  transform: rotate(180deg);
+}
+
+.lang-switch__menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 120;
+  min-width: 196px;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--paper-solid, #17190f);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5);
+}
+
+.lang-switch__option {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background 140ms ease, color 140ms ease;
+}
+
+.lang-switch__option:hover {
+  background: rgba(244, 239, 224, 0.08);
+}
+
+.lang-switch__option.is-active {
+  color: var(--reggae-gold);
+}
+
+.lang-switch__option-short {
+  flex-shrink: 0;
+  width: 26px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.lang-switch__option.is-active .lang-switch__option-short {
+  color: var(--reggae-gold);
+}
+
+.lang-switch__option-label {
+  flex: 1;
+}
+
+.lang-switch__check {
+  margin-left: auto;
+  color: var(--reggae-gold);
+}
+
+/* ── Mobile overlay variant ─────────────────────────────────────────────────
+   Full-width control that opens upward (it lives in the menu footer). */
+.lang-switch--menu {
+  display: none;
+  width: 100%;
+}
+
+.lang-switch--menu .lang-switch__trigger {
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
+  font-size: 0.85rem;
+}
+
+.lang-switch--menu .lang-switch__menu {
+  right: auto;
+  left: 0;
+  top: auto;
+  bottom: calc(100% + 8px);
+  width: 100%;
+}
+
+/* Bar variant shows on desktop; the menu variant takes over inside the
+   full-screen overlay (where the bar switcher is hidden alongside the nav). */
+@media (max-width: 920px) {
+  .lang-switch--bar {
+    display: none;
+  }
+}
+
+.site-menu .lang-switch--menu {
+  display: inline-flex;
+}
