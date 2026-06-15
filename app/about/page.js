@@ -99,7 +99,7 @@ export default function AboutPage() {
       {/* ── Programs ──────────────────────────────────────────── */}
       <Reveal as="section" className="abt-section" delay={160}>
         <span className="abt-eyebrow">Program routes</span>
-        <h2 className="abt-heading">Four visible routes where support becomes understandable.</h2>
+        <h2 className="abt-heading">Five visible routes where support becomes understandable.</h2>
         <p className="abt-body">These are the public routes where donors, partners, and volunteers choose a clear path.</p>
         <div className="abt-programs">
           {programPillars.map((pillar, i) => (

@@ -131,7 +131,7 @@ export default async function DonatePage({ searchParams }) {
       <Reveal as="section" id="giving-routes" className="donate-section donate-routes" delay={140}>
         <div className="donate-section__head">
           <span className="donate-kicker">What your gift supports</span>
-          <h2 className="donate-heading">Four routes, each with a public goal.</h2>
+          <h2 className="donate-heading">Five routes, each with a public goal.</h2>
           <p className="donate-section__sub">Pick the work you want to move forward — the giving form follows your choice.</p>
         </div>
 

@@ -258,6 +258,12 @@ export const programPillars = [
     body: "Grassroots training, youth tournaments, talent spotlighting, and sports as a leadership pathway.",
     tone: "sand",
     href: "/sports"
+  },
+  {
+    title: "Environment & Climate",
+    body: "Youth-led tree planting, green-school clubs, plastic-free campaigns, and climate education for resilient communities.",
+    tone: "leaf",
+    href: "/environment"
   }
 ];
 
@@ -326,7 +332,8 @@ export const donationCauses = [
   "Maternal and child health support",
   "Education access and digital skills",
   "Youth sports development",
-  "Creative advocacy campaigns"
+  "Creative advocacy campaigns",
+  "Green communities and climate action"
 ];
 
 export const donationFunds = [
@@ -389,6 +396,21 @@ export const donationFunds = [
     statusLabel: "Next creative campaign preparing for release",
     href: "/arts",
     hrefLabel: "Visit arts section"
+  },
+  {
+    slug: "green-communities",
+    eyebrow: "Environment route",
+    title: "Green Communities climate action",
+    supportArea: donationCauses[4],
+    summary:
+      "Funds indigenous tree planting, green-school clubs, plastic-free cleanup drives, climate education, and youth-led green innovation grants.",
+    amountLabel: "Current goal: NGN 3,000,000",
+    targetAmount: 3000000,
+    raisedAmount: 0,
+    beneficiariesLabel: "10,000 trees and 500 youth climate ambassadors targeted",
+    statusLabel: "Launch campaign in preparation",
+    href: "/environment",
+    hrefLabel: "Visit environment program"
   }
 ];
 

@@ -29,10 +29,11 @@ const menuPrimary = [
 
 // Real trust routes only (contact/social intentionally omitted — not yet confirmed).
 const menuTrust = [
-  { href: "/donate/transparency", key: "common.transparency" },
   { href: "/health", key: "common.health" },
   { href: "/sports", key: "common.sports" },
-  { href: "/arts", key: "common.arts" }
+  { href: "/arts", key: "common.arts" },
+  { href: "/environment", key: "common.environment" },
+  { href: "/donate/transparency", key: "common.transparency" }
 ];
 
 function isActive(pathname, href) {

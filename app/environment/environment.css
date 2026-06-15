@@ -1,0 +1,429 @@
+/* ============================================================================
+   Environment & Climate (Green Communities Initiative) — dark, green-accented.
+   ========================================================================== */
+
+.site-main.env {
+  --env: var(--reggae-green);
+  width: var(--site-width);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 0 clamp(3rem, 6vw, 5rem);
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.env-kicker,
+.env-cta__kicker {
+  margin: 0;
+  color: var(--reggae-gold);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.env-heading {
+  margin: 0;
+  max-width: 26ch;
+  color: var(--head);
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3.6vw, 2.7rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.env-body {
+  margin: 0;
+  max-width: 60ch;
+  color: var(--ink-soft);
+  font-size: clamp(1rem, 1.3vw, 1.12rem);
+  line-height: 1.72;
+}
+
+/* ── Hero (full-bleed photographic, green wash) ─────────────────────────────── */
+.env-hero {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-1 * (100vw - 100%) / 2);
+  min-height: 78vh;
+  display: grid;
+  align-content: end;
+  gap: 1.6rem;
+  overflow: hidden;
+  background: #06120b;
+  padding-bottom: clamp(1.5rem, 4vh, 2.5rem);
+}
+
+.env-hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+.env-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(120% 90% at 0% 0%, rgba(27, 163, 76, 0.3), transparent 55%),
+    linear-gradient(180deg, rgba(6, 18, 11, 0.25) 0%, rgba(6, 18, 11, 0.55) 55%, rgba(6, 18, 11, 0.92) 100%);
+}
+
+.env-hero__content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 1.1rem;
+  justify-items: start;
+  width: var(--site-width);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: clamp(5rem, 12vh, 8rem);
+}
+
+.env-hero__eyebrow {
+  margin: 0;
+  color: var(--reggae-gold);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.env-hero__title {
+  margin: 0;
+  max-width: 18ch;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 4.6rem);
+  font-weight: 700;
+  line-height: 0.96;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.env-hero__lead {
+  margin: 0;
+  max-width: 60ch;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: clamp(1.02rem, 1.4vw, 1.18rem);
+  line-height: 1.7;
+}
+
+.env-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.3rem;
+}
+
+.env-hero__stats {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 3vw, 2rem);
+  width: var(--site-width);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.env-stat {
+  display: grid;
+  gap: 0.25rem;
+}
+.env-stat strong {
+  color: var(--reggae-gold);
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1;
+}
+.env-stat span {
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* ── Sections ───────────────────────────────────────────────────────────────── */
+.env-section {
+  display: grid;
+  gap: clamp(1.4rem, 3vw, 2rem);
+}
+.env-section__head {
+  display: grid;
+  gap: 0.7rem;
+  max-width: 62rem;
+}
+.env-section__sub {
+  margin: 0;
+  max-width: 56rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+/* ── Overview + challenge ───────────────────────────────────────────────────── */
+.env-overview {
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+.env-overview__copy {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.env-challenge {
+  display: grid;
+  gap: 0.9rem;
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border: 1px solid rgba(27, 163, 76, 0.32);
+  border-radius: 18px;
+  background:
+    radial-gradient(120% 120% at 100% 0%, rgba(27, 163, 76, 0.16), transparent 60%),
+    var(--card-grad);
+}
+.env-challenge__label {
+  color: var(--reggae-green);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.env-challenge p {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.66;
+}
+.env-challenge__accent {
+  color: var(--head) !important;
+  font-weight: 600;
+}
+
+/* ── Objectives ─────────────────────────────────────────────────────────────── */
+.env-objectives {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.env-objective {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.9rem;
+  align-items: start;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card-grad);
+}
+.env-objective__num {
+  color: var(--reggae-green);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.env-objective p {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+/* ── Activities ─────────────────────────────────────────────────────────────── */
+.env-activities {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.env-activity {
+  position: relative;
+  display: grid;
+  gap: 0.7rem;
+  align-content: start;
+  padding: clamp(1.3rem, 2.6vw, 1.7rem);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--card-grad);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+.env-activity::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: var(--reggae-green);
+}
+.env-activity__num {
+  color: var(--reggae-green);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.env-activity__title {
+  margin: 0;
+  color: var(--head);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+.env-activity__list {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.env-activity__list li {
+  position: relative;
+  padding-left: 1.3rem;
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+.env-activity__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--reggae-green);
+}
+
+/* ── Impact ─────────────────────────────────────────────────────────────────── */
+.env-impact {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+.env-impact__card {
+  display: grid;
+  gap: 0.4rem;
+  padding: clamp(1.3rem, 2.6vw, 1.7rem);
+  border: 1px solid rgba(27, 163, 76, 0.28);
+  border-radius: 16px;
+  background:
+    radial-gradient(120% 140% at 0% 0%, rgba(27, 163, 76, 0.14), transparent 60%),
+    var(--card-grad);
+}
+.env-impact__card strong {
+  color: var(--reggae-gold);
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  font-weight: 700;
+  line-height: 1;
+}
+.env-impact__card span {
+  color: var(--ink-soft);
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+.env-impact__note {
+  margin: 0;
+  max-width: 60ch;
+  color: var(--ink-soft);
+  line-height: 1.66;
+}
+
+/* ── SDGs ───────────────────────────────────────────────────────────────────── */
+.env-sdgs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.env-sdg {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid rgba(27, 163, 76, 0.35);
+  border-radius: 999px;
+  background: rgba(27, 163, 76, 0.1);
+}
+.env-sdg__num {
+  color: var(--reggae-green);
+  font-weight: 800;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+.env-sdg__label {
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+/* ── CTA ────────────────────────────────────────────────────────────────────── */
+.env-cta {
+  display: grid;
+  gap: 0.95rem;
+  justify-items: start;
+  padding: clamp(1.8rem, 4vw, 3rem);
+  border: 1px solid rgba(27, 163, 76, 0.3);
+  border-radius: 22px;
+  background:
+    radial-gradient(120% 160% at 0% 0%, rgba(27, 163, 76, 0.3), transparent 55%),
+    radial-gradient(120% 160% at 100% 100%, rgba(244, 195, 24, 0.14), transparent 55%),
+    linear-gradient(135deg, #0d1c10, #06120b);
+}
+.env-cta__title {
+  margin: 0;
+  max-width: 22ch;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3.6vw, 2.7rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+.env-cta__body {
+  margin: 0;
+  max-width: 60ch;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.7;
+}
+.env-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.3rem;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .env-overview { grid-template-columns: 1fr; }
+  .env-activities { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .env-hero__stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; }
+  .env-impact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 620px) {
+  .env-objectives { grid-template-columns: 1fr; }
+  .env-activities { grid-template-columns: 1fr; }
+  .env-hero__actions,
+  .env-cta__actions { display: grid; grid-template-columns: 1fr; width: 100%; }
+  .env-hero__actions > .button,
+  .env-cta__actions > .button { width: 100%; }
+}

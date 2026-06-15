@@ -30,7 +30,7 @@ export default async function HomePage() {
             <p className="home__hero-impact-label">{t("home.impactLabel")}</p>
             <div className="home__hero-impact-grid">
               <div><strong>100+</strong><span>{t("home.impactChildren")}</span></div>
-              <div><strong>4</strong><span>{t("home.impactPrograms")}</span></div>
+              <div><strong>5</strong><span>{t("home.impactPrograms")}</span></div>
               <div><strong>9</strong><span>{t("home.impactCommunities")}</span></div>
             </div>
           </div>

@@ -10,7 +10,8 @@ const columns = [
       { href: "/health", key: "common.health" },
       { href: "/education", key: "common.education" },
       { href: "/sports", key: "common.sports" },
-      { href: "/arts", key: "common.arts" }
+      { href: "/arts", key: "common.arts" },
+      { href: "/environment", key: "common.environment" }
     ]
   },
   {

@@ -10,7 +10,7 @@ import "./programs.css";
 export const metadata = {
   title: "Programs",
   description:
-    "Four connected routes — education, health, sports, and creative advocacy — under one shared mission, archive, and support system."
+    "Five connected routes — education, health, sports, creative advocacy, and environment — under one shared mission, archive, and support system."
 };
 
 const currentPriorities = [
@@ -38,7 +38,7 @@ const currentPriorities = [
 ];
 
 const heroStats = [
-  { value: "4", label: "connected program pillars" },
+  { value: "5", label: "connected program pillars" },
   { value: "1", label: "shared archive & donation system" },
   { value: "Regional", label: "partner & contributor network" }
 ];
@@ -49,11 +49,11 @@ export default function ProgramsPage() {
       {/* ── Hero ──────────────────────────────────────────────── */}
       <Reveal as="section" className="programs-hero" delay={60}>
         <span className="programs-kicker">Programs hub</span>
-        <h1 className="programs-hero__title">Four routes. One mission.</h1>
+        <h1 className="programs-hero__title">Five routes. One mission.</h1>
         <p className="programs-hero__lead">
-          Education, health, sports, and creative advocacy each run as their own program — but feed
-          one shared archive, support system, and public mission. Start with the route that matters
-          most to you.
+          Education, health, sports, creative advocacy, and environment each run as their own program
+          — but feed one shared archive, support system, and public mission. Start with the route that
+          matters most to you.
         </p>
         <div className="programs-hero__actions">
           <LoadingLink href="/projects" className="button button--primary" loadingLabel="Opening">
@@ -80,7 +80,8 @@ export default function ProgramsPage() {
           <h2 className="programs-heading">Each route has a specific community purpose.</h2>
           <p className="programs-section__sub">
             Education builds access and practical skills. Arts carries public storytelling. Health
-            protects families. Sports creates discipline, belonging, and opportunity.
+            protects families. Sports creates discipline, belonging, and opportunity. Environment
+            drives youth-led climate action and greener communities.
           </p>
         </div>
         <div className="programs-pillars">

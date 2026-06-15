@@ -10,6 +10,7 @@ const publicRoutes = [
   "/donate/transparency",
   "/education",
   "/education/contribute",
+  "/environment",
   "/lms",
   "/gallery",
   "/get-involved",
